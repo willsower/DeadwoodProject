@@ -1,0 +1,36 @@
+import java.util.Scanner;
+//together!
+public class main {
+    public static void main(String[] args) {
+        //need some sort of while loop or loop till game ends
+        Scanner myOb = new Scanner(System.in);
+        //setup board here
+        int numPlayers = getNumPlayers(myOb);
+        // turnManage(numPlayers);
+    }
+
+    //Prompts user how many players will be playing
+    //Will throw player in loop until they enter 2-8 players
+    public static int getNumPlayers(Scanner myOb) {
+        String val;
+        int numberPlayers = 0;
+
+        while (!(numberPlayers >= 2 && numberPlayers <= 8)) {
+            System.out.println("How many players? (2 - 8) ");
+            val = myOb.nextLine();
+            try {
+                numberPlayers = Integer.parseInt(val);
+            } catch (NumberFormatException e) {}
+        }
+
+        return numberPlayers;
+    }
+
+    // public void turnManage(int numPlayers) {
+
+    // }
+
+    // public void dayManage() {
+    
+    // }
+}

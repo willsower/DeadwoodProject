@@ -2,7 +2,6 @@
 import java.util.Random; 
 
 public class scoringManager {
-    onTurn turn = new onTurn();
 
     //Adds together user dollar and credits
     public static int addDollarCredits(int dollar, int credit) {
@@ -26,15 +25,41 @@ public class scoringManager {
     }
 
     public static void calculatePayout(int budget) {
-        int roll1, roll2, roll3, roll4, roll5, roll6;
+        onTurn turn = new onTurn();
+        
+        int highestRank;
+        int middleRank;
+        int lowestRank;
 
-        for (int i = 0; i < budget; i++) {
-            roll[i] = turn.roll();
+        //Rolls the amount of die equal to the budget.
+        //Will add to each level how much should earn
+        for (int i = 1; i <= budget; i++) {
+            int temp = turn.roll();
+            switch (i) {
+                case 1:
+                    highestRank += temp;
+                    break;
+                case 2:
+                    middleRank += temp;
+                    break;
+                case 3: 
+                    lowestRank += temp;
+                    break;
+                case 4: 
+                    highestRank += temp;
+                    break;
+                case 5: 
+                    middleRank += temp;
+                    break;
+                default:
+                    lowestRank += temp;
+                    break;
+            }
         }
     }
 
     public static void bonusOnCard() {
-
+    
     }
 
     public static void bonusOffCard() {

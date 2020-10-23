@@ -1,12 +1,23 @@
+import org.w3c.dom.Document;
 import java.util.Scanner;
+
 //together!
 public class main {
     public static void main(String[] args) {
-        //need some sort of while loop or loop till game ends
-        Scanner myOb = new Scanner(System.in);
-        //setup board here
-        int numPlayers = getNumPlayers(myOb);
-        // turnManage(numPlayers);
+        Document doc = null;
+        ParseXML parsing = new ParseXML();
+        try {
+            doc = parsing.getDocFromFile("book.xml");
+            parsing.readBookData(doc);
+
+            //need some sort of while loop or loop till game ends
+            Scanner myOb = new Scanner(System.in);
+            //setup board here
+            int numPlayers = getNumPlayers(myOb);
+            // turnManage(numPlayers);
+        } catch (Exception e) {
+            System.out.println("Error = " + e);
+        }
     }
 
     //Prompts user how many players will be playing

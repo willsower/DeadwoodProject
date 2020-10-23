@@ -82,7 +82,7 @@ public class scoringManager {
     }
 
     //Gives off card player money to the rank of their role 
-    public static void bonusOffCard(int roleRank) {
+    public static int bonusOffCard(int roleRank) {
         return roleRank;
     }
 }

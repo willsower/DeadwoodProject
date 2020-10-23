@@ -24,12 +24,15 @@ public class scoringManager {
         return true;
     }
 
-    public static void calculatePayout(int budget) {
+    //Calculates payout value and will return the int values in an
+    //array
+    public static int[] calculatePayout(int budget) {
         onTurn turn = new onTurn();
         
-        int highestRank;
-        int middleRank;
-        int lowestRank;
+        int highestRank = 0;
+        int middleRank = 0;
+        int lowestRank = 0;
+        int[] total = new int[3];
 
         //Rolls the amount of die equal to the budget.
         //Will add to each level how much should earn
@@ -56,13 +59,30 @@ public class scoringManager {
                     break;
             }
         }
+
+        //Populates array with payout values
+        total[0] = highestRank;
+        total[1] = middleRank;
+        total[2] = lowestRank;
+
+        return total;
     }
 
-    public static void bonusOnCard() {
-    
+    //Returns the payout depending on their role on the card
+    public static int bonusOnCard(int priorityOnRole, int budget) {
+        int[] total = calculatePayout(budget);
+
+        if (priorityOnRole == 1) {
+            return total[0];
+        } else if (priorityOnRole == 2) {
+            return total[1];
+        } else {
+            return total[2];
+        }
     }
 
-    public static void bonusOffCard() {
-
+    //Gives off card player money to the rank of their role 
+    public static void bonusOffCard(int roleRank) {
+        return roleRank;
     }
 }

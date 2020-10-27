@@ -40,7 +40,51 @@ public class ParseXML{
 
         //reads data from cards file and prints data
         public void readCardData(Document d) {
+            Element root = d.getDocumentElement();
+            NodeList cards = root.getElementsByTagName("card");
 
+            for (int i = 0; i < cards.getLength(); i++) {
+                System.out.println("Printing information for card "+(i+1));
+
+                //reads data from the nodes
+                Node card = cards.item(i);
+                String cardCategory = card.getAttributes().getNamedItem("name").getNodeValue();
+                System.out.println("Card = " + cardCategory);
+                
+                //reads data 
+                NodeList children = card.getChildNodes();
+
+                for (int j=0; j< children.getLength(); j++){
+                    
+                    Node sub = children.item(j);
+                  
+                    if("scene".equals(sub.getNodeName())){
+                       String cardNumber = sub.getAttributes().getNamedItem("number").getNodeValue();
+                       System.out.println("Number = "+cardNumber);
+                       String scene = sub.getTextContent();
+                       System.out.println("Scene = "+scene);
+                       
+                    } 
+                    else if("part".equals(sub.getNodeName())){
+                        NodeList childrenOfChildren = sub.getChildNodes();
+
+                        for (int k = 0; k < childrenOfChildren.getLength(); k++) {
+                            Node subOfSub = childrenOfChildren.items(k);
+
+                            // if ("area".equals(sub.getNodeName())) {
+                            //     // String area = sub.getTextContent();
+                            //     // System.out.println(" Author = "+authorName);
+                            // } else if ("line".equals(sub.getNodeName())) {
+                            //     String line = sub.getTextContent();
+                            //     System.out.println(" Line = "+line);
+                            // }
+                        }                       
+                    }
+                                   
+                  } //for childnodes
+
+                System.out.println("\n");
+            }
         }
 
         //reads data from board file and prints data
@@ -60,14 +104,14 @@ public class ParseXML{
                 //reads data 
                 NodeList children = set.getChildNodes();
                 
-                for (int j = 0; j < children.getLength(); j++){
-                    NodeList sub = children.getChildNodes();
+                // for (int j = 0; j < children.getLength(); j++){
+                //     NodeList sub = children.getChildNodes();
                     
-                    for (int k = 0; k < sub.getLength(); k++) {
+                //     for (int k = 0; k < sub.getLength(); k++) {
 
-                    }
+                //     }
                                  
-                } //for childnodes
+                // } //for childnodes
                 System.out.println("\n");
             }//for book nodes
         }

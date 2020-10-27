@@ -7,8 +7,8 @@ public class main {
         Document doc = null;
         ParseXML parsing = new ParseXML();
         try {
-            doc = parsing.getDocFromFile("book.xml");
-            parsing.readBookData(doc);
+            doc = parsing.getDocFromFile("board.xml");
+            parsing.readBoardData(doc);
 
             //need some sort of while loop or loop till game ends
             Scanner myOb = new Scanner(System.in);

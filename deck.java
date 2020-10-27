@@ -1,7 +1,7 @@
 //Tai
 
 public class deck {
-    public static Deck() {
+    public deck() {
         
     }
 

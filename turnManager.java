@@ -10,20 +10,20 @@ public class turnManager {
     }
 
     //Get functions
-    public static getCurrentPlayer() {
+    public int getCurrentPlayer() {
         return currentPlayer;
     }
 
-    public static getNextPlayer() {
+    public int getNextPlayer() {
         return nextPlayer;
     }
 
     //Set functions
-    public static setCurrentPlayer(int player) {
+    public void setCurrentPlayer(int player) {
         currentPlayer = player;
     }
 
-    public static setNextPlayer(int player) {
+    public void setNextPlayer(int player) {
         nextPlayer = player;
     }
     

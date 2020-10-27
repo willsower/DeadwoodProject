@@ -7,7 +7,7 @@ public class card {
         int level;
 
         public Part(String name, String line, int level) {
-            partName = this.name;
+            partName = name;
             line = this.line;
             level = this.level;
         }
@@ -20,20 +20,20 @@ public class card {
     private Part part2;
     private Part part3; 
 
-    public static card(String name, int budget, int cardID) {
+    public card(String name, int budget, int cardID) {
 
     }
 
     //Get functions
-    public static String getCardName() {
+    public String getCardName() {
         return cardName;
     }
 
-    public static getCardBudget() {
+    public int getCardBudget() {
         return cardBudget;
     }
 
-    public static getCardID() {
+    public int getCardID() {
         return cardID;
     }   
 

@@ -12,7 +12,7 @@ public class player {
     private int finalScore = 0;
 
     //Constructor
-    private Player(int playerPriority, int level, int dollar, int credit, String playerLocation) {
+    public player(int playerPriority, int level, int dollar, int credit, String playerLocation) {
         playerPriority = this.playerPriority;
         level = this.level;
         dollar = this.dollar;

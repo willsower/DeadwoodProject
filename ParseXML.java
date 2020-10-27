@@ -69,15 +69,15 @@ public class ParseXML{
                         NodeList childrenOfChildren = sub.getChildNodes();
 
                         for (int k = 0; k < childrenOfChildren.getLength(); k++) {
-                            Node subOfSub = childrenOfChildren.items(k);
+                            Node subOfSub = childrenOfChildren.item(k);
 
-                            // if ("area".equals(sub.getNodeName())) {
-                            //     // String area = sub.getTextContent();
-                            //     // System.out.println(" Author = "+authorName);
-                            // } else if ("line".equals(sub.getNodeName())) {
-                            //     String line = sub.getTextContent();
-                            //     System.out.println(" Line = "+line);
-                            // }
+                            if ("area".equals(subOfSub.getNodeName())) {
+                                String area = subOfSub.getTextContent();
+                                System.out.println(" Area = "+area);
+                            } else if ("line".equals(subOfSub.getNodeName())) {
+                                String line = subOfSub.getTextContent();
+                                System.out.println(" Line = "+line);
+                            }
                         }                       
                     }
                                    

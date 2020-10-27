@@ -4,11 +4,11 @@ import java.util.Scanner;
 //together!
 public class main {
     public static void main(String[] args) {
-        Document doc = null;
-        ParseXML parsing = new ParseXML();
+        // Document doc = null;
+        // ParseXML parsing = new ParseXML();
         try {
-            doc = parsing.getDocFromFile("board.xml");
-            parsing.readBoardData(doc);
+            // doc = parsing.getDocFromFile("board.xml");
+            // parsing.readBoardData(doc);
 
             //need some sort of while loop or loop till game ends
             Scanner myOb = new Scanner(System.in);
@@ -37,11 +37,11 @@ public class main {
         return numberPlayers;
     }
 
-    // public void turnManage(int numPlayers) {
+    public void turnManage(int numPlayers) {
 
-    // }
+    }
 
-    // public void dayManage() {
+    public void dayManage() {
     
-    // }
+    }
 }

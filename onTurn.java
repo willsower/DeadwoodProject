@@ -38,4 +38,8 @@ public class onTurn {
 
         return ran.nextInt(upperBound - lowerBound + 1) + lowerBound;
     }
+
+    public static void main(String[] args) {
+
+    }
 }

@@ -26,4 +26,8 @@ public class turnManager {
     public static setNextPlayer(int player) {
         nextPlayer = player;
     }
+    
+    public static void main(String[] args) {
+
+    }
 }

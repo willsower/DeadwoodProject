@@ -1,11 +1,12 @@
 //Tai
+import java.util.*; 
 
 public class turnManager {
-    LinkedList<int> playerTurn = new LinkedList<int>();
+    LinkedList<Integer> playerTurn = new LinkedList<Integer>();
     private int currentPlayer;
     private int nextPlayer;
 
-    public static turnManager(int numPlayer) {
+    public turnManager(int numPlayer) {
 
     }
 

@@ -46,18 +46,19 @@ public class ParseXML{
             Card deck[] = new Card[40];
 
             for (int i = 0; i < cards.getLength(); i++) {
-                System.out.println("Printing information for card "+(i+1));
+                // System.out.println("Printing information for card "+(i+1));
                 
                 //reads data from the nodes
                 Node card = cards.item(i);
                 String cardCategory = card.getAttributes().getNamedItem("name").getNodeValue();
                 String cardBudget = card.getAttributes().getNamedItem("budget").getNodeValue();
 
-                System.out.println("Card = " + cardCategory);
-                System.out.println("Budget = " + cardBudget);
+                // System.out.println("Card = " + cardCategory);
+                // System.out.println("Budget = " + cardBudget);
 
                 //Initialize each card
-                deck[i] = new Card(cardCategory, Integer.parseInt(cardBudget), i++);
+                int temp = i + 1;
+                deck[i] = new Card(cardCategory, Integer.parseInt(cardBudget), temp);
 
                 //reads data 
                 NodeList children = card.getChildNodes();
@@ -71,9 +72,11 @@ public class ParseXML{
                         String cardNumber = sub.getAttributes().getNamedItem("number").getNodeValue();
                         String scene = sub.getTextContent();
 
-                        System.out.println("Number = "+cardNumber);
-                        System.out.println("Scene = "+scene);
+                        // System.out.println("Number = "+cardNumber);
+                        // System.out.println("Scene = "+scene);
 
+                        // System.out.println(i);
+                        // System.out.println(deck[i].getCardName());
                         deck[i].setSceneDescription(scene);
                        
                     } 
@@ -82,8 +85,8 @@ public class ParseXML{
 
                         String partName = sub.getAttributes().getNamedItem("name").getNodeValue();
                         String partLevel = sub.getAttributes().getNamedItem("level").getNodeValue();
-                        System.out.println("Part name = " + partName);
-                        System.out.println("Part level = " + partLevel);
+                        // System.out.println("Part name = " + partName);
+                        // System.out.println("Part level = " + partLevel);
 
                         deck[i].setPartNameLevel(index, Integer.parseInt(partLevel), partName);
 
@@ -97,17 +100,17 @@ public class ParseXML{
                                 String hVal = subOfSub.getAttributes().getNamedItem("h").getNodeValue();
                                 String wVal = subOfSub.getAttributes().getNamedItem("w").getNodeValue();
 
-                                System.out.println(" X Value = " + xVal);
-                                System.out.println(" Y Value = " + yVal);
-                                System.out.println(" H Value = " + hVal);
-                                System.out.println(" W Value = " + wVal);
+                                // System.out.println(" X Value = " + xVal);
+                                // System.out.println(" Y Value = " + yVal);
+                                // System.out.println(" H Value = " + hVal);
+                                // System.out.println(" W Value = " + wVal);
 
                                 deck[i].setPartCoords(index, Integer.parseInt(xVal), Integer.parseInt(yVal), Integer.parseInt(hVal), Integer.parseInt(wVal));
 
                             } else if ("line".equals(subOfSub.getNodeName())) {
                                 String line = subOfSub.getTextContent();
-                                System.out.println(" Line = "+line);
-                                System.out.println();
+                                // System.out.println(" Line = "+line);
+                                // System.out.println();
 
                                 deck[i].setPartLine(index, line);
                             }

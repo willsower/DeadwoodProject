@@ -23,6 +23,8 @@ public class Card {
         cardBudget = budget;
         cardID = this.cardID;
 
+        sceneDescription = "";
+
         part = initPart(part);
     }
 

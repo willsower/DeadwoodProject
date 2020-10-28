@@ -1,7 +1,7 @@
 //Tai
 import java.util.Random; 
 
-public class scoringManager {
+public class ScoringManager {
 
     //Adds together user dollar and credits
     public static int addDollarCredits(int dollar, int credit) {

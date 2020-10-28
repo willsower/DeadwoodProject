@@ -1,13 +1,13 @@
 //Tai
-public class upgrade {
+public class Upgrade {
     //Creating class to hold Level Data
     class Level {
         int level, credit, dollar;
 
         public Level(int level, int dollar, int credit) {
-            level = this.level;
-            credit = this.credit;
-            dollar = this.dollar;
+            this.level = level;
+            this.credit = credit;
+            this.dollar = dollar;
         }
     }
 

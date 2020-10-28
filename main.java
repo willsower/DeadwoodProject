@@ -1,15 +1,9 @@
-import org.w3c.dom.Document;
 import java.util.Scanner;
 
 //together!
-public class main {
+public class Main {
     public static void main(String[] args) {
-        // Document doc = null;
-        // ParseXML parsing = new ParseXML();
         try {
-            // doc = parsing.getDocFromFile("board.xml");
-            // parsing.readBoardData(doc);
-
             //need some sort of while loop or loop till game ends
             Scanner myOb = new Scanner(System.in);
             //setup board here

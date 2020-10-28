@@ -27,7 +27,7 @@ public class ScoringManager {
     //Calculates payout value and will return the int values in an
     //array
     public static int[] calculatePayout(int budget) {
-        onTurn turn = new onTurn();
+        OnTurn turn = new OnTurn();
         
         int highestRank = 0;
         int middleRank = 0;

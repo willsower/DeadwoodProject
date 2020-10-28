@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 //together!
-public class main {
+public class Main {
     public static void main(String[] args) {
         try {
             //need some sort of while loop or loop till game ends

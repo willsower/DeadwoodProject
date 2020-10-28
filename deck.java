@@ -1,8 +1,17 @@
 //Tai
+//make singleton
+import org.w3c.dom.Document;
+import java.util.ArrayList;
 
 public class deck {
+    private ArrayList<Card> deck;
+
     public deck() {
-        
+        Document doc = null;
+        ParseXML parsing = new ParseXML();
+
+        doc = parsing.getDocFromFile("cards.xml");
+        deck = parsing.readCardData(doc);
     }
 
     public static void removeCardFromDeck(int cardNum) {

@@ -12,6 +12,7 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 import java.io.File;
+import java.util.ArrayList;
 
 public class ParseXML{
 
@@ -38,14 +39,15 @@ public class ParseXML{
         
         }  
 
-        //reads data from cards file and prints data
-        public void readCardData(Document d) {
+        //reads data from cards file, returns list of cards
+        public ArrayList<Card> readCardData(Document d) {
             Element root = d.getDocumentElement();
             NodeList cards = root.getElementsByTagName("card");
+            ArrayList<Card> deck;
 
             for (int i = 0; i < cards.getLength(); i++) {
                 System.out.println("Printing information for card "+(i+1));
-
+                
                 //reads data from the nodes
                 Node card = cards.item(i);
                 String cardCategory = card.getAttributes().getNamedItem("name").getNodeValue();
@@ -72,8 +74,6 @@ public class ParseXML{
                             Node subOfSub = childrenOfChildren.item(k);
 
                             if ("area".equals(subOfSub.getNodeName())) {
-                                // String area = subOfSub.getTextContent();
-                                // System.out.println(" Area = "+area);
                                 String xVal = subOfSub.getAttributes().getNamedItem("x").getNodeValue();
                                 System.out.println(" X Value = " + xVal);
 

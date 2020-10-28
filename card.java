@@ -15,6 +15,7 @@ public class card {
 
     private String cardName;
     private int cardBudget;
+    private String sceneDescription;
     private int cardID;
     private Part part1;
     private Part part2;
@@ -36,6 +37,10 @@ public class card {
     public int getCardID() {
         return cardID;
     }   
+
+    public String getSceneDescription() {
+        return sceneDescription;
+    }
 
     public static void main(String[] args) {
 

@@ -89,6 +89,26 @@ public class Card {
         part[partNum].line = line;
     }
 
+    public void helperPrintCard() {
+        System.out.println("Printing information for card " + getCardID());
+        System.out.println("Card = " + getCardName());
+        System.out.println("Budget = " + getCardBudget());
+        System.out.println("Scene = " + getSceneDescription());
+
+        Part[] test = getPart();
+
+        for (int i = 0; i < 3; i++) {
+            System.out.println();
+            System.out.println(test[i].partName);
+            System.out.println(test[i].level);
+            System.out.println(test[i].xVal);
+            System.out.println(test[i].yVal);
+            System.out.println(test[i].hVal);
+            System.out.println(test[i].wVal);
+            System.out.println(test[i].line);
+        }
+    }
+
     public static void main(String[] args) {
 
     }

@@ -72,11 +72,23 @@ public class ParseXML{
                             Node subOfSub = childrenOfChildren.item(k);
 
                             if ("area".equals(subOfSub.getNodeName())) {
-                                String area = subOfSub.getTextContent();
-                                System.out.println(" Area = "+area);
+                                // String area = subOfSub.getTextContent();
+                                // System.out.println(" Area = "+area);
+                                String xVal = subOfSub.getAttributes().getNamedItem("x").getNodeValue();
+                                System.out.println(" X Value = " + xVal);
+
+                                String yVal = subOfSub.getAttributes().getNamedItem("y").getNodeValue();
+                                System.out.println(" Y Value = " + yVal);
+
+                                String hVal = subOfSub.getAttributes().getNamedItem("h").getNodeValue();
+                                System.out.println(" H Value = " + hVal);
+
+                                String wVal = subOfSub.getAttributes().getNamedItem("w").getNodeValue();
+                                System.out.println(" W Value = " + wVal);
                             } else if ("line".equals(subOfSub.getNodeName())) {
                                 String line = subOfSub.getTextContent();
                                 System.out.println(" Line = "+line);
+                                System.out.println();
                             }
                         }                       
                     }

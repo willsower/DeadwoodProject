@@ -13,11 +13,11 @@ public class Player {
 
     //Constructor
     public Player(int playerPriority, int level, int dollar, int credit, String playerLocation) {
-        playerPriority = this.playerPriority;
-        level = this.level;
-        dollar = this.dollar;
-        credit = this.credit;
-        playerLocation = this.playerLocation;
+        this.playerPriority = playerPriority;
+        this.level = level;
+        this.dollar = dollar;
+        this.credit = credit;
+        this.playerLocation = playerLocation;
     }
 
     //Get functions
@@ -63,19 +63,19 @@ public class Player {
     }
 
     public void setLevel(int level) {
-        level = this.level;
+        this.level = level;
     }
 
     public void setDollar(int dollar) {
-        dollar = this.dollar;
+        this.dollar = dollar;
     }
 
     public void setCredit(int credit) {
-        credit = this.credit;
+        this.credit = credit;
     }
 
     public void setPracticeChip(int practiceChip) {
-        practiceChip = this.practiceChip;
+        this.practiceChip = practiceChip;
     }
 
     public void setOnCardRole(boolean roleStatus) {

@@ -5,9 +5,9 @@ public class Upgrade {
         int level, credit, dollar;
 
         public Level(int level, int dollar, int credit) {
-            level = this.level;
-            credit = this.credit;
-            dollar = this.dollar;
+            this.level = level;
+            this.credit = credit;
+            this.dollar = dollar;
         }
     }
 

@@ -3,8 +3,7 @@
 import org.w3c.dom.Document;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.Random;
 
 public class Deck {
     private Card[] deck;
@@ -33,11 +32,22 @@ public class Deck {
     //randomness at every game
     public static Integer[] shuffle() {
         Integer[] list = new Integer[40];
-        List<Integer> myList = Arrays.asList(list);
-		Collections.shuffle(myList);
-        myList.toArray(list);
+
+        //Populate list
+        for (int i = 0; i < list.length; i++) {
+            list[i] = i + 1;
+        }
+
+        //Shuffle
+        Random random = new Random();
+		for (int i = 0; i < list.length; i++) {
+			int index = random.nextInt(list.length);
+			int temp = list[index];
+			list[index] = list[i];
+			list[i] = temp;
+        }
         
-        System.out.println(Arrays.toString(list));
+		System.out.println(Arrays.toString(list));
         return list;
     }
 
@@ -47,5 +57,7 @@ public class Deck {
 
     public static void main(String[] args) {
         Deck myDeck = new Deck();
+
+        shuffle();
     }
 }

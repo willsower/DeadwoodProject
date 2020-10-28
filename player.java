@@ -1,6 +1,6 @@
 //Daria
 
-public class player {
+public class Player {
     private int playerPriority;
     private int level;
     private int dollar;
@@ -12,7 +12,7 @@ public class player {
     private int finalScore = 0;
 
     //Constructor
-    public player(int playerPriority, int level, int dollar, int credit, String playerLocation) {
+    public Player(int playerPriority, int level, int dollar, int credit, String playerLocation) {
         playerPriority = this.playerPriority;
         level = this.level;
         dollar = this.dollar;

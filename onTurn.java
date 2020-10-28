@@ -1,7 +1,7 @@
 //Tai
 import java.util.Random; 
 
-public class onTurn {
+public class OnTurn {
     public static void onMove() {
 
     }

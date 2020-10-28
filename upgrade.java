@@ -1,5 +1,5 @@
 //Tai
-public class upgrade {
+public class Upgrade {
     //Creating class to hold Level Data
     class Level {
         int level, credit, dollar;

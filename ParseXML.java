@@ -57,10 +57,11 @@ public class ParseXML{
                 // System.out.println("Budget = " + cardBudget);
 
                 //Initialize each card
-                deck[i] = new Card(cardCategory, cardBudget, i++);
+                deck[i] = new Card(cardCategory, Integer.parseInt(cardBudget), i++);
 
                 //reads data 
                 NodeList children = card.getChildNodes();
+                int index = 0;
 
                 for (int j=0; j< children.getLength(); j++){
                     
@@ -71,7 +72,7 @@ public class ParseXML{
                        System.out.println("Number = "+cardNumber);
                        String scene = sub.getTextContent();
                     //    System.out.println("Scene = "+scene);
-                        deck[i].setSceneDescripton(scene);
+                        deck[i].setSceneDescription(scene);
                        
                     } 
                     else if("part".equals(sub.getNodeName())){
@@ -79,8 +80,9 @@ public class ParseXML{
 
                         String partName = sub.getAttributes().getNamedItem("name").getNodeValue();
                         System.out.println("Part name = " + partName);
-                        // deck[i].
-
+                        deck[i].part
+                        index++;
+                        
                         for (int k = 0; k < childrenOfChildren.getLength(); k++) {
                             Node subOfSub = childrenOfChildren.item(k);
 
@@ -102,12 +104,11 @@ public class ParseXML{
                                 System.out.println();
                             }
                         }                       
-                    }
-                                   
-                  } //for childnodes
-
+                    }           
+                } //for childnodes
                 System.out.println("\n");
             }
+            return deck;
         }
 
         //reads data from board file and prints data

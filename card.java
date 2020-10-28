@@ -16,12 +16,23 @@ public class Card {
     private int cardBudget;
     private String sceneDescription;
     private int cardID;
-    private Part part1 = new Part();
-    private Part part2 = new Part();
-    private Part part3 = new Part(); 
+    private Part[] part = new Part[3];
 
     public Card(String name, int budget, int cardID) {
+        cardName = name;
+        cardBudget = budget;
+        cardID = this.cardID;
 
+        part = initPart(part);
+    }
+
+    //Initialize the parts
+    public Part[] initPart(Part[] parts) {
+        for (int i = 0; i < 3; i++) {
+            parts[i] = new Part();
+        }
+
+        return parts;
     }
 
     //Get functions
@@ -42,7 +53,7 @@ public class Card {
     }
 
     //Set functions
-    public String setSceneDescription(String scene) {
+    public void setSceneDescription(String scene) {
         sceneDescription = scene;
     }
 

@@ -46,15 +46,15 @@ public class ParseXML{
             Card deck[] = new Card[40];
 
             for (int i = 0; i < cards.getLength(); i++) {
-                // System.out.println("Printing information for card "+(i+1));
+                System.out.println("Printing information for card "+(i+1));
                 
                 //reads data from the nodes
                 Node card = cards.item(i);
                 String cardCategory = card.getAttributes().getNamedItem("name").getNodeValue();
                 String cardBudget = card.getAttributes().getNamedItem("budget").getNodeValue();
 
-                // System.out.println("Card = " + cardCategory);
-                // System.out.println("Budget = " + cardBudget);
+                System.out.println("Card = " + cardCategory);
+                System.out.println("Budget = " + cardBudget);
 
                 //Initialize each card
                 deck[i] = new Card(cardCategory, Integer.parseInt(cardBudget), i++);
@@ -68,10 +68,12 @@ public class ParseXML{
                     Node sub = children.item(j);
                   
                     if("scene".equals(sub.getNodeName())){
-                       String cardNumber = sub.getAttributes().getNamedItem("number").getNodeValue();
-                       System.out.println("Number = "+cardNumber);
-                       String scene = sub.getTextContent();
-                    //    System.out.println("Scene = "+scene);
+                        String cardNumber = sub.getAttributes().getNamedItem("number").getNodeValue();
+                        String scene = sub.getTextContent();
+
+                        System.out.println("Number = "+cardNumber);
+                        System.out.println("Scene = "+scene);
+
                         deck[i].setSceneDescription(scene);
                        
                     } 
@@ -79,31 +81,38 @@ public class ParseXML{
                         NodeList childrenOfChildren = sub.getChildNodes();
 
                         String partName = sub.getAttributes().getNamedItem("name").getNodeValue();
+                        String partLevel = sub.getAttributes().getNamedItem("level").getNodeValue();
                         System.out.println("Part name = " + partName);
-                        deck[i].part
-                        index++;
-                        
+                        System.out.println("Part level = " + partLevel);
+
+                        deck[i].setPartNameLevel(index, Integer.parseInt(partLevel), partName);
+
+
                         for (int k = 0; k < childrenOfChildren.getLength(); k++) {
                             Node subOfSub = childrenOfChildren.item(k);
 
                             if ("area".equals(subOfSub.getNodeName())) {
                                 String xVal = subOfSub.getAttributes().getNamedItem("x").getNodeValue();
-                                System.out.println(" X Value = " + xVal);
-
                                 String yVal = subOfSub.getAttributes().getNamedItem("y").getNodeValue();
-                                System.out.println(" Y Value = " + yVal);
-
                                 String hVal = subOfSub.getAttributes().getNamedItem("h").getNodeValue();
-                                System.out.println(" H Value = " + hVal);
-
                                 String wVal = subOfSub.getAttributes().getNamedItem("w").getNodeValue();
+
+                                System.out.println(" X Value = " + xVal);
+                                System.out.println(" Y Value = " + yVal);
+                                System.out.println(" H Value = " + hVal);
                                 System.out.println(" W Value = " + wVal);
+
+                                deck[i].setPartCoords(index, Integer.parseInt(xVal), Integer.parseInt(yVal), Integer.parseInt(hVal), Integer.parseInt(wVal));
+
                             } else if ("line".equals(subOfSub.getNodeName())) {
                                 String line = subOfSub.getTextContent();
                                 System.out.println(" Line = "+line);
                                 System.out.println();
+
+                                deck[i].setPartLine(index, line);
                             }
-                        }                       
+                        }
+                        index++;                       
                     }           
                 } //for childnodes
                 System.out.println("\n");

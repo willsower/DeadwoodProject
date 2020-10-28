@@ -6,10 +6,10 @@ public class Card {
         public String partName;
         public String line;
         public int level;
-        public String xVal;
-        public String yVal;
-        public String hVal;
-        public String wVal;
+        public int xVal;
+        public int yVal;
+        public int hVal;
+        public int wVal;
     }
 
     private String cardName;
@@ -52,9 +52,36 @@ public class Card {
         return sceneDescription;
     }
 
+    public Part[] getPart() {
+        return part;
+    }
+
     //Set functions
     public void setSceneDescription(String scene) {
         sceneDescription = scene;
+    }
+
+    public void setPartNameLevel(int partNum, int partLevel, String partName) {
+        Part[] part = getPart();
+
+        part[partNum].partName = partName;
+        part[partNum].level = partLevel;
+    }
+
+    public void setPartCoords(int partNum, int x, int y, int h, int w) {
+        Part[] part = getPart();
+
+        part[partNum].xVal = x;
+        part[partNum].yVal = y;
+        part[partNum].hVal = h;
+        part[partNum].wVal = w;
+
+    }
+
+    public void setPartLine(int partNum, String line) {
+        Part[] part = getPart();
+
+        part[partNum].line = line;
     }
 
     public static void main(String[] args) {

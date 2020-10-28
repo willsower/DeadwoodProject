@@ -19,6 +19,11 @@ public class Deck {
         }
     }
 
+    //Get function
+    public Card[] getDeck() {
+        return deck;
+    }
+
     public static void removeCardFromDeck(int cardNum) {
 
     }
@@ -51,13 +56,13 @@ public class Deck {
         return list;
     }
 
-    public static void cardsToBard() {
+    public static void cardsToBoard() {
 
     }
 
     public static void main(String[] args) {
         Deck myDeck = new Deck();
 
-        shuffle();
+
     }
 }

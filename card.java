@@ -57,10 +57,13 @@ public class Card {
     }
 
     //Set functions
+
+    //Set scene description
     public void setSceneDescription(String scene) {
         sceneDescription = scene;
     }
 
+    //Set part name and level
     public void setPartNameLevel(int partNum, int partLevel, String partName) {
         Part[] part = getPart();
 
@@ -68,6 +71,7 @@ public class Card {
         part[partNum].level = partLevel;
     }
 
+    //Set part coordinates
     public void setPartCoords(int partNum, int x, int y, int h, int w) {
         Part[] part = getPart();
 
@@ -78,6 +82,7 @@ public class Card {
 
     }
 
+    //Set part line
     public void setPartLine(int partNum, String line) {
         Part[] part = getPart();
 

@@ -118,7 +118,7 @@ public class ParseXML{
                         index++;                       
                     }           
                 } //for childnodes
-                System.out.println("\n");
+                // System.out.println("\n");
             }
             return deck;
         }

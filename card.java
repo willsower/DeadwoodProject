@@ -89,6 +89,8 @@ public class Card {
         part[partNum].line = line;
     }
 
+    //Helper function for the sake of printing out each card's values
+    //Helps with debugging
     public void helperPrintCard() {
         System.out.println("Printing information for card " + getCardID());
         System.out.println("Card = " + getCardName());

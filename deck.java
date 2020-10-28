@@ -8,6 +8,8 @@ import java.util.Random;
 public class Deck {
     private Card[] deck;
 
+    //Deck constructor. Will call parser on cards.xml file
+    //Create deck of card objects
     public Deck() {
         Document doc = null;
         ParseXML parsing = new ParseXML();
@@ -22,14 +24,6 @@ public class Deck {
     //Get function
     public Card[] getDeck() {
         return deck;
-    }
-
-    public static void removeCardFromDeck(int cardNum) {
-
-    }
-
-    public static void addCardToDeck(int cardNum) {
-
     }
 
     //Shuffle is going to create an array a random
@@ -61,9 +55,6 @@ public class Deck {
     }
 
     public static void main(String[] args) {
-        Deck myDeck = new Deck();
 
-        Card[] deck = myDeck.getDeck();
-        deck[1].helperPrintCard();
     }
 }

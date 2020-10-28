@@ -53,6 +53,9 @@ public class ParseXML{
                 String cardCategory = card.getAttributes().getNamedItem("name").getNodeValue();
                 System.out.println("Card = " + cardCategory);
                 
+                String cardBudget = card.getAttributes().getNamedItem("budget").getNodeValue();
+                System.out.println("Budget = " + cardBudget);
+
                 //reads data 
                 NodeList children = card.getChildNodes();
 

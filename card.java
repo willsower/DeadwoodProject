@@ -1,27 +1,26 @@
 //Tai
 
-public class card {    
+public class Card {    
+    //Part object which will display roles on card
     class Part {
-        String partName;
-        String line;
-        int level;
-
-        public Part(String name, String line, int level) {
-            partName = name;
-            line = this.line;
-            level = this.level;
-        }
+        public String partName;
+        public String line;
+        public int level;
+        public String xVal;
+        public String yVal;
+        public String hVal;
+        public String wVal;
     }
 
     private String cardName;
     private int cardBudget;
     private String sceneDescription;
     private int cardID;
-    private Part part1;
-    private Part part2;
-    private Part part3; 
+    private Part part1 = new Part();
+    private Part part2 = new Part();
+    private Part part3 = new Part(); 
 
-    public card(String name, int budget, int cardID) {
+    public Card(String name, int budget, int cardID) {
 
     }
 
@@ -40,6 +39,11 @@ public class card {
 
     public String getSceneDescription() {
         return sceneDescription;
+    }
+
+    //Set functions
+    public String setSceneDescription(String scene) {
+        sceneDescription = scene;
     }
 
     public static void main(String[] args) {

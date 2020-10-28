@@ -3,10 +3,10 @@
 import org.w3c.dom.Document;
 import java.util.ArrayList;
 
-public class deck {
+public class Deck {
     private ArrayList<Card> deck;
 
-    public deck() {
+    public Deck() {
         Document doc = null;
         ParseXML parsing = new ParseXML();
 

@@ -40,21 +40,24 @@ public class ParseXML{
         }  
 
         //reads data from cards file, returns list of cards
-        public ArrayList<Card> readCardData(Document d) {
+        public Card[] readCardData(Document d) {
             Element root = d.getDocumentElement();
             NodeList cards = root.getElementsByTagName("card");
-            ArrayList<Card> deck;
+            Card deck[] = new Card[40];
 
             for (int i = 0; i < cards.getLength(); i++) {
-                System.out.println("Printing information for card "+(i+1));
+                // System.out.println("Printing information for card "+(i+1));
                 
                 //reads data from the nodes
                 Node card = cards.item(i);
                 String cardCategory = card.getAttributes().getNamedItem("name").getNodeValue();
-                System.out.println("Card = " + cardCategory);
-                
                 String cardBudget = card.getAttributes().getNamedItem("budget").getNodeValue();
-                System.out.println("Budget = " + cardBudget);
+
+                // System.out.println("Card = " + cardCategory);
+                // System.out.println("Budget = " + cardBudget);
+
+                //Initialize each card
+                deck[i] = new Card(cardCategory, cardBudget, i++);
 
                 //reads data 
                 NodeList children = card.getChildNodes();
@@ -67,11 +70,16 @@ public class ParseXML{
                        String cardNumber = sub.getAttributes().getNamedItem("number").getNodeValue();
                        System.out.println("Number = "+cardNumber);
                        String scene = sub.getTextContent();
-                       System.out.println("Scene = "+scene);
+                    //    System.out.println("Scene = "+scene);
+                        deck[i].setSceneDescripton(scene);
                        
                     } 
                     else if("part".equals(sub.getNodeName())){
                         NodeList childrenOfChildren = sub.getChildNodes();
+
+                        String partName = sub.getAttributes().getNamedItem("name").getNodeValue();
+                        System.out.println("Part name = " + partName);
+                        // deck[i].
 
                         for (int k = 0; k < childrenOfChildren.getLength(); k++) {
                             Node subOfSub = childrenOfChildren.item(k);

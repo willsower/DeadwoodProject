@@ -57,8 +57,8 @@ public class ParseXML{
                 // System.out.println("Budget = " + cardBudget);
 
                 //Initialize each card
-                int temp = i + 1;
-                deck[i] = new Card(cardCategory, Integer.parseInt(cardBudget), temp);
+
+                deck[i] = new Card(cardCategory, Integer.parseInt(cardBudget), i + 1);
 
                 //reads data 
                 NodeList children = card.getChildNodes();

@@ -62,7 +62,8 @@ public class Deck {
 
     public static void main(String[] args) {
         Deck myDeck = new Deck();
-        
 
+        Card[] deck = myDeck.getDeck();
+        deck[1].helperPrintCard();
     }
 }

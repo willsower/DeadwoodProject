@@ -21,7 +21,7 @@ public class Card {
     public Card(String name, int budget, int cardID) {
         cardName = name;
         cardBudget = budget;
-        cardID = this.cardID;
+        this.cardID = cardID;
 
         part = initPart(part);
     }
@@ -100,12 +100,12 @@ public class Card {
         for (int i = 0; i < 3; i++) {
             System.out.println();
             System.out.println(test[i].partName);
-            System.out.println(test[i].level);
-            System.out.println(test[i].xVal);
-            System.out.println(test[i].yVal);
-            System.out.println(test[i].hVal);
-            System.out.println(test[i].wVal);
-            System.out.println(test[i].line);
+            System.out.println("Part Level = " + test[i].level);
+            System.out.println("  xVal = " + test[i].xVal);
+            System.out.println("  yVal = " + test[i].yVal);
+            System.out.println("  hVal = " + test[i].hVal);
+            System.out.println("  wVal = " + test[i].wVal);
+            System.out.println("  line = " + test[i].line);
         }
     }
 

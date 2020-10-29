@@ -30,9 +30,9 @@ public class Main {
         return numberPlayers;
     }
 
-    //Create system for players
+    //Create system for players then run functionality
     public void turnManage(int numPlayers) {
         TurnManger turnManager = new TurnManager(numPlayers);
-        turnManager.start();
+        turnManager.run();
     }
 }

@@ -3,11 +3,12 @@ import java.util.Arrays;
 
 public class TurnManager {
     private Player[] players;
-    private int currentPlayer;
-    private int nextPlayer;
+    private int numPlayer;
 
     //Turn manager initializes all players
     public TurnManager(int numPlayer) {
+        this.numPlayer = numPlayer;
+
         //Init num players array
         players = new Player[numPlayer];
 
@@ -33,25 +34,26 @@ public class TurnManager {
         }
     }
 
-    //Get functions
-    public int getCurrentPlayer() {
-        return currentPlayer;
+    //Get function
+    public int getNumPlayer() {
+        return numPlayer;
     }
 
-    public int getNextPlayer() {
-        return nextPlayer;
+    //Calculate days of play
+    private int calculateDaysPlayed() {
+        if (getNumPlayer() == 2 || getNumPlayer() == 3) {
+            return 3;
+        } 
+        return 4;
     }
 
-    //Set functions
-    public void setCurrentPlayer(int player) {
-        currentPlayer = player;
-    }
+    public void run() {
+        int days = calculateDaysPlayed();
 
-    public void setNextPlayer(int player) {
-        nextPlayer = player;
-    }
-    
-    public static void main(String[] args) {
+        for (int i = 0; i < days; i++) {
 
+        }
+
+        //Would calculate scoring here
     }
 }

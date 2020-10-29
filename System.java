@@ -1,12 +1,12 @@
 //Tai
 import java.util.Arrays;
 
-public class TurnManager {
+public class System {
     private Player[] players;
     private int numPlayer;
 
     //Turn manager initializes all players
-    public TurnManager(int numPlayer) {
+    public System(int numPlayer) {
         this.numPlayer = numPlayer;
 
         //Init num players array
@@ -61,7 +61,7 @@ public class TurnManager {
 
     //Display winners
     public void displayWinner(Integer[] finals) {
-        System.out.println("The winner(s) are: ")
+        System.out.println("The winner(s) are: ");
         for (int i = 0; i < finals.length(); i++) {
             if (finals[i] != 0) {
                 System.out.println("  Player " + finals[i]);

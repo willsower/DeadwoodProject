@@ -85,8 +85,4 @@ public class ScoringManager {
     public static int bonusOffCard(int roleRank) {
         return roleRank;
     }
-
-    public static void main(String[] args) {
-
-    }
 }

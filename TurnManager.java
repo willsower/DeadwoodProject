@@ -15,19 +15,19 @@ public class TurnManager {
         for (int i = 0; i < numPlayer; i++) {
             switch (numPlayer) {
                 case 5:
-                    players[i] = new Player[i + 1, 1, 0, 2, "Trailers"];
+                    players[i] = new Player(i + 1, 1, 0, 2, "Trailers");
                     break;
                 case 6:
-                    players[i] = new Player[i + 1, 1, 0, 4, "Trailers"];
+                    players[i] = new Player(i + 1, 1, 0, 4, "Trailers");
                     break;
                 case 7:
-                    players[i] = new Player[i + 1, 2, 0, 0, "Trailers"];
+                    players[i] = new Player(i + 1, 2, 0, 0, "Trailers");
                     break;
                 case 8:
-                    players[i] = new Player[i + 1, 2, 0, 0, "Trailers"];
+                    players[i] = new Player(i + 1, 2, 0, 0, "Trailers");
                     break;
                 default:
-                    players[i] = new Player[i + 1, 0, 0, 0, "Trailers"];
+                    players[i] = new Player(i + 1, 0, 0, 0, "Trailers");
                     break;
             }
         }

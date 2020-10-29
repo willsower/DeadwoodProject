@@ -1,8 +1,8 @@
 //Tai
-import java.util.*; 
+import java.util.Arrays;
 
 public class TurnManager {
-    LinkedList<Integer> playerTurn = new LinkedList<Integer>();
+    private Player[] players;
     private int currentPlayer;
     private int nextPlayer;
 

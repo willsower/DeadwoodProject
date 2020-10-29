@@ -4,11 +4,10 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         try {
-            //need some sort of while loop or loop till game ends
             Scanner myOb = new Scanner(System.in);
-            //setup board here
+
             int numPlayers = getNumPlayers(myOb);
-            // turnManage(numPlayers);
+            turnManage(numPlayers);
         } catch (Exception e) {
             System.out.println("Error = " + e);
         }
@@ -31,11 +30,9 @@ public class Main {
         return numberPlayers;
     }
 
+    //Create system for players
     public void turnManage(int numPlayers) {
-
-    }
-
-    public void dayManage() {
-    
+        TurnManger turnManager = new TurnManager(numPlayers);
+        turnManager.start();
     }
 }

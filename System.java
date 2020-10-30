@@ -53,7 +53,7 @@ public class System {
 
     //Set zero array to 0
     public Integer[] zero(Integer[] curr) {
-        for (int i = 0; i < curr.length(); i++) {
+        for (int i = 0; i < curr.length; i++) {
             curr[i] = 0;
         }
         return curr;
@@ -62,7 +62,7 @@ public class System {
     //Display winners
     public void displayWinner(Integer[] finals) {
         System.out.println("The winner(s) are: ");
-        for (int i = 0; i < finals.length(); i++) {
+        for (int i = 0; i < finals.length; i++) {
             if (finals[i] != 0) {
                 System.out.println("  Player " + finals[i]);
             }

@@ -18,6 +18,8 @@ public class Player {
         this.dollar = dollar;
         this.credit = credit;
         this.playerLocation = playerLocation;
+
+        // printPlayerInfo();
     }
 
     //Get functions
@@ -97,11 +99,11 @@ public class Player {
     //Print player information
     public void printPlayerInfo() {
         System.out.println("Player Priority: " + getPlayerPriority());
-        System.out.println("Player Level: " + getLevel());
-        System.out.println("Player Credits: " + getCredit() + " Player Dollar: " + getDollar());
-        System.out.println("Player Location: " + getPlayerLocation());
-        System.out.println("Player Has On Card Role? " + getOnCardRole());
-        System.out.println("Player Has Off Card Role? " + getOffCardRole());
-        System.out.println("Player Practice Chip: " + getPracticeChip());
+        System.out.println("  Player Level: " + getLevel());
+        System.out.println("  Player Credits: " + getCredit() + " Player Dollar: " + getDollar());
+        System.out.println("  Player Location: " + getPlayerLocation());
+        System.out.println("  Player Has On Card Role? " + getOnCardRole());
+        System.out.println("  Player Has Off Card Role? " + getOffCardRole());
+        System.out.println("  Player Practice Chip: " + getPracticeChip());
     }
 }

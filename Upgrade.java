@@ -1,5 +1,4 @@
 //Tai
-import java.io.*; 
 public class Upgrade {
     //Creating class to hold Level Data
     class Level {

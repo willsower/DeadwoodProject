@@ -1,7 +1,6 @@
 //Tai
 //make singleton
 import org.w3c.dom.Document;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 

@@ -1,14 +1,14 @@
 //Tai
 import java.util.Arrays;
-import java.io.*; 
 
 
-public class System {
+
+public class SystemManager {
     private Player[] players;
     private int numPlayer;
 
     //Turn manager initializes all players
-    public System(int numPlayer) {
+    public SystemManager(int numPlayer) {
         this.numPlayer = numPlayer;
 
         //Init num players array
@@ -63,10 +63,10 @@ public class System {
 
     //Display winners
     public void displayWinner(Integer[] finals) {
-        // System.out.println("The winner(s) are: ");
+        System.out.println("The winner(s) are: ");
         for (int i = 0; i < finals.length; i++) {
             if (finals[i] != 0) {
-                // System.out.println("  Player " + finals[i]);
+                System.out.println("  Player " + finals[i]);
             }
         }
     }

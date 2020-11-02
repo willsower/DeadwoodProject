@@ -15,7 +15,7 @@ CLASSES	=	\
 	room.java	\
 	ScoringManager.java	\
 	stage.java	\
-	TurnManager.java	\
+	SystemManager.java \
 	Upgrade.java	\
 	Main.java	\
 

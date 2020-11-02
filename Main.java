@@ -8,8 +8,7 @@ public class Main {
 
             int numPlayers = getNumPlayers(myOb);
             systemManager(numPlayers);
-            System.out.print("Hello");
-            System.out.println("Hai");
+
         } catch (Exception e) {
             System.out.println("Error = " + e);
         }

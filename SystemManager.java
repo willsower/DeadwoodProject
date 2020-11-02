@@ -1,8 +1,6 @@
 //Tai
 import java.util.Arrays;
 
-
-
 public class SystemManager {
     private Player[] players;
     private int numPlayer;

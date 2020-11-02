@@ -1,4 +1,5 @@
 //Tai
+import java.io.*; 
 public class Upgrade {
     //Creating class to hold Level Data
     class Level {
@@ -82,9 +83,5 @@ public class Upgrade {
             default: 
                 return levelSix;
         }
-    }
-
-    public static void main(String[] args) {
-
     }
 }

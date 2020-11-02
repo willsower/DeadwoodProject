@@ -1,5 +1,7 @@
 //Tai
 import java.util.Arrays;
+import java.io.*; 
+
 
 public class System {
     private Player[] players;
@@ -61,10 +63,10 @@ public class System {
 
     //Display winners
     public void displayWinner(Integer[] finals) {
-        System.out.println("The winner(s) are: ");
+        // System.out.println("The winner(s) are: ");
         for (int i = 0; i < finals.length; i++) {
             if (finals[i] != 0) {
-                System.out.println("  Player " + finals[i]);
+                // System.out.println("  Player " + finals[i]);
             }
         }
     }
@@ -80,7 +82,7 @@ public class System {
 
         //Set final score for players
         for (int i = 0; i < getNumPlayer(); i++) {
-            player[i].setFinalScore(finalScore(player[i].getLevel(), player[i].getDollar(), player[i].getCredit()));
+            // player[i].setFinalScore(finalScore(player[i].getLevel(), player[i].getDollar(), player[i].getCredit()));
 
             //If player score is higher than current
             if (player[i].getFinalScore() != 0 && player[i].getFinalScore() > whoWon[player[index].getFinalScore()]) {

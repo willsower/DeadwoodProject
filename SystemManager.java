@@ -104,14 +104,17 @@ public class SystemManager {
     }
 
     public void run() {
-        //Initialize scoring manager
+        //Initialize scoring manager and onTurn
         ScoringManager scoreManager = new ScoringManager();
+        OnTurn turn = new OnTurn();
 
         int days = calculateDaysPlayed();
 
         //Run for each day
         for (int i = 0; i < days; i++) {
-
+            for (int i = 0; i < getNumPlayer(); i++) {
+                
+            }
         }
 
         //Calculate end score

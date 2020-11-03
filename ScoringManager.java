@@ -1,7 +1,18 @@
+//Singleton
 //Tai
 import java.util.Random; 
 
 public class ScoringManager {
+
+    private static ScoringManager instance = null;
+
+    //Create instance
+    public static ScoringManager getInstance() {
+        if (instance == null) {
+            instance = new ScoringManager(); 
+        }
+        return instance; 
+    }
 
     //Adds together user dollar and credits
     public static int addDollarCredits(int dollar, int credit) {

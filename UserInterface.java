@@ -30,4 +30,14 @@ public class UserInterface {
 
         return numberPlayers;
     }
+
+    //Display winners of game
+    public void displayWinner(Integer[] finals) {
+        System.out.println("The winner(s) are: ");
+        for (int i = 0; i < finals.length; i++) {
+            if (finals[i] != 0) {
+                System.out.println("  Player " + finals[i]);
+            }
+        }
+    }
 }

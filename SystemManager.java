@@ -59,18 +59,8 @@ public class SystemManager {
         return curr;
     }
 
-    //Display winners
-    public void displayWinner(Integer[] finals) {
-        System.out.println("The winner(s) are: ");
-        for (int i = 0; i < finals.length; i++) {
-            if (finals[i] != 0) {
-                System.out.println("  Player " + finals[i]);
-            }
-        }
-    }
-    
     //Get the final scores
-    public void endFunction(ScoringManager scoreManager) {
+    public void endFunction() {
         Player[] player = getPlayerList();
         Integer[] whoWon = new Integer[getNumPlayer()];
         int index = 0;
@@ -80,7 +70,7 @@ public class SystemManager {
 
         //Set final score for players
         for (int i = 0; i < getNumPlayer(); i++) {
-            // player[i].setFinalScore(finalScore(player[i].getLevel(), player[i].getDollar(), player[i].getCredit()));
+            player[i].setFinalScore(ScoringManager.getInstance().finalScore(player[i].getLevel(), player[i].getDollar(), player[i].getCredit()));
 
             //If player score is higher than current
             if (player[i].getFinalScore() != 0 && player[i].getFinalScore() > whoWon[player[index].getFinalScore()]) {
@@ -100,12 +90,11 @@ public class SystemManager {
             }
         }
 
-        displayWinner(whoWon);
+        UserInterface.getInstance().displayWinner(whoWon);
     }
 
     public void run() {
-        //Initialize scoring manager and onTurn
-        ScoringManager scoreManager = new ScoringManager();
+        //Initialize onTurn
         OnTurn turn = new OnTurn();
         Player[] list = getPlayerList();
 
@@ -119,6 +108,6 @@ public class SystemManager {
         }
 
         //Calculate end score
-        endFunction(scoreManager);
+        endFunction();
     }
 }

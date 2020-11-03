@@ -107,6 +107,7 @@ public class SystemManager {
         //Initialize scoring manager and onTurn
         ScoringManager scoreManager = new ScoringManager();
         OnTurn turn = new OnTurn();
+        Player[] list = getPlayerList();
 
         int days = calculateDaysPlayed();
 

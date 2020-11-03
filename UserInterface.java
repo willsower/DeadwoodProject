@@ -40,4 +40,10 @@ public class UserInterface {
             }
         }
     }
+
+    //Move and take role
+    public void moveTakeRole() {
+        System.out.println("Move (Y/N)");
+        //Have input of move
+    }
 }

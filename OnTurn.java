@@ -43,10 +43,7 @@ public class OnTurn {
 
         //If player has not taken a role
         if (player.getOffCardRole() == false || player.getOnCardRole() == false) {
-            //If player is not in the casting office
-            if ((player.getPlayerLocation().equals("Casting Office"))) {
-                System.out.println();
-            }
+            
         }
     }
 }

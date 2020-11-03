@@ -1,5 +1,16 @@
+//Singleton
 //Tai
 public class Upgrade {
+    private static Upgrade instance = null;
+
+    //Create instance
+    public static Upgrade getInstance() {
+        if (instance == null) {
+            instance = new Upgrade(); 
+        }
+        return instance; 
+    }
+
     //Creating class to hold Level Data
     class Level {
         int level, credit, dollar;

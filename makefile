@@ -17,6 +17,7 @@ CLASSES	=	\
 	stage.java	\
 	SystemManager.java \
 	Upgrade.java	\
+	UserInterface.java \
 	Main.java	\
 
 default: classes

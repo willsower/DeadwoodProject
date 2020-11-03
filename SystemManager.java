@@ -28,7 +28,7 @@ public class SystemManager {
                     players[i] = new Player(i + 1, 2, 0, 0, "Trailers");
                     break;
                 default:
-                    players[i] = new Player(i + 1, 0, 0, 0, "Trailers");
+                    players[i] = new Player(i + 1, 1, 0, 0, "Trailers");
                     break;
             }
         }
@@ -72,11 +72,14 @@ public class SystemManager {
         for (int i = 0; i < getNumPlayer(); i++) {
             player[i].setFinalScore(ScoringManager.getInstance().finalScore(player[i].getLevel(), player[i].getDollar(), player[i].getCredit()));
 
-            //If player score is higher than current
-            if (player[i].getFinalScore() != 0 && player[i].getFinalScore() > whoWon[player[index].getFinalScore()]) {
+            //First player goes in
+            if (whoWon[0] == 0) {
+                whoWon[0] = 1;
 
+            //If player score is higher than current
+            } else if (player[i].getFinalScore() != 0 && player[i].getFinalScore() > player[whoWon[index] - 1].getFinalScore()) {
                 //If there are no ties
-                if (index == 0) {
+                if (whoWon[index] == 0) {
                     whoWon[index] = i + 1;
                 //Else there is a tie
                 } else {
@@ -85,8 +88,9 @@ public class SystemManager {
                     whoWon[index] = i + 1;
                 }
             //Else if player has a tie with another player, put them in list
-            } else if (player[i].getFinalScore() == whoWon[index]) {
-                whoWon[index++] = i + 1;
+            } else if (player[i].getFinalScore() == player[whoWon[index] - 1].getFinalScore()) {
+                index++;
+                whoWon[index] = i + 1;
             }
         }
 

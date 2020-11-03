@@ -2,7 +2,7 @@
 import java.util.Random; 
 
 public class OnTurn {
-    public static void onMove() {
+    public static void onMove(Player player) {
 
     }
 
@@ -37,5 +37,17 @@ public class OnTurn {
         int upperBound = 6;
 
         return ran.nextInt(upperBound - lowerBound + 1) + lowerBound;
+    }
+
+    public static void turn(Player player) {
+
+        //If player has not taken a role
+        if (player.getOffCardRole() == false || player.getOnCardRole() == false) {
+            //If player is not in the casting office
+            if ((player.getPlayerLocation().equals("Casting Office"))) {
+                //Move
+                onMove(player);
+            }
+        }
     }
 }

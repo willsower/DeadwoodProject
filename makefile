@@ -5,17 +5,17 @@ JC = javac
 	$(JC) $(JFLAGS) $*.java
 
 CLASSES	=	\
-	board.java	\
+	Board.java	\
 	Card.java	\
 	dayManager.java	\
 	Deck.java	\
 	OnTurn.java	\
 	ParseXML.java	\
 	Player.java	\
-	role.java	\
-	room.java	\
+	Role.java	\
+	Room.java	\
 	ScoringManager.java	\
-	stage.java	\
+	Stage.java	\
 	TurnManager.java	\
 	Upgrade.java	\
 	Main.java	\

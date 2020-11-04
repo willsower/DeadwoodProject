@@ -3,13 +3,13 @@
 import java.io.*;
 import java.util.*;
 
-public class stage{
+public class Stage{
 
     String setName;
     int totSetCount;
     int currSetCount;
 
-    public stage(){
+    public Stage(){
         return;
     }
 

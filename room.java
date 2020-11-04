@@ -6,7 +6,7 @@ import java.util.*;
 import java.lang.*;
 
 
-public class room{
+public class Room{
   /*
     private Scene currScene;
     private Role[] roles;  //might not need
@@ -20,7 +20,7 @@ public class room{
   */
 
     //constructor
-    public room(/*Role[] roles, Scene scene, String name, Board board, int shots*/){
+    public Room(/*Role[] roles, Scene scene, String name, Board board, int shots*/){
 	/*
 	this.roles = roles; //maybe
 	this.currScene = scene;

@@ -3,7 +3,7 @@
 import java.io.*;
 import java.util.*;
 
-public class board{
+public class Board{
 
     private ArrayList<String> roomList;
     private int day;
@@ -13,7 +13,7 @@ public class board{
 
     //private player play; //I think this needs to be capital
 
-    public board(){
+    public Board(){
 	return;
     }
 

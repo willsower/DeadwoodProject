@@ -31,9 +31,9 @@ public class Role{
         return this.level;
     }
 
-    public String getRole(){
-        return this.role;
-    }
+    // public String getRole(){
+    //     return this.role;
+    // }
 
     public String getLine(){
         return this.line;

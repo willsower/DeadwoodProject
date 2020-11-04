@@ -8,13 +8,13 @@ MAY NOT NEED??
 import java.io.*;
 import java.util.*;
 
-public class stage{
+public class Stage {
 
     String setName;
     int totSetCount;
     int currSetCount;
 
-    public stage(String setName, int totSetCount, int CurrSetCount){
+    public Stage(String setName, int totSetCount, int CurrSetCount){
         this.setName = setName;
         this.totSetCount = totSetCount;
         this.currSetCount = currSetCount;

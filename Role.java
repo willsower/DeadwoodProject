@@ -50,6 +50,7 @@ public class Role{
     
     public void setOnCard(){
         this.onCard = true;
+        //comment
     }
 
     public void leaveRole(){

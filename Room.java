@@ -105,6 +105,7 @@ public class Room {
 
     public void resetRoom(){
         this.removePlayers();
+        //comment
         // this.currentShots = this.shots;
         // this.haveEnd = false;
         // this.currentScene = scene;

@@ -10,7 +10,7 @@ public class Room{
   
     private Card currScene; //used to be scene
     private Role[] roles;  //might not need
-    private ArrayList<player> currPlayer = new Array<player>();
+    private ArrayList<Player> currPlayer = new Array<Player>();
     private Room[] adjRoom;
     private int shots;
     private int currShots;

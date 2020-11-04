@@ -7,7 +7,6 @@ JC = javac
 CLASSES	=	\
 	Board.java	\
 	Card.java	\
-	dayManager.java	\
 	Deck.java	\
 	OnTurn.java	\
 	ParseXML.java	\

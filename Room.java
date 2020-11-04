@@ -53,7 +53,7 @@ public class Room{
     }
 
     public Room[] getAdjRooms(){  
-	    return adjRooms;
+	    return adjRoom;
     }
 
     public String getName(){ //title
@@ -63,7 +63,7 @@ public class Room{
 
     //setters
     public void setAdjRooms(Room[] rooms){
-	    this.adjRooms = rooms;
+	    adjRoom = rooms;
     }
 
 
@@ -82,9 +82,9 @@ public class Room{
 
         //is actor in room
 	    haveEnd = true;
-        role[] temp = this.currScene.getRole();
+        Role[] temp = currScene.getRole();
 
-        for(int i = 0; i<temp.lenght; i++){ //set bonus
+        for(int i = 0; i< temp.length; i++){ //set bonus
             if (temp[i].isOnCard()){ //role is taken
                 bonus = true;
             }
@@ -106,12 +106,12 @@ public class Room{
 
     public void resetRoom(){
         this.removePlayers();
-        this.currentShots = this.shots;
-        this.haveEnd = false;
-        this.currentScene = scene;
-        for (role[] role : this.roles){
-                role.leaveRole();
-        }
+        // this.currentShots = this.shots;
+        // this.haveEnd = false;
+        // this.currentScene = scene;
+        // for (role[] role : this.roles){
+        //         role.leaveRole();
+        // }
 	    return;
     }
 

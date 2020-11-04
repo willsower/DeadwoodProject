@@ -12,7 +12,7 @@ public class Role{
     String line;
     boolean onCard; //if someone is already on the card
     boolean mainPlayer;
-
+    String role;
 
     public Role(int level, boolean mainPlayer, String name, String line ){
 	    this.level = level;
@@ -31,9 +31,9 @@ public class Role{
         return this.level;
     }
 
-    // public String getRole(){
-    //     return this.role;
-    // }
+    public String getRole(){
+        return role;
+    }
 
     public String getLine(){
         return this.line;

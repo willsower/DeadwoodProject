@@ -82,13 +82,13 @@ public class Room{
 
         //is actor in room
 	    haveEnd = true;
-        Role[] temp = currScene.getRole();
+        // Role[] temp = currScene.getRole();
 
-        for(int i = 0; i< temp.length; i++){ //set bonus
-            if (temp[i].isOnCard()){ //role is taken
-                bonus = true;
-            }
-        }
+        // for(int i = 0; i< temp.length; i++){ //set bonus
+        //     if (temp[i].isOnCard()){ //role is taken
+        //         bonus = true;
+        //     }
+        // }
 
 
         /* Is bonas going to be given out in this class? */

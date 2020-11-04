@@ -15,8 +15,9 @@ CLASSES	=	\
 	Room.java	\
 	ScoringManager.java	\
 	Stage.java	\
-	TurnManager.java	\
+	SystemManager.java \
 	Upgrade.java	\
+	UserInterface.java \
 	Main.java	\
 
 default: classes
@@ -25,3 +26,4 @@ classes: $(CLASSES:.java=.class)
 
 clean: 
 	$(RM) *.class
+

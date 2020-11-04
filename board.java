@@ -3,7 +3,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Board{
+public class Board {
 
     private ArrayList<String> roomList;
     private int day;
@@ -15,11 +15,11 @@ public class Board{
 
     //private player play; //I think this needs to be capital
 
-   /* public board(int numRooms, int numPlayers, int day ){
-        this.numRooms = numRooms;
-        this.numPlayers = numPlayers;
-	    return;
-    }*/
+   public Board(int numRooms, int numPlayers, int day ){
+        // this.numRooms = numRooms;
+        // this.numPlayers = numPlayers;
+	    // return;
+    }
 
     //public void createBoard(){ // same as above function
 	//    return;

@@ -2,7 +2,7 @@
 import java.util.Random; 
 
 public class OnTurn {
-    public static void onMove() {
+    public static void onMove(Player player) {
 
     }
 
@@ -39,7 +39,11 @@ public class OnTurn {
         return ran.nextInt(upperBound - lowerBound + 1) + lowerBound;
     }
 
-    public static void main(String[] args) {
+    public static void turn(Player player) {
 
+        //If player has not taken a role
+        if (player.getOffCardRole() == false || player.getOnCardRole() == false) {
+            
+        }
     }
 }

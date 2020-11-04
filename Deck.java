@@ -1,12 +1,12 @@
 //Tai
 //make singleton
 import org.w3c.dom.Document;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
 public class Deck {
     private Card[] deck;
+    private Integer[] cardShuffle;
 
     //Deck constructor. Will call parser on cards.xml file
     //Create deck of card objects
@@ -16,6 +16,8 @@ public class Deck {
         try {
             doc = parsing.getDocFromFile("cards.xml");
             deck = parsing.readCardData(doc);
+
+            cardShuffle = shuffle();
         } catch (Exception e) {
             System.out.println("Error = " + e);
         }

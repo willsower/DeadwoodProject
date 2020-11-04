@@ -6,7 +6,7 @@ import java.util.*;
 import java.lang.*;
 
 
-public class Room{
+public class Room {
   
     private Card currScene; //used to be scene
     private Role[] roles;  //might not need
@@ -70,7 +70,6 @@ public class Room{
     //methods
     public void addPlayer(Player player){
 	    this.currPlayer.add(player);
-        return; //might not need since void
     }
 
     public void removePlayers(){

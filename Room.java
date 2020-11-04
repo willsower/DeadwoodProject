@@ -10,7 +10,7 @@ public class Room{
   
     private Card currScene; //used to be scene
     private Role[] roles;  //might not need
-    private ArrayList<Player> currPlayer = new Array<Player>();
+    private ArrayList<Player> currPlayer = new ArrayList<Player>();
     private Room[] adjRoom;
     private int shots;
     private int currShots;
@@ -41,11 +41,11 @@ public class Room{
 
     //getters
     public Card getScene(){  //I think it should be card? maybe? 
-	    return this.currScene;
+	    return currScene;
     }
 
     public Role[] getRole(){  
-	    return this.roles;
+	    return roles;
     }
 
     public ArrayList<Player> getPlayers(){ 
@@ -53,20 +53,17 @@ public class Room{
     }
 
     public Room[] getAdjRooms(){  
-	    return this.adjRooms;
-	return 0;
+	    return adjRooms;
     }
 
     public String getName(){ //title
 	    return this.name;
-	return "";
     }
 
 
     //setters
     public void setAdjRooms(Room[] rooms){
 	    this.adjRooms = rooms;
-	    return; //might not need
     }
 
 

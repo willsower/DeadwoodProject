@@ -158,11 +158,11 @@ public class Set{
         System.out.println("Takes: ");
         Take[] myTakes = getTake();
         for (int i = 0; i < myTakes.length; i++) {
-            // System.out.println("  " + myTakes[i].takeNumber);
-            // System.out.println("  " + myTakes[i].takeArea[0]);
-            // System.out.println("  " + myTakes[i].takeArea[1]);
-            // System.out.println("  " + myTakes[i].takeArea[2]);
-            // System.out.println("  " + myTakes[i].takeArea[3]);
+            System.out.println("  " + myTakes[i].takeNumber);
+            System.out.println("  " + myTakes[i].xVal);
+            System.out.println("  " + myTakes[i].yVal);
+            System.out.println("  " + myTakes[i].hVal);
+            System.out.println("  " + myTakes[i].wVal);
         }
 
         System.out.println("Parts: ");
@@ -170,10 +170,10 @@ public class Set{
         for (int i = 0; i < myPart.length; i++) {
             System.out.println("  " + myPart[i].partName);
             System.out.println("  " + part[i].level);
-            // System.out.println("  " + part[i].partArea[0]);
-            // System.out.println("  " + part[i].partArea[1]);
-            // System.out.println("  " + part[i].partArea[2]);
-            // System.out.println("  " + part[i].partArea[3]);
+            System.out.println("  " + part[i].xVal;
+            System.out.println("  " + part[i].yVal;
+            System.out.println("  " + part[i].hVal;
+            System.out.println("  " + part[i].wVal;
             System.out.println("  " + part[i].line);
         }
     }

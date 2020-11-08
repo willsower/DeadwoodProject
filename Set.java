@@ -29,6 +29,7 @@ public class Set{
         int wVal;
         int hVal;
         String line;
+        boolean isTaken = false;
     }
 
     //constructor
@@ -138,6 +139,18 @@ public class Set{
         part[counter].hVal = h;
         part[counter].wVal = w;
     }
+
+    public void setPartTaken(String partName, boolean taken){
+        Part[] partTaken = getParts();
+        for (int i = 0; i< getParts().length; i++){
+            if (partName.equals(partTaken[i].partName)){
+                partTaken[i].isTaken = taken;
+            }
+        }
+
+    }
+
+
 
     //Print helper funciton
     public void printHelper() {

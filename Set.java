@@ -170,10 +170,10 @@ public class Set{
         for (int i = 0; i < myPart.length; i++) {
             System.out.println("  " + myPart[i].partName);
             System.out.println("  " + part[i].level);
-            System.out.println("  " + part[i].xVal;
-            System.out.println("  " + part[i].yVal;
-            System.out.println("  " + part[i].hVal;
-            System.out.println("  " + part[i].wVal;
+            System.out.println("  " + part[i].xVal);
+            System.out.println("  " + part[i].yVal);
+            System.out.println("  " + part[i].hVal);
+            System.out.println("  " + part[i].wVal);
             System.out.println("  " + part[i].line);
         }
     }

@@ -26,6 +26,5 @@ public class Board{
     //Get function
     public Set[] getSet() {
         return set;
-    }
-    
+    }    
 }

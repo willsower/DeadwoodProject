@@ -11,13 +11,12 @@ CLASSES	=	\
 	OnTurn.java	\
 	ParseXML.java	\
 	Player.java	\
-	Role.java	\
-	Room.java	\
 	ScoringManager.java	\
-	Stage.java	\
 	SystemManager.java \
 	Upgrade.java	\
 	UserInterface.java \
+	Set.java \
+	Room.java \
 	Main.java	\
 
 default: classes

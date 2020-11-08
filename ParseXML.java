@@ -124,90 +124,132 @@ public class ParseXML{
         }
 
         //reads data from board file and prints data
-        public void readBoardData(Document d) {
+        public Set[] readBoardData(Document d) {
             Element root = d.getDocumentElement();
             NodeList sets = root.getElementsByTagName("set");
-
+            Set setInfo[] = new Set[12];
+            int indexCounter = 0;
             for (int i = 0; i < sets.getLength(); i++) {
                 
-                System.out.println("Printing information for set "+(i+1));
+                // System.out.println("Printing information for set "+(i+1));
                 
                 //reads data from the nodes
                 Node set = sets.item(i);
                 String setCategory = set.getAttributes().getNamedItem("name").getNodeValue();
-                System.out.println("Set = " + setCategory);
+                // System.out.println("Set = " + setCategory);
+                setInfo[indexCounter] = new Set(setCategory);
                 
                 //reads data 
                 NodeList children = set.getChildNodes();
                 
-                // for (int j = 0; j < children.getLength(); j++){
-                //     NodeList sub = children.getChildNodes();
-                    
-                //     for (int k = 0; k < sub.getLength(); k++) {
+                 for (int j = 0; j < children.getLength(); j++){
+                     Node sub = children.item(j);
 
-                //     }
-                                 
-                // } //for childnodes
-                System.out.println("\n");
+                     if ("neighbors".equals(sub.getNodeName())) {
+                        NodeList childOfNeighbors = sub.getChildNodes();
+                        // System.out.println(childOfNeighbors.getLength());
+                        int index = 0;
+                        for (int k = 0; k < childOfNeighbors.getLength(); k++) {
+                            Node neigh = childOfNeighbors.item(k);
+
+                            if ("neighbor".equals(neigh.getNodeName())) {
+                                String neighborName = neigh.getAttributes().getNamedItem("name").getNodeValue();
+                                index++;
+                                // System.out.println(neighborName);
+                                setInfo[indexCounter].setNeighbors(neighborName, index);
+                                setInfo[indexCounter].setNumberOfNeighbors(k + 1);
+                            }
+                        }
+                    }else if("area".equals(sub.getNodeName())){
+                         String areaX = sub.getAttributes().getNamedItem("x").getNodeValue();
+                         String areaY = sub.getAttributes().getNamedItem("y").getNodeValue();
+                         String areaH = sub.getAttributes().getNamedItem("h").getNodeValue();
+                         String areaW = sub.getAttributes().getNamedItem("w").getNodeValue();
+
+                        //  System.out.println(areaX);
+                        //  System.out.println(areaY);
+                        //  System.out.println(areaH);
+                        //  System.out.println(areaW);
+                        setInfo[indexCounter].setSetArea(Integer.parseInt(areaX), Integer.parseInt(areaY), Integer.parseInt(areaH), Integer.parseInt(areaW));
+
+                     }else if ("takes".equals(sub.getNodeName())) {
+                        NodeList takes = sub.getChildNodes();
+
+                        for (int k = 0; k < takes.getLength(); k++) {
+                            Node take = takes.item(k);
+                            if ("take".equals(take.getNodeName())) {
+                                String takeNumber = take.getAttributes().getNamedItem("number").getNodeValue();
+
+                                // System.out.println(takeNumber);
+
+                                NodeList area = take.getChildNodes();
+                                Node areaVals = area.item(0);
+
+                                String xVal = areaVals.getAttributes().getNamedItem("x").getNodeValue();
+                                String yVal = areaVals.getAttributes().getNamedItem("y").getNodeValue();
+                                String hVal = areaVals.getAttributes().getNamedItem("h").getNodeValue();
+                                String wVal = areaVals.getAttributes().getNamedItem("w").getNodeValue();
+
+                                // System.out.println(" X Value = " + xVal);
+                                // System.out.println(" Y Value = " + yVal);
+                                // System.out.println(" H Value = " + hVal);
+                                // System.out.println(" W Value = " + wVal);
+
+                                setInfo[indexCounter].setTake(Integer.parseInt(takeNumber), Integer.parseInt(xVal), Integer.parseInt(yVal), Integer.parseInt(hVal), Integer.parseInt(wVal));
+
+                                setInfo[indexCounter].setNumberOfTakes(k + 1);
+                            }
+                        }
+
+                     }else if("parts".equals(sub.getNodeName())){
+                         NodeList parts = sub.getChildNodes();
+
+                         for (int k = 0; k< parts.getLength(); k++){
+                            
+                             Node part = parts.item(k);
+                             if("part".equals(part.getNodeName())){
+                                String partName = part.getAttributes().getNamedItem("name").getNodeValue();
+                                String partLevel = part.getAttributes().getNamedItem("level").getNodeValue();
+
+                                // System.out.println(partName);
+                                // System.out.println(partLevel);
+
+                                setInfo[indexCounter].setPartNameLevel(k, partName, Integer.parseInt(partLevel));
+
+                                NodeList childOfPart =part.getChildNodes();
+
+                                for(int p = 0; p< childOfPart.getLength(); p++){
+                                    Node partChild = childOfPart.item(p);
+
+                                    if("area".equals(partChild.getNodeName())){
+                                        String xVal = partChild.getAttributes().getNamedItem("x").getNodeValue();
+                                        String yVal = partChild.getAttributes().getNamedItem("y").getNodeValue();
+                                        String hVal = partChild.getAttributes().getNamedItem("h").getNodeValue();
+                                        String wVal = partChild.getAttributes().getNamedItem("w").getNodeValue();
+        
+                                        // System.out.println(" X Value = " + xVal);
+                                        // System.out.println(" Y Value = " + yVal);
+                                        // System.out.println(" H Value = " + hVal);
+                                        // System.out.println(" W Value = " + wVal);
+
+                                        setInfo[indexCounter].setPartArea(k, Integer.parseInt(xVal), Integer.parseInt(yVal), Integer.parseInt(hVal), Integer.parseInt(wVal));
+
+
+                                    }else if("line".equals(partChild.getNodeName())){
+                                         String line = partChild.getTextContent();
+                                         //System.out.println(line);
+
+                                         setInfo[indexCounter].setPartLine(k, line);
+                                    }
+                                }
+                             }
+                         }
+
+                     }            
+                 } //for childnodes
+                // System.out.println("\n");
+                indexCounter++;
             }//for book nodes
+            return setInfo;
         }
-        
-        // reads data from XML file and prints data
-        public void readBookData(Document d){
-        
-            Element root = d.getDocumentElement();
-            
-            NodeList books = root.getElementsByTagName("book");
-            
-            for (int i=0; i<books.getLength();i++){
-                
-                System.out.println("Printing information for book "+(i+1));
-                
-                //reads data from the nodes
-                Node book = books.item(i);
-                String bookCategory = book.getAttributes().getNamedItem("category").getNodeValue();
-                System.out.println("Category = "+bookCategory);
-                
-                //reads data
-                                             
-                NodeList children = book.getChildNodes();
-                
-                for (int j=0; j< children.getLength(); j++){
-                    
-                  Node sub = children.item(j);
-                
-                  if("title".equals(sub.getNodeName())){
-                     String bookLanguage = sub.getAttributes().getNamedItem("lang").getNodeValue();
-                     System.out.println("Language = "+bookLanguage);
-                     String title = sub.getTextContent();
-                     System.out.println("Title = "+title);
-                     
-                  }
-                  
-                  else if("author".equals(sub.getNodeName())){
-                     String authorName = sub.getTextContent();
-                     System.out.println(" Author = "+authorName);
-                     
-                  }
-                  else if("year".equals(sub.getNodeName())){
-                     String yearVal = sub.getTextContent();
-                     System.out.println(" Publication Year = "+yearVal);
-                     
-                  }
-                  else if("price".equals(sub.getNodeName())){
-                     String priceVal = sub.getTextContent();
-                     System.out.println(" Price = "+priceVal);
-                     
-                  }
-                                 
-                } //for childnodes
-                System.out.println("\n");
-            }//for book nodes
-        
-        }// method
-    
-    
-
-
-
 }//class

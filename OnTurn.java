@@ -3,15 +3,23 @@ import java.util.Random;
 
 public class OnTurn {
     public static void onMove(Player player) {
+        //give player option to move
+            //call user interface
+            //Interact with board?
 
+        //if player moved to casting office
+            //allow upgrade possibility
+
+        //if player moved to card area and card still has roles
+            //give option to choose roll
     }
 
-    public static void takeOnCardRole()  {
-
+    public static void takeOnCardRole(Player player)  {
+        player.setOnCardRole(true);
     }
 
-    public static void takeOffCardRole() {
-
+    public static void takeOffCardRole(Player player) {
+        player.setOffCardRole(true);
     }
 
     //Function to see if player is allowed to rehearse.

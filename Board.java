@@ -1,66 +1,30 @@
-//Daria
-//complies!!!!
-import java.io.*;
-import java.util.*;
+import org.w3c.dom.Document;
+public class Board{
 
-public class Board {
+    private Board instance = null;
+    private Set[] set;
 
-    private ArrayList<String> roomList;
-    private int day;
-    private int numPlayers;
-    private int numRooms = 12;
-    private boolean endOfDay = false;
-    private int currNumRooms = numRooms-2;
-   // private static room[] rooms = new room[numRooms];
-
-    //private player play; //I think this needs to be capital
-
-   public Board(int numRooms, int numPlayers, int day ){
-        // this.numRooms = numRooms;
-        // this.numPlayers = numPlayers;
-	    // return;
-    }
-
-    //public void createBoard(){ // same as above function
-	//    return;
-    //}
-
-    public int getNumPlayers(){  //may also need current player
-	    return this.numPlayers;
-    }
-
-    public void setAdjacentRooms(){  //may not need here
-    
-    }
-
-    public int getCurrNumRooms(){
-        return currNumRooms;
-    }
-
-    public void updateNumRooms(int numRooms){
-	    currNumRooms--;
-        if (currNumRooms == 1){
-            endOfDay = true;
+    //create instance
+    public Board getInstance(){
+        if (instance == null){
+            instance = new Board();
         }
-        //comment
+        return instance;
     }
     
-    public boolean isEndDay(){
-	    return endOfDay;
-    }
-    
-    public void resetBoard(){
-        //this.endOfDay = false;
-        currNumRooms = numRooms-2;
-        endOfDay = false;
-        //for(int i=0; i<numRooms-2; i++){
-            //
-        //}
-	    //return;
+    public Board() {
+        Document doc = null;
+        ParseXML parsing = new ParseXML();
+        try {
+            doc = parsing.getDocFromFile("boards.xml");
+            set = parsing.readBoardData(doc);
+        } catch (Exception e) {
+            System.out.println("Error = " + e);
+        }
     }
 
-    public static void main(String[] args){ //need to replace with static
-
-    }
-
+    //Get function
+    public Set[] getSet() {
+        return set;
+    }    
 }

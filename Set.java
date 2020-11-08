@@ -2,12 +2,12 @@ public class Set{
 
     private String setName;
     private int numberOfNeighbors;
-    private String[] neighbor= new String[numberOfNeighbors];
+    private String[] neighbor= new String[4];
     private int[] setArea = new int[4];
     private int numberOfTakes;
-    private Take[] take = new Take[numberOfTakes];
+    private Take[] take = new Take[3];
     private int numberOfParts;
-    private Part[] part = new Part[numberOfParts];
+    private Part[] part = new Part[4];
 
     class Take {
         int takeNumber;
@@ -91,14 +91,20 @@ public class Set{
         numberOfParts = numParts;
     }
 
-    public void setPart(int counter, String name, int level, int x, int y, int h, int w, String line) {
+    public void setPartNameLevel(int counter, String name, int level) {
         part[counter].partName = name;
         part[counter].level = level;
+    }
+
+    public void setPartLine(int counter, String line) {
+        part[counter].line = line;
+    }
+
+    public void setPartArea(int counter, int x, int y, int h, int w) {
         part[counter].partArea[0] = x;
         part[counter].partArea[1] = y;
         part[counter].partArea[2] = h;
         part[counter].partArea[3] = 2;
-        part[counter].line = line;
     }
 
     //Print helper funciton

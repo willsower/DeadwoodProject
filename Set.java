@@ -1,8 +1,5 @@
-
-
 public class Set{
 
-    
     private String setName;
     private int numberOfNeighbors;
     private String[] neighbor= new String[numberOfNeighbors];
@@ -62,8 +59,6 @@ public class Set{
         return part;
     }
 
-
-
     //setters
     public void setNumberOfNeighbors(int num){
        numberOfNeighbors = num;
@@ -102,14 +97,9 @@ public class Set{
     }
 
     public void setNumberOfParts(int numParts) {
-        numberOfparts = numParts;
+        numberOfParts = numParts;
     }
-    class Part {
-        String partName;
-        int level;
-        int[] partArea;
-        String line;
-    }
+
     public void setPart(int counter, String name, int level, int x, int y, int h, int w, String line) {
         part[counter].partName = name;
         part[counter].level = level;
@@ -118,6 +108,44 @@ public class Set{
         part[counter].partArea[2] = h;
         part[counter].partArea[3] = 2;
         part[counter].line = line;
+    }
+
+    public void printHelper() {
+        System.out.println("Set Name: " + getSetName());
+        System.out.println("Neighors: ");
+
+        String[] prac = getNeighbor();
+        for (int i = 0; i < getNeighbor().length; i++) {
+            System.out.println("  " + prac[i]);
+        }
+
+        System.out.println("Set Area: ");
+        int[] area = getSetArea();
+        for (int i = 0; i < getSetArea().length; i++) {
+            System.out.println("  " + area[i]);
+        }
+        
+        System.out.println("Takes: ");
+        Take[] myTakes = getTake();
+        for (int i = 0; i < myTakes.length; i++) {
+            System.out.println("  " + myTakes[i].takeNumber);
+            System.out.println("  " + myTakes[i].takeArea[0]);
+            System.out.println("  " + myTakes[i].takeArea[1]);
+            System.out.println("  " + myTakes[i].takeArea[2]);
+            System.out.println("  " + myTakes[i].takeArea[3]);
+        }
+
+        System.out.println("Parts: ");
+        Part[] myPart = getParts();
+        for (int i = 0; i < myPart.length; i++) {
+            System.out.println("  " + myPart[i].partName);
+            System.out.println("  " + part[i].level);
+            System.out.println("  " + part[i].partArea[0]);
+            System.out.println("  " + part[i].partArea[1]);
+            System.out.println("  " + part[i].partArea[2]);
+            System.out.println("  " + part[i].partArea[3]);
+            System.out.println("  " + part[i].line);
+        }
     }
 
 }

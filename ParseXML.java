@@ -124,10 +124,11 @@ public class ParseXML{
         }
 
         //reads data from board file and prints data
-        public void readBoardData(Document d) {
+        public Set[] readBoardData(Document d) {
             Element root = d.getDocumentElement();
             NodeList sets = root.getElementsByTagName("set");
-
+            Set setInfo[] = new Set[12];
+            int indexCounter = 0;
             for (int i = 0; i < sets.getLength(); i++) {
                 
                 // System.out.println("Printing information for set "+(i+1));
@@ -136,7 +137,7 @@ public class ParseXML{
                 Node set = sets.item(i);
                 String setCategory = set.getAttributes().getNamedItem("name").getNodeValue();
                 // System.out.println("Set = " + setCategory);
-                Set setInfo = new Set(setCategory);
+                setInfo[indexCounter] = new Set(setCategory);
                 
                 //reads data 
                 NodeList children = set.getChildNodes();
@@ -155,8 +156,8 @@ public class ParseXML{
                                 String neighborName = neigh.getAttributes().getNamedItem("name").getNodeValue();
                                 index++;
                                 // System.out.println(neighborName);
-                                setInfo.setNeighbors(neighborName, index);
-                                setInfo.setNumberOfNeighbors(k + 1);
+                                setInfo[indexCounter].setNeighbors(neighborName, index);
+                                setInfo[indexCounter].setNumberOfNeighbors(k + 1);
                             }
                         }
                     }else if("area".equals(sub.getNodeName())){
@@ -169,7 +170,7 @@ public class ParseXML{
                         //  System.out.println(areaY);
                         //  System.out.println(areaH);
                         //  System.out.println(areaW);
-                        setInfo.setSetArea(Integer.parseInt(areaX), Integer.parseInt(areaY), Integer.parseInt(areaH), Integer.parseInt(areaW));
+                        setInfo[indexCounter].setSetArea(Integer.parseInt(areaX), Integer.parseInt(areaY), Integer.parseInt(areaH), Integer.parseInt(areaW));
 
                      }else if ("takes".equals(sub.getNodeName())) {
                         NodeList takes = sub.getChildNodes();
@@ -194,9 +195,9 @@ public class ParseXML{
                                 // System.out.println(" H Value = " + hVal);
                                 // System.out.println(" W Value = " + wVal);
 
-                                setInfo.setTake(Integer.parseInt(takeNumber), Integer.parseInt(xVal), Integer.parseInt(yVal), Integer.parseInt(hVal), Integer.parseInt(wVal));
+                                setInfo[indexCounter].setTake(Integer.parseInt(takeNumber), Integer.parseInt(xVal), Integer.parseInt(yVal), Integer.parseInt(hVal), Integer.parseInt(wVal));
 
-                                setInfo.setNumberOfTakes(k + 1);
+                                setInfo[indexCounter].setNumberOfTakes(k + 1);
                             }
                         }
 
@@ -213,7 +214,7 @@ public class ParseXML{
                                 // System.out.println(partName);
                                 // System.out.println(partLevel);
 
-                                setInfo.setPartNameLevel(k, partName, Integer.parseInt(partLevel));
+                                setInfo[indexCounter].setPartNameLevel(k, partName, Integer.parseInt(partLevel));
 
                                 NodeList childOfPart =part.getChildNodes();
 
@@ -231,14 +232,14 @@ public class ParseXML{
                                         // System.out.println(" H Value = " + hVal);
                                         // System.out.println(" W Value = " + wVal);
 
-                                        setInfo.setPartArea(k, Integer.parseInt(xVal), Integer.parseInt(yVal), Integer.parseInt(hVal), Integer.parseInt(wVal));
+                                        setInfo[indexCounter].setPartArea(k, Integer.parseInt(xVal), Integer.parseInt(yVal), Integer.parseInt(hVal), Integer.parseInt(wVal));
 
 
                                     }else if("line".equals(partChild.getNodeName())){
                                          String line = partChild.getTextContent();
                                          //System.out.println(line);
 
-                                         setInfo.setPartLine(k, line);
+                                         setInfo[indexCounter].setPartLine(k, line);
                                     }
                                 }
                              }
@@ -247,6 +248,8 @@ public class ParseXML{
                      }            
                  } //for childnodes
                 // System.out.println("\n");
+                indexCounter++;
             }//for book nodes
+            return setInfo;
         }
 }//class

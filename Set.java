@@ -64,17 +64,8 @@ public class Set{
        numberOfNeighbors = num;
     }
 
-    public void setNeighbors(String neighbor1, String neighbor2, String neighbor3 ){
-        neighbor[0] = neighbor1;
-        neighbor[1] = neighbor2;
-        neighbor[2] = neighbor3;
-    }
-
-    public void setNeighbors(String neighbor1, String neighbor2, String neighbor3, String neighbor4){
-        neighbor[0] = neighbor1;
-        neighbor[1] = neighbor2;
-        neighbor[2] = neighbor3;
-        neighbor[3] = neighbor4;
+    public void setNeighbors(String neigh, int index) {
+        neighbor[index] = neigh;
     }
 
     public void setSetArea(int x, int y, int h, int w){
@@ -110,6 +101,7 @@ public class Set{
         part[counter].line = line;
     }
 
+    //Print helper funciton
     public void printHelper() {
         System.out.println("Set Name: " + getSetName());
         System.out.println("Neighors: ");

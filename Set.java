@@ -1,33 +1,61 @@
-
-
 public class Set{
 
-    
     private String setName;
     private int numberOfNeighbors;
-    private String[] neighbor= new String[numberOfNeighbors];
+    private String[] neighbor= new String[5];
     private int[] setArea = new int[4];
     private int numberOfTakes;
-    private Take[] take = new Take[numberOfTakes];
+    private Take[] take = new Take[5];
     private int numberOfParts;
-    private Part[] part = new Part[numberOfParts];
+    private Part[] part = new Part[9];
 
     class Take {
         int takeNumber;
-        int[] takeArea;
+        int xVal;
+        int yVal;
+        int wVal;
+        int hVal;
+
+        public void setTakeNumber(int num) {
+            takeNumber = num;
+        }
     }
 
     class Part {
         String partName;
         int level;
-        int[] partArea;
+        int xVal;
+        int yVal;
+        int wVal;
+        int hVal;
         String line;
     }
 
     //constructor
     public Set(String setName){
         this.setName = setName;
+
+        initPart(getParts());
+        initTake(getTake());
     }
+
+    //Initialize the parts
+    public Part[] initPart(Part[] parts) {
+        for (int i = 0; i < 9; i++) {
+            parts[i] = new Part();
+        }
+
+        return parts;
+    }
+
+        //Initialize the takes
+        public Take[] initTake(Take[] take) {
+            for (int i = 0; i < 5; i++) {
+                take[i] = new Take();
+            }
+    
+            return take;
+        }
 
     //getters
     public String getSetName(){
@@ -62,24 +90,13 @@ public class Set{
         return part;
     }
 
-
-
     //setters
     public void setNumberOfNeighbors(int num){
        numberOfNeighbors = num;
     }
 
-    public void setNeighbors(String neighbor1, String neighbor2, String neighbor3 ){
-        neighbor[0] = neighbor1;
-        neighbor[1] = neighbor2;
-        neighbor[2] = neighbor3;
-    }
-
-    public void setNeighbors(String neighbor1, String neighbor2, String neighbor3, String neighbor4){
-        neighbor[0] = neighbor1;
-        neighbor[1] = neighbor2;
-        neighbor[2] = neighbor3;
-        neighbor[3] = neighbor4;
+    public void setNeighbors(String neigh, int index) {
+        neighbor[index] = neigh;
     }
 
     public void setSetArea(int x, int y, int h, int w){
@@ -94,12 +111,71 @@ public class Set{
     }
 
     public void setTake(int num, int x, int y, int h, int w){
-        take[num-1].takeNumber = num;
-        take[num-1].takeArea[0] = x;
-        take[num-1].takeArea[1] = y;
-        take[num-1].takeArea[2] = h;
-        take[num-1].takeArea[3] = w;
+        take[num - 1].takeNumber = num;
+        take[num-1].xVal = x;
+        take[num-1].yVal = y;
+        take[num-1].hVal = h;
+        take[num-1].wVal = w;
+        
     }
 
+    public void setNumberOfParts(int numParts) {
+        numberOfParts = numParts;
+    }
+
+    public void setPartNameLevel(int counter, String name, int level) {
+        part[counter].partName = name;
+        part[counter].level = level;
+    }
+
+    public void setPartLine(int counter, String line) {
+        part[counter].line = line;
+    }
+
+    public void setPartArea(int counter, int x, int y, int h, int w) {
+        part[counter].xVal = x;
+        part[counter].yVal = y;
+        part[counter].hVal = h;
+        part[counter].wVal = w;
+    }
+
+    //Print helper funciton
+    public void printHelper() {
+        System.out.println("Set Name: " + getSetName());
+        System.out.println("Neighors: ");
+
+        String[] prac = getNeighbor();
+        for (int i = 0; i < getNeighbor().length; i++) {
+            System.out.println("  " + prac[i]);
+        }
+
+        System.out.println("Set Area: ");
+        int[] area = getSetArea();
+        for (int i = 0; i < getSetArea().length; i++) {
+            System.out.println("  " + area[i]);
+        }
+        
+        System.out.println("Takes: ");
+        Take[] myTakes = getTake();
+        for (int i = 0; i < myTakes.length; i++) {
+            System.out.println("  " + myTakes[i].takeNumber);
+            System.out.println("  " + myTakes[i].xVal);
+            System.out.println("  " + myTakes[i].yVal);
+            System.out.println("  " + myTakes[i].hVal);
+            System.out.println("  " + myTakes[i].wVal);
+        }
+
+        System.out.println("Parts: ");
+        Part[] myPart = getParts();
+        for (int i = 0; i < myPart.length; i++) {
+            System.out.println("  " + myPart[i].partName);
+            System.out.println("  " + part[i].level);
+            System.out.println("  " + part[i].xVal);
+            System.out.println("  " + part[i].yVal);
+            System.out.println("  " + part[i].hVal);
+            System.out.println("  " + part[i].wVal);
+            System.out.println("  " + part[i].line);
+        }
+    }
 
 }

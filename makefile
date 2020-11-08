@@ -18,6 +18,7 @@ CLASSES	=	\
 	SystemManager.java \
 	Upgrade.java	\
 	UserInterface.java \
+	Set.java \
 	Main.java	\
 
 default: classes

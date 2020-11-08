@@ -144,20 +144,18 @@ public class ParseXML{
                  for (int j = 0; j < children.getLength(); j++){
                      Node sub = children.item(j);
 
-                     //String neighName = sub.getAttributes().getNamedItem("name").getNodeValue();
-                    
                      if ("neighbors".equals(sub.getNodeName())) {
                         NodeList childOfNeighbors = sub.getChildNodes();
-                        //System.out.println(childOfNeighbors.getLength());
-                        
+                        // System.out.println(childOfNeighbors.getLength());
+                        int index = 0;
                         for (int k = 0; k < childOfNeighbors.getLength(); k++) {
                             Node neigh = childOfNeighbors.item(k);
 
                             if ("neighbor".equals(neigh.getNodeName())) {
                                 String neighborName = neigh.getAttributes().getNamedItem("name").getNodeValue();
-
-                                //System.out.println(neighborName);
-                                setInfo.setNeighbors(neighborName, k);
+                                index++;
+                                // System.out.println(neighborName);
+                                setInfo.setNeighbors(neighborName, index);
                                 setInfo.setNumberOfNeighbors(k + 1);
                             }
                         }
@@ -181,7 +179,7 @@ public class ParseXML{
                             if ("take".equals(take.getNodeName())) {
                                 String takeNumber = take.getAttributes().getNamedItem("number").getNodeValue();
 
-                                //System.out.println(takeNumber);
+                                // System.out.println(takeNumber);
 
                                 NodeList area = take.getChildNodes();
                                 Node areaVals = area.item(0);
@@ -206,6 +204,7 @@ public class ParseXML{
                          NodeList parts = sub.getChildNodes();
 
                          for (int k = 0; k< parts.getLength(); k++){
+                            
                              Node part = parts.item(k);
                              if("part".equals(part.getNodeName())){
                                 String partName = part.getAttributes().getNamedItem("name").getNodeValue();
@@ -247,7 +246,7 @@ public class ParseXML{
 
                      }            
                  } //for childnodes
-                System.out.println("\n");
+                // System.out.println("\n");
             }//for book nodes
         }
 }//class

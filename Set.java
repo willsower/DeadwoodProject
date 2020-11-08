@@ -101,5 +101,23 @@ public class Set{
         take[num-1].takeArea[3] = w;
     }
 
+    public void setNumberOfParts(int numParts) {
+        numberOfparts = numParts;
+    }
+    class Part {
+        String partName;
+        int level;
+        int[] partArea;
+        String line;
+    }
+    public void setPart(int counter, String name, int level, int x, int y, int h, int w, String line) {
+        part[counter].partName = name;
+        part[counter].level = level;
+        part[counter].partArea[0] = x;
+        part[counter].partArea[1] = y;
+        part[counter].partArea[2] = h;
+        part[counter].partArea[3] = 2;
+        part[counter].line = line;
+    }
 
 }

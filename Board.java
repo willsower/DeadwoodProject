@@ -3,7 +3,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Board {
+public class Board{
 
     private ArrayList<String> roomList;
     private int day;
@@ -13,7 +13,7 @@ public class Board {
     private int currNumRooms = numRooms-2;
    // private static room[] rooms = new room[numRooms];
 
-    //private player play; //I think this needs to be capital
+    private Player players; //I think this needs to be capital
 
    public Board(int numRooms, int numPlayers, int day ){
         // this.numRooms = numRooms;

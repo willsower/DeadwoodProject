@@ -140,14 +140,104 @@ public class ParseXML{
                 //reads data 
                 NodeList children = set.getChildNodes();
                 
-                // for (int j = 0; j < children.getLength(); j++){
-                //     NodeList sub = children.getChildNodes();
-                    
-                //     for (int k = 0; k < sub.getLength(); k++) {
+                 for (int j = 0; j < children.getLength(); j++){
+                     Node sub = children.item(j);
 
-                //     }
-                                 
-                // } //for childnodes
+                     //String neighName = sub.getAttributes().getNamedItem("name").getNodeValue();
+                    
+                     if ("neighbors".equals(sub.getNodeName())) {
+                        NodeList childOfNeighbors = sub.getChildNodes();
+                        //System.out.println(childOfNeighbors.getLength());
+
+                        for (int k = 0; k < childOfNeighbors.getLength(); k++) {
+                            Node neigh = childOfNeighbors.item(k);
+
+                            if ("neighbor".equals(neigh.getNodeName())) {
+                                String neighborName = neigh.getAttributes().getNamedItem("name").getNodeValue();
+
+                                //System.out.println(neighborName);
+                            }
+                        }
+                    }else if("area".equals(sub.getNodeName())){
+                         String areaX = sub.getAttributes().getNamedItem("x").getNodeValue();
+                         String areaY = sub.getAttributes().getNamedItem("y").getNodeValue();
+                         String areaH = sub.getAttributes().getNamedItem("h").getNodeValue();
+                         String areaW = sub.getAttributes().getNamedItem("w").getNodeValue();
+
+                        //  System.out.println(areaX);
+                        //  System.out.println(areaY);
+                        //  System.out.println(areaH);
+                        //  System.out.println(areaW);
+
+                     }else if ("takes".equals(sub.getNodeName())) {
+                        NodeList takes = sub.getChildNodes();
+
+                        for (int k = 0; k < takes.getLength(); k++) {
+                            Node take = takes.item(k);
+                            if ("take".equals(take.getNodeName())) {
+                                String takeNumber = take.getAttributes().getNamedItem("number").getNodeValue();
+
+                                //System.out.println(takeNumber);
+
+                                NodeList area = take.getChildNodes();
+                                Node areaVals = area.item(0);
+
+                                String xVal = areaVals.getAttributes().getNamedItem("x").getNodeValue();
+                                String yVal = areaVals.getAttributes().getNamedItem("y").getNodeValue();
+                                String hVal = areaVals.getAttributes().getNamedItem("h").getNodeValue();
+                                String wVal = areaVals.getAttributes().getNamedItem("w").getNodeValue();
+
+                                // System.out.println(" X Value = " + xVal);
+                                // System.out.println(" Y Value = " + yVal);
+                                // System.out.println(" H Value = " + hVal);
+                                // System.out.println(" W Value = " + wVal);
+                            }
+                        }
+
+                     }else if("parts".equals(sub.getNodeName())){
+                         NodeList parts = sub.getChildNodes();
+
+                         for (int k = 0; k< parts.getLength(); k++){
+                             Node part = parts.item(k);
+                             if("part".equals(part.getNodeName())){
+                                String partName = part.getAttributes().getNamedItem("name").getNodeValue();
+                                String partLevel = part.getAttributes().getNamedItem("level").getNodeValue();
+
+                                // System.out.println(partName);
+                                // System.out.println(partLevel);
+
+                                NodeList childOfPart =part.getChildNodes();
+
+                                for(int p = 0; p< childOfPart.getLength(); p++){
+                                    Node partChild = childOfPart.item(p);
+
+                                    if("area".equals(partChild.getNodeName())){
+                                        String xVal = partChild.getAttributes().getNamedItem("x").getNodeValue();
+                                        String yVal = partChild.getAttributes().getNamedItem("y").getNodeValue();
+                                        String hVal = partChild.getAttributes().getNamedItem("h").getNodeValue();
+                                        String wVal = partChild.getAttributes().getNamedItem("w").getNodeValue();
+        
+                                        // System.out.println(" X Value = " + xVal);
+                                        // System.out.println(" Y Value = " + yVal);
+                                        // System.out.println(" H Value = " + hVal);
+                                        // System.out.println(" W Value = " + wVal);
+
+
+                                    }else if("line".equals(partChild.getNodeName())){
+                                         String line = partChild.getTextContent();
+                                         //System.out.println(line);
+                                    }
+
+                                }
+
+                             }
+                             
+                            
+
+                         }
+
+                     }            
+                 } //for childnodes
                 System.out.println("\n");
             }//for book nodes
         }

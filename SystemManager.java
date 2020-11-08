@@ -107,7 +107,7 @@ public class SystemManager {
         //Run for each day
         for (int i = 0; i < days; i++) {
             for (int j = 0; j < getNumPlayer(); j++) {
-                
+                //onTurn
             }
         }
 

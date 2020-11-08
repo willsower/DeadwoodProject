@@ -18,11 +18,14 @@ public class Board{
         try {
             doc = parsing.getDocFromFile("boards.xml");
             set = parsing.readBoardData(doc);
-
-
         } catch (Exception e) {
             System.out.println("Error = " + e);
         }
+    }
+
+    //Get function
+    public Set[] getSet() {
+        return set;
     }
     
 }

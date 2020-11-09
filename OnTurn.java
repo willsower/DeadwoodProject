@@ -6,7 +6,7 @@ public class OnTurn {
     public static void onMove(Player player) {
         // give player option to move
         String playerLocation = player.getPlayerLocation();
-        // String[] neighbors = Board.getInstance().getSet(playerLocation).getNeighbor();
+        String[] neighbors = Board.getInstance().getSet(playerLocation).getNeighbor();
         // call user interface
         // Interact with board?
 
@@ -50,7 +50,7 @@ public class OnTurn {
         return ran.nextInt(upperBound - lowerBound + 1) + lowerBound;
     }
 
-    public static void turn(Player player) {
+    public void turn(Player player) {
 
         // If player has not taken a role
         if (player.getOffCardRole() == false || player.getOnCardRole() == false) {

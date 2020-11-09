@@ -3,11 +3,11 @@ import java.util.*;
 
 public class Board {
 
-    private Board instance = null;
+    private static Board instance = null;
     private Hashtable<String, Set> board;
 
     // create instance
-    public Board getInstance() {
+    public static Board getInstance() {
         if (instance == null) {
             instance = new Board();
         }

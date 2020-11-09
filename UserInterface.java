@@ -42,9 +42,21 @@ public class UserInterface {
         }
     }
 
-    // Move and take role
-    public void moveTakeRole() {
-        System.out.println("Move (Y/N)");
-        // Have input of move
+    // Move option
+    public String moveTakeRole(Player player) {
+        System.out.println("Would you like to move? (Y/N) [press any key to quit]");
+        Scanner ob = new Scanner(System.in);
+        String val = ob.nextLine();
+        String returnType = "q";
+
+        if (val.equals("Y") || val.equals("y") || val.equals("Yes") || val.equals("yes")) {
+            String[] neighbors = Board.getInstance().getSet(player.getPlayerLocation()).getNeighbor();
+
+            for (int i = 0; i < neighbors.length; i++) {
+                System.out.println("Type " + (i + 1) + "to move to '" + neighbors[i] + "'");
+            }
+            returnType = ob.nextLine();
+        }
+        return returnType;
     }
 }

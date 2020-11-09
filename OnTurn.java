@@ -3,9 +3,9 @@
 import java.util.Random;
 
 public class OnTurn {
-    public static void onMove(Player player) {
+    public void onMove(Player player) {
         // give player option to move
-       
+        String move = UserInterface.getInstance().moveOption(player);
         // call user interface
         // Interact with board?
 

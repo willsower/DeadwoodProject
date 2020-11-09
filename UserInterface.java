@@ -43,8 +43,8 @@ public class UserInterface {
     }
 
     // Move option
-    public String moveTakeRole(Player player) {
-        System.out.println("Would you like to move? (Y/N) [press any key to quit]");
+    public String moveOption(Player player) {
+        System.out.println("Would you like to move? (Y/N)");
         Scanner ob = new Scanner(System.in);
         String val = ob.nextLine();
         String returnType = "q";
@@ -55,6 +55,7 @@ public class UserInterface {
             for (int i = 0; i < neighbors.length; i++) {
                 System.out.println("Type " + (i + 1) + "to move to '" + neighbors[i] + "'");
             }
+            System.out.println("[Press q to quit]");
             returnType = ob.nextLine();
         }
         return returnType;

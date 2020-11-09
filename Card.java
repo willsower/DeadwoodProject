@@ -1,7 +1,7 @@
 //Tai
 
-public class Card {    
-    //Part object which will display roles on card
+public class Card {
+    // Part object which will display roles on card
     class Part {
         public String partName;
         public String line;
@@ -26,7 +26,7 @@ public class Card {
         part = initPart(part);
     }
 
-    //Initialize the parts
+    // Initialize the parts
     public Part[] initPart(Part[] parts) {
         for (int i = 0; i < 3; i++) {
             parts[i] = new Part();
@@ -35,7 +35,7 @@ public class Card {
         return parts;
     }
 
-    //Get functions
+    // Get functions
     public String getCardName() {
         return cardName;
     }
@@ -46,7 +46,7 @@ public class Card {
 
     public int getCardID() {
         return cardID;
-    }   
+    }
 
     public String getSceneDescription() {
         return sceneDescription;
@@ -56,14 +56,14 @@ public class Card {
         return part;
     }
 
-    //Set functions
+    // Set functions
 
-    //Set scene description
+    // Set scene description
     public void setSceneDescription(String scene) {
         sceneDescription = scene;
     }
 
-    //Set part name and level
+    // Set part name and level
     public void setPartNameLevel(int partNum, int partLevel, String partName) {
         Part[] part = getPart();
 
@@ -71,7 +71,7 @@ public class Card {
         part[partNum].level = partLevel;
     }
 
-    //Set part coordinates
+    // Set part coordinates
     public void setPartCoords(int partNum, int x, int y, int h, int w) {
         Part[] part = getPart();
 
@@ -82,15 +82,15 @@ public class Card {
 
     }
 
-    //Set part line
+    // Set part line
     public void setPartLine(int partNum, String line) {
         Part[] part = getPart();
 
         part[partNum].line = line;
     }
 
-    //Helper function for the sake of printing out each card's values
-    //Helps with debugging
+    // Helper function for the sake of printing out each card's values
+    // Helps with debugging
     public void helperPrintCard() {
         System.out.println("Printing information for card " + getCardID());
         System.out.println("Card = " + getCardName());

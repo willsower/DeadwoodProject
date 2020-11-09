@@ -103,7 +103,13 @@ public class Card {
     // Available parts in card 
     public ArrayList<String> availablePartsOnCard() {
         ArrayList<String> available = new ArrayList<String>();
+        Part[] myParts = getPart();
 
+        for (int i = 0; i < 3; i++) {
+            if (myParts[i].isTaken == false) {
+                available.add(myParts[i].partName);
+            }
+        }
         return available;
     }
 

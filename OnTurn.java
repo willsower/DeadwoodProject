@@ -1,6 +1,7 @@
 
 //Tai
 import java.util.Random;
+import java.util.ArrayList;
 
 public class OnTurn {
     //Return true if number is numeric
@@ -31,7 +32,6 @@ public class OnTurn {
             } else if (player.getPlayerLocation().equals("Casting Office")) {
                 //Call upgrade
             } else {
-                
                 UserInterface.getInstance().roleChoice(player, onCard, offCard);
             }
         } else {

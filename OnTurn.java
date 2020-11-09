@@ -15,11 +15,29 @@ public class OnTurn {
     }
 
     public void onMove(Player player) {
-        // give player option to move
+        // Gets neighbors of room player currently is in
         String[] neighbors = Board.getInstance().getSet(player.getPlayerLocation()).getNeighbor();
+
+        // Get user input if player wants to move 
         String move = UserInterface.getInstance().moveOption(player, neighbors);
         int numNeighbors = neighbors.length;
-        // player.setPlayerLocation(neighbors(Integer.parseInt));
+
+        // If player enters number, move to that area
+        if (isNumeric(move)) {
+            player.setPlayerLocation(neighbors[Integer.parseInt(move)]);
+
+            if (player.getPlayerLocation().equals("Trailers")) {
+                //Do nothing
+            } else if (player.getPlayerLocation().equals("Casting Office")) {
+                //Call upgrade
+            } else {
+                
+                UserInterface.getInstance().roleChoice(player, onCard, offCard);
+            }
+        } else {
+            //Exit onMove
+        }
+
         // call user interface
         // Interact with board?
 

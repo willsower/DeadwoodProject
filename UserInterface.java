@@ -58,4 +58,10 @@ public class UserInterface {
         }
         return returnType;
     }
+
+    // Give user option to get a role
+    public String roleChoice(Player player, String[] onCard, String[] offCard) {
+        
+        return "";
+    }
 }

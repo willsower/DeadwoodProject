@@ -10,6 +10,7 @@ public class Card {
         public int yVal;
         public int hVal;
         public int wVal;
+        public boolean isTaken = false;
     }
 
     private String cardName;
@@ -87,6 +88,15 @@ public class Card {
         Part[] part = getPart();
 
         part[partNum].line = line;
+    }
+
+    public void setPartTaken(String partName, boolean taken) {
+        Part[] partTaken = getPart();
+        for (int i = 0; i < getPart().length; i++) {
+            if (partName.equals(partTaken[i].partName)) {
+                partTaken[i].isTaken = taken;
+            }
+        }
     }
 
     // Helper function for the sake of printing out each card's values

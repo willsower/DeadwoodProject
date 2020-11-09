@@ -4,7 +4,7 @@ import java.util.*;
 public class Board {
 
     private Board instance = null;
-    private Hashtable<String, Set> set;
+    private Hashtable<String, Set> board;
 
     // create instance
     public Board getInstance() {
@@ -19,14 +19,18 @@ public class Board {
         ParseXML parsing = new ParseXML();
         try {
             doc = parsing.getDocFromFile("boards.xml");
-            set = parsing.readBoardData(doc);
+            board = parsing.readBoardData(doc);
         } catch (Exception e) {
             System.out.println("Error = " + e);
         }
     }
 
     // Get function
-    public Hashtable<String, Set> getSet() {
-        return set;
+    public Hashtable<String, Set> getBoard() {
+        return board;
+    }
+
+    public Set getSet(String location) {
+        return getBoard().get(location);
     }
 }

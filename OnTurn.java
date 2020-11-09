@@ -5,7 +5,10 @@ import java.util.Random;
 public class OnTurn {
     public void onMove(Player player) {
         // give player option to move
-        String move = UserInterface.getInstance().moveOption(player);
+        String[] neighbors = Board.getInstance().getSet(player.getPlayerLocation()).getNeighbor();
+        String move = UserInterface.getInstance().moveOption(player, neighbors);
+        int numNeighbors = neighbors.length;
+        // player.setPlayerLocation(neighbors(Integer.parseInt));
         // call user interface
         // Interact with board?
 

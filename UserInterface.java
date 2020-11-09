@@ -43,15 +43,13 @@ public class UserInterface {
     }
 
     // Move option
-    public String moveOption(Player player) {
+    public String moveOption(Player player, String[] neighbors) {
         System.out.println("Would you like to move? (Y/N)");
         Scanner ob = new Scanner(System.in);
         String val = ob.nextLine();
         String returnType = "q";
 
         if (val.equals("Y") || val.equals("y") || val.equals("Yes") || val.equals("yes")) {
-            String[] neighbors = Board.getInstance().getSet(player.getPlayerLocation()).getNeighbor();
-
             for (int i = 0; i < neighbors.length; i++) {
                 System.out.println("Type " + (i + 1) + "to move to '" + neighbors[i] + "'");
             }

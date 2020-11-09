@@ -1,19 +1,19 @@
 import org.w3c.dom.Document;
 import java.util.*;
 
-public class Board{
+public class Board {
 
     private Board instance = null;
     private Hashtable<String, Set> set;
 
-    //create instance
-    public Board getInstance(){
-        if (instance == null){
+    // create instance
+    public Board getInstance() {
+        if (instance == null) {
             instance = new Board();
         }
         return instance;
     }
-    
+
     public Board() {
         Document doc = null;
         ParseXML parsing = new ParseXML();
@@ -25,8 +25,8 @@ public class Board{
         }
     }
 
-    //Get function
+    // Get function
     public Hashtable<String, Set> getSet() {
         return set;
-    }    
+    }
 }

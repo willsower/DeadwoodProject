@@ -5,16 +5,16 @@ import java.util.Scanner;
 public class UserInterface {
     private static UserInterface instance = null;
 
-    //Create instance
+    // Create instance
     public static UserInterface getInstance() {
         if (instance == null) {
-            instance = new UserInterface(); 
+            instance = new UserInterface();
         }
-        return instance; 
+        return instance;
     }
 
-    //Prompts user how many players will be playing
-    //Will throw player in loop until they enter 2-8 players
+    // Prompts user how many players will be playing
+    // Will throw player in loop until they enter 2-8 players
     public static int getNumPlayers() {
         Scanner myOb = new Scanner(System.in);
         String val;
@@ -25,13 +25,14 @@ public class UserInterface {
             val = myOb.nextLine();
             try {
                 numberPlayers = Integer.parseInt(val);
-            } catch (NumberFormatException e) {}
+            } catch (NumberFormatException e) {
+            }
         }
 
         return numberPlayers;
     }
 
-    //Display winners of game
+    // Display winners of game
     public void displayWinner(Integer[] finals) {
         System.out.println("The winner(s) are: ");
         for (int i = 0; i < finals.length; i++) {
@@ -41,9 +42,9 @@ public class UserInterface {
         }
     }
 
-    //Move and take role
+    // Move and take role
     public void moveTakeRole() {
         System.out.println("Move (Y/N)");
-        //Have input of move
+        // Have input of move
     }
 }

@@ -1,4 +1,5 @@
 //Tai
+import java.util.ArrayList;
 
 public class Card {
     // Part object which will display roles on card
@@ -99,6 +100,13 @@ public class Card {
         }
     }
 
+    // Available parts in card 
+    public ArrayList<String> availablePartsOnCard() {
+        ArrayList<String> available = new ArrayList<String>();
+
+        return available;
+    }
+
     // Helper function for the sake of printing out each card's values
     // Helps with debugging
     public void helperPrintCard() {
@@ -119,9 +127,5 @@ public class Card {
             System.out.println("  wVal = " + test[i].wVal);
             System.out.println("  line = " + test[i].line);
         }
-    }
-
-    public static void main(String[] args) {
-
     }
 }

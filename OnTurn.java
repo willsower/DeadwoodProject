@@ -3,6 +3,17 @@
 import java.util.Random;
 
 public class OnTurn {
+    //Return true if number is numeric
+    //false if not
+    public static boolean isNumeric(String str) {
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
     public void onMove(Player player) {
         // give player option to move
         String[] neighbors = Board.getInstance().getSet(player.getPlayerLocation()).getNeighbor();

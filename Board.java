@@ -1,8 +1,10 @@
 import org.w3c.dom.Document;
+import java.util.*;
+
 public class Board{
 
     private Board instance = null;
-    private Set[] set;
+    private Hashtable<String, Set> set;
 
     //create instance
     public Board getInstance(){
@@ -24,7 +26,7 @@ public class Board{
     }
 
     //Get function
-    public Set[] getSet() {
+    public Hashtable<String, Set> getSet() {
         return set;
     }    
 }

@@ -11,7 +11,7 @@ public class Player {
     private String playerLocation;
     private int finalScore = 0;
 
-    //Constructor
+    // Constructor
     public Player(int playerPriority, int level, int dollar, int credit, String playerLocation) {
         this.playerPriority = playerPriority;
         this.level = level;
@@ -22,7 +22,7 @@ public class Player {
         // printPlayerInfo();
     }
 
-    //Get functions
+    // Get functions
     public int getPlayerPriority() {
         return playerPriority;
     }
@@ -59,7 +59,7 @@ public class Player {
         return finalScore;
     }
 
-    //Setter functions 
+    // Setter functions
     public void setPlayerPriority(int priority) {
         playerPriority = priority;
     }
@@ -96,7 +96,7 @@ public class Player {
         finalScore = score;
     }
 
-    //Print player information
+    // Print player information
     public void printPlayerInfo() {
         System.out.println("Player Priority: " + getPlayerPriority());
         System.out.println("  Player Level: " + getLevel());

@@ -8,6 +8,8 @@ public class Set{
     private Take[] take = new Take[5];
     private int numberOfParts;
     private Part[] part = new Part[9];
+    private boolean hasCard;
+    private int cardNum;
 
     class Take {
         int takeNumber;
@@ -91,6 +93,14 @@ public class Set{
         return part;
     }
 
+    public boolean getHasCard() {
+        return hasCard;
+    }
+
+    public int getCardNum() {
+        return cardNum;
+    }
+
     //setters
     public void setNumberOfNeighbors(int num){
        numberOfNeighbors = num;
@@ -147,10 +157,15 @@ public class Set{
                 partTaken[i].isTaken = taken;
             }
         }
-
     }
 
+    public void setHasCard(boolean val) {
+        hasCard = val;
+    }
 
+    public void setCardNum(int num) {
+        cardNum = num;
+    }
 
     //Print helper funciton
     public void printHelper() {

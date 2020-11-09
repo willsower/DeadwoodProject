@@ -128,7 +128,7 @@ public class ParseXML{
             Element root = d.getDocumentElement();
             NodeList sets = root.getElementsByTagName("set");
             Hashtable<String, Set> dictionary = new Hashtable<String, Set>();
-            int indexCounter = 0;
+
             for (int i = 0; i < sets.getLength(); i++) {
                 // System.out.println("Printing information for set "+(i+1));
                 
@@ -247,7 +247,6 @@ public class ParseXML{
                      }            
                  } //for childnodes
                 // System.out.println("\n");
-                indexCounter++;
                 dictionary.put(setCategory, setInfo);
             }//for book nodes
             return dictionary;

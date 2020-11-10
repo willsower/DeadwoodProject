@@ -130,6 +130,7 @@ public class OnTurn {
     // Will return true if card has finished
     // will return false if not
     public boolean turn(Player player) {
+        System.out.println("turn func");
         boolean endOfDay = false;
         // If player has not taken a role, let them move
         if (player.getOffCardRole() == false || player.getOnCardRole() == false) {

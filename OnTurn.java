@@ -73,11 +73,11 @@ public class OnTurn {
     }
 
     public boolean act(Player player) {
-        int cardBudget = Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum());
+        int cardBudget = Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getCardBudget();
         int diceRoll = roll();
 
         //if success
-        if(diceRole + player.getPlayerPracticeChip() >= cardBuget){
+        if(diceRoll + player.getPracticeChip() >= cardBudget){
             //if oncard
             int counter = Board.getInstance().getSet(player.getPlayerLocation()).getShotCounter();
             Board.getInstance().getSet(player.getPlayerLocation()).setShotCounter(counter--);

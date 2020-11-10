@@ -11,7 +11,7 @@ public class Deck {
     private static Deck instance =null;
 
     //create instance
-    private static Deck getInstance() {
+    public static Deck getInstance() {
         if (instance == null) {
             instance = new Deck();
         }

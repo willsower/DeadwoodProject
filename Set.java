@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Set {
 
     private String setName;
@@ -160,7 +162,7 @@ public class Set {
     }
 
     public ArrayList<String> availablePartsOffCard(){
-        ArrayList<Sting> available = new ArrayList<String>();
+        ArrayList<String> available = new ArrayList<String>();
         Part[] partsAvailable = getParts();
 
         for (int i = 0; i < partsAvailable.length; i++) {

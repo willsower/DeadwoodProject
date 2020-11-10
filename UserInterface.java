@@ -1,6 +1,7 @@
 //Singleton class, will be where we get user input/output
 
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class UserInterface {
     private static UserInterface instance = null;
@@ -60,7 +61,7 @@ public class UserInterface {
     }
 
     // Give user option to get a role
-    public String roleChoice(Player player, String[] onCard, String[] offCard) {
+    public String roleChoice(Player player, ArrayList<String> onCard, ArrayList<String> offCard) {
         
         return "";
     }

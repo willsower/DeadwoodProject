@@ -11,38 +11,28 @@ public class Deck {
     private static Deck instance =null;
 
     //create instance
-    public Deck getInstance() {
+    public static Deck getInstance() {
         if (instance == null) {
             instance = new Deck();
 
-            Document doc = null;
-            ParseXML parsing = new ParseXML();
-            try {
-                doc = parsing.getDocFromFile("cards.xml");
-                deck = parsing.readCardData(doc);
-    
-                cardShuffle = shuffle();
-            } catch (Exception e) {
-                System.out.println("Error = " + e);
-            }
         }
         return instance;
     }
 
     // Deck constructor. Will call parser on cards.xml file
     // Create deck of card objects
-    // public Deck() {
-    //     Document doc = null;
-    //     ParseXML parsing = new ParseXML();
-    //     try {
-    //         doc = parsing.getDocFromFile("cards.xml");
-    //         deck = parsing.readCardData(doc);
+    public Deck() {
+        Document doc = null;
+        ParseXML parsing = new ParseXML();
+        try {
+            doc = parsing.getDocFromFile("cards.xml");
+            deck = parsing.readCardData(doc);
 
-    //         cardShuffle = shuffle();
-    //     } catch (Exception e) {
-    //         System.out.println("Error = " + e);
-    //     }
-    // }
+            cardShuffle = shuffle();
+        } catch (Exception e) {
+            System.out.println("Error = " + e);
+        }
+    }
 
     // Get function
     public Card[] getDeck() {

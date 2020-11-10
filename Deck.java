@@ -8,9 +8,9 @@ import java.util.Random;
 public class Deck {
     private Card[] deck;
     private Integer[] cardShuffle;
-    private static Deck instance =null;
+    private static Deck instance = null;
 
-    //create instance
+    // create instance
     public static Deck getInstance() {
         if (instance == null) {
             instance = new Deck();
@@ -59,20 +59,16 @@ public class Deck {
             list[i] = temp;
         }
 
-        System.out.println(Arrays.toString(list));
+        // System.out.println(Arrays.toString(list));
         return list;
     }
 
-    public Card getCard(int cardNum){
+    public Integer[] getCardShuffle() {
+        return cardShuffle;
+    }
+
+    public Card getCard(int cardNum) {
         Card[] temp = getDeck();
-        return temp[cardNum-1];
-    }
-
-    public static void cardsToBoard() {
-
-    }
-
-    public static void main(String[] args) {
-
+        return temp[cardNum - 1];
     }
 }

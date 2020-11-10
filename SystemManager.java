@@ -104,17 +104,31 @@ public class SystemManager {
         // Initialize onTurn
         OnTurn turn = new OnTurn();
         Player[] list = getPlayerList();
+        int player = 0;
 
         int days = calculateDaysPlayed();
 
         // Run for each day
         for (int i = 0; i < days; i++) {
-            //for each player
-            int x = 0;
+            int cardsFinished = 0;
+            // Call function here to start day (put player back in trailers) assign card to
+            // set etc
+
+            // for each player
             do {
-                turn.turn(list[x]);
-                x++;
-            } while (x < 10); /*!9/10 cards*/ 
+                // If card has finished increment cards finished
+                if (turn.turn(list[player])) {
+                    cardsFinished++;
+                }
+
+                player++; // Next player turn
+
+                // Reset back to player 1
+                if (player == list.length) {
+                    player = 0;
+                }
+
+            } while (cardsFinished < 9); /* !9/10 cards */
         }
 
         // Calculate end score

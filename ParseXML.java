@@ -26,6 +26,7 @@ public class ParseXML {
 
             try {
                 doc = db.parse(filename);
+                readBoardData(doc);
             } catch (Exception ex) {
                 System.out.println("XML parse failure");
                 ex.printStackTrace();
@@ -122,8 +123,11 @@ public class ParseXML {
     public Hashtable<String, Set> readBoardData(Document d) {
         Element root = d.getDocumentElement();
         NodeList sets = root.getElementsByTagName("set");
+        NodeList trailer = root.getElementsByTagName("trailer");
+        NodeList upgrade = root.getElementsByTagName("office");
         Hashtable<String, Set> dictionary = new Hashtable<String, Set>();
 
+        // Get all sets information
         for (int i = 0; i < sets.getLength(); i++) {
             // System.out.println("Printing information for set "+(i+1));
 
@@ -248,6 +252,85 @@ public class ParseXML {
               // System.out.println("\n");
             dictionary.put(setCategory, setInfo);
         } // for book nodes
+        
+        // Get trailers information
+        Node trailerChild = trailer.item(0);
+        NodeList listOfTrailer = trailerChild.getChildNodes();
+        System.out.println(trailerChild.getChildNodes().item(3).getLocalName());
+        System.out.println(listOfTrailer.getLength()); //prints 5 (should be 2)
+        Set setInfo = new Set("Trailers");
+        for (int i = 0; i < listOfTrailer.getLength(); i++) {
+            Node sub = listOfTrailer.item(i);
+            if ("neighbors".equals(sub.getNodeName())) {
+                NodeList childOfNeighbors = sub.getChildNodes();
+                System.out.println(childOfNeighbors.getLength()); //prints 7 (should be 3)
+                int index = 0;
+                for (int k = 0; k < childOfNeighbors.getLength(); k++) {
+                    Node neigh = childOfNeighbors.item(k);
+
+                    if ("neighbor".equals(neigh.getNodeName())) {
+                        String neighborName = neigh.getAttributes().getNamedItem("name").getNodeValue();
+                        index++;
+                        // System.out.println(neighborName);
+                        setInfo.setNeighbors(neighborName, index);
+                        setInfo.setNumberOfNeighbors(k + 1);
+                    }
+                }
+            } else if ("area".equals(sub.getNodeName())) {
+                String areaX = sub.getAttributes().getNamedItem("x").getNodeValue();
+                String areaY = sub.getAttributes().getNamedItem("y").getNodeValue();
+                String areaH = sub.getAttributes().getNamedItem("h").getNodeValue();
+                String areaW = sub.getAttributes().getNamedItem("w").getNodeValue();
+
+                // System.out.println(areaX);
+                // System.out.println(areaY);
+                // System.out.println(areaH);
+                // System.out.println(areaW);
+                setInfo.setSetArea(Integer.parseInt(areaX), Integer.parseInt(areaY), Integer.parseInt(areaH),
+                        Integer.parseInt(areaW));
+
+            }
+        }
+        dictionary.put("Trailers", setInfo);
+
+        // Get casting office informatoin
+        Node castingChild = upgrade.item(0);
+        NodeList listOfCasting = castingChild.getChildNodes();
+        Set newSet = new Set("Casting Office");
+        for (int i = 0; i < listOfCasting.getLength(); i++) {
+            Node sub = listOfCasting.item(i);
+            if ("neighbors".equals(sub.getNodeName())) {
+                NodeList childOfNeighbors = sub.getChildNodes();
+                // System.out.println(childOfNeighbors.getLength());
+                int index = 0;
+                for (int k = 0; k < childOfNeighbors.getLength(); k++) {
+                    Node neigh = childOfNeighbors.item(k);
+
+                    if ("neighbor".equals(neigh.getNodeName())) {
+                        String neighborName = neigh.getAttributes().getNamedItem("name").getNodeValue();
+                        index++;
+                        // System.out.println(neighborName);
+                        newSet.setNeighbors(neighborName, index);
+                        newSet.setNumberOfNeighbors(k + 1);
+                    }
+                }
+            } else if ("area".equals(sub.getNodeName())) {
+                String areaX = sub.getAttributes().getNamedItem("x").getNodeValue();
+                String areaY = sub.getAttributes().getNamedItem("y").getNodeValue();
+                String areaH = sub.getAttributes().getNamedItem("h").getNodeValue();
+                String areaW = sub.getAttributes().getNamedItem("w").getNodeValue();
+
+                // System.out.println(areaX);
+                // System.out.println(areaY);
+                // System.out.println(areaH);
+                // System.out.println(areaW);
+                newSet.setSetArea(Integer.parseInt(areaX), Integer.parseInt(areaY), Integer.parseInt(areaH),
+                        Integer.parseInt(areaW));
+
+            }
+        }
+        dictionary.put("Casting Office", newSet);
+
         return dictionary;
     }
 }// class

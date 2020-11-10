@@ -19,6 +19,8 @@ public class Board {
             } catch (Exception e) {
                 System.out.println("Error = " + e);
             }
+
+            assignCardToSet(Deck.getInstance().getCardShuffle(), 1);
         }
         return instance;
     }
@@ -30,5 +32,9 @@ public class Board {
 
     public Set getSet(String location) {
         return getBoard().get(location);
+    }
+
+    public static void assignCardToSet(Integer[] deckOrder, int day) {
+
     }
 }

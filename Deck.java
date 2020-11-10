@@ -63,6 +63,10 @@ public class Deck {
         return list;
     }
 
+    public Integer[] getCardShuffle() {
+        return cardShuffle;
+    }
+
     public Card getCard(int cardNum) {
         Card[] temp = getDeck();
         return temp[cardNum - 1];

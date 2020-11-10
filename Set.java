@@ -159,6 +159,20 @@ public class Set {
         }
     }
 
+    public ArrayList<String> avaliblePartsOffCard(){
+        ArrayList<Sting> avalible = new ArrayList<String>();
+        Part[] partsAvalible = getParts();
+
+        for (int i = 0; i < partsAvalible.length; i++) {
+            if partsAvalible[i].isTaken == false) {
+                avalible.add(partsAvalible[i].partName);
+            }
+        }
+        return avalible;
+    }
+
+
+
     public void setHasCard(boolean val) {
         hasCard = val;
     }

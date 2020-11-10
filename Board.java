@@ -4,25 +4,23 @@ import java.util.*;
 public class Board {
 
     private static Board instance = null;
-    private Hashtable<String, Set> board;
+    private static Hashtable<String, Set> board;
 
     // create instance
     public static Board getInstance() {
         if (instance == null) {
             instance = new Board();
+
+            Document doc = null;
+            ParseXML parsing = new ParseXML();
+            try {
+                doc = parsing.getDocFromFile("boards.xml");
+                board = parsing.readBoardData(doc);
+            } catch (Exception e) {
+                System.out.println("Error = " + e);
+            }
         }
         return instance;
-    }
-
-    public Board() {
-        Document doc = null;
-        ParseXML parsing = new ParseXML();
-        try {
-            doc = parsing.getDocFromFile("boards.xml");
-            board = parsing.readBoardData(doc);
-        } catch (Exception e) {
-            System.out.println("Error = " + e);
-        }
     }
 
     // Get function

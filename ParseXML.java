@@ -256,12 +256,14 @@ public class ParseXML {
         // Get trailers information
         Node trailerChild = trailer.item(0);
         NodeList listOfTrailer = trailerChild.getChildNodes();
+        System.out.println(trailerChild.getChildNodes().item(3).getLocalName());
+        System.out.println(listOfTrailer.getLength()); //prints 5 (should be 2)
         Set setInfo = new Set("Trailers");
         for (int i = 0; i < listOfTrailer.getLength(); i++) {
             Node sub = listOfTrailer.item(i);
             if ("neighbors".equals(sub.getNodeName())) {
                 NodeList childOfNeighbors = sub.getChildNodes();
-                // System.out.println(childOfNeighbors.getLength());
+                System.out.println(childOfNeighbors.getLength()); //prints 7 (should be 3)
                 int index = 0;
                 for (int k = 0; k < childOfNeighbors.getLength(); k++) {
                     Node neigh = childOfNeighbors.item(k);

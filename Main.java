@@ -3,8 +3,10 @@
 public class Main {
     public static void main(String[] args) {
         try {
-            int numPlayers = UserInterface.getInstance().getNumPlayers();
-            systemManager(numPlayers);
+            ParseXML test = new ParseXML();
+            test.getDocFromFile("boards.xml");
+            // int numPlayers = UserInterface.getInstance().getNumPlayers();
+            // systemManager(numPlayers);
 
         } catch (Exception e) {
             System.out.println("Error = " + e);

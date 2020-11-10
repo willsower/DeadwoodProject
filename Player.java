@@ -10,6 +10,7 @@ public class Player {
     private boolean offCardRole = false;
     private String playerLocation;
     private int finalScore = 0;
+    private int roleLevel = 0;
 
     // Constructor
     public Player(int playerPriority, int level, int dollar, int credit, String playerLocation) {
@@ -59,6 +60,10 @@ public class Player {
         return finalScore;
     }
 
+    public int getRoleLevel() {
+        return roleLevel;
+    }
+
     // Setter functions
     public void setPlayerPriority(int priority) {
         playerPriority = priority;
@@ -94,6 +99,10 @@ public class Player {
 
     public void setFinalScore(int score) {
         finalScore = score;
+    }
+
+    public void setRoleLevel(int level) {
+        roleLevel = level;
     }
 
     // Print player information

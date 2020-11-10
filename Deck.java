@@ -59,7 +59,7 @@ public class Deck {
             list[i] = temp;
         }
 
-        System.out.println(Arrays.toString(list));
+        // System.out.println(Arrays.toString(list));
         return list;
     }
 

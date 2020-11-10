@@ -16,7 +16,6 @@ CLASSES	=	\
 	Upgrade.java	\
 	UserInterface.java \
 	Set.java \
-	Room.java \
 	Main.java	\
 
 default: classes

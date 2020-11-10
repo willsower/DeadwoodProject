@@ -36,11 +36,15 @@ public class OnTurn {
                 ArrayList<String> partsOnCardAval = Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).availablePartsOnCard();
                 ArrayList<String> partsOffCardAval = Board.getInstance().getSet(player.getPlayerLocation()).availablePartsOffCard();
 
-                String playerChoice =UserInterface.getInstance().roleChoice( partsOnCardAval, partsOffCardAval);
+                String playerChoice =UserInterface.getInstance().roleChoice(partsOnCardAval, partsOffCardAval);
 
                 if(isNumeric(playerChoice)){
                     int roleNumber = Integer.parseInt(playerChoice);
-                    //if (roleNumber <= )
+                    if (roleNumber <= partsOnCardAval.size()) {
+                        player.setOnCardRole(true);
+                    } else {
+                        player.setOffCardRole(true);
+                    }
                 }
 
             }

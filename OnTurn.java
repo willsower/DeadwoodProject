@@ -124,26 +124,24 @@ public class OnTurn {
         return ran.nextInt(upperBound - lowerBound + 1) + lowerBound;
     }
 
-    // return 1 - one card has finished
-    // return 0 - move or rehearse
+    // Function turn will give player options at start of turn
     public boolean turn(Player player) {
         boolean endOfDay = false;
         // If player has not taken a role, let them move
         if (player.getOffCardRole() == false || player.getOnCardRole() == false) {
             onMove(player);
         } else {
+            //If player can rehearse or act, give them options
+            //If they can't rehearse anymore give them only act option
             if (player.getRoleLevel() + player.getPracticeChip() < 6) {
-                //let user decide to act or rehearse
-                //If decided to reherase
-                if (true) {
-
-                //If decided to act
-                } else {
-                    
+                int decide = UserInterface.getInstance().actOrRehearse();
+                if (decide == 1) {
+                    endOfDay = act(player);
+                } else if (decide == 2) {
+                    rehearse(player);
                 }
             } else {
-                //ask to act
-                if (true) {
+                if (UserInterface.getInstance().act()) {
                     endOfDay = act(player);
                 }
             }

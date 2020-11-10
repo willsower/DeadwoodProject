@@ -65,4 +65,32 @@ public class UserInterface {
         
         return "";
     }
+
+    // Give user option to act
+    public boolean act() {
+        System.out.println("Would you like to act? (Y/N)");
+        System.out.println("[Type 'q' for quit]");
+        Scanner ob = new Scanner(System.in);
+        String val = ob.nextLine();
+
+        if (val.equals("Y") || val.equals("y") || val.equals("Yes") || val.equals("yes")) {
+            return true;
+        }
+        return false;
+    }
+
+    public int actOrRehearse() {
+        System.out.println("Would you like to act? (Type 'a')");
+        System.out.println("Would you like to rehearse? (Type 'r')");
+        System.out.println("[Type 'q' for quit]");
+        Scanner ob = new Scanner(System.in);
+        String val = ob.nextLine();
+
+        if (val.equals("a") || val.equals("A")) {
+            return 1;
+        } else if (val.equals('r') || val.equals('R')) {
+            return 2;
+        }
+        return 3;
+    }
 }

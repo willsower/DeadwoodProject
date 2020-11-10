@@ -102,6 +102,8 @@ public class OnTurn {
 
             // end of card
             if (counter == 0) {
+                // Call function to help if card ends
+                ScoringManager.getInstance().endOfCard();
                 return true;
             }
 
@@ -125,6 +127,8 @@ public class OnTurn {
     }
 
     // Function turn will give player options at start of turn
+    // Will return true if card has finished
+    // will return false if not
     public boolean turn(Player player) {
         boolean endOfDay = false;
         // If player has not taken a role, let them move

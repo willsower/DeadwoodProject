@@ -97,4 +97,13 @@ public class ScoringManager {
     public static int bonusOffCard(int roleRank) {
         return roleRank;
     }
+
+    public void endOfCard() {
+        //Need to create new private vairalbes in card/set
+        //TO assign player x is on part x
+
+        //So when we call this function we know EXACTLY
+        //what player is on this, you can do that by 
+        //getting playerPriority
+    }
 }

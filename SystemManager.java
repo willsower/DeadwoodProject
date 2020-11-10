@@ -115,20 +115,20 @@ public class SystemManager {
             // set etc
 
             // for each player
-            // do {
-            //     // If card has finished increment cards finished
-            //     if (turn.turn(list[player])) {
-            //         cardsFinished++;
-            //     }
+            do {
+                // If card has finished increment cards finished
+                if (turn.turn(list[player])) {
+                    cardsFinished++;
+                }
 
-            //     player++; // Next player turn
+                player++; // Next player turn
 
-            //     // Reset back to player 1
-            //     if (player == list.length) {
-            //         player = 0;
-            //     }
+                // Reset back to player 1
+                if (player == list.length) {
+                    player = 0;
+                }
 
-            // } while (cardsFinished < 9); /* !9/10 cards */
+            } while (cardsFinished < 9); /* !9/10 cards */
         }
 
         // Calculate end score

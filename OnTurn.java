@@ -25,7 +25,7 @@ public class OnTurn {
 
         // If player enters number, move to that area
         if (isNumeric(move)) {
-            player.setPlayerLocation(neighbors[Integer.parseInt(move)]);
+            player.setPlayerLocation(neighbors[Integer.parseInt(move)-1]);
 
             if (player.getPlayerLocation().equals("Trailers")) {
                 //Do nothing
@@ -35,7 +35,14 @@ public class OnTurn {
 
                 ArrayList<String> partsOnCardAval = Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).availablePartsOnCard();
                 ArrayList<String> partsOffCardAval = Board.getInstance().getSet(player.getPlayerLocation()).availablePartsOffCard();
-                UserInterface.getInstance().roleChoice(player, partsOnCardAval, partsOffCardAval);
+
+                String playerChoice =UserInterface.getInstance().roleChoice( partsOnCardAval, partsOffCardAval);
+
+                if(isNumeric(playerChoice)){
+                    int roleNumber = Integer.parseInt(playerChoice);
+                    //if (roleNumber <= )
+                }
+
             }
         } else {
             //Exit onMove

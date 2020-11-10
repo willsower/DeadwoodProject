@@ -61,7 +61,7 @@ public class UserInterface {
     }
 
     // Give user option to get a role
-    public String roleChoice(Player player, ArrayList<String> onCard, ArrayList<String> offCard) {
+    public String roleChoice(ArrayList<String> onCard, ArrayList<String> offCard) {
         
         return "";
     }

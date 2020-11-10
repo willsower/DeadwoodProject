@@ -30,7 +30,7 @@ public class OnTurn {
             if (player.getPlayerLocation().equals("Trailers")) {
                 //Do nothing
             } else if (player.getPlayerLocation().equals("Casting Office")) {
-                //Call upgrade
+                // Upgrade
             } else {
 
                 ArrayList<String> partsOnCardAval = Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).availablePartsOnCard();
@@ -41,49 +41,35 @@ public class OnTurn {
                 if(isNumeric(playerChoice)){
                     int roleNumber = Integer.parseInt(playerChoice);
                     if (roleNumber <= partsOnCardAval.size()) {
-                        int level = Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getPartLevel(roleNumber - 1);
-
-                        player.setOnCardRole(true);
-                        player.setRoleLevel(level);
+                        takeOnCardRole(player, roleNumber);
                     } else {
-                        int level = Board.getInstance().getSet(player.getPlayerLocation()).getPartLevel(roleNumber - partsOnCardAval.size() - 1);
-
-                        player.setOffCardRole(true);
-                        player.setRoleLevel(level);
+                        takeOffCardRole(player, roleNumber, partsOnCardAval.size());
                     }
                 }
             }
-        } else {
-            //Exit onMove
-        }
-
-
-        // call user interface
-        // Interact with board?
-
-        // if player moved to casting office
-        // allow upgrade possibility
-
-        // if player moved to card area and card still has roles
-        // give option to choose roll
+        } 
     }
 
-    public static void takeOnCardRole(Player player) {
+    public static void takeOnCardRole(Player player, int roleNumber) {
+        int level = Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getPartLevel(roleNumber - 1);
+
         player.setOnCardRole(true);
+        player.setRoleLevel(level);
     }
 
-    public static void takeOffCardRole(Player player) {
+    public static void takeOffCardRole(Player player, int roleNumber, int size) {
+        int level = Board.getInstance().getSet(player.getPlayerLocation()).getPartLevel(roleNumber - size - 1);
+
         player.setOffCardRole(true);
+        player.setRoleLevel(level);
     }
 
-    // Function to see if player is allowed to rehearse.
-    // Player is not able to reherase if they already have 5 practice chips
-    public static boolean canRehearse(int practiceChip) {
-        if (practiceChip == 5) {
-            return false;
+    //Function to rehearse
+    //Player is not able to reherase if they already have 5 practice chips
+    public void canRehearse(Player player) {
+        if (player.getRoleLevel() + player.getPracticeChip() < 6) {
+            player.setPracticeChip(player.getPracticeChip() + 1);
         }
-        return true;
-        // setter function in player will increase practice chip
     }
 
     public static boolean act() {
@@ -105,7 +91,7 @@ public class OnTurn {
 
         // If player has not taken a role
         if (player.getOffCardRole() == false || player.getOnCardRole() == false) {
-
+            //move
         }
     }
 }

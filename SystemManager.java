@@ -109,10 +109,12 @@ public class SystemManager {
 
         // Run for each day
         for (int i = 0; i < days; i++) {
-            // do while (iterate through each player's turn, stop at end day)
-            // call onTurn
-
-            // figure out if 9/10 cards are done, to end day
+            //for each player
+            int x = 0;
+            do {
+                turn.turn(list[x]);
+                x++;
+            } while (x < 10); /*!9/10 cards*/ 
         }
 
         // Calculate end score

@@ -13,7 +13,7 @@ public class Main {
 
     // Create system for players then run functionality
     public static void systemManager(int numPlayers) {
-        SystemManager turnManager = new SystemManager(numPlayers);
-        turnManager.run();
+        SystemManager systemManager = new SystemManager(numPlayers);
+        systemManager.run();
     }
 }

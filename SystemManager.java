@@ -107,13 +107,14 @@ public class SystemManager {
         int player = 0;
 
         int days = calculateDaysPlayed();
-System.out.println("Test");
+
         // Run for each day
         for (int i = 0; i < days; i++) {
             int cardsFinished = 0;
-            //Call function here to start day (put player back in trailers) assign card to set etc
-            
-            //for each player
+            // Call function here to start day (put player back in trailers) assign card to
+            // set etc
+
+            // for each player
             do {
                 // If card has finished increment cards finished
                 if (turn.turn(list[player])) {
@@ -127,7 +128,7 @@ System.out.println("Test");
                     player = 0;
                 }
 
-            } while (cardsFinished < 9); /*!9/10 cards*/ 
+            } while (cardsFinished < 9); /* !9/10 cards */
         }
 
         // Calculate end score

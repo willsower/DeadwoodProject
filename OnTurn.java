@@ -52,7 +52,6 @@ public class OnTurn {
                         player.setRoleLevel(level);
                     }
                 }
-
             }
         } else {
             //Exit onMove

@@ -159,16 +159,16 @@ public class Set {
         }
     }
 
-    public ArrayList<String> avaliblePartsOffCard(){
-        ArrayList<Sting> avalible = new ArrayList<String>();
-        Part[] partsAvalible = getParts();
+    public ArrayList<String> availablePartsOffCard(){
+        ArrayList<Sting> available = new ArrayList<String>();
+        Part[] partsAvailable = getParts();
 
-        for (int i = 0; i < partsAvalible.length; i++) {
-            if partsAvalible[i].isTaken == false) {
-                avalible.add(partsAvalible[i].partName);
+        for (int i = 0; i < partsAvailable.length; i++) {
+            if (partsAvailable[i].isTaken == false) {
+                available.add(partsAvailable[i].partName);
             }
         }
-        return avalible;
+        return available;
     }
 
 

@@ -8,6 +8,15 @@ import java.util.Random;
 public class Deck {
     private Card[] deck;
     private Integer[] cardShuffle;
+    private static Deck instance =null;
+
+    //create instance
+    private static Deck getInstance() {
+        if (instance == null) {
+            instance = new Deck();
+        }
+        return instance;
+    }
 
     // Deck constructor. Will call parser on cards.xml file
     // Create deck of card objects
@@ -51,6 +60,11 @@ public class Deck {
 
         System.out.println(Arrays.toString(list));
         return list;
+    }
+
+    public Card getCard(int cardNum){
+        Card[] temp = getDeck();
+        return temp[cardNum-1];
     }
 
     public static void cardsToBoard() {

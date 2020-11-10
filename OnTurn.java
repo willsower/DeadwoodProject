@@ -32,7 +32,10 @@ public class OnTurn {
             } else if (player.getPlayerLocation().equals("Casting Office")) {
                 //Call upgrade
             } else {
-                UserInterface.getInstance().roleChoice(player, onCard, offCard);
+
+                ArrayList<String> partsOnCardAval = Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).availablePartsOnCard();
+                ArrayList<String> partsOffCardAval = Board.getInstance().getSet(player.getPlayerLocation()).availablePartsOffCard();
+                UserInterface.getInstance().roleChoice(player, partsOnCardAval, partsOffCardAval);
             }
         } else {
             //Exit onMove

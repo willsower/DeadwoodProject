@@ -41,9 +41,15 @@ public class OnTurn {
                 if(isNumeric(playerChoice)){
                     int roleNumber = Integer.parseInt(playerChoice);
                     if (roleNumber <= partsOnCardAval.size()) {
+                        int level = Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getPartLevel(roleNumber - 1);
+
                         player.setOnCardRole(true);
+                        player.setRoleLevel(level);
                     } else {
+                        int level = Board.getInstance().getSet(player.getPlayerLocation()).getPartLevel(roleNumber - partsOnCardAval.size() - 1);
+
                         player.setOffCardRole(true);
+                        player.setRoleLevel(level);
                     }
                 }
 
@@ -51,6 +57,7 @@ public class OnTurn {
         } else {
             //Exit onMove
         }
+
 
         // call user interface
         // Interact with board?

@@ -113,6 +113,12 @@ public class Card {
         return available;
     }
 
+    // Get certain part level 
+    public int getPartLevel(int num) {
+        Part[] myParts = getPart();
+        return myParts[num].level;
+    }
+
     // Helper function for the sake of printing out each card's values
     // Helps with debugging
     public void helperPrintCard() {

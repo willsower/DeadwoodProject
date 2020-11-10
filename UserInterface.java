@@ -79,6 +79,7 @@ public class UserInterface {
         return false;
     }
 
+    //Give user option to act or rehearse
     public int actOrRehearse() {
         System.out.println("Would you like to act? (Type 'a')");
         System.out.println("Would you like to rehearse? (Type 'r')");

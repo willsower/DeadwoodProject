@@ -26,7 +26,7 @@ public class Board {
     }
 
     // Get function
-    public Hashtable<String, Set> getBoard() {
+    public static Hashtable<String, Set> getBoard() {
         return board;
     }
 
@@ -34,7 +34,19 @@ public class Board {
         return getBoard().get(location);
     }
 
+    // Assigns cards to the set each time
     public static void assignCardToSet(Integer[] deckOrder, int day) {
+        int index = (day * 10) - 10;
+        Enumeration<Set> values = getBoard().elements();
+ 
+        //iterate through values
+        while( values.hasMoreElements() ){
+            Set set = values.nextElement();
 
+            set.setCardNum(index);
+            set.setHasCard(true);
+
+            index++;
+        }    
     }
 }

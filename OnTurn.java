@@ -16,6 +16,11 @@ public class OnTurn {
     }
 
     public void onMove(Player player) {
+        // Allow player to upgrade
+        if (player.getPlayerLocation().equals("Casting Office")) {
+            // Upgrade
+        }
+
         // Gets neighbors of room player currently is in
         String[] neighbors = Board.getInstance().getSet(player.getPlayerLocation()).getNeighbor();
 
@@ -70,13 +75,13 @@ public class OnTurn {
 
     // Function to rehearse
     // Player is not able to reherase if they already have 5 practice chips
-    public void canRehearse(Player player) {
+    public void rehearse(Player player) {
         if (player.getRoleLevel() + player.getPracticeChip() < 6) {
             player.setPracticeChip(player.getPracticeChip() + 1);
         }
     }
 
-    //Act function for players
+    // Act function for players
     public boolean act(Player player) {
         int cardBudget = Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum())
                 .getCardBudget();
@@ -121,11 +126,28 @@ public class OnTurn {
 
     // return 1 - one card has finished
     // return 0 - move or rehearse
-    public void turn(Player player) {
-
-        // If player has not taken a role
+    public boolean turn(Player player) {
+        boolean endOfDay = false;
+        // If player has not taken a role, let them move
         if (player.getOffCardRole() == false || player.getOnCardRole() == false) {
-            // move
+            onMove(player);
+        } else {
+            if (player.getRoleLevel() + player.getPracticeChip() < 6) {
+                //let user decide to act or rehearse
+                //If decided to reherase
+                if (true) {
+
+                //If decided to act
+                } else {
+                    
+                }
+            } else {
+                //ask to act
+                if (true) {
+                    endOfDay = act(player);
+                }
+            }
         }
+        return endOfDay;
     }
 }

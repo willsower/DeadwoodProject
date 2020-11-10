@@ -161,6 +161,7 @@ public class Set {
         }
     }
 
+    // Getting available cards
     public ArrayList<String> availablePartsOffCard(){
         ArrayList<String> available = new ArrayList<String>();
         Part[] partsAvailable = getParts();
@@ -173,7 +174,11 @@ public class Set {
         return available;
     }
 
-
+    // Get certain part level 
+    public int getPartLevel(int num) {
+        Part[] myParts = getParts();
+        return myParts[num].level;
+    }
 
     public void setHasCard(boolean val) {
         hasCard = val;

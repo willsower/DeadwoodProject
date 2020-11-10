@@ -72,8 +72,35 @@ public class OnTurn {
         }
     }
 
-    public static boolean act() {
-        return true;
+    public boolean act(Player player) {
+        int cardBudget = Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum());
+        int diceRoll = roll();
+
+        //if success
+        if(diceRole + player.getPlayerPracticeChip() >= cardBuget){
+            //if oncard
+            int counter = Board.getInstance().getSet(player.getPlayerLocation()).getShotCounter();
+            Board.getInstance().getSet(player.getPlayerLocation()).setShotCounter(counter--);
+
+            if(player.getOnCardRole() == true) {
+                player.setCredit(player.getCredit() + 2);
+            }else {
+                player.setCredit(player.getCredit() + 1);
+                player.setDollar(player.getDollar() + 1);
+            }
+
+            //end of card
+            if (counter == 0 ){
+                return true;
+            }
+                
+        }else {  //else fail
+            if(player.getOffCardRole() == true) {
+                player.setDollar(player.getDollar() + 1);
+            }
+        }
+            
+        return false;
     }
 
     // Random number generater between 1 and 6, like a die roll
@@ -87,6 +114,8 @@ public class OnTurn {
         return ran.nextInt(upperBound - lowerBound + 1) + lowerBound;
     }
 
+    //return 1 - one card has finished
+    //return 0 - move or rehearse
     public void turn(Player player) {
 
         // If player has not taken a role

@@ -12,6 +12,7 @@ public class Set {
     private Part[] part = new Part[9];
     private boolean hasCard;
     private int cardNum;
+    private int shotCounter;
 
     class Take {
         int takeNumber;
@@ -103,6 +104,10 @@ public class Set {
         return cardNum;
     }
 
+    public int getShotCounter(){
+        return shotCounter;
+    }
+
     // setters
     public void setNumberOfNeighbors(int num) {
         numberOfNeighbors = num;
@@ -159,6 +164,10 @@ public class Set {
                 partTaken[i].isTaken = taken;
             }
         }
+    }
+
+    public void setShotCounter(int counter){
+        shotCounter = counter;
     }
 
     // Getting available cards

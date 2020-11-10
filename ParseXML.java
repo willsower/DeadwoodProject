@@ -192,7 +192,9 @@ public class ParseXML {
 
                             setInfo.setTake(Integer.parseInt(takeNumber), Integer.parseInt(xVal),
                                     Integer.parseInt(yVal), Integer.parseInt(hVal), Integer.parseInt(wVal));
-
+                            if (k == 0){
+                                setInfo.setShotCounter(Integer.parseInt(takeNumber));
+                            }
                             setInfo.setNumberOfTakes(k + 1);
                         }
                     }

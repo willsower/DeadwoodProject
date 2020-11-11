@@ -67,7 +67,9 @@ public class OnTurn {
         int level = Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum())
                 .getPartLevel(roleNumber - 1);
 
-        int rolePriority = Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getPartPriority(roleNumber - 1);
+        int rolePriority = Deck.getInstance()
+                .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum())
+                .getPartPriority(roleNumber - 1);
 
         player.setOnCardRole(true);
         player.setRoleLevel(level);

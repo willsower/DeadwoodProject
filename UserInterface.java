@@ -51,7 +51,8 @@ public class UserInterface {
         System.out.println("Would you like to move? (Y/N)");
         val = ob.nextLine();
 
-        while (!val.equals("Y") || !val.equals("y") || !val.equals("Yes") || !val.equals("yes") || !val.equals("q") || !val.equals("Q") || !val.equals("N") || !val.equals("n")) {
+        while (!val.equals("Y") || !val.equals("y") || !val.equals("Yes") || !val.equals("yes") || !val.equals("q")
+                || !val.equals("Q") || !val.equals("N") || !val.equals("n")) {
             System.out.println("Would you like to move? (Y/N)");
             System.out.println("[Press q to quit]");
             val = ob.nextLine();
@@ -78,7 +79,7 @@ public class UserInterface {
                 }
                 System.out.println("[Press q to quit]");
                 returnType = ob.nextLine();
-    
+
                 try {
                     Integer.parseInt(returnType);
                     num = Integer.parseInt(returnType);
@@ -86,9 +87,9 @@ public class UserInterface {
                 }
             }
         }
-        return returnType; //returns to onMove() in OnTurn.java
+        return returnType; // returns to onMove() in OnTurn.java
     }
- 
+
     // Give user option to get a role
     public String roleChoice(ArrayList<String> onCard, ArrayList<String> offCard, int card, String setName) {
         System.out.println("Would you like to take a role? (Y/N)");
@@ -97,20 +98,22 @@ public class UserInterface {
         String returnType = "q";
 
         if (val.equals("Y") || val.equals("y") || val.equals("Yes") || val.equals("yes")) {
-            for (int i = 0; i < onCard.size(); i++){
+            for (int i = 0; i < onCard.size(); i++) {
                 int level = Deck.getInstance().getCard(card).getPartLevel(onCard.get(i));
-                System.out.println("Type " + (i + 1) + " to choose [on card] role of " + onCard.get(i) + " level "+ level);
+                System.out.println(
+                        "Type " + (i + 1) + " to choose [on card] role of " + onCard.get(i) + " level " + level);
             }
             int k = onCard.size();
-            for (int i = 0; i< offCard.size(); i++){
+            for (int i = 0; i < offCard.size(); i++) {
                 int level = Board.getInstance().getSet(setName).getPartLevel(offCard.get(i));
-                System.out.println("Type " + (i + k + 1) + " to choose [off card] role of " + offCard.get(i) + " level "+ level);
+                System.out.println(
+                        "Type " + (i + k + 1) + " to choose [off card] role of " + offCard.get(i) + " level " + level);
             }
             System.out.println("[Press q to quit]");
             returnType = ob.nextLine();
         }
-        
-        return returnType; //returns to onMove() in OnTurn.java
+
+        return returnType; // returns to onMove() in OnTurn.java
     }
 
     // Give user option to act
@@ -123,10 +126,10 @@ public class UserInterface {
         if (val.equals("Y") || val.equals("y") || val.equals("Yes") || val.equals("yes")) {
             return true;
         }
-        return false; //returns to act() in OnTurn.java
+        return false; // returns to act() in OnTurn.java
     }
 
-    //Give user option to act or rehearse
+    // Give user option to act or rehearse
     public int actOrRehearse() {
         System.out.println("Would you like to act? (Type 'a')");
         System.out.println("Would you like to rehearse? (Type 'r')");
@@ -140,7 +143,7 @@ public class UserInterface {
             return 2;
         }
         return 3;
-        // possible if wrong input 
+        // possible if wrong input
     }
 
     // Upgrade player, it will check to see if player can upgrade then will prompt
@@ -150,7 +153,8 @@ public class UserInterface {
         Scanner ob = new Scanner(System.in);
         String val;
         if (Upgrade.getInstance().canUpgrade(currentLevel, location, dollar, credit)) {
-            if (Upgrade.getInstance().playerHasCredit(currentLevel, credit) && Upgrade.getInstance().playerHasDollar(currentLevel, dollar)) {
+            if (Upgrade.getInstance().playerHasCredit(currentLevel, credit)
+                    && Upgrade.getInstance().playerHasDollar(currentLevel, dollar)) {
                 System.out.println("Upgrade with credit or dollar? (C/D)");
                 val = ob.nextLine();
 

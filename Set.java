@@ -187,10 +187,10 @@ public class Set {
     }
 
     public int getPartLevel(String partName){
-        Part[] myPart = getParts();
-        for (int i = 0; i < myPart.length; i++){
-            if (myPart[i].partName.equals(partName)){
-                return myPart[i].level;
+        ArrayList<Part> myPart = getParts();
+        for (int i = 0; i < myPart.size(); i++){
+            if (myPart.get(i).partName.equals(partName)){
+                return myPart.get(i).level;
             }
         }
         return 0;

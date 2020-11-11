@@ -123,6 +123,8 @@ public class Set {
 
     public void setNumberOfTakes(int num) {
         numberOfTakes = num;
+
+        setShotCounter(num);
     }
 
     public void setTake(int num, int x, int y, int h, int w) {
@@ -148,7 +150,7 @@ public class Set {
         obj.level = level;
 
         part.add(obj);
-    }
+    } 
 
     public void setPartLine(String line) {
         part.get(0).line = line;

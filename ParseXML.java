@@ -175,12 +175,13 @@ public class ParseXML {
 
                 } else if ("takes".equals(sub.getNodeName())) {
                     NodeList takes = sub.getChildNodes();
-
+                    int myTakes = 0;
                     for (int k = 0; k < takes.getLength(); k++) {
                         Node take = takes.item(k);
+        
                         if ("take".equals(take.getNodeName())) {
                             String takeNumber = take.getAttributes().getNamedItem("number").getNodeValue();
-
+                            myTakes++;
                             // System.out.println(takeNumber);
 
                             NodeList area = take.getChildNodes();
@@ -198,10 +199,8 @@ public class ParseXML {
 
                             setInfo.setTake(Integer.parseInt(takeNumber), Integer.parseInt(xVal),
                                     Integer.parseInt(yVal), Integer.parseInt(hVal), Integer.parseInt(wVal));
-                            if (k == 0) {
-                                setInfo.setShotCounter(Integer.parseInt(takeNumber));
-                            }
-                            setInfo.setNumberOfTakes(k + 1);
+
+                            setInfo.setNumberOfTakes(myTakes);
                         }
                     }
 

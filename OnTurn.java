@@ -87,7 +87,6 @@ public class OnTurn {
             player.setPlayerLocation(neighbors[Integer.parseInt(move) - 1]);
             System.out.println("(1) You are in room " + player.getPlayerLocation());
 
-
             if (player.getPlayerLocation().equals("trailer")) {
                 // Do nothing
             } else if (player.getPlayerLocation().equals("office")) {
@@ -132,16 +131,19 @@ public class OnTurn {
     public boolean act(Player player) {
         int cardBudget = Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum())
                 .getCardBudget();
+        int counter = Board.getInstance().getSet(player.getPlayerLocation()).getShotCounter();
         int diceRoll = roll();
 
         System.out.println("Card Budget: " + cardBudget);
         System.out.println("Dice Rolled: " + diceRoll);
+        System.out.println("Player Practice Chips: " + player.getPracticeChip());
+        System.out.println("Card Shot Counter " + counter);
 
         // if success
         if (diceRoll + player.getPracticeChip() >= cardBudget) {
             // if oncard
-            int counter = Board.getInstance().getSet(player.getPlayerLocation()).getShotCounter();
-            Board.getInstance().getSet(player.getPlayerLocation()).setShotCounter(counter--);
+            counter -= 1;
+            Board.getInstance().getSet(player.getPlayerLocation()).setShotCounter(counter);
 
             System.out.println("Success in performing role");
             if (player.getOnCardRole() == true) { // on card
@@ -203,6 +205,7 @@ public class OnTurn {
             // If player can rehearse or act, give them options
             if (player.getRoleLevel() + player.getPracticeChip() < 6) {
                 int decide = UserInterface.getInstance().actOrRehearse();
+                System.out.println(decide);
                 if (decide == 1) {
                     endOfCard = act(player);
                 } else if (decide == 2) {

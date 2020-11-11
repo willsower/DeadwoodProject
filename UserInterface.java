@@ -149,7 +149,7 @@ public class UserInterface {
 
         if (val.equals("a") || val.equals("A")) {
             return 1;
-        } else if (val.equals('r') || val.equals('R')) {
+        } else if (val.equals("r") || val.equals("R")) {
             return 2;
         }
         return 3;

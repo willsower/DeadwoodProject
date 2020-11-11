@@ -87,8 +87,10 @@ public class ScoringManager {
     // Function to distribute end of card payouts to on card players and off card
     // players
     public void endOfCard(Player player, int cardBudget, ArrayList<Player> playersOnCard,
-            ArrayList<Player> playersOffCard) {
+        ArrayList<Player> playersOffCard) {
         int[] payout = calculatePayout(cardBudget);
+        
+        System.out.println("End of Card: Bonuses distributed");
 
         // Give payout to on card players
         for (Player p : playersOnCard) {
@@ -105,11 +107,14 @@ public class ScoringManager {
             } else {
                 p.setDollar(p.getDollar() + payout[2]);
             }
+            
+            p.resetPlayers(false); //parameter is for isNotEndOfCard
         }
 
         // Give payout to off card players
         for (Player p : playersOffCard) {
             p.setDollar(p.getDollar() + bonusOffCard(p.getRoleLevel())); // role rank
+            p.resetPlayers(false); //parameter is for isNotEndOfCard
         }
 
     }

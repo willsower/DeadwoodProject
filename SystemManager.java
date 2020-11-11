@@ -102,7 +102,7 @@ public class SystemManager {
     public void resetAll(Player[] list, int day) {
         // Reset player info 
         for (int i = 0; i < getNumPlayer(); i++) {
-            list[i].resetPlayers();
+            list[i].resetPlayers(true); //parameter is for notEndOfCard
         }
 
         Hashtable<String, Set> board = Board.getInstance().getBoard();
@@ -138,6 +138,7 @@ public class SystemManager {
             do {
                 // If card has finished increment cards finished
                 if (turn.turn(list[player])) {
+                    //TODO: reset end card
                     cardsFinished++;
                 }
 

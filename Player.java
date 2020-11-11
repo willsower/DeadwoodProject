@@ -13,7 +13,8 @@ public class Player {
     private int roleLevel = 0;
     private int rolePriority = 0;
     private String roleLocation;
-    private String roleName;
+    private String roleName; //part 
+    private String cardName; //for those on card
 
     // Constructor
     public Player(int playerPriority, int level, int dollar, int credit, String playerLocation) {
@@ -79,6 +80,10 @@ public class Player {
         return roleName;
     }
 
+    public String getCardName() {
+        return cardName;
+    }
+
     // Setter functions
     public void setPlayerPriority(int priority) {
         playerPriority = priority;
@@ -132,8 +137,14 @@ public class Player {
         roleName = name;
     }
     
-    public void resetPlayers() {
-        playerLocation = "Trailers";
+    public void setCardName(String name) {
+        cardName = name;
+    }
+
+    public void resetPlayers( boolean isNotAfterCard) {
+        if (isNotAfterCard){ //true
+            playerLocation = "Trailers";
+        }
         practiceChip = 0;
         onCardRole = false;
         offCardRole = false;
@@ -141,7 +152,18 @@ public class Player {
         rolePriority = 0;
         roleLocation = "";
         roleName = "";
+        cardName = "";
     }
+
+    // public void resetPlayerAfterCard(){
+    //     practiceChip = 0;
+    //     onCardRole = false;
+    //     offCardRole = false;
+    //     roleLevel = 0;
+    //     rolePriority = 0;
+    //     roleLocation = "";
+    //     roleName = "";
+    // }
 
     // Print player information
     public void printPlayerInfo() {

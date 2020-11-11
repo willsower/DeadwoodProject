@@ -48,7 +48,6 @@ public class OnTurn {
     // Function for taking a role
     // Will call helper methods if user decides to take role
     public void takeRole(Player player) {
-        System.out.println("Num " + Board.getInstance().getSet(player.getPlayerLocation()).getCardNum());
         ArrayList<String> partsOnCardAval = Deck.getInstance()
                 .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum())
                 .availablePartsOnCard(player.getLevel());

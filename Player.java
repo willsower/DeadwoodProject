@@ -136,10 +136,6 @@ public class Player {
     public void setRoleName(String name) {
         roleName = name;
     }
-    
-    public void setCardName(String name) {
-        cardName = name;
-    }
 
     public void resetPlayers( boolean isNotAfterCard) {
         if (isNotAfterCard){ //true
@@ -152,7 +148,6 @@ public class Player {
         rolePriority = 0;
         roleLocation = "";
         roleName = "";
-        cardName = "";
     }
 
     // public void resetPlayerAfterCard(){

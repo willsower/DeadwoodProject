@@ -36,7 +36,7 @@ public class OnTurn {
             if (player.getPlayerLocation().equals("Trailers")) {
                 // Do nothing
             } else if (player.getPlayerLocation().equals("Casting Office")) {
- /*work*/               // Upgrade
+ /*work*/               // call upgradePlayer
             } else {
 
                 ArrayList<String> partsOnCardAval = Deck.getInstance()
@@ -53,7 +53,7 @@ public class OnTurn {
                 if (isNumeric(playerChoice)) { //choice for which role to take
                     int roleNumber = Integer.parseInt(playerChoice);
                     if (roleNumber <= partsOnCardAval.size()) {
-                        takeOnCardRole(player, roleNumber, cardNum, partsOnCardAval[roleNumber - 1]); /////
+                        takeOnCardRole(player, roleNumber, cardNum, partsOnCardAval[roleNumber - 1] ); /////
                     } else {
                         takeOffCardRole(player, roleNumber, partsOnCardAval.size(), player.getLocation(), partsOffCardAval[roleNumber-partsOnCardAval.size()-1]);
                     }
@@ -68,7 +68,8 @@ public class OnTurn {
 
         player.setOnCardRole(true);
         player.setRoleLevel(level);
-/*DONE*/        Deck.getInstance().getCard(cardNum).setPartTaken(roleName, true);
+        player.setRoleLocation(player.getPlayerLocation());
+        Deck.getInstance().getCard(cardNum).setPartTaken(roleName, true);
     }
 
     public static void takeOffCardRole(Player player, int roleNumber, int size, String setName, String roleName) {
@@ -76,7 +77,9 @@ public class OnTurn {
 
         player.setOffCardRole(true);
         player.setRoleLevel(level);
-/*DONE*/        Board.getInstance().getSet(setName).setPartTaken(roleName, true);
+        player.setRoleLocation(player.getPlayerLocation());
+        player.addPlayer(player);
+        Board.getInstance().getSet(setName).setPartTaken(roleName, true);
     }
 
     // Function to rehearse
@@ -107,8 +110,8 @@ public class OnTurn {
 
             // end of card
             if (counter == 0) {
-/* work*/                ScoringManager.getInstance().endOfCard();
-                return true;
+/* work*/                ScoringManager.getInstance().endOfCard( player.getPlayerLocation());
+                return true; //returns to turn() in onTurn.java
             }
 
         } else { // else fail
@@ -116,7 +119,7 @@ public class OnTurn {
                 player.setDollar(player.getDollar() + 1);
             }
         }
-        return false;
+        return false; //returns to turn() in onTurn.java
     }
 
     // Random number generater between 1 and 6, like a die roll
@@ -133,28 +136,72 @@ public class OnTurn {
     // Function turn will give player options at start of turn
     // Will return true if card has finished
     // will return false if not
-    public boolean turn(Player player) {
+    public boolean turn(Player player) {  
         System.out.println("turn func");
-        boolean endOfDay = false;
+        boolean endOfCard = false;
         // If player has not taken a role, let them move
-        if (player.getOffCardRole() == false && player.getOnCardRole() == false) {
+        if (player.getOffCardRole() == false && player.getOnCardRole() == false) { 
             onMove(player);
         } else {
             //If player can rehearse or act, give them options
             //If they can't rehearse anymore give them only act option
-            if (player.getRoleLevel() + player.getPracticeChip() < 6) {
+            if (player.getRoleLevel() + player.getPracticeChip() < 6) { 
                 int decide = UserInterface.getInstance().actOrRehearse();
                 if (decide == 1) {
-                    endOfDay = act(player);
+                    endOfCard = act(player); 
                 } else if (decide == 2) {
                     rehearse(player);
                 }
             } else {
                 if (UserInterface.getInstance().act()) {
-                    endOfDay = act(player);
+                    endOfCard = act(player);
                 }
             }
         }
-        return endOfDay;
+        return endOfCard; //return to SystemManager.java 
     }
+
 }
+
+
+/*
+    where do we include the lines? no
+    make sure player cant leave role yes
+    does end of card mean end of day? or wrap scene go to bonuses 
+        -the counter in act is for the shots the when its at 0 it would go to bonus,remove card, ect..
+        - maybe only need 
+   + for rolechoice from userinterface - should check for valid number?
+        -and possibly for moveoption too
+    when are the cards choisen from the deck?
+        -is it just shuffled and then one is provided when current card is done?
+   + print messages about success or fail for user
+    need to update setup for different group sizes
+    for upgrade has the required amount they need been set and/or implimented
+    need to create reset board for end of day
+*/
+
+/*
+    for scoremanager - we can create an array or list of players in card.java to keep track of players in oncard in location
+                     - same for set.java to keep track of players offcard in location
+                     - ArrayList<> playersInRoom
+                        - possibly include the part name (is hashmap type thing)
+                     - then in scoremanager we would call those lists
+                     - would also need addPlayer function for when a player takes a role
+
+                     - might want to incude a getCurrentCard function in card.java
+                     - we would also need a removePlayer and both would be called in onMove
+
+                     --- check if at least one person is on card
+                     --- remove card from deck 
+
+                     - create a reset deck in deck.java
+
+*/
+
+/*
+    REMINDER TO ME
+
+    shotCounter => 0 --> end of scene -> bonus
+    endOfDay => 9/10 cards --> reset deck and all players
+
+*/

@@ -57,11 +57,9 @@ public class UserInterface {
             System.out.println("[Press q to quit]");
             returnType = ob.nextLine();
         }
-        return returnType;
+        return returnType; //returns to onMove() in OnTurn.java
     }
-
-    
- /*Done*/   
+ 
     // Give user option to get a role
     public String roleChoice(ArrayList<String> onCard, ArrayList<String> offCard, int card, String setName) {
         System.out.println("Would you like to take a role? (Y/N)");
@@ -82,7 +80,7 @@ public class UserInterface {
             returnType = ob.nextLine();
         }
         
-        return returnType;
+        return returnType; //returns to onMove() in OnTurn.java
     }
 
     // Give user option to act
@@ -95,7 +93,7 @@ public class UserInterface {
         if (val.equals("Y") || val.equals("y") || val.equals("Yes") || val.equals("yes")) {
             return true;
         }
-        return false;
+        return false; //returns to act() in OnTurn.java
     }
 
     //Give user option to act or rehearse

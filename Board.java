@@ -43,7 +43,7 @@ public class Board {
         while( values.hasMoreElements() ){
             Set set = values.nextElement();
 
-            set.setCardNum(index);
+            set.setCardNum(deckOrder[index]);
             set.setHasCard(true);
 
             index++;

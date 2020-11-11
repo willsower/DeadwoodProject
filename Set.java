@@ -28,6 +28,7 @@ public class Set {
 
     class Part {
         String partName;
+        int player;
         int level;
         int xVal;
         int yVal;
@@ -180,7 +181,7 @@ public class Set {
                 available.add(partsAvailable[i].partName);
             }
         }
-        return available;
+        return available; //returns to onMove() in OnTurn.java
     }
 
     // Get certain part level 

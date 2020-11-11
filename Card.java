@@ -19,6 +19,7 @@ public class Card {
     private String sceneDescription;
     private int cardID;
     private Part[] part = new Part[3];
+    private ArrayList<Integer> playersInRoom = new ArrayList<Integer>();
 
     public Card(String name, int budget, int cardID) {
         cardName = name;
@@ -67,6 +68,12 @@ public class Card {
         }
         return 0;
     }
+
+    public ArrayList<Player> getPlayersInRoom() {
+        return playersInRoom;
+    }
+
+ 
 
     // Set functions
 
@@ -128,6 +135,16 @@ public class Card {
         Part[] myParts = getPart();
         return myParts[num].level;
     }
+
+
+    public void addPlayerToRoom(Player player) {
+        playersInRoom.add(player);
+    }
+
+    public void removePlayersFormRoom(Player player) {
+        playersInRoom.clear();
+    }
+
 
     // Helper function for the sake of printing out each card's values
     // Helps with debugging

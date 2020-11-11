@@ -11,6 +11,7 @@ public class Player {
     private String playerLocation;
     private int finalScore = 0;
     private int roleLevel = 0;
+    private String roleLocation;
 
     // Constructor
     public Player(int playerPriority, int level, int dollar, int credit, String playerLocation) {
@@ -64,6 +65,10 @@ public class Player {
         return roleLevel;
     }
 
+    public String getRoleLocation() {
+        return roleLocation;
+    }
+
     // Setter functions
     public void setPlayerPriority(int priority) {
         playerPriority = priority;
@@ -103,6 +108,10 @@ public class Player {
 
     public void setRoleLevel(int level) {
         roleLevel = level;
+    }
+
+    public void setRoleLocation(int local) {
+        roleLocation = local;
     }
 
     // Print player information

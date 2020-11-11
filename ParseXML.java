@@ -260,7 +260,7 @@ public class ParseXML {
         NodeList listOfTrailer = trailerChild.getChildNodes();
 
         // System.out.println(listOfTrailer.getLength()); //prints 5 (should be 2)
-        Set setInfo = new Set("Trailers");
+        Set setInfo = new Set("trailer");
         for (int i = 0; i < listOfTrailer.getLength(); i++) {
             Node sub = listOfTrailer.item(i);
             if ("neighbors".equals(sub.getNodeName())) {
@@ -294,12 +294,12 @@ public class ParseXML {
 
             }
         }
-        dictionary.put("Trailers", setInfo);
+        dictionary.put("trailer", setInfo);
 
         // Get casting office informatoin
         Node castingChild = upgrade.item(0);
         NodeList listOfCasting = castingChild.getChildNodes();
-        Set newSet = new Set("Casting Office");
+        Set newSet = new Set("office");
         for (int i = 0; i < listOfCasting.getLength(); i++) {
             Node sub = listOfCasting.item(i);
             if ("neighbors".equals(sub.getNodeName())) {
@@ -333,7 +333,7 @@ public class ParseXML {
 
             }
         }
-        dictionary.put("Casting Office", newSet);
+        dictionary.put("office", newSet);
         return dictionary;
     }
 }// class

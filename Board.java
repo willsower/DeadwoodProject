@@ -5,7 +5,7 @@ public class Board {
 
     private static Board instance = null;
     private static Hashtable<String, Set> board;
-
+    
     // create instance
     public static Board getInstance() {
         if (instance == null) {

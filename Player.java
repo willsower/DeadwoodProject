@@ -143,7 +143,7 @@ public class Player {
 
     public void resetPlayers( boolean isNotAfterCard) {
         if (isNotAfterCard){ //true
-            playerLocation = "Trailers";
+            playerLocation = "trailer";
         }
         practiceChip = 0;
         onCardRole = false;

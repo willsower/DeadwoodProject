@@ -31,7 +31,7 @@ public class Upgrade {
 
     // Check if player can upgrade to next level
     public boolean canUpgrade(int currentLevel, String location, int dollar, int credit) {
-        if (location.equals("Casting Office")) {
+        if (location.equals("office")) {
             if (currentLevel < 6) {
                 if (playerHasCredit(currentLevel, credit) || playerHasDollar(currentLevel, dollar)) {
                     return true;

@@ -89,9 +89,9 @@ public class OnTurn {
             System.out.println("(1) You are in room " + player.getPlayerLocation());
 
 
-            if (player.getPlayerLocation().equals("Trailer")) {
+            if (player.getPlayerLocation().equals("trailer")) {
                 // Do nothing
-            } else if (player.getPlayerLocation().equals("Office")) {
+            } else if (player.getPlayerLocation().equals("office")) {
                 UserInterface.getInstance().upgradePlayer(player, player.getLevel(), player.getPlayerLocation(), player.getDollar(), player.getCredit());
             } else {
                 takeRole(player);
@@ -102,12 +102,12 @@ public class OnTurn {
     // Overall the move manager will allow users to move, upgrade or take role depending on their locations
     public void moveManager(Player player) {
         // Allow player to upgrade then move
-        if (player.getPlayerLocation().equals("Office")) {
+        if (player.getPlayerLocation().equals("office")) {
             UserInterface.getInstance().upgradePlayer(player, player.getLevel(), player.getPlayerLocation(), player.getDollar(), player.getCredit());
             moveTakeRoleOption(player);
 
         // Allow player to move then take a role
-        } else if (player.getPlayerLocation().equals("Trailer")) {
+        } else if (player.getPlayerLocation().equals("trailer")) {
             moveTakeRoleOption(player);
 
         // First allow player to take a role on the board

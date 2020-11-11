@@ -38,7 +38,7 @@ public class OnTurn {
             } else if (player.getPlayerLocation().equals("Casting Office")) {
  /*work*/               // Upgrade
             } else {
-
+System.out.println("hai");
                 ArrayList<String> partsOnCardAval = Deck.getInstance()
                         .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum())
                         .availablePartsOnCard();
@@ -131,7 +131,7 @@ public class OnTurn {
     // Will return true if card has finished
     // will return false if not
     public boolean turn(Player player) {
-        System.out.println("turn func");
+        System.out.println("\n\nPlayer " + player.getPlayerPriority() + " turn!");
         boolean endOfDay = false;
         // If player has not taken a role, let them move
         if (player.getOffCardRole() == false && player.getOnCardRole() == false) {

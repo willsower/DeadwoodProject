@@ -249,6 +249,7 @@ public class OnTurn {
         5. Clean up functions
         6. Need to adjust shotcounters
         7. Player can only take rank or lower
+        8. Reset practice chips ofr end or card
 
 */
 

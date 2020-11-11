@@ -106,13 +106,12 @@ public class ScoringManager {
         // what player is on this, you can do that by
         // getting playerPriority
 
-        getPlayersInRoomOnCard();
-        for (Player p : playersOncard) {
+        for (Player p : playersOnCard) {
             // get prioritys of parts
             p.setDollar(p.getDollar() /* + bonusOnCard() */); // priority and cardBudget
         }
 
-        for (Player p : playersOffcard) {
+        for (Player p : playersOffCard) {
             p.setDollar(p.getDollar() /* + bonusOffCard() */); // role rank
         }
 

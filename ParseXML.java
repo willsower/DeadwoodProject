@@ -56,6 +56,7 @@ public class ParseXML {
             // System.out.println("Budget = " + cardBudget);
 
             // Initialize each card
+            int val = 3;
 
             deck[i] = new Card(cardCategory, Integer.parseInt(cardBudget), i + 1);
 
@@ -86,8 +87,8 @@ public class ParseXML {
                     // System.out.println("Part name = " + partName);
                     // System.out.println("Part level = " + partLevel);
 
-                    deck[i].setPartNameLevel(index, Integer.parseInt(partLevel), partName);
-
+                    deck[i].setPartNameLevel(index, Integer.parseInt(partLevel), partName, val);
+                    val--;
                     for (int k = 0; k < childrenOfChildren.getLength(); k++) {
                         Node subOfSub = childrenOfChildren.item(k);
 
@@ -199,7 +200,7 @@ public class ParseXML {
 
                             setInfo.setTake(Integer.parseInt(takeNumber), Integer.parseInt(xVal),
                                     Integer.parseInt(yVal), Integer.parseInt(hVal), Integer.parseInt(wVal));
-                            if (k == 0){
+                            if (k == 0) {
                                 setInfo.setShotCounter(Integer.parseInt(takeNumber));
                             }
                             setInfo.setNumberOfTakes(k + 1);
@@ -235,7 +236,7 @@ public class ParseXML {
                                     // System.out.println(" X Value = " + xVal);
                                     // System.out.println(" Y Value = " + yVal);
                                     // System.out.println(" H Value = " + hVal);
-                                    // System.out.println(" W Value = " 
+                                    // System.out.println(" W Value = "
 
                                     setInfo.setPartArea(Integer.parseInt(xVal), Integer.parseInt(yVal),
                                             Integer.parseInt(hVal), Integer.parseInt(wVal));
@@ -255,7 +256,7 @@ public class ParseXML {
               // System.out.println("\n");
             dictionary.put(setCategory, setInfo);
         } // for book nodes
-        
+
         // Get trailers information
         Node trailerChild = trailer.item(0);
         NodeList listOfTrailer = trailerChild.getChildNodes();

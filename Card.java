@@ -13,6 +13,7 @@ public class Card {
         public int hVal;
         public int wVal;
         public boolean isTaken = false;
+        public int priority;
     }
 
     private String cardName;
@@ -82,11 +83,12 @@ public class Card {
     }
 
     // Set part name and level
-    public void setPartNameLevel(int partNum, int partLevel, String partName) {
+    public void setPartNameLevel(int partNum, int partLevel, String partName, int pri) {
         Part[] part = getPart();
 
         part[partNum].partName = partName;
         part[partNum].level = partLevel;
+        part[partNum].priority = pri;
     }
 
     // Set part coordinates

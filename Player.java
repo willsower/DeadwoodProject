@@ -174,5 +174,6 @@ public class Player {
         System.out.println("  Player Has On Card Role? " + getOnCardRole());
         System.out.println("  Player Has Off Card Role? " + getOffCardRole());
         System.out.println("  Player Practice Chip: " + getPracticeChip());
+        System.out.println("  Player Location: " + getPlayerLocation());
     }
 }

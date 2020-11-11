@@ -80,7 +80,7 @@ public class ScoringManager {
 
     // Returns the payout depending on their role on the card
     public static int bonusOnCard(int priorityOnRole, int budget) {
-        int[] total = calculatePayout(budget); //CHANGE
+        int[] total = calculatePayout(budget); // CHANGE
 
         if (priorityOnRole == 1) {
             return total[0];
@@ -90,29 +90,31 @@ public class ScoringManager {
             return total[2];
         }
     }
-/*work*/
+
+    /* work */
     // Gives off card player money to the rank of their role
     public static int bonusOffCard(int roleRank) {
         return roleRank;
     }
 
-    public void endOfCard( Player player, int CardBudget, ArrayList<Player> playersOnCard, ArrayList<Player> playersOffCard) {
-        //Need to create new private vairalbes in card/set
-        //TO assign player x is on part x
+    public void endOfCard(Player player, int CardBudget, ArrayList<Player> playersOnCard,
+            ArrayList<Player> playersOffCard) {
+        // Need to create new private vairalbes in card/set
+        // TO assign player x is on part x
 
-        //So when we call this function we know EXACTLY
-        //what player is on this, you can do that by 
-        //getting playerPriority
+        // So when we call this function we know EXACTLY
+        // what player is on this, you can do that by
+        // getting playerPriority
 
         getPlayersInRoomOnCard();
-        for ( Player p : playersOncard ){
-            //get prioritys of parts
-            p.setDollar(p.getDollar() /* + bonusOnCard()*/); //priority and cardBudget
+        for (Player p : playersOncard) {
+            // get prioritys of parts
+            p.setDollar(p.getDollar() /* + bonusOnCard() */); // priority and cardBudget
         }
 
-        for ( Player p : playersOffcard ){
-            p.setDollar(p.getDollar() /* + bonusOffCard()*/); //role rank
-        }   
+        for (Player p : playersOffcard) {
+            p.setDollar(p.getDollar() /* + bonusOffCard() */); // role rank
+        }
 
     }
 }

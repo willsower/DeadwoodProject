@@ -58,6 +58,16 @@ public class Card {
         return part;
     }
 
+    public int getPartLevel(String partName){
+        Part[] myPart = getPart();
+        for (int i = 0; i < myPart.length; i++){
+            if (myPart[i].partName.equals(partName)){
+                return myPart[i].level;
+            }
+        }
+        return 0;
+    }
+
     // Set functions
 
     // Set scene description

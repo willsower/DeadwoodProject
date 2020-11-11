@@ -8,7 +8,7 @@ public class OnTurn {
     // false if not
     public static boolean isNumeric(String str) {
         try {
-            Integer.parseInteger(str);
+            Integer.parseInt(str);
             return true;
         } catch (NumberFormatException e) {
             return false;
@@ -45,35 +45,38 @@ public class OnTurn {
                 ArrayList<String> partsOffCardAval = Board.getInstance().getSet(player.getPlayerLocation())
                         .availablePartsOffCard();
 
-                String playerChoice = UserInterface.getInstance().roleChoice(partsOnCardAval, partsOffCardAval);
+                //key of card name
+                int cardNum = Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum());
 
-                if (isNumeric(playerChoice)) {
+                String playerChoice = UserInterface.getInstance().roleChoice(partsOnCardAval, partsOffCardAval, cardNum, Player.getPlayerLocation());
+
+                if (isNumeric(playerChoice)) { //choice for which role to take
                     int roleNumber = Integer.parseInt(playerChoice);
                     if (roleNumber <= partsOnCardAval.size()) {
-                        takeOnCardRole(player, roleNumber);
+                        takeOnCardRole(player, roleNumber, cardNum, partsOnCardAval[roleNumber - 1]); /////
                     } else {
-                        takeOffCardRole(player, roleNumber, partsOnCardAval.size());
+                        takeOffCardRole(player, roleNumber, partsOnCardAval.size(), player.getLocation(), partsOffCardAval[roleNumber-partsOnCardAval.size()-1]);
                     }
                 }
             }
         }
     }
 
-    public static void takeOnCardRole(Player player, int roleNumber) {
+    public static void takeOnCardRole(Player player, int roleNumber,int cardNum, String roleName ) {
         int level = Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum())
                 .getPartLevel(roleNumber - 1);
 
         player.setOnCardRole(true);
         player.setRoleLevel(level);
-/////work        
+/*DONE*/        Deck.getInstance().getCard(cardNum).setPartTaken(roleName, true);
     }
 
-    public static void takeOffCardRole(Player player, int roleNumber, int size) {
+    public static void takeOffCardRole(Player player, int roleNumber, int size, String setName, String roleName) {
         int level = Board.getInstance().getSet(player.getPlayerLocation()).getPartLevel(roleNumber - size - 1);
 
         player.setOffCardRole(true);
         player.setRoleLevel(level);
-/*work*/        // set part taken
+/*DONE*/        Board.getInstance().getSet(setName).setPartTaken(roleName, true);
     }
 
     // Function to rehearse

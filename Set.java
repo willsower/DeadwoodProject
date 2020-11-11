@@ -189,6 +189,16 @@ public class Set {
         return myParts[num].level;
     }
 
+    public int getPartLevelS(String partName){
+        Part[] myPart = getParts();
+        for (int i = 0; i < myPart.length; i++){
+            if (myPart[i].partName.equals(partName)){
+                return myPart[i].level;
+            }
+        }
+        return 0;
+    }
+
     public void setHasCard(boolean val) {
         hasCard = val;
     }

@@ -80,7 +80,7 @@ public class ScoringManager {
 
     // Returns the payout depending on their role on the card
     public static int bonusOnCard(int priorityOnRole, int budget) {
-        int[] total = calculatePayout(budget); // CHANGE
+        int[] total = calculatePayout(budget); 
 
         if (priorityOnRole == 1) {
             return total[0];
@@ -97,7 +97,7 @@ public class ScoringManager {
         return roleRank;
     }
 
-    public void endOfCard(Player player, int CardBudget, ArrayList<Player> playersOnCard,
+    public void endOfCard(Player player, int cardBudget, ArrayList<Player> playersOnCard,
             ArrayList<Player> playersOffCard) {
         // Need to create new private vairalbes in card/set
         // TO assign player x is on part x
@@ -105,14 +105,23 @@ public class ScoringManager {
         // So when we call this function we know EXACTLY
         // what player is on this, you can do that by
         // getting playerPriority
+        int[] payout = calculatePayout(cardBudget);
 
         for (Player p : playersOnCard) {
-            // get prioritys of parts
-            p.setDollar(p.getDollar() /* + bonusOnCard() */); // priority and cardBudget
+            // If player has highest role rank (highest priority)
+            if () {
+                p.setDollar(p.getDollar() /* + bonusOnCard() */);
+            // If player has median role rank (middle priority)
+            } else if () {
+                p.setDollar(p.getDollar() /* + bonusOnCard() */);
+            // If player has low role rank (low priority)
+            } else {
+                p.setDollar(p.getDollar() /* + bonusOnCard() */);
+            }
         }
 
         for (Player p : playersOffCard) {
-            p.setDollar(p.getDollar() /* + bonusOffCard() */); // role rank
+            p.setDollar(p.getDollar() + bonusOffCard(p.getRoleLevel())); // role rank
         }
 
     }

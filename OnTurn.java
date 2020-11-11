@@ -210,6 +210,17 @@ public class OnTurn {
 
     Bugs:
         1. Fix ParseXML failure bug at beginning
+        2. Fix NullPtr exception at this command
+            Type 1 to move to 'Train Station'
+            Type 2 to move to 'Ranch'
+            Type 3 to move to 'Secret Hideout'
+            [Press q to quit]
+            1
+            Would you like to take a role? (Y/N)
+            yes
+            Type 1 to choose [on card] role of Curious girl level 3
+            Type 2 to choose [on card] role of Ghost of Plato level 4
+            Error = java.lang.NullPointerException
 
     Functions:
         1. Implement the function that will be called at start of day to set everything up 

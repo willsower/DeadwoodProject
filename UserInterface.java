@@ -52,10 +52,10 @@ public class UserInterface {
         System.out.println("[Press q to quit menu]");
         val = ob.nextLine();
 
-        while (!val.equals("Y")) /*|| !val.equals("y") || !val.equals("Yes") || !val.equals("yes") || !val.equals("q")
-                || !val.equals("Q") || !val.equals("N") || !val.equals("n"))*/ {
+        while (!val.equals("Y") && !val.equals("y") && !val.equals("Yes") && !val.equals("yes") && !val.equals("q")
+                && !val.equals("Q") && !val.equals("N") && !val.equals("n")) {
             System.out.println("Would you like to move? (Y/N)");
-            System.out.println("[Press q to quit menu]");
+            System.out.println("[Press q to forfeit turn]");
             val = ob.nextLine();
         }
         String returnType = "q";
@@ -64,7 +64,7 @@ public class UserInterface {
             for (int i = 0; i < neighbors.length; i++) {
                 System.out.println("Type " + (i + 1) + " to move to '" + neighbors[i] + "'");
             }
-            System.out.println("[Press q to quit]");
+            System.out.println("[Press q to forfeit turn]");
             returnType = ob.nextLine();
 
             int num = 0;
@@ -74,7 +74,7 @@ public class UserInterface {
             } catch (NumberFormatException e) {
             }
 
-            if (!returnType.equals("q") || !returnType.equals("Q") || (num > 0 && num <= neighbors.length)) {
+            if (!returnType.equals("q") || !returnType.equals("Q") || (num > 0 && num < neighbors.length)) {
                 for (int i = 0; i < neighbors.length; i++) {
                     System.out.println("Type " + (i + 1) + " to move to '" + neighbors[i] + "'");
                 }

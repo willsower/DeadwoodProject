@@ -132,15 +132,15 @@ public class Player {
         roleName = name;
     }
     
-    public void resetPlayers(){
-        this.playerLocation = "Trailers";
-        this.practiceChip = 0;
-        this.onCardRole = false;
-        this.OffCardRole = false;
-        this.roleLevel = 0;
-        this.rolePriority = 0;
-        this.roleLocation = "";
-        this.roleName = "";
+    public void resetPlayers() {
+        playerLocation = "Trailers";
+        practiceChip = 0;
+        onCardRole = false;
+        offCardRole = false;
+        roleLevel = 0;
+        rolePriority = 0;
+        roleLocation = "";
+        roleName = "";
     }
 
     // Print player information

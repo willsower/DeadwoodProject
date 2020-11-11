@@ -197,7 +197,7 @@ public class OnTurn {
         } else {
             System.out.println("You are in room " + player.getPlayerLocation());
             if (player.getOnCardRole()){
-               System.out.println("You are on card " + Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).geCardName() );
+               System.out.println("You are on card " + Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getCardName() );
             }
             System.out.println("Your role is " + player.getRoleName());
 

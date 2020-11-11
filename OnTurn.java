@@ -77,22 +77,25 @@ public class OnTurn {
     public void moveTakeRoleOption(Player player) {
         // Gets neighbors of room player currently is in
         String[] neighbors = Board.getInstance().getSet(player.getPlayerLocation()).getNeighbor();
+        Boolean[] isActiveList = Board.getInstance().getSet(player.getPlayerLocation()).getIsActiveList();
 
         // Get user input if player wants to move
-        String move = UserInterface.getInstance().moveOption(player, neighbors);
+        String move = UserInterface.getInstance().moveOption(player, neighbors, isActiveList);
         int numNeighbors = neighbors.length;
 
         // If player enters number, move to that area
         if (isNumeric(move)) {
             player.setPlayerLocation(neighbors[Integer.parseInt(move) - 1]);
-            System.out.println("(1) You are in room " + player.getPlayerLocation());
+            System.out.println("  You are in room " + player.getPlayerLocation());
 
             if (player.getPlayerLocation().equals("trailer")) {
                 // Do nothing
             } else if (player.getPlayerLocation().equals("office")) {
                 UserInterface.getInstance().upgradePlayer(player, player.getLevel(), player.getPlayerLocation(), player.getDollar(), player.getCredit());
             } else {
-                takeRole(player);
+                if (Board.getInstance().getSet(player.getPlayerLocation()).getIsActive() == true) {
+                    takeRole(player);
+                } else {System.out.println("  SCENE IS FINISHED");}
             }
         }
     }
@@ -112,7 +115,9 @@ public class OnTurn {
         // If they choose not to take role, let them move to another location
         // Then give user option to take role there
         } else {
-            takeRole(player);
+            if (Board.getInstance().getSet(player.getPlayerLocation()).getIsActive() == true) {
+                takeRole(player);
+            } else {System.out.println("  SCENE IS FINISHED");}
             moveTakeRoleOption(player);
         }
     }
@@ -122,8 +127,8 @@ public class OnTurn {
     public void rehearse(Player player) {
         if (player.getRoleLevel() + player.getPracticeChip() < 6) {
             player.setPracticeChip(player.getPracticeChip() + 1);
-            System.out.println("You now have " + player.getPracticeChip() + " practice chips");
-            System.out.println("and you are on role level " + player.getRoleLevel());
+            System.out.println("  You now have " + player.getPracticeChip() + " practice chips");
+            System.out.println("  You are on role level " + player.getRoleLevel());
         }
     }
 
@@ -134,10 +139,10 @@ public class OnTurn {
         int counter = Board.getInstance().getSet(player.getPlayerLocation()).getShotCounter();
         int diceRoll = roll();
 
-        System.out.println("Card Budget: " + cardBudget);
-        System.out.println("Dice Rolled: " + diceRoll);
-        System.out.println("Player Practice Chips: " + player.getPracticeChip());
-        System.out.println("Card Shot Counter " + counter);
+        System.out.println("  Card Budget: " + cardBudget);
+        System.out.println("  Dice Rolled: " + diceRoll);
+        System.out.println("  Player Practice Chips: " + player.getPracticeChip());
+        System.out.println("  Card Shot Counter " + counter);
 
         // if success
         if (diceRoll + player.getPracticeChip() >= cardBudget) {
@@ -145,7 +150,7 @@ public class OnTurn {
             counter -= 1;
             Board.getInstance().getSet(player.getPlayerLocation()).setShotCounter(counter);
 
-            System.out.println("Success in performing role");
+            System.out.println("  SUCCESS IN ACTING");
             if (player.getOnCardRole() == true) { // on card
                 player.setCredit(player.getCredit() + 2);
             } else {// off card
@@ -155,6 +160,7 @@ public class OnTurn {
 
             // end of card
             if (counter == 0) {
+                System.out.println("IS THIS WORKING");
                 int cardNum = Deck.getInstance()
                         .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getCardID();
                 if (!(Deck.getInstance().getCard(cardNum).getPlayersInRoomOnCard()).isEmpty()) {
@@ -163,11 +169,12 @@ public class OnTurn {
                             Board.getInstance().getSet(player.getPlayerLocation()).getPlayersInRoomOffCard());
                 }
 
+                Board.getInstance().getSet(player.getPlayerLocation()).setIsActive(false);
                 return true; // returns to turn() in onTurn.java
             }
 
         } else { // else fail
-            System.out.println("Failed in performing role");
+            System.out.println("  FAILED IN ACTING");
             if (player.getOffCardRole() == true) {
                 player.setDollar(player.getDollar() + 1);
             }
@@ -190,17 +197,18 @@ public class OnTurn {
     // Will return true if card has finished
     // will return false if not
     public boolean turn(Player player) {
-        System.out.println("\n\nPlayer " + player.getPlayerPriority() + " turn!");
+        System.out.println("\n==========");
+        System.out.println("Player " + player.getPlayerPriority() + " turn!");
         boolean endOfCard = false;
         // If player has not taken a role, let them move
         if (player.getOffCardRole() == false && player.getOnCardRole() == false) {
             moveManager(player);
         } else {
-            System.out.println("You are in room " + player.getPlayerLocation());
+            System.out.println("  You are in room " + player.getPlayerLocation());
             if (player.getOnCardRole()){
-               System.out.println("You are on card " + Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getCardName() );
+               System.out.println("  You are on card " + Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getCardName() );
             }
-            System.out.println("Your role is " + player.getRoleName());
+            System.out.println("  Your role is " + player.getRoleName());
 
             // If player can rehearse or act, give them options
             if (player.getRoleLevel() + player.getPracticeChip() < 6) {

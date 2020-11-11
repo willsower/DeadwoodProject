@@ -176,6 +176,15 @@ public class Set {
         shotCounter = counter;
     }
 
+    // Function to get list of all active sets
+    public Boolean[] getIsActiveList() {
+        Boolean[] list = new Boolean[neighbor.length];
+        for (int i = 0; i < neighbor.length; i++) {
+            list[i] = Board.getInstance().getSet(neighbor[i]).isActive;
+        }
+        return list;
+    }
+
     // Getting available cards
     public ArrayList<String> availablePartsOffCard(int playerRank){
         ArrayList<String> available = new ArrayList<String>();

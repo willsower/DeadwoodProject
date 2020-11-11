@@ -44,11 +44,11 @@ public class UserInterface {
     }
 
     // Move option
-    public String moveOption(Player player, String[] neighbors) {
+    public String moveOption(Player player, String[] neighbors, Boolean[] isActive) {
         Scanner ob = new Scanner(System.in);
         String val;
         String returnType = "q";
-
+        System.out.println();
         do {
             System.out.println("Would you like to move? (Y/N)");
             System.out.println("[Press q to forfeit turn]");
@@ -58,10 +58,10 @@ public class UserInterface {
 
         if (val.equals("Y") || val.equals("y") || val.equals("Yes") || val.equals("yes")) {
             int num = 0;
-
+            System.out.println();
             do {
                 for (int i = 0; i < neighbors.length; i++) {
-                    System.out.println("Type " + (i + 1) + " to move to '" + neighbors[i] + "'");
+                    System.out.println("Type " + (i + 1) + " to move to '" + neighbors[i] + "'" + " Active Set: " + isActive[i]);
                 }
                 System.out.println("[Press q to forfeit turn]");
                 returnType = ob.nextLine();
@@ -80,7 +80,7 @@ public class UserInterface {
     public String roleChoice(ArrayList<String> onCard, ArrayList<String> offCard, int card, String setName) {
         Scanner ob = new Scanner(System.in);
         String val;
-
+        System.out.println();
         do {
             System.out.println("Would you like to take a role? (Y/N)");
             val = ob.nextLine();
@@ -91,6 +91,7 @@ public class UserInterface {
         if (val.equals("Y") || val.equals("y") || val.equals("Yes") || val.equals("yes")) {
             int num = 0;
             int k = onCard.size();
+            System.out.println();
             do {
                 for (int i = 0; i < onCard.size(); i++) {
                     int level = Deck.getInstance().getCard(card).getPartLevel(onCard.get(i));
@@ -122,6 +123,7 @@ public class UserInterface {
     public boolean act() {
         Scanner ob = new Scanner(System.in);
         String val;
+        System.out.println();
         do {
             System.out.println("Would you like to act? (Y/N)");
             val = ob.nextLine();
@@ -138,7 +140,7 @@ public class UserInterface {
     public int actOrRehearse() {
         Scanner ob = new Scanner(System.in);
         String val;
-
+        System.out.println();
         do {
             System.out.println("Would you like to act? (Type 'a')");
             System.out.println("Would you like to rehearse? (Type 'r')");

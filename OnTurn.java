@@ -189,6 +189,8 @@ public class OnTurn {
     // Will return true if card has finished
     // will return false if not
     public boolean turn(Player player) {
+        System.out.println("THIS IS YOUR LOCAITON " + player.getPlayerLocation());
+
         System.out.println("\n\nPlayer " + player.getPlayerPriority() + " turn!");
         boolean endOfCard = false;
         // If player has not taken a role, let them move

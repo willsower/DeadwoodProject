@@ -273,6 +273,7 @@ public class ParseXML {
                     if ("neighbor".equals(neigh.getNodeName())) {
                         String neighborName = neigh.getAttributes().getNamedItem("name").getNodeValue();
                         neighArr.add(neighborName);
+                        // System.out.println(neighArr.get(index));
                         index++;
                         // System.out.println(neighborName);
                         setInfo.setNumberOfNeighbors(k + 1);
@@ -312,12 +313,13 @@ public class ParseXML {
                     if ("neighbor".equals(neigh.getNodeName())) {
                         String neighborName = neigh.getAttributes().getNamedItem("name").getNodeValue();
                         neighArr.add(neighborName);
+                        // System.out.println(neighArr.get(index));
                         index++;
                         // System.out.println(neighborName);
-                        setInfo.setNumberOfNeighbors(k + 1);
+                        newSet.setNumberOfNeighbors(k + 1);
                     }
                 }
-                setInfo.setNeighbors(neighArr, index);
+                newSet.setNeighbors(neighArr, index);
             } else if ("area".equals(sub.getNodeName())) {
                 String areaX = sub.getAttributes().getNamedItem("x").getNodeValue();
                 String areaY = sub.getAttributes().getNamedItem("y").getNodeValue();

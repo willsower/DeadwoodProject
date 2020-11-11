@@ -78,7 +78,7 @@ public class OnTurn {
         player.setOffCardRole(true);
         player.setRoleLevel(level);
         player.setRoleLocation(player.getPlayerLocation());
-        // player.addPlayer(player);
+        player.addPlayerToRoom(player);
         Board.getInstance().getSet(setName).setPartTaken(roleName, true);
     }
 

@@ -113,4 +113,41 @@ public class UserInterface {
         return 3;
         // possible if wrong input 
     }
+
+    // Upgrade player, it will check to see if player can upgrade then will prompt
+    // user
+    // on what to upgrade with.
+    public void upgradePlayer(Player player, int currentLevel, String location, int dollar, int credit) {
+        Scanner ob = new Scanner(System.in);
+        String val;
+        if (Upgrade.getInstance().canUpgrade(currentLevel, location, dollar, credit)) {
+            if (Upgrade.getInstance().playerHasCredit(currentLevel, credit) && Upgrade.getInstance().playerHasDollar(currentLevel, dollar)) {
+                System.out.println("Upgrade with credit or dollar? (C/D)");
+                val = ob.nextLine();
+
+                if (val.equals("C") || val.equals("c")) {
+                    player.setCredit(player.getCredit() - Upgrade.getInstance().getLevel(currentLevel++).credit);
+                    player.setLevel(currentLevel);
+                } else if (val.equals("D") || val.equals("d")) {
+                    player.setDollar(player.getDollar() - Upgrade.getInstance().getLevel(currentLevel++).dollar);
+                    player.setLevel(currentLevel);
+                }
+
+            } else if (Upgrade.getInstance().playerHasDollar(currentLevel, dollar)) {
+                System.out.println("Upgrade with dollar? (Y/N)");
+                val = ob.nextLine();
+                if (val.equals("Y") || val.equals("y") || val.equals("Yes") || val.equals("yes")) {
+                    player.setDollar(player.getDollar() - Upgrade.getInstance().getLevel(currentLevel++).dollar);
+                    player.setLevel(currentLevel);
+                }
+            } else if (Upgrade.getInstance().playerHasCredit(currentLevel, credit)) {
+                System.out.println("Upgrade with credit? (Y/N)");
+                val = ob.nextLine();
+                if (val.equals("Y") || val.equals("y") || val.equals("Yes") || val.equals("yes")) {
+                    player.setCredit(player.getCredit() - Upgrade.getInstance().getLevel(currentLevel++).credit);
+                    player.setLevel(currentLevel);
+                }
+            }
+        }
+    }
 }

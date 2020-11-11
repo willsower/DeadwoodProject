@@ -29,21 +29,6 @@ public class Upgrade {
     Level levelFive = new Level(5, 28, 20);
     Level levelSix = new Level(6, 40, 25);
 
-    // Upgrade player, it will check to see if player can upgrade then will prompt
-    // user
-    // on what to upgrade with.
-    public void upgradePlayer(int currentLevel, String location, int dollar, int credit) {
-        if (canUpgrade(currentLevel, location, dollar, credit)) {
-            if (playerHasCredit(currentLevel, credit) && playerHasDollar(currentLevel, dollar)) {
-                System.out.println("Upgrade with credit or dollar? (C/D)");
-            } else if (playerHasDollar(currentLevel, dollar)) {
-                System.out.println("Upgrade with dollar? (Y/N)");
-            } else if (playerHasCredit(currentLevel, credit)) {
-                System.out.println("Upgrade with credit? (Y/N)");
-            }
-        }
-    }
-
     // Check if player can upgrade to next level
     public boolean canUpgrade(int currentLevel, String location, int dollar, int credit) {
         if (location.equals("Casting Office")) {

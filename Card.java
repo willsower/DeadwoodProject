@@ -19,7 +19,7 @@ public class Card {
     private String sceneDescription;
     private int cardID;
     private Part[] part = new Part[3];
-    private ArrayList<Player> playersInRoomOncard = new ArrayList<Player>();
+    private ArrayList<Player> playersInRoomOnCard = new ArrayList<Player>();
 
     public Card(String name, int budget, int cardID) {
         cardName = name;

@@ -1,7 +1,5 @@
-
-//Singleton
-//Tai
 import java.util.Random;
+import java.util.ArrayList;
 
 public class ScoringManager {
 

@@ -50,10 +50,11 @@ public class OnTurn {
     public void takeRole(Player player) {
         ArrayList<String> partsOnCardAval = Deck.getInstance()
                 .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum())
-                .availablePartsOnCard();
+                .availablePartsOnCard(player.level);
         ArrayList<String> partsOffCardAval = Board.getInstance().getSet(player.getPlayerLocation())
-                .availablePartsOffCard();
+                .availablePartsOffCard(player.level);
 
+        
         // key of card name
         int cardNum = Deck.getInstance()
                 .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getCardID();
@@ -200,7 +201,6 @@ public class OnTurn {
             System.out.println("Your role is " + player.getRoleName());
 
             // If player can rehearse or act, give them options
-            // If they can't rehearse anymore give them only act option
             if (player.getRoleLevel() + player.getPracticeChip() < 6) {
                 int decide = UserInterface.getInstance().actOrRehearse();
                 if (decide == 1) {
@@ -208,6 +208,7 @@ public class OnTurn {
                 } else if (decide == 2) {
                     rehearse(player);
                 }
+            // If they can't rehearse anymore give them only act option
             } else {
                 if (UserInterface.getInstance().act()) {
                     endOfCard = act(player);
@@ -254,38 +255,25 @@ public class OnTurn {
 */
 
 /*
- * where do we include the lines? no make sure player cant leave role yes does
- * end of card mean end of day? or wrap scene go to bonuses -the counter in act
- * is for the shots the when its at 0 it would go to bonus,remove card, ect.. -
- * maybe only need + for rolechoice from userinterface - should check for valid
- * number? -and possibly for moveoption too when are the cards choisen from the
- * deck? -is it just shuffled and then one is provided when current card is
- * done? + print messages about success or fail for user need to update setup
- * for different group sizes for upgrade has the required amount they need been
+ * where do we include the lines? no 
+ * make sure player cant leave role yes 
+ * does end of card mean end of day? or wrap scene go to bonuses 
+ *      -the counter in act is for the shots the when its at 0 it would go to bonus,remove card, ect.. 
+ * + for rolechoice from userinterface - should check for valid number? 
+ *      -and possibly for moveoption too when are the cards choisen from the deck? 
+ *      -is it just shuffled and then one is provided when current card is done? 
+ * + print messages about success or fail 
+ * for user need to update setup for different group sizes 
+ * for upgrade has the required amount they need 
  * set and/or implimented need to create reset board for end of day
  */
 
-/*
- * for scoremanager - we can create an array or list of players in card.java to
- * keep track of players in oncard in location - same for set.java to keep track
- * of players offcard in location - ArrayList<> playersInRoom - possibly include
- * the part name (is hashmap type thing) - then in scoremanager we would call
- * those lists - would also need addPlayer function for when a player takes a
- * role
- * 
- * - might want to incude a getCurrentCard function in card.java - we would also
- * need a removePlayer and both would be called in onMove
- * 
- * --- check if at least one person is on card --- remove card from deck
- * 
- * - create a reset deck in deck.java
- * 
- */
+
 
 /*
  * REMINDER TO ME
  * 
- * shotCounter => 0 --> end of scene -> bonus endOfDay => 9/10 cards --> reset
- * deck and all players
+ * shotCounter => 0 --> end of scene -> bonus 
+ * endOfDay => 9/10 cards --> reset deck and all players
  * 
  */

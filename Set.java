@@ -168,13 +168,15 @@ public class Set {
     }
 
     // Getting available cards
-    public ArrayList<String> availablePartsOffCard(){
+    public ArrayList<String> availablePartsOffCard(int playerRank){
         ArrayList<String> available = new ArrayList<String>();
         ArrayList<Part> partsAvailable = getParts();
 
         for (int i = 0; i < partsAvailable.size(); i++) {
             if (partsAvailable.get(i).isTaken == false) {
-                available.add(partsAvailable.get(i).partName);
+                if (partsAvailable.get(i).level <= playerRank) {
+                    available.add(partsAvailable.get(i).partName);
+                }
             }
         }
         return available; //returns to onMove() in OnTurn.java

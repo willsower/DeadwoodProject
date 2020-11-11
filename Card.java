@@ -130,13 +130,15 @@ public class Card {
     }
 
     // Available parts in card
-    public ArrayList<String> availablePartsOnCard() {
+    public ArrayList<String> availablePartsOnCard(int playerRank) {
         ArrayList<String> available = new ArrayList<String>();
         Part[] myParts = getPart();
 
         for (int i = 0; i < 3; i++) {
             if (myParts[i].isTaken == false) {
-                available.add(myParts[i].partName);
+                if(myParts[i].level <= playerRank) {
+                    available.add(myParts[i].partName);
+                }
             }
         }
         return available;

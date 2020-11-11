@@ -19,7 +19,7 @@ public class Card {
     private String sceneDescription;
     private int cardID;
     private Part[] part = new Part[3];
-    private ArrayList<Integer> playersInRoom = new ArrayList<Integer>();
+    private ArrayList<Player> playersInRoom = new ArrayList<Player>();
 
     public Card(String name, int budget, int cardID) {
         cardName = name;
@@ -72,8 +72,6 @@ public class Card {
     public ArrayList<Player> getPlayersInRoom() {
         return playersInRoom;
     }
-
- 
 
     // Set functions
 

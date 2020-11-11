@@ -38,7 +38,7 @@ public class OnTurn {
             } else if (player.getPlayerLocation().equals("Casting Office")) {
  /*work*/               // call upgradePlayer
             } else {
-System.out.println("hai");
+
                 ArrayList<String> partsOnCardAval = Deck.getInstance()
                         .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum())
                         .availablePartsOnCard();
@@ -46,16 +46,16 @@ System.out.println("hai");
                         .availablePartsOffCard();
 
                 //key of card name
-                int cardNum = Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum());
+                int cardNum = Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getCardID();
 
-                String playerChoice = UserInterface.getInstance().roleChoice(partsOnCardAval, partsOffCardAval, cardNum, Player.getPlayerLocation());
+                String playerChoice = UserInterface.getInstance().roleChoice(partsOnCardAval, partsOffCardAval, cardNum, player.getPlayerLocation());
 
                 if (isNumeric(playerChoice)) { //choice for which role to take
                     int roleNumber = Integer.parseInt(playerChoice);
                     if (roleNumber <= partsOnCardAval.size()) {
-                        takeOnCardRole(player, roleNumber, cardNum, partsOnCardAval[roleNumber - 1] ); /////
+                        takeOnCardRole(player, roleNumber, cardNum, partsOnCardAval.get(roleNumber - 1)); 
                     } else {
-                        takeOffCardRole(player, roleNumber, partsOnCardAval.size(), player.getLocation(), partsOffCardAval[roleNumber-partsOnCardAval.size()-1]);
+                        takeOffCardRole(player, roleNumber, partsOnCardAval.size(), player.getPlayerLocation(), partsOffCardAval.get(roleNumber-partsOnCardAval.size()-1));
                     }
                 }
             }
@@ -78,7 +78,7 @@ System.out.println("hai");
         player.setOffCardRole(true);
         player.setRoleLevel(level);
         player.setRoleLocation(player.getPlayerLocation());
-        player.addPlayer(player);
+        // player.addPlayer(player);
         Board.getInstance().getSet(setName).setPartTaken(roleName, true);
     }
 

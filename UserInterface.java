@@ -70,12 +70,12 @@ public class UserInterface {
         if (val.equals("Y") || val.equals("y") || val.equals("Yes") || val.equals("yes")) {
             for (int i = 0; i < onCard.size(); i++){
                 int level = Deck.getInstance().getCard(card).getPartLevel(onCard.get(i));
-                System,out.println("Type " + (i + 1) + " to choose [on card] role of " + onCard.get(i) + " level "+ level);
+                System.out.println("Type " + (i + 1) + " to choose [on card] role of " + onCard.get(i) + " level "+ level);
             }
             int k = onCard.size();
             for (int i = 0; i< offCard.size(); i++){
                 int level = Board.getInstance().getSet(setName).getPartLevel(offCard.get(i));
-                System,out.println("Type " + (i + k + 1) + " to choose [off card] role of " + offCard.get(i) + " level "+ level);
+                System.out.println("Type " + (i + k + 1) + " to choose [off card] role of " + offCard.get(i) + " level "+ level);
             }
             System.out.println("[Press q to quit]");
             returnType = ob.nextLine();

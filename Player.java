@@ -110,7 +110,7 @@ public class Player {
         roleLevel = level;
     }
 
-    public void setRoleLocation(int local) {
+    public void setRoleLocation(String local) {
         roleLocation = local;
     }
 

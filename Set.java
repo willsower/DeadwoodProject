@@ -186,7 +186,7 @@ public class Set {
         return myParts.get(num).level;
     }
 
-    public int getPartLevelS(String partName){
+    public int getPartLevel(String partName){
         Part[] myPart = getParts();
         for (int i = 0; i < myPart.length; i++){
             if (myPart[i].partName.equals(partName)){

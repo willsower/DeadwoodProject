@@ -103,7 +103,7 @@ public class SystemManager {
     public void resetAll(Player player ) {
         player.resetPlayers();
         //call assignCardToset
-        
+
 
     }
 

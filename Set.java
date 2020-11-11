@@ -13,6 +13,7 @@ public class Set {
     private boolean hasCard;
     private int cardNum;
     private int shotCounter;
+    private ArrayList<Player> playersInRoomOffCard = new ArrayList<Player>();
 
     class Take {
         int takeNumber;
@@ -28,7 +29,6 @@ public class Set {
 
     class Part {
         String partName;
-        int player;
         int level;
         int xVal;
         int yVal;
@@ -196,12 +196,25 @@ public class Set {
         return 0;
     }
 
+    public ArrayList<Player> getPlayersInRoomOffCard() {
+        return playersInRoomOffCard;
+    }
+
+    //setters
     public void setHasCard(boolean val) {
         hasCard = val;
     }
 
     public void setCardNum(int num) {
         cardNum = num;
+    }
+
+    public void addPlayerToRoomOffCard(Player player) {
+        playersInRoomOffCard.add(player);
+    }
+
+    public void removePlayersFormRoomOffCard(Player player) {
+        playersInRoomOffCard.clear();
     }
 
     // Print helper funciton

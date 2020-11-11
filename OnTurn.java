@@ -48,12 +48,12 @@ public class OnTurn {
     // Function for taking a role
     // Will call helper methods if user decides to take role
     public void takeRole(Player player) {
+        System.out.println("Num " + Board.getInstance().getSet(player.getPlayerLocation()).getCardNum());
         ArrayList<String> partsOnCardAval = Deck.getInstance()
                 .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum())
                 .availablePartsOnCard(player.getLevel());
         ArrayList<String> partsOffCardAval = Board.getInstance().getSet(player.getPlayerLocation())
                 .availablePartsOffCard(player.getLevel());
-
         
         // key of card name
         int cardNum = Deck.getInstance()
@@ -189,8 +189,6 @@ public class OnTurn {
     // Will return true if card has finished
     // will return false if not
     public boolean turn(Player player) {
-        System.out.println("THIS IS YOUR LOCAITON " + player.getPlayerLocation());
-
         System.out.println("\n\nPlayer " + player.getPlayerPriority() + " turn!");
         boolean endOfCard = false;
         // If player has not taken a role, let them move

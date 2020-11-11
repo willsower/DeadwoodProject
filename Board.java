@@ -36,17 +36,17 @@ public class Board {
     public static void assignCardToSet(Integer[] deckOrder, int day) {
         int index = (day * 10) - 10;
         Enumeration<Set> values = getBoard().elements();
-        int firstTen = 0;
 
         // iterate through values
         while (values.hasMoreElements()) {
             Set set = values.nextElement();
-            if (firstTen < 10) {
+
+            if (!set.getSetName().equals("trailer") && !set.getSetName().equals("office")) {
                 set.setCardNum(deckOrder[index]);
                 set.setHasCard(true);
+            
+                index++;
             }
-            firstTen++;
-            index++;
         }
     }
 }

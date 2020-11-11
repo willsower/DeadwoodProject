@@ -47,7 +47,7 @@ public class OnTurn {
 
     // Function for taking a role
     // Will call helper methods if user decides to take role
-    public void takeRole(Player player) {
+    public boolean takeRole(Player player) {
         ArrayList<String> partsOnCardAval = Deck.getInstance()
                 .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum())
                 .availablePartsOnCard(player.getLevel());
@@ -69,7 +69,9 @@ public class OnTurn {
                 takeOffCardRole(player, roleNumber, partsOnCardAval.size(), player.getPlayerLocation(),
                         partsOffCardAval.get(roleNumber - partsOnCardAval.size() - 1));
             }
+            return true;
         }
+        return false;
     }
 
     // Ultimately the move option. Once moved, will allow players to take a role
@@ -115,10 +117,14 @@ public class OnTurn {
         // If they choose not to take role, let them move to another location
         // Then give user option to take role there
         } else {
+            boolean choice = false;
             if (Board.getInstance().getSet(player.getPlayerLocation()).getIsActive() == true) {
-                takeRole(player);
+                choice = takeRole(player);
             } else {System.out.println("  SCENE IS FINISHED");}
-            moveTakeRoleOption(player);
+
+            if (choice == false) {
+                moveTakeRoleOption(player);
+            }
         }
     }
 
@@ -151,6 +157,7 @@ public class OnTurn {
             Board.getInstance().getSet(player.getPlayerLocation()).setShotCounter(counter);
 
             System.out.println("  SUCCESS IN ACTING");
+            System.out.println("  Current Shot Counter: " + counter);
             if (player.getOnCardRole() == true) { // on card
                 player.setCredit(player.getCredit() + 2);
             } else {// off card
@@ -205,9 +212,7 @@ public class OnTurn {
             moveManager(player);
         } else {
             System.out.println("  You are in room " + player.getPlayerLocation());
-            if (player.getOnCardRole()){
-               System.out.println("  You are on card " + Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getCardName() );
-            }
+            System.out.println("  You are on card " + Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getCardName());
             System.out.println("  Your role is " + player.getRoleName());
 
             // If player can rehearse or act, give them options

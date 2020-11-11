@@ -14,7 +14,7 @@ public class Player {
     private int rolePriority = 0;
     private String roleLocation;
     private String roleName; //part 
-    private String cardName; //for those on card
+    //private String cardName; //for those on card
 
     // Constructor
     public Player(int playerPriority, int level, int dollar, int credit, String playerLocation) {
@@ -80,9 +80,9 @@ public class Player {
         return roleName;
     }
 
-    public String getCardName() {
-        return cardName;
-    }
+    // public String getCardName() {
+    //     return cardName;
+    // }
 
     // Setter functions
     public void setPlayerPriority(int priority) {

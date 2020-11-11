@@ -8,7 +8,7 @@ public class OnTurn {
     // false if not
     public static boolean isNumeric(String str) {
         try {
-            Double.parseDouble(str);
+            Integer.parseInteger(str);
             return true;
         } catch (NumberFormatException e) {
             return false;
@@ -18,7 +18,8 @@ public class OnTurn {
     public void onMove(Player player) {
         // Allow player to upgrade
         if (player.getPlayerLocation().equals("Casting Office")) {
-            // Upgrade
+ /*work*/           // Upgrade
+            //dont return
         }
 
         // Gets neighbors of room player currently is in
@@ -35,7 +36,7 @@ public class OnTurn {
             if (player.getPlayerLocation().equals("Trailers")) {
                 // Do nothing
             } else if (player.getPlayerLocation().equals("Casting Office")) {
-                // Upgrade
+ /*work*/               // Upgrade
             } else {
 
                 ArrayList<String> partsOnCardAval = Deck.getInstance()
@@ -64,6 +65,7 @@ public class OnTurn {
 
         player.setOnCardRole(true);
         player.setRoleLevel(level);
+/////work        
     }
 
     public static void takeOffCardRole(Player player, int roleNumber, int size) {
@@ -71,6 +73,7 @@ public class OnTurn {
 
         player.setOffCardRole(true);
         player.setRoleLevel(level);
+/*work*/        // set part taken
     }
 
     // Function to rehearse
@@ -92,17 +95,16 @@ public class OnTurn {
             int counter = Board.getInstance().getSet(player.getPlayerLocation()).getShotCounter();
             Board.getInstance().getSet(player.getPlayerLocation()).setShotCounter(counter--);
 
-            if (player.getOnCardRole() == true) {
+            if (player.getOnCardRole() == true) { //on card
                 player.setCredit(player.getCredit() + 2);
-            } else {
+            } else {//off card
                 player.setCredit(player.getCredit() + 1);
                 player.setDollar(player.getDollar() + 1);
             }
 
             // end of card
             if (counter == 0) {
-                // Call function to help if card ends
-                ScoringManager.getInstance().endOfCard();
+/* work*/                ScoringManager.getInstance().endOfCard();
                 return true;
             }
 
@@ -132,7 +134,7 @@ public class OnTurn {
         System.out.println("turn func");
         boolean endOfDay = false;
         // If player has not taken a role, let them move
-        if (player.getOffCardRole() == false || player.getOnCardRole() == false) {
+        if (player.getOffCardRole() == false && player.getOnCardRole() == false) {
             onMove(player);
         } else {
             //If player can rehearse or act, give them options

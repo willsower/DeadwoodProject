@@ -82,7 +82,7 @@ public class SystemManager {
             } else if (player[i].getFinalScore() != 0
                     && player[i].getFinalScore() > player[whoWon[index] - 1].getFinalScore()) {
                 // If there are no ties
-                if (whoWon[index] == 0) {
+                if (whoWon[1] == 0) {
                     whoWon[index] = i + 1;
                     // Else there is a tie
                 } else {
@@ -111,7 +111,7 @@ public class SystemManager {
         // Run for each day
         for (int i = 0; i < days; i++) {
             int cardsFinished = 0;
-            // Call function here to start day (put player back in trailers) assign card to
+ /*work*/           // Call function here to start day (put player back in trailers) assign card to
             // set etc
 
             // for each player

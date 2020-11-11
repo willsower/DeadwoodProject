@@ -61,7 +61,7 @@ public class UserInterface {
     }
 
     // Give user option to get a role
-    public String roleChoice(ArrayList<String> onCard, ArrayList<String> offCard) {
+ /*work*/   public String roleChoice(ArrayList<String> onCard, ArrayList<String> offCard) {
         
         return "";
     }
@@ -93,5 +93,6 @@ public class UserInterface {
             return 2;
         }
         return 3;
+        // possible if wrong input 
     }
 }

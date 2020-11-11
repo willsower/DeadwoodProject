@@ -49,12 +49,13 @@ public class UserInterface {
         String val;
 
         System.out.println("Would you like to move? (Y/N)");
+        System.out.println("[Press q to quit menu]");
         val = ob.nextLine();
 
-        while (!val.equals("Y") || !val.equals("y") || !val.equals("Yes") || !val.equals("yes") || !val.equals("q")
-                || !val.equals("Q") || !val.equals("N") || !val.equals("n")) {
+        while (!val.equals("Y")) /*|| !val.equals("y") || !val.equals("Yes") || !val.equals("yes") || !val.equals("q")
+                || !val.equals("Q") || !val.equals("N") || !val.equals("n"))*/ {
             System.out.println("Would you like to move? (Y/N)");
-            System.out.println("[Press q to quit]");
+            System.out.println("[Press q to quit menu]");
             val = ob.nextLine();
         }
         String returnType = "q";

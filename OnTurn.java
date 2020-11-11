@@ -13,6 +13,64 @@ public class OnTurn {
         }
     }
 
+    // Function to show that player has taken on card role
+    // Updates Player and Card Attributes
+    public static void takeOnCardRole(Player player, int roleNumber, int cardNum, String roleName) {
+        int level = Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum())
+                .getPartLevel(roleNumber - 1);
+
+        int rolePriority = Deck.getInstance()
+                .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum())
+                .getPartPriority(roleNumber - 1);
+
+        player.setOnCardRole(true);
+        player.setRoleLevel(level);
+        player.setRoleLocation(player.getPlayerLocation());
+        player.setRolePriority(rolePriority);
+        Deck.getInstance().getCard(cardNum).addPlayerToRoomOnCard(player);
+        Deck.getInstance().getCard(cardNum).setPartTaken(roleName, true);
+    }
+
+    // Function to show that player has taken off card role
+    // Updates Player and Set Attributes
+    public static void takeOffCardRole(Player player, int roleNumber, int size, String setName, String roleName) {
+        int level = Board.getInstance().getSet(player.getPlayerLocation()).getPartLevel(roleNumber - size - 1);
+
+        player.setOffCardRole(true);
+        player.setRoleLevel(level);
+        player.setRoleLocation(player.getPlayerLocation());
+        Board.getInstance().getSet(setName).addPlayerToRoomOffCard(player);
+        Board.getInstance().getSet(setName).setPartTaken(roleName, true);
+    }
+
+    // Function for taking a role
+    // Will call helper methods if user decides to take role
+    public void takeRole(Player player) {
+            ArrayList<String> partsOnCardAval = Deck.getInstance()
+                    .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum())
+                    .availablePartsOnCard();
+            ArrayList<String> partsOffCardAval = Board.getInstance().getSet(player.getPlayerLocation())
+                    .availablePartsOffCard();
+
+            // key of card name
+            int cardNum = Deck.getInstance()
+                    .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getCardID();
+
+            String playerChoice = UserInterface.getInstance().roleChoice(partsOnCardAval, partsOffCardAval, cardNum,
+                    player.getPlayerLocation());
+
+            if (isNumeric(playerChoice)) { // choice for which role to take
+                int roleNumber = Integer.parseInt(playerChoice);
+                if (roleNumber <= partsOnCardAval.size()) {
+                    takeOnCardRole(player, roleNumber, cardNum, partsOnCardAval.get(roleNumber - 1));
+                } else {
+                    takeOffCardRole(player, roleNumber, partsOnCardAval.size(), player.getPlayerLocation(),
+                            partsOffCardAval.get(roleNumber - partsOnCardAval.size() - 1));
+                }
+            }
+        }
+    }
+
     public void onMove(Player player) {
         // Allow player to upgrade
         if (player.getPlayerLocation().equals("Casting Office")) {
@@ -36,57 +94,9 @@ public class OnTurn {
             } else if (player.getPlayerLocation().equals("Casting Office")) {
                 /* work */ // call upgradePlayer
             } else {
-
-                ArrayList<String> partsOnCardAval = Deck.getInstance()
-                        .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum())
-                        .availablePartsOnCard();
-                ArrayList<String> partsOffCardAval = Board.getInstance().getSet(player.getPlayerLocation())
-                        .availablePartsOffCard();
-
-                // key of card name
-                int cardNum = Deck.getInstance()
-                        .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getCardID();
-
-                String playerChoice = UserInterface.getInstance().roleChoice(partsOnCardAval, partsOffCardAval, cardNum,
-                        player.getPlayerLocation());
-
-                if (isNumeric(playerChoice)) { // choice for which role to take
-                    int roleNumber = Integer.parseInt(playerChoice);
-                    if (roleNumber <= partsOnCardAval.size()) {
-                        takeOnCardRole(player, roleNumber, cardNum, partsOnCardAval.get(roleNumber - 1));
-                    } else {
-                        takeOffCardRole(player, roleNumber, partsOnCardAval.size(), player.getPlayerLocation(),
-                                partsOffCardAval.get(roleNumber - partsOnCardAval.size() - 1));
-                    }
-                }
+                takeRole(player);
             }
         }
-    }
-
-    public static void takeOnCardRole(Player player, int roleNumber, int cardNum, String roleName) {
-        int level = Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum())
-                .getPartLevel(roleNumber - 1);
-
-        int rolePriority = Deck.getInstance()
-                .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum())
-                .getPartPriority(roleNumber - 1);
-
-        player.setOnCardRole(true);
-        player.setRoleLevel(level);
-        player.setRoleLocation(player.getPlayerLocation());
-        player.setRolePriority(rolePriority);
-        Deck.getInstance().getCard(cardNum).addPlayerToRoomOnCard(player);
-        Deck.getInstance().getCard(cardNum).setPartTaken(roleName, true);
-    }
-
-    public static void takeOffCardRole(Player player, int roleNumber, int size, String setName, String roleName) {
-        int level = Board.getInstance().getSet(player.getPlayerLocation()).getPartLevel(roleNumber - size - 1);
-
-        player.setOffCardRole(true);
-        player.setRoleLevel(level);
-        player.setRoleLocation(player.getPlayerLocation());
-        Board.getInstance().getSet(setName).addPlayerToRoomOffCard(player);
-        Board.getInstance().getSet(setName).setPartTaken(roleName, true);
     }
 
     // Function to rehearse

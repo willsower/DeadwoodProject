@@ -19,8 +19,6 @@ public class Board {
             } catch (Exception e) {
                 System.out.println("Error = " + e);
             }
-
-            assignCardToSet(Deck.getInstance().getCardShuffle(), 1);
         }
         return instance;
     }
@@ -37,10 +35,17 @@ public class Board {
     // Assigns cards to the set each time
     public static void assignCardToSet(Integer[] deckOrder, int day) {
         int index = (day * 10) - 10;
-        Hashtable<String, Set> board = getBoard();
-        
-        for (int i = 0; i < 10; i++) {
-            board.get(i).setCardNum(deckOrder[index]);
+        Enumeration<Set> values = getBoard().elements();
+        int firstTen = 0;
+
+        // iterate through values
+        while (values.hasMoreElements()) {
+            Set set = values.nextElement();
+            if (firstTen < 10) {
+                set.setCardNum(deckOrder[index]);
+                set.setHasCard(true);
+            }
+            firstTen++;
             index++;
         }
     }

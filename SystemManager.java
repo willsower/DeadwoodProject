@@ -106,11 +106,20 @@ public class SystemManager {
         }
 
         Hashtable<String, Set> board = Board.getInstance().getBoard();
-        for (int i = 0; i < 10; i++) {
-            board.get(i).resetSetDay();
-        }     
-        
+
+        Enumeration<Set> values = board.elements();
+        int ind = 0; 
+        // iterate through values
+        while (values.hasMoreElements()) {
+            Set set = values.nextElement();
+            if (ind < 10) {
+                set.resetSetDay();
+            }
+            ind++;
+        }   
+
         Board.getInstance().assignCardToSet(Deck.getInstance().getCardShuffle(), day);
+
     }
 
     public void run() {

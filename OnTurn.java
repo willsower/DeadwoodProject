@@ -69,9 +69,8 @@ public class OnTurn {
             }
         }
     }
-    
 
-    public void onMove(Player player) {
+    public void moveTakeRoleUpgradeOptions(Player player) {
         // Allow player to upgrade
         if (player.getPlayerLocation().equals("Casting Office")) {
             UserInterface.getInstance().upgradePlayer(player, player.getLevel(), player.getPlayerLocation(), player.getDollar(), player.getCredit());
@@ -167,7 +166,7 @@ public class OnTurn {
         boolean endOfCard = false;
         // If player has not taken a role, let them move
         if (player.getOffCardRole() == false && player.getOnCardRole() == false) {
-            onMove(player);
+            moveTakeRoleUpgradeOptions(player);
         } else {
             // If player can rehearse or act, give them options
             // If they can't rehearse anymore give them only act option

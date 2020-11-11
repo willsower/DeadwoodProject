@@ -27,6 +27,7 @@ public class OnTurn {
         player.setRoleLevel(level);
         player.setRoleLocation(player.getPlayerLocation());
         player.setRolePriority(rolePriority);
+        player.setRoleName(roleName);
         Deck.getInstance().getCard(cardNum).addPlayerToRoomOnCard(player);
         Deck.getInstance().getCard(cardNum).setPartTaken(roleName, true);
     }
@@ -39,6 +40,7 @@ public class OnTurn {
         player.setOffCardRole(true);
         player.setRoleLevel(level);
         player.setRoleLocation(player.getPlayerLocation());
+        player.setRoleName(roleName);
         Board.getInstance().getSet(setName).addPlayerToRoomOffCard(player);
         Board.getInstance().getSet(setName).setPartTaken(roleName, true);
     }
@@ -83,6 +85,8 @@ public class OnTurn {
         // If player enters number, move to that area
         if (isNumeric(move)) {
             player.setPlayerLocation(neighbors[Integer.parseInt(move) - 1]);
+            System.out.println("(1) You are in room " + player.getPlayerLocation());
+
 
             if (player.getPlayerLocation().equals("Trailers")) {
                 // Do nothing
@@ -119,7 +123,11 @@ public class OnTurn {
     public void rehearse(Player player) {
         if (player.getRoleLevel() + player.getPracticeChip() < 6) {
             player.setPracticeChip(player.getPracticeChip() + 1);
+            System.out.println("You now have " + player.getPracticeChips() + " practice chips");
+            System.out.println("and you are on role level " + player.getRoleLevel);
         }
+        
+
     }
 
     // Act function for players
@@ -127,6 +135,9 @@ public class OnTurn {
         int cardBudget = Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum())
                 .getCardBudget();
         int diceRoll = roll();
+
+        System.out.println("Card Budget: " + cardbudget);
+        System.out.println("Dice Rolled: " + diceRoll);
 
         // if success
         if (diceRoll + player.getPracticeChip() >= cardBudget) {
@@ -185,6 +196,9 @@ public class OnTurn {
         if (player.getOffCardRole() == false && player.getOnCardRole() == false) {
             moveManager(player);
         } else {
+            System.out.println("You are in room " + player.getPlayerLocation());
+            System.out.println("Your role is " + player.getRoleName());
+
             // If player can rehearse or act, give them options
             // If they can't rehearse anymore give them only act option
             if (player.getRoleLevel() + player.getPracticeChip() < 6) {
@@ -233,6 +247,8 @@ public class OnTurn {
         3. Have better prints when player enters room
         4. Comment functions
         5. Clean up functions
+        6. Need to adjust shotcounters
+        7. Player can only take rank or lower
 
 */
 

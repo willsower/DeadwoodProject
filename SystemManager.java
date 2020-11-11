@@ -100,6 +100,15 @@ public class SystemManager {
         UserInterface.getInstance().displayWinner(whoWon);
     }
 
+    public void resetAll(Player player, ) {
+        player.resetPlayers();
+        //call assignCardToset
+        
+
+    }
+
+
+
     public void run() {
         // Initialize onTurn
         OnTurn turn = new OnTurn();

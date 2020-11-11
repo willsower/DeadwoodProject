@@ -30,6 +30,7 @@ public class ScoringManager {
         return getRankPoints(rank, firstTotal);
     }
 
+/*do we use this function?*/    
     public static boolean onCard() {
         return true;
     }
@@ -76,19 +77,6 @@ public class ScoringManager {
         total[2] = lowestRank;
 
         return total;
-    }
-
-    // Returns the payout depending on their role on the card
-    public static int bonusOnCard(int priorityOnRole, int budget) {
-        int[] total = calculatePayout(budget);
-
-        if (priorityOnRole == 1) {
-            return total[0];
-        } else if (priorityOnRole == 2) {
-            return total[1];
-        } else {
-            return total[2];
-        }
     }
 
     // Gives off card player money to the rank of their role

@@ -13,6 +13,7 @@ public class Player {
     private int roleLevel = 0;
     private int rolePriority = 0;
     private String roleLocation;
+    private String roleName;
 
     // Constructor
     public Player(int playerPriority, int level, int dollar, int credit, String playerLocation) {
@@ -74,6 +75,10 @@ public class Player {
         return rolePriority;
     }
 
+    public String getRoleName(){
+        return roleName;
+    }
+
     // Setter functions
     public void setPlayerPriority(int priority) {
         playerPriority = priority;
@@ -121,6 +126,21 @@ public class Player {
 
     public void setRolePriority(int pri) {
         rolePriority = pri;
+    }
+    
+    public void setRoleName(String name) {
+        roleName = name;
+    }
+    
+    public void resetPlayers(){
+        this.playerLocation = "Trailers";
+        this.practiceChip = 0;
+        this.onCardRole = false;
+        this.OffCardRole = false;
+        this.roleLevel = 0;
+        this.rolePriority = 0;
+        this.roleLocation = "";
+        this.roleName = "";
     }
 
     // Print player information

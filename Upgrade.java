@@ -23,7 +23,7 @@ public class Upgrade {
     }
 
     // Creating level objects
-    Level levelTwo = new Level(2, 4, 5);
+    Level levelTwo = new Level(2, 4, 5);            
     Level levelThree = new Level(3, 10, 10);
     Level levelFour = new Level(4, 18, 15);
     Level levelFive = new Level(5, 28, 20);

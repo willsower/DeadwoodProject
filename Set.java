@@ -28,6 +28,7 @@ public class Set {
 
     class Part {
         String partName;
+        int player;
         int level;
         int xVal;
         int yVal;
@@ -176,13 +177,23 @@ public class Set {
                 available.add(partsAvailable.get(i).partName);
             }
         }
-        return available;
+        return available; //returns to onMove() in OnTurn.java
     }
 
     // Get certain part level 
     public int getPartLevel(int num) {
         ArrayList<Part> myParts = getParts();
         return myParts.get(num).level;
+    }
+
+    public int getPartLevelS(String partName){
+        Part[] myPart = getParts();
+        for (int i = 0; i < myPart.length; i++){
+            if (myPart[i].partName.equals(partName)){
+                return myPart[i].level;
+            }
+        }
+        return 0;
     }
 
     public void setHasCard(boolean val) {

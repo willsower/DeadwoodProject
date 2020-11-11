@@ -52,18 +52,35 @@ public class UserInterface {
 
         if (val.equals("Y") || val.equals("y") || val.equals("Yes") || val.equals("yes")) {
             for (int i = 0; i < neighbors.length; i++) {
-                System.out.println("Type " + (i + 1) + "to move to '" + neighbors[i] + "'");
+                System.out.println("Type " + (i + 1) + " to move to '" + neighbors[i] + "'");
             }
             System.out.println("[Press q to quit]");
             returnType = ob.nextLine();
         }
-        return returnType;
+        return returnType; //returns to onMove() in OnTurn.java
     }
-
+ 
     // Give user option to get a role
- /*work*/   public String roleChoice(ArrayList<String> onCard, ArrayList<String> offCard) {
+    public String roleChoice(ArrayList<String> onCard, ArrayList<String> offCard, int card, String setName) {
+        System.out.println("Would you like to take a role? (Y/N)");
+        Scanner ob = new Scanner(System.in);
+        String returnType = "q";
+
+        if (val.equals("Y") || val.equals("y") || val.equals("Yes") || val.equals("yes")) {
+            for (int i = 0; i< oncard.size(); i++){
+                int level = Deck.getInstance().getCard(card).getPartLeve(onCard[i]);
+                System,out.println("Type " + (i + 1) + " to choose [on card] role of " + onCard[i] + " level "+ level);
+            }
+            int k = onCard.size();
+            for (int i = 0; i< offCard.size(); i++){
+                int level = Board.getInstance().getSet(setName).getPartLeveS(offCard[i]);
+                System,out.println("Type " + (i + k + 1) + " to choose [off card] role of " + offCard[i] + " level "+ level);
+            }
+            System.out.println("[Press q to quit]");
+            returnType = ob.nextLine();
+        }
         
-        return "";
+        return returnType; //returns to onMove() in OnTurn.java
     }
 
     // Give user option to act
@@ -76,7 +93,7 @@ public class UserInterface {
         if (val.equals("Y") || val.equals("y") || val.equals("Yes") || val.equals("yes")) {
             return true;
         }
-        return false;
+        return false; //returns to act() in OnTurn.java
     }
 
     //Give user option to act or rehearse

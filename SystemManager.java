@@ -1,6 +1,5 @@
-
-//Tai
 import java.util.Arrays;
+import java.util.*;
 
 public class SystemManager {
     private Player[] players;
@@ -100,14 +99,19 @@ public class SystemManager {
         UserInterface.getInstance().displayWinner(whoWon);
     }
 
-    public void resetAll(Player player ) {
-        player.resetPlayers();
-        //call assignCardToset
+    public void resetAll(Player[] list, int day) {
+        // Reset player info 
+        for (int i = 0; i < getNumPlayer(); i++) {
+            list[i].resetPlayers();
+        }
 
-
+        Hashtable<String, Set> board = Board.getInstance().getBoard();
+        for (int i = 0; i < 10; i++) {
+            board.get(i).resetSetDay();
+        }     
+        
+        Board.getInstance().assignCardToSet(Deck.getInstance().getCardShuffle(), day);
     }
-
-
 
     public void run() {
         // Initialize onTurn
@@ -120,10 +124,8 @@ public class SystemManager {
         // Run for each day
         for (int i = 0; i < days; i++) {
             int cardsFinished = 0;
- /*work*/           // Call function here to start day (put player back in trailers) assign card to
-            // set etc
+            resetAll(list, i + 1);
 
-            // for each player
             do {
                 // If card has finished increment cards finished
                 if (turn.turn(list[player])) {
@@ -139,7 +141,6 @@ public class SystemManager {
 
             } while (cardsFinished < 9); /* !9/10 cards */
         }
-
         // Calculate end score
         endFunction();
     }

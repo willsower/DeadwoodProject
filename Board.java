@@ -37,16 +37,11 @@ public class Board {
     // Assigns cards to the set each time
     public static void assignCardToSet(Integer[] deckOrder, int day) {
         int index = (day * 10) - 10;
-        Enumeration<Set> values = getBoard().elements();
- 
-        //iterate through values
-        while( values.hasMoreElements() ){
-            Set set = values.nextElement();
-
-            set.setCardNum(deckOrder[index]);
-            set.setHasCard(true);
-
+        Hashtable<String, Set> board = getBoard();
+        
+        for (int i = 0; i < 10; i++) {
+            board.get(i).setCardNum(deckOrder[index]);
             index++;
-        }    
+        }
     }
 }

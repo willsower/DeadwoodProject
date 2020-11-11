@@ -127,8 +127,6 @@ public class OnTurn {
             System.out.println("You now have " + player.getPracticeChip() + " practice chips");
             System.out.println("and you are on role level " + player.getRoleLevel());
         }
-        
-
     }
 
     // Act function for players

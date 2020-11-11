@@ -70,12 +70,9 @@ public class OnTurn {
         }
     }
 
-    public void moveTakeRoleUpgradeOptions(Player player) {
-        // Allow player to upgrade
-        if (player.getPlayerLocation().equals("Casting Office")) {
-            UserInterface.getInstance().upgradePlayer(player, player.getLevel(), player.getPlayerLocation(), player.getDollar(), player.getCredit());
-        }
-
+    // Ultimately the move option. Once moved, will allow players to take a role
+    // Will also allow user to upgrade if they moved into casting office
+    public void moveTakeRoleOption(Player player) {
         // Gets neighbors of room player currently is in
         String[] neighbors = Board.getInstance().getSet(player.getPlayerLocation()).getNeighbor();
 
@@ -94,6 +91,26 @@ public class OnTurn {
             } else {
                 takeRole(player);
             }
+        }
+    }
+    
+    // Overall the move manager will allow users to move, upgrade or take role depending on their locations
+    public void moveManager(Player player) {
+        // Allow player to upgrade then move
+        if (player.getPlayerLocation().equals("Casting Office")) {
+            UserInterface.getInstance().upgradePlayer(player, player.getLevel(), player.getPlayerLocation(), player.getDollar(), player.getCredit());
+            moveTakeRoleOption(player);
+
+        // Allow player to move then take a role
+        } else if (player.getPlayerLocation().equals("Trailers")) {
+            moveTakeRoleOption(player);
+
+        // First allow player to take a role on the board
+        // If they choose not to take role, let them move to another location
+        // Then give user option to take role there
+        } else {
+            takeRole(player);
+            moveTakeRoleOption(player);
         }
     }
 
@@ -166,7 +183,7 @@ public class OnTurn {
         boolean endOfCard = false;
         // If player has not taken a role, let them move
         if (player.getOffCardRole() == false && player.getOnCardRole() == false) {
-            moveTakeRoleUpgradeOptions(player);
+            moveManager(player);
         } else {
             // If player can rehearse or act, give them options
             // If they can't rehearse anymore give them only act option

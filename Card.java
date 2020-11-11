@@ -19,7 +19,7 @@ public class Card {
     private String sceneDescription;
     private int cardID;
     private Part[] part = new Part[3];
-    private ArrayList<Player> playersInRoom = new ArrayList<Player>();
+    private ArrayList<Player> playersInRoomOncard = new ArrayList<Player>();
 
     public Card(String name, int budget, int cardID) {
         cardName = name;
@@ -69,8 +69,8 @@ public class Card {
         return 0;
     }
 
-    public ArrayList<Player> getPlayersInRoom() {
-        return playersInRoom;
+    public ArrayList<Player> getPlayersInRoomOnCard() {
+        return playersInRoomOnCard;
     }
 
     // Set functions
@@ -135,12 +135,12 @@ public class Card {
     }
 
 
-    public void addPlayerToRoom(Player player) {
-        playersInRoom.add(player);
+    public void addPlayerToRoomOnCard(Player player) {
+        playersInRoomOnCard.add(player);
     }
 
-    public void removePlayersFormRoom(Player player) {
-        playersInRoom.clear();
+    public void removePlayersFormRoomOnCard(Player player) {
+        playersInRoomOnCard.clear();
     }
 
 

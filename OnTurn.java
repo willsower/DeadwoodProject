@@ -69,6 +69,7 @@ public class OnTurn {
         player.setOnCardRole(true);
         player.setRoleLevel(level);
         player.setRoleLocation(player.getPlayerLocation());
+        Deck.getInstance().getCard(cardNum).addPlayerToRoomOnCard(player);
         Deck.getInstance().getCard(cardNum).setPartTaken(roleName, true);
     }
 
@@ -78,7 +79,7 @@ public class OnTurn {
         player.setOffCardRole(true);
         player.setRoleLevel(level);
         player.setRoleLocation(player.getPlayerLocation());
-        // player.addPlayerToRoom(player);
+        Board.getInstace().getSet(setName).addPlayerToRoomOffCard(player);
         Board.getInstance().getSet(setName).setPartTaken(roleName, true);
     }
 
@@ -101,6 +102,7 @@ public class OnTurn {
             int counter = Board.getInstance().getSet(player.getPlayerLocation()).getShotCounter();
             Board.getInstance().getSet(player.getPlayerLocation()).setShotCounter(counter--);
 
+            System.out.println("Success in performing role");
             if (player.getOnCardRole() == true) { //on card
                 player.setCredit(player.getCredit() + 2);
             } else {//off card
@@ -110,11 +112,16 @@ public class OnTurn {
 
             // end of card
             if (counter == 0) {
-/* work*/                ScoringManager.getInstance().endOfCard( player.getPlayerLocation());
+                int cardNum = Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getCardID();
+                if ( !isEmpty(getPlayersInRoomOnCard()) ){
+ /* mostly done*/                    ScoringManager.getInstance().endOfCard(player, cardBudget,  Deck.getInstance().getCard(cardNum).getPlayersInRoomOnCard(player), Board.getInstace().getSet(setName).getPlayersInRoomOffCard(player));
+                }
+               
                 return true; //returns to turn() in onTurn.java
             }
 
         } else { // else fail
+            System.out.println("Failed in performing role");
             if (player.getOffCardRole() == true) {
                 player.setDollar(player.getDollar() + 1);
             }

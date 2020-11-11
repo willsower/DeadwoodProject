@@ -71,6 +71,17 @@ public class Card {
         return 0;
     }
 
+    // Get certain part level
+    public int getPartLevel(int num) {
+        Part[] myParts = getPart();
+        return myParts[num].level;
+    }
+
+    public int getPartPriority(int num) {
+        Part[] myParts = getPart();
+        return myParts[num].priority;
+    }
+
     public ArrayList<Player> getPlayersInRoomOnCard() {
         return playersInRoomOnCard;
     }
@@ -129,12 +140,6 @@ public class Card {
             }
         }
         return available;
-    }
-
-    // Get certain part level
-    public int getPartLevel(int num) {
-        Part[] myParts = getPart();
-        return myParts[num].level;
     }
 
     public void addPlayerToRoomOnCard(Player player) {

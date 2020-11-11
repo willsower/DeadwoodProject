@@ -91,35 +91,33 @@ public class ScoringManager {
         }
     }
 
-    /* work */
     // Gives off card player money to the rank of their role
     public static int bonusOffCard(int roleRank) {
         return roleRank;
     }
 
-    public void endOfCard(Player player, int cardBudget, ArrayList<Player> playersOnCard,
-            ArrayList<Player> playersOffCard) {
-        // Need to create new private vairalbes in card/set
-        // TO assign player x is on part x
-
-        // So when we call this function we know EXACTLY
-        // what player is on this, you can do that by
-        // getting playerPriority
+    // Function to distribute end of card payouts to on card players and off card players
+    public void endOfCard(Player player, int cardBudget, ArrayList<Player> playersOnCard, ArrayList<Player> playersOffCard) {
         int[] payout = calculatePayout(cardBudget);
 
+        // Give payout to on card players
         for (Player p : playersOnCard) {
+
             // If player has highest role rank (highest priority)
-            if () {
-                p.setDollar(p.getDollar() /* + bonusOnCard() */);
+            if (p.getRolePriority() == 1) {
+                p.setDollar(p.getDollar() + payout[0]);
+
             // If player has median role rank (middle priority)
-            } else if () {
-                p.setDollar(p.getDollar() /* + bonusOnCard() */);
+            } else if (p.getRolePriority() == 2) {
+                p.setDollar(p.getDollar() + payout[1]);
+
             // If player has low role rank (low priority)
             } else {
-                p.setDollar(p.getDollar() /* + bonusOnCard() */);
+                p.setDollar(p.getDollar() + payout[2]);
             }
         }
 
+        // Give payout to off card players
         for (Player p : playersOffCard) {
             p.setDollar(p.getDollar() + bonusOffCard(p.getRoleLevel())); // role rank
         }

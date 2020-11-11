@@ -100,7 +100,7 @@ public class SystemManager {
         UserInterface.getInstance().displayWinner(whoWon);
     }
 
-    public void resetAll(Player player, ) {
+    public void resetAll(Player player ) {
         player.resetPlayers();
         //call assignCardToset
         

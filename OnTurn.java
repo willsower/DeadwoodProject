@@ -123,8 +123,8 @@ public class OnTurn {
     public void rehearse(Player player) {
         if (player.getRoleLevel() + player.getPracticeChip() < 6) {
             player.setPracticeChip(player.getPracticeChip() + 1);
-            System.out.println("You now have " + player.getPracticeChips() + " practice chips");
-            System.out.println("and you are on role level " + player.getRoleLevel);
+            System.out.println("You now have " + player.getPracticeChip() + " practice chips");
+            System.out.println("and you are on role level " + player.getRoleLevel());
         }
         
 
@@ -136,7 +136,7 @@ public class OnTurn {
                 .getCardBudget();
         int diceRoll = roll();
 
-        System.out.println("Card Budget: " + cardbudget);
+        System.out.println("Card Budget: " + cardBudget);
         System.out.println("Dice Rolled: " + diceRoll);
 
         // if success

@@ -26,8 +26,6 @@ public class ParseXML {
 
             try {
                 doc = db.parse(filename);
-                readBoardData(doc);
-                System.out.println(filename);
             } catch (Exception ex) {
                 System.out.println(filename);
                 System.out.println("XML parse failure");
@@ -299,43 +297,43 @@ public class ParseXML {
         dictionary.put("Trailers", setInfo);
 
         // Get casting office informatoin
-        // Node castingChild = upgrade.item(0);
-        // NodeList listOfCasting = castingChild.getChildNodes();
-        // Set newSet = new Set("Casting Office");
-        // for (int i = 0; i < listOfCasting.getLength(); i++) {
-        //     Node sub = listOfCasting.item(i);
-        //     if ("neighbors".equals(sub.getNodeName())) {
-        //         NodeList childOfNeighbors = sub.getChildNodes();
-        //         // System.out.println(childOfNeighbors.getLength());
-        //         int index = 0;
-        //         ArrayList<String> neighArr = new ArrayList<String>();
-        //         for (int k = 0; k < childOfNeighbors.getLength(); k++) {
-        //             Node neigh = childOfNeighbors.item(k);
-        //             if ("neighbor".equals(neigh.getNodeName())) {
-        //                 String neighborName = neigh.getAttributes().getNamedItem("name").getNodeValue();
-        //                 neighArr.add(neighborName);
-        //                 index++;
-        //                 // System.out.println(neighborName);
-        //                 setInfo.setNumberOfNeighbors(k + 1);
-        //             }
-        //         }
-        //         setInfo.setNeighbors(neighArr, index);
-        //     } else if ("area".equals(sub.getNodeName())) {
-        //         String areaX = sub.getAttributes().getNamedItem("x").getNodeValue();
-        //         String areaY = sub.getAttributes().getNamedItem("y").getNodeValue();
-        //         String areaH = sub.getAttributes().getNamedItem("h").getNodeValue();
-        //         String areaW = sub.getAttributes().getNamedItem("w").getNodeValue();
+        Node castingChild = upgrade.item(0);
+        NodeList listOfCasting = castingChild.getChildNodes();
+        Set newSet = new Set("Casting Office");
+        for (int i = 0; i < listOfCasting.getLength(); i++) {
+            Node sub = listOfCasting.item(i);
+            if ("neighbors".equals(sub.getNodeName())) {
+                NodeList childOfNeighbors = sub.getChildNodes();
+                // System.out.println(childOfNeighbors.getLength());
+                int index = 0;
+                ArrayList<String> neighArr = new ArrayList<String>();
+                for (int k = 0; k < childOfNeighbors.getLength(); k++) {
+                    Node neigh = childOfNeighbors.item(k);
+                    if ("neighbor".equals(neigh.getNodeName())) {
+                        String neighborName = neigh.getAttributes().getNamedItem("name").getNodeValue();
+                        neighArr.add(neighborName);
+                        index++;
+                        // System.out.println(neighborName);
+                        setInfo.setNumberOfNeighbors(k + 1);
+                    }
+                }
+                setInfo.setNeighbors(neighArr, index);
+            } else if ("area".equals(sub.getNodeName())) {
+                String areaX = sub.getAttributes().getNamedItem("x").getNodeValue();
+                String areaY = sub.getAttributes().getNamedItem("y").getNodeValue();
+                String areaH = sub.getAttributes().getNamedItem("h").getNodeValue();
+                String areaW = sub.getAttributes().getNamedItem("w").getNodeValue();
 
-        //         // System.out.println(areaX);
-        //         // System.out.println(areaY);
-        //         // System.out.println(areaH);
-        //         // System.out.println(areaW);
-        //         newSet.setSetArea(Integer.parseInt(areaX), Integer.parseInt(areaY), Integer.parseInt(areaH),
-        //                 Integer.parseInt(areaW));
+                // System.out.println(areaX);
+                // System.out.println(areaY);
+                // System.out.println(areaH);
+                // System.out.println(areaW);
+                newSet.setSetArea(Integer.parseInt(areaX), Integer.parseInt(areaY), Integer.parseInt(areaH),
+                        Integer.parseInt(areaW));
 
-        //     }
-        // }
-        // dictionary.put("Casting Office", newSet);
+            }
+        }
+        dictionary.put("Casting Office", newSet);
 
         return dictionary;
     }

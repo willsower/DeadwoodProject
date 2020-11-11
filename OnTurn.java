@@ -50,9 +50,9 @@ public class OnTurn {
     public void takeRole(Player player) {
         ArrayList<String> partsOnCardAval = Deck.getInstance()
                 .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum())
-                .availablePartsOnCard(player.level);
+                .availablePartsOnCard(player.getLevel());
         ArrayList<String> partsOffCardAval = Board.getInstance().getSet(player.getPlayerLocation())
-                .availablePartsOffCard(player.level);
+                .availablePartsOffCard(player.getLevel());
 
         
         // key of card name

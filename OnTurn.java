@@ -50,9 +50,9 @@ public class OnTurn {
     public void takeRole(Player player) {
         ArrayList<String> partsOnCardAval = Deck.getInstance()
                 .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum())
-                .availablePartsOnCard(player.level);
+                .availablePartsOnCard(player.getLevel());
         ArrayList<String> partsOffCardAval = Board.getInstance().getSet(player.getPlayerLocation())
-                .availablePartsOffCard(player.level);
+                .availablePartsOffCard(player.getLevel());
 
         
         // key of card name
@@ -89,9 +89,9 @@ public class OnTurn {
             System.out.println("(1) You are in room " + player.getPlayerLocation());
 
 
-            if (player.getPlayerLocation().equals("Trailers")) {
+            if (player.getPlayerLocation().equals("Trailer")) {
                 // Do nothing
-            } else if (player.getPlayerLocation().equals("Casting Office")) {
+            } else if (player.getPlayerLocation().equals("Office")) {
                 UserInterface.getInstance().upgradePlayer(player, player.getLevel(), player.getPlayerLocation(), player.getDollar(), player.getCredit());
             } else {
                 takeRole(player);
@@ -102,12 +102,12 @@ public class OnTurn {
     // Overall the move manager will allow users to move, upgrade or take role depending on their locations
     public void moveManager(Player player) {
         // Allow player to upgrade then move
-        if (player.getPlayerLocation().equals("Casting Office")) {
+        if (player.getPlayerLocation().equals("Office")) {
             UserInterface.getInstance().upgradePlayer(player, player.getLevel(), player.getPlayerLocation(), player.getDollar(), player.getCredit());
             moveTakeRoleOption(player);
 
         // Allow player to move then take a role
-        } else if (player.getPlayerLocation().equals("Trailers")) {
+        } else if (player.getPlayerLocation().equals("Trailer")) {
             moveTakeRoleOption(player);
 
         // First allow player to take a role on the board
@@ -196,6 +196,9 @@ public class OnTurn {
             moveManager(player);
         } else {
             System.out.println("You are in room " + player.getPlayerLocation());
+            if (player.getOnCardRole()){
+               System.out.println("You are on card " + Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).geCardName() );
+            }
             System.out.println("Your role is " + player.getRoleName());
 
             // If player can rehearse or act, give them options

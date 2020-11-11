@@ -14,6 +14,7 @@ public class Set {
     private int cardNum;
     private int shotCounter;
     private ArrayList<Player> playersInRoomOffCard = new ArrayList<Player>();
+    private boolean isActive = true;
 
     class Take {
         int takeNumber;
@@ -92,6 +93,10 @@ public class Set {
 
     public int getShotCounter(){
         return shotCounter;
+    }
+
+    public boolean getIsActive() {
+        return isActive;
     }
 
     // setters
@@ -209,12 +214,30 @@ public class Set {
         cardNum = num;
     }
 
+    public void setIsActive(boolean val) {
+        isActive = val;
+    }
+
     public void addPlayerToRoomOffCard(Player player) {
         playersInRoomOffCard.add(player);
     }
 
     public void removePlayersFormRoomOffCard(Player player) {
         playersInRoomOffCard.clear();
+    }
+
+    // Reset Set at end of day
+    public void resetSetDay() {
+        hasCard = true;
+        isActive = true;
+
+        ArrayList<Part> partTaken = getParts();
+        for (int i = 0; i < getParts().size(); i++) {
+            partTaken.get(i).isTaken = false;
+        }
+
+        playersInRoomOffCard.clear();
+        shotCounter = numberOfTakes;
     }
 
     // Print helper funciton

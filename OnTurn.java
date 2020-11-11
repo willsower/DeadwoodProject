@@ -167,7 +167,6 @@ public class OnTurn {
 
             // end of card
             if (counter == 0) {
-                System.out.println("IS THIS WORKING");
                 int cardNum = Deck.getInstance()
                         .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getCardID();
                 if (!(Deck.getInstance().getCard(cardNum).getPlayersInRoomOnCard()).isEmpty()) {

@@ -46,36 +46,35 @@ public class OnTurn {
     // Function for taking a role
     // Will call helper methods if user decides to take role
     public void takeRole(Player player) {
-            ArrayList<String> partsOnCardAval = Deck.getInstance()
-                    .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum())
-                    .availablePartsOnCard();
-            ArrayList<String> partsOffCardAval = Board.getInstance().getSet(player.getPlayerLocation())
-                    .availablePartsOffCard();
+        ArrayList<String> partsOnCardAval = Deck.getInstance()
+                .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum())
+                .availablePartsOnCard();
+        ArrayList<String> partsOffCardAval = Board.getInstance().getSet(player.getPlayerLocation())
+                .availablePartsOffCard();
 
-            // key of card name
-            int cardNum = Deck.getInstance()
-                    .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getCardID();
+        // key of card name
+        int cardNum = Deck.getInstance()
+                .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getCardID();
 
-            String playerChoice = UserInterface.getInstance().roleChoice(partsOnCardAval, partsOffCardAval, cardNum,
-                    player.getPlayerLocation());
+        String playerChoice = UserInterface.getInstance().roleChoice(partsOnCardAval, partsOffCardAval, cardNum,
+                player.getPlayerLocation());
 
-            if (isNumeric(playerChoice)) { // choice for which role to take
-                int roleNumber = Integer.parseInt(playerChoice);
-                if (roleNumber <= partsOnCardAval.size()) {
-                    takeOnCardRole(player, roleNumber, cardNum, partsOnCardAval.get(roleNumber - 1));
-                } else {
-                    takeOffCardRole(player, roleNumber, partsOnCardAval.size(), player.getPlayerLocation(),
-                            partsOffCardAval.get(roleNumber - partsOnCardAval.size() - 1));
-                }
+        if (isNumeric(playerChoice)) { // choice for which role to take
+            int roleNumber = Integer.parseInt(playerChoice);
+            if (roleNumber <= partsOnCardAval.size()) {
+                takeOnCardRole(player, roleNumber, cardNum, partsOnCardAval.get(roleNumber - 1));
+            } else {
+                takeOffCardRole(player, roleNumber, partsOnCardAval.size(), player.getPlayerLocation(),
+                        partsOffCardAval.get(roleNumber - partsOnCardAval.size() - 1));
             }
         }
     }
+    
 
     public void onMove(Player player) {
         // Allow player to upgrade
         if (player.getPlayerLocation().equals("Casting Office")) {
-            /* work */ // Upgrade
-            // dont return
+            UserInterface.getInstance().upgradePlayer(player, player.getLevel(), player.getPlayerLocation(), player.getDollar(), player.getCredit());
         }
 
         // Gets neighbors of room player currently is in
@@ -92,7 +91,7 @@ public class OnTurn {
             if (player.getPlayerLocation().equals("Trailers")) {
                 // Do nothing
             } else if (player.getPlayerLocation().equals("Casting Office")) {
-                /* work */ // call upgradePlayer
+                UserInterface.getInstance().upgradePlayer(player, player.getLevel(), player.getPlayerLocation(), player.getDollar(), player.getCredit());
             } else {
                 takeRole(player);
             }

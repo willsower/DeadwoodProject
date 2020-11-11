@@ -206,6 +206,26 @@ public class OnTurn {
 }
 
 /*
+    TODO:
+
+    Bugs:
+        1. Fix ParseXML failure bug at beginning
+
+    Functions:
+        1. Implement the function that will be called at start of day to set everything up 
+           (This is the same function that will be called to reset if it is end day but at start)
+           1.a TODO this, go in each major class (Player, Set, etc) and create a resetPlayer or resetSet function
+               That we can call to reset all players/sets/other classes. For example, we'd have to reset all player.Location
+               back to Trailers, and reset player.PracticeChip to 0, same with set. We need to go to setParts and reset the
+               isTaken to false and other stuff. (Don't need to do Card, since the Card won't ever be played again).
+        2. Have a better user input (use while loops and have a "Are you sure you want to move" option)
+        3. Have better prints when player enters room
+        4. Comment functions
+        5. Clean up functions
+
+*/
+
+/*
  * where do we include the lines? no make sure player cant leave role yes does
  * end of card mean end of day? or wrap scene go to bonuses -the counter in act
  * is for the shots the when its at 0 it would go to bonus,remove card, ect.. -

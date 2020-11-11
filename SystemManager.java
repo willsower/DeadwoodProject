@@ -126,7 +126,6 @@ public class SystemManager {
             int cardsFinished = 0;
             resetAll(list, i + 1);
 
-            // for each player
             do {
                 // If card has finished increment cards finished
                 if (turn.turn(list[player])) {

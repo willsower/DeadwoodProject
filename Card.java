@@ -1,3 +1,4 @@
+
 //Tai
 import java.util.ArrayList;
 
@@ -59,10 +60,10 @@ public class Card {
         return part;
     }
 
-    public int getPartLevel(String partName){
+    public int getPartLevel(String partName) {
         Part[] myPart = getPart();
-        for (int i = 0; i < myPart.length; i++){
-            if (myPart[i].partName.equals(partName)){
+        for (int i = 0; i < myPart.length; i++) {
+            if (myPart[i].partName.equals(partName)) {
                 return myPart[i].level;
             }
         }
@@ -115,7 +116,7 @@ public class Card {
         }
     }
 
-    // Available parts in card 
+    // Available parts in card
     public ArrayList<String> availablePartsOnCard() {
         ArrayList<String> available = new ArrayList<String>();
         Part[] myParts = getPart();
@@ -128,12 +129,11 @@ public class Card {
         return available;
     }
 
-    // Get certain part level 
+    // Get certain part level
     public int getPartLevel(int num) {
         Part[] myParts = getPart();
         return myParts[num].level;
     }
-
 
     public void addPlayerToRoomOnCard(Player player) {
         playersInRoomOnCard.add(player);
@@ -142,7 +142,6 @@ public class Card {
     public void removePlayersFormRoomOnCard(Player player) {
         playersInRoomOnCard.clear();
     }
-
 
     // Helper function for the sake of printing out each card's values
     // Helps with debugging

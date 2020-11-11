@@ -80,7 +80,7 @@ public class ScoringManager {
 
     // Returns the payout depending on their role on the card
     public static int bonusOnCard(int priorityOnRole, int budget) {
-        int[] total = calculatePayout(budget); 
+        int[] total = calculatePayout(budget);
 
         if (priorityOnRole == 1) {
             return total[0];
@@ -96,8 +96,10 @@ public class ScoringManager {
         return roleRank;
     }
 
-    // Function to distribute end of card payouts to on card players and off card players
-    public void endOfCard(Player player, int cardBudget, ArrayList<Player> playersOnCard, ArrayList<Player> playersOffCard) {
+    // Function to distribute end of card payouts to on card players and off card
+    // players
+    public void endOfCard(Player player, int cardBudget, ArrayList<Player> playersOnCard,
+            ArrayList<Player> playersOffCard) {
         int[] payout = calculatePayout(cardBudget);
 
         // Give payout to on card players
@@ -107,11 +109,11 @@ public class ScoringManager {
             if (p.getRolePriority() == 1) {
                 p.setDollar(p.getDollar() + payout[0]);
 
-            // If player has median role rank (middle priority)
+                // If player has median role rank (middle priority)
             } else if (p.getRolePriority() == 2) {
                 p.setDollar(p.getDollar() + payout[1]);
 
-            // If player has low role rank (low priority)
+                // If player has low role rank (low priority)
             } else {
                 p.setDollar(p.getDollar() + payout[2]);
             }

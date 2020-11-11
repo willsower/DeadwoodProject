@@ -214,8 +214,8 @@ public class ParseXML {
                         if ("part".equals(part.getNodeName())) {
                             String partName = part.getAttributes().getNamedItem("name").getNodeValue();
                             String partLevel = part.getAttributes().getNamedItem("level").getNodeValue();
-
-                            // System.out.println(partName);
+                            
+                            // System.out.println("  " + partName + "  Level: " + partLevel);
                             // System.out.println(partLevel);
 
                             setInfo.setPartNameLevel(k, partName, Integer.parseInt(partLevel));

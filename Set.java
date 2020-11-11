@@ -106,11 +106,11 @@ public class Set {
 
     public void setNeighbors(ArrayList<String> neigh, int index) {
         neighbor = new String[index];
-        System.out.println(getSetName());
+        // System.out.println(getSetName());
 
         for (int i = 0; i < index; i++) {
             neighbor[i] = neigh.get(i);
-            System.out.println("  " + neighbor[i]);
+            // System.out.println("  " + neighbor[i]);
         }
     }
 

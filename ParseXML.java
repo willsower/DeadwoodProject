@@ -27,7 +27,9 @@ public class ParseXML {
             try {
                 doc = db.parse(filename);
                 readBoardData(doc);
+                System.out.println(filename);
             } catch (Exception ex) {
+                System.out.println(filename);
                 System.out.println("XML parse failure");
                 ex.printStackTrace();
             }
@@ -258,13 +260,13 @@ public class ParseXML {
         Node trailerChild = trailer.item(0);
         NodeList listOfTrailer = trailerChild.getChildNodes();
 
-        System.out.println(listOfTrailer.getLength()); //prints 5 (should be 2)
+        // System.out.println(listOfTrailer.getLength()); //prints 5 (should be 2)
         Set setInfo = new Set("Trailers");
         for (int i = 0; i < listOfTrailer.getLength(); i++) {
             Node sub = listOfTrailer.item(i);
             if ("neighbors".equals(sub.getNodeName())) {
                 NodeList childOfNeighbors = sub.getChildNodes();
-                System.out.println(childOfNeighbors.getLength()); //prints 7 (should be 3)
+                // System.out.println(childOfNeighbors.getLength()); //prints 7 (should be 3)
                 int index = 0;
                 ArrayList<String> neighArr = new ArrayList<String>();
                 for (int k = 0; k < childOfNeighbors.getLength(); k++) {

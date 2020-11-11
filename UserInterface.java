@@ -45,9 +45,17 @@ public class UserInterface {
 
     // Move option
     public String moveOption(Player player, String[] neighbors) {
-        System.out.println("Would you like to move? (Y/N)");
         Scanner ob = new Scanner(System.in);
-        String val = ob.nextLine();
+        String val;
+
+        System.out.println("Would you like to move? (Y/N)");
+        val = ob.nextLine();
+
+        while (!val.equals("Y") || !val.equals("y") || !val.equals("Yes") || !val.equals("yes") || !val.equals("q") || !val.equals("Q") || !val.equals("N") || !val.equals("n")) {
+            System.out.println("Would you like to move? (Y/N)");
+            System.out.println("[Press q to quit]");
+            val = ob.nextLine();
+        }
         String returnType = "q";
 
         if (val.equals("Y") || val.equals("y") || val.equals("Yes") || val.equals("yes")) {
@@ -56,6 +64,27 @@ public class UserInterface {
             }
             System.out.println("[Press q to quit]");
             returnType = ob.nextLine();
+
+            int num = 0;
+            try {
+                Integer.parseInt(returnType);
+                num = Integer.parseInt(returnType);
+            } catch (NumberFormatException e) {
+            }
+
+            if (!returnType.equals("q") || !returnType.equals("Q") || (num > 0 && num <= neighbors.length)) {
+                for (int i = 0; i < neighbors.length; i++) {
+                    System.out.println("Type " + (i + 1) + " to move to '" + neighbors[i] + "'");
+                }
+                System.out.println("[Press q to quit]");
+                returnType = ob.nextLine();
+    
+                try {
+                    Integer.parseInt(returnType);
+                    num = Integer.parseInt(returnType);
+                } catch (NumberFormatException e) {
+                }
+            }
         }
         return returnType; //returns to onMove() in OnTurn.java
     }

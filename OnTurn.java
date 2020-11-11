@@ -8,7 +8,7 @@ public class OnTurn {
     // false if not
     public static boolean isNumeric(String str) {
         try {
-            Integer.parseInteger(str);
+            Integer.parseInt(str);
             return true;
         } catch (NumberFormatException e) {
             return false;

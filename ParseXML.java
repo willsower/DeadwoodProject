@@ -147,17 +147,18 @@ public class ParseXML {
                     NodeList childOfNeighbors = sub.getChildNodes();
                     // System.out.println(childOfNeighbors.getLength());
                     int index = 0;
+                    ArrayList<String> neighArr = new ArrayList<String>();
                     for (int k = 0; k < childOfNeighbors.getLength(); k++) {
                         Node neigh = childOfNeighbors.item(k);
-
                         if ("neighbor".equals(neigh.getNodeName())) {
                             String neighborName = neigh.getAttributes().getNamedItem("name").getNodeValue();
+                            neighArr.add(neighborName);
                             index++;
                             // System.out.println(neighborName);
-                            setInfo.setNeighbors(neighborName, index);
                             setInfo.setNumberOfNeighbors(k + 1);
                         }
                     }
+                    setInfo.setNeighbors(neighArr, index);
                 } else if ("area".equals(sub.getNodeName())) {
                     String areaX = sub.getAttributes().getNamedItem("x").getNodeValue();
                     String areaY = sub.getAttributes().getNamedItem("y").getNodeValue();
@@ -232,16 +233,16 @@ public class ParseXML {
                                     // System.out.println(" X Value = " + xVal);
                                     // System.out.println(" Y Value = " + yVal);
                                     // System.out.println(" H Value = " + hVal);
-                                    // System.out.println(" W Value = " + wVal);
+                                    // System.out.println(" W Value = " 
 
-                                    setInfo.setPartArea(k, Integer.parseInt(xVal), Integer.parseInt(yVal),
+                                    setInfo.setPartArea(Integer.parseInt(xVal), Integer.parseInt(yVal),
                                             Integer.parseInt(hVal), Integer.parseInt(wVal));
 
                                 } else if ("line".equals(partChild.getNodeName())) {
                                     String line = partChild.getTextContent();
                                     // System.out.println(line);
 
-                                    setInfo.setPartLine(k, line);
+                                    setInfo.setPartLine(line);
                                 }
                             }
                         }
@@ -256,7 +257,7 @@ public class ParseXML {
         // Get trailers information
         Node trailerChild = trailer.item(0);
         NodeList listOfTrailer = trailerChild.getChildNodes();
-        System.out.println(trailerChild.getChildNodes().item(3).getLocalName());
+
         System.out.println(listOfTrailer.getLength()); //prints 5 (should be 2)
         Set setInfo = new Set("Trailers");
         for (int i = 0; i < listOfTrailer.getLength(); i++) {
@@ -265,17 +266,18 @@ public class ParseXML {
                 NodeList childOfNeighbors = sub.getChildNodes();
                 System.out.println(childOfNeighbors.getLength()); //prints 7 (should be 3)
                 int index = 0;
+                ArrayList<String> neighArr = new ArrayList<String>();
                 for (int k = 0; k < childOfNeighbors.getLength(); k++) {
                     Node neigh = childOfNeighbors.item(k);
-
                     if ("neighbor".equals(neigh.getNodeName())) {
                         String neighborName = neigh.getAttributes().getNamedItem("name").getNodeValue();
+                        neighArr.add(neighborName);
                         index++;
                         // System.out.println(neighborName);
-                        setInfo.setNeighbors(neighborName, index);
                         setInfo.setNumberOfNeighbors(k + 1);
                     }
                 }
+                setInfo.setNeighbors(neighArr, index);
             } else if ("area".equals(sub.getNodeName())) {
                 String areaX = sub.getAttributes().getNamedItem("x").getNodeValue();
                 String areaY = sub.getAttributes().getNamedItem("y").getNodeValue();
@@ -303,17 +305,18 @@ public class ParseXML {
                 NodeList childOfNeighbors = sub.getChildNodes();
                 // System.out.println(childOfNeighbors.getLength());
                 int index = 0;
+                ArrayList<String> neighArr = new ArrayList<String>();
                 for (int k = 0; k < childOfNeighbors.getLength(); k++) {
                     Node neigh = childOfNeighbors.item(k);
-
                     if ("neighbor".equals(neigh.getNodeName())) {
                         String neighborName = neigh.getAttributes().getNamedItem("name").getNodeValue();
+                        neighArr.add(neighborName);
                         index++;
                         // System.out.println(neighborName);
-                        newSet.setNeighbors(neighborName, index);
-                        newSet.setNumberOfNeighbors(k + 1);
+                        setInfo.setNumberOfNeighbors(k + 1);
                     }
                 }
+                setInfo.setNeighbors(neighArr, index);
             } else if ("area".equals(sub.getNodeName())) {
                 String areaX = sub.getAttributes().getNamedItem("x").getNodeValue();
                 String areaY = sub.getAttributes().getNamedItem("y").getNodeValue();

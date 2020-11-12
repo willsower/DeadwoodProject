@@ -1,4 +1,8 @@
-//Daria
+/*
+    Player Class
+    Purpose: Store all player information, also has function that will reset
+             player variables at the end of card or end of day
+*/
 
 public class Player {
     private int playerPriority;
@@ -13,8 +17,7 @@ public class Player {
     private int roleLevel = 0;
     private int rolePriority = 0;
     private String roleLocation;
-    private String roleName; //part 
-    //private String cardName; //for those on card
+    private String roleName; // part
 
     // Constructor
     public Player(int playerPriority, int level, int dollar, int credit, String playerLocation) {
@@ -76,13 +79,9 @@ public class Player {
         return rolePriority;
     }
 
-    public String getRoleName(){
+    public String getRoleName() {
         return roleName;
     }
-
-    // public String getCardName() {
-    //     return cardName;
-    // }
 
     // Setter functions
     public void setPlayerPriority(int priority) {
@@ -132,13 +131,15 @@ public class Player {
     public void setRolePriority(int pri) {
         rolePriority = pri;
     }
-    
+
     public void setRoleName(String name) {
         roleName = name;
     }
 
-    public void resetPlayers( boolean isNotAfterCard) {
-        if (isNotAfterCard){ //true
+    // Function to reset players at the end of day or card
+    // depending on the boolean value
+    public void resetPlayers(boolean isNotAfterCard) {
+        if (isNotAfterCard) { // true
             playerLocation = "trailer";
         }
         practiceChip = 0;
@@ -149,16 +150,6 @@ public class Player {
         roleLocation = "";
         roleName = "";
     }
-
-    // public void resetPlayerAfterCard(){
-    //     practiceChip = 0;
-    //     onCardRole = false;
-    //     offCardRole = false;
-    //     roleLevel = 0;
-    //     rolePriority = 0;
-    //     roleLocation = "";
-    //     roleName = "";
-    // }
 
     // Print player information
     public void printPlayerInfo() {

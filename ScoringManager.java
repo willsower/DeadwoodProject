@@ -87,9 +87,11 @@ public class ScoringManager {
         int[] payout = calculatePayout(cardBudget, cardSlots);
         
         System.out.println("\nEnd of Card: Bonuses distributed");
-
+        System.out.println("Players on card ");
         // Give payout to on card players
         for (Player p : playersOnCard) { 
+            System.out.println("  Player " + p.getPlayerPriority());
+            
             System.out.println();
             // If player has highest role rank (highest priority)
             if (p.getRolePriority() == 1) {
@@ -104,8 +106,10 @@ public class ScoringManager {
             p.resetPlayers(false); // parameter is for isNotEndOfCard
             UserInterface.getInstance().displayPlayerInfo(p);
         }
+        System.out.println("Players off card: ");
         // Give payout to off card players
         for (Player p : playersOffCard) {
+            System.out.println("  Player " + p.getPlayerPriority());
             System.out.println();
             p.setDollar(p.getDollar() + bonusOffCard(p.getRoleLevel())); // role rank
             p.resetPlayers(false); // parameter is for isNotEndOfCard
@@ -116,8 +120,9 @@ public class ScoringManager {
     // Function to reset players if there were no onCard players
     public void endCardNoCardWorkers(Player player, ArrayList<Player> playersOffCard) {
         System.out.println("\nEnd of Card: No Bonuses Given [No on card workers]");
-
+        System.out.println("Players off card: ");
         for (Player p : playersOffCard) {
+            System.out.println("  Player " + p.getPlayerPriority());
             p.resetPlayers(false);
             UserInterface.getInstance().displayPlayerInfo(p);
         }

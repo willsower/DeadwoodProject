@@ -53,24 +53,28 @@ public class OnTurn {
                 .availablePartsOnCard(player.getLevel());
         ArrayList<String> partsOffCardAval = Board.getInstance().getSet(player.getPlayerLocation())
                 .availablePartsOffCard(player.getLevel());
-        
-        // key of card name
-        int cardNum = Deck.getInstance()
-                .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getCardID();
+        if (partsOnCardAval.isEmpty() && partsOffCardAval.isEmpty()) {
+            System.out.println("  NO PARTS AVAILABLE FOR YOUR CURRENTLY");
+        } else {
+            // key of card name
+            int cardNum = Deck.getInstance()
+                    .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getCardID();
 
-        String playerChoice = UserInterface.getInstance().roleChoice(partsOnCardAval, partsOffCardAval, cardNum,
-                player.getPlayerLocation());
+            String playerChoice = UserInterface.getInstance().roleChoice(partsOnCardAval, partsOffCardAval, cardNum,
+                    player.getPlayerLocation());
 
-        if (isNumeric(playerChoice)) { // choice for which role to take
-            int roleNumber = Integer.parseInt(playerChoice);
-            if (roleNumber <= partsOnCardAval.size()) {
-                takeOnCardRole(player, roleNumber, cardNum, partsOnCardAval.get(roleNumber - 1));
-            } else {
-                takeOffCardRole(player, roleNumber, partsOnCardAval.size(), player.getPlayerLocation(),
-                        partsOffCardAval.get(roleNumber - partsOnCardAval.size() - 1));
+            if (isNumeric(playerChoice)) { // choice for which role to take
+                int roleNumber = Integer.parseInt(playerChoice);
+                if (roleNumber <= partsOnCardAval.size()) {
+                    takeOnCardRole(player, roleNumber, cardNum, partsOnCardAval.get(roleNumber - 1));
+                } else {
+                    takeOffCardRole(player, roleNumber, partsOnCardAval.size(), player.getPlayerLocation(),
+                            partsOffCardAval.get(roleNumber - partsOnCardAval.size() - 1));
+                }
+                return true;
             }
-            return true;
         }
+
         return false;
     }
 
@@ -93,34 +97,41 @@ public class OnTurn {
             if (player.getPlayerLocation().equals("trailer")) {
                 // Do nothing
             } else if (player.getPlayerLocation().equals("office")) {
-                UserInterface.getInstance().upgradePlayer(player, player.getLevel(), player.getPlayerLocation(), player.getDollar(), player.getCredit());
+                UserInterface.getInstance().upgradePlayer(player, player.getLevel(), player.getPlayerLocation(),
+                        player.getDollar(), player.getCredit());
             } else {
                 if (Board.getInstance().getSet(player.getPlayerLocation()).getIsActive() == true) {
                     takeRole(player);
-                } else {System.out.println("  SCENE IS FINISHED");}
+                } else {
+                    System.out.println("  SCENE IS FINISHED");
+                }
             }
         }
     }
-    
-    // Overall the move manager will allow users to move, upgrade or take role depending on their locations
+
+    // Overall the move manager will allow users to move, upgrade or take role
+    // depending on their locations
     public void moveManager(Player player) {
         // Allow player to upgrade then move
         if (player.getPlayerLocation().equals("office")) {
-            UserInterface.getInstance().upgradePlayer(player, player.getLevel(), player.getPlayerLocation(), player.getDollar(), player.getCredit());
+            UserInterface.getInstance().upgradePlayer(player, player.getLevel(), player.getPlayerLocation(),
+                    player.getDollar(), player.getCredit());
             moveTakeRoleOption(player);
 
-        // Allow player to move then take a role
+            // Allow player to move then take a role
         } else if (player.getPlayerLocation().equals("trailer")) {
             moveTakeRoleOption(player);
 
-        // First allow player to take a role on the board
-        // If they choose not to take role, let them move to another location
-        // Then give user option to take role there
+            // First allow player to take a role on the board
+            // If they choose not to take role, let them move to another location
+            // Then give user option to take role there
         } else {
             boolean choice = false;
             if (Board.getInstance().getSet(player.getPlayerLocation()).getIsActive() == true) {
                 choice = takeRole(player);
-            } else {System.out.println("  SCENE IS FINISHED");}
+            } else {
+                System.out.println("  SCENE IS FINISHED");
+            }
 
             if (choice == false) {
                 moveTakeRoleOption(player);
@@ -170,9 +181,11 @@ public class OnTurn {
                 int cardNum = Deck.getInstance()
                         .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getCardID();
                 if (!(Deck.getInstance().getCard(cardNum).getPlayersInRoomOnCard()).isEmpty()) {
-                    /* mostly done */ ScoringManager.getInstance().endOfCard(player, cardBudget,
+                    ScoringManager.getInstance().endOfCard(player, cardBudget,
                             Deck.getInstance().getCard(cardNum).getPlayersInRoomOnCard(),
                             Board.getInstance().getSet(player.getPlayerLocation()).getPlayersInRoomOffCard());
+                } else {
+                    ScoringManager.getInstance().endCardNoCardWorkers(player, Board.getInstance().getSet(player.getPlayerLocation()).getPlayersInRoomOffCard());
                 }
 
                 Board.getInstance().getSet(player.getPlayerLocation()).setIsActive(false);
@@ -211,7 +224,8 @@ public class OnTurn {
             moveManager(player);
         } else {
             System.out.println("  You are in room " + player.getPlayerLocation());
-            System.out.println("  You are on card " + Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getCardName());
+            System.out.println("  You are on card " + Deck.getInstance()
+                    .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getCardName());
             System.out.println("  Your role is " + player.getRoleName());
 
             // If player can rehearse or act, give them options
@@ -223,7 +237,7 @@ public class OnTurn {
                 } else if (decide == 2) {
                     rehearse(player);
                 }
-            // If they can't rehearse anymore give them only act option
+                // If they can't rehearse anymore give them only act option
             } else {
                 if (UserInterface.getInstance().act()) {
                     endOfCard = act(player);
@@ -236,59 +250,47 @@ public class OnTurn {
 }
 
 /*
-    TODO:
-
-    Bugs:
-        1. Fix ParseXML failure bug at beginning
-        2. Fix NullPtr exception at this command
-            Type 1 to move to 'Train Station'
-            Type 2 to move to 'Ranch'
-            Type 3 to move to 'Secret Hideout'
-            [Press q to quit]
-            1
-            Would you like to take a role? (Y/N)
-            yes
-            Type 1 to choose [on card] role of Curious girl level 3
-            Type 2 to choose [on card] role of Ghost of Plato level 4
-            Error = java.lang.NullPointerException
-
-    Functions:
-        1. Implement the function that will be called at start of day to set everything up 
-           (This is the same function that will be called to reset if it is end day but at start)
-           1.a TODO this, go in each major class (Player, Set, etc) and create a resetPlayer or resetSet function
-               That we can call to reset all players/sets/other classes. For example, we'd have to reset all player.Location
-               back to Trailers, and reset player.PracticeChip to 0, same with set. We need to go to setParts and reset the
-               isTaken to false and other stuff. (Don't need to do Card, since the Card won't ever be played again).
-        2. Have a better user input (use while loops and have a "Are you sure you want to move" option)
-        3. Have better prints when player enters room
-        4. Comment functions
-        5. Clean up functions
-        6. Need to adjust shotcounters
-        7. Player can only take rank or lower
-        8. Reset practice chips of end of card
-
-*/
-
-/*
- * where do we include the lines? no 
- * make sure player cant leave role yes 
- * does end of card mean end of day? or wrap scene go to bonuses 
- *      -the counter in act is for the shots the when its at 0 it would go to bonus,remove card, ect.. 
- * + for rolechoice from userinterface - should check for valid number? 
- *      -and possibly for moveoption too when are the cards choisen from the deck? 
- *      -is it just shuffled and then one is provided when current card is done? 
- * + print messages about success or fail 
- * for user need to update setup for different group sizes 
- * for upgrade has the required amount they need 
- * set and/or implimented need to create reset board for end of day
+ * TODO:
+ * 
+ * Bugs: 1. Fix ParseXML failure bug at beginning 2. Fix NullPtr exception at
+ * this command Type 1 to move to 'Train Station' Type 2 to move to 'Ranch' Type
+ * 3 to move to 'Secret Hideout' [Press q to quit] 1 Would you like to take a
+ * role? (Y/N) yes Type 1 to choose [on card] role of Curious girl level 3 Type
+ * 2 to choose [on card] role of Ghost of Plato level 4 Error =
+ * java.lang.NullPointerException
+ * 
+ * Functions: 1. Implement the function that will be called at start of day to
+ * set everything up (This is the same function that will be called to reset if
+ * it is end day but at start) 1.a TODO this, go in each major class (Player,
+ * Set, etc) and create a resetPlayer or resetSet function That we can call to
+ * reset all players/sets/other classes. For example, we'd have to reset all
+ * player.Location back to Trailers, and reset player.PracticeChip to 0, same
+ * with set. We need to go to setParts and reset the isTaken to false and other
+ * stuff. (Don't need to do Card, since the Card won't ever be played again). 2.
+ * Have a better user input (use while loops and have a
+ * "Are you sure you want to move" option) 3. Have better prints when player
+ * enters room 4. Comment functions 5. Clean up functions 6. Need to adjust
+ * shotcounters 7. Player can only take rank or lower 8. Reset practice chips of
+ * end of card
+ * 
  */
 
-
+/*
+ * where do we include the lines? no make sure player cant leave role yes does
+ * end of card mean end of day? or wrap scene go to bonuses -the counter in act
+ * is for the shots the when its at 0 it would go to bonus,remove card, ect.. +
+ * for rolechoice from userinterface - should check for valid number? -and
+ * possibly for moveoption too when are the cards choisen from the deck? -is it
+ * just shuffled and then one is provided when current card is done? + print
+ * messages about success or fail for user need to update setup for different
+ * group sizes for upgrade has the required amount they need set and/or
+ * implimented need to create reset board for end of day
+ */
 
 /*
  * REMINDER TO ME
  * 
- * shotCounter => 0 --> end of scene -> bonus 
- * endOfDay => 9/10 cards --> reset deck and all players
+ * shotCounter => 0 --> end of scene -> bonus endOfDay => 9/10 cards --> reset
+ * deck and all players
  * 
  */

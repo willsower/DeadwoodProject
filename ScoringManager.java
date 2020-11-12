@@ -116,6 +116,13 @@ public class ScoringManager {
             p.setDollar(p.getDollar() + bonusOffCard(p.getRoleLevel())); // role rank
             p.resetPlayers(false); //parameter is for isNotEndOfCard
         }
+    }
 
+    public void endCardNoCardWorkers(Player player, ArrayList<Player> playersOffCard) {
+        System.out.println("End of Card: No Bonuses Given [No on card workers]");
+
+        for (Player p : playersOffCard) {
+            p.resetPlayers(false);
+        }
     }
 }

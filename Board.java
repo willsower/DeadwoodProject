@@ -44,6 +44,7 @@ public class Board {
             if (!set.getSetName().equals("trailer") && !set.getSetName().equals("office")) {
                 set.setCardNum(deckOrder[index]);
                 set.setHasCard(true);
+                set.setIsActive(true);
             
                 index++;
             }

@@ -62,6 +62,12 @@ public class ScoringManager {
             }
         }
 
+        System.out.println("\nHELPER");
+        for (int i = 0; i < total.length; i++) {
+            System.out.println(total[i]);
+        }
+        System.out.println();
+
         return total;
     }
 

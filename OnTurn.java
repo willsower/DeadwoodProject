@@ -248,7 +248,6 @@ public class OnTurn {
         }
         return endOfCard; // return to SystemManager.java
     }
-
 }
 
 /*

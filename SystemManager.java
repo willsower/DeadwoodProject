@@ -65,6 +65,13 @@ public class SystemManager {
         Integer[] whoWon = new Integer[getNumPlayer()];
         int index = 0;
 
+        System.out.println("\n=========");
+        System.out.println("Calculating end score");
+        for (int i = 0; i < player.length; i++) {
+            UserInterface.getInstance().displayPlayerInfo(player[i]);
+        }
+        System.out.println("\n\n");
+
         // Set everything to 0
         whoWon = zero(whoWon);
 
@@ -131,6 +138,7 @@ public class SystemManager {
         // Run for each day
         for (int i = 0; i < days; i++) {
             int cardsFinished = 0;
+            System.out.println("\n===========");
             System.out.println("   DAY " + (i + 1));
             System.out.println("===========");
             resetAll(list, i + 1);
@@ -138,7 +146,6 @@ public class SystemManager {
             do {
                 // If card has finished increment cards finished
                 if (turn.turn(list[player])) {
-                    //TODO: reset end card
                     cardsFinished++;
                 }
 
@@ -149,7 +156,7 @@ public class SystemManager {
                     player = 0;
                 }
 
-            } while (cardsFinished < 9); /* !9/10 cards */
+            } while (cardsFinished < 2); /* !9/10 cards */
         }
         // Calculate end score
         endFunction();

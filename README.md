@@ -13,7 +13,7 @@ Taichen Rose
 ## Installation
 
 1. Clone this repository
-2. If you use Unix terminal, you can type 'make' to compile all files
+2. If you use Unix terminal, you can type ```make``` to compile all files or ```make clean``` to delete all compiled classes.
 3. run ```java Main``` to start the program
 
 ## Things We Would Have Changed
@@ -76,5 +76,5 @@ This class will hold all sets in a hashtable. Decided to use this data structure
 
 ## UML Diagram
 
-![UML Diagram](../img/UML.png)
+![UML Diagram](./img/UML.png)
 

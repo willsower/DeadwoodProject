@@ -69,6 +69,28 @@ public class Upgrade {
         return true;
     }
 
+    // Upgrade player using dollars
+    public void upgradeDollar(Player player) {
+        int currentLevel = player.getLevel();
+        int upgrade = currentLevel + 1;
+
+        Level next = getLevel(upgrade);
+
+        player.setLevel(upgrade);
+        player.setDollar(player.getDollar() - next.dollar);
+    }
+
+    // Upgrade player using credits
+    public void upgradeCredit(Player player) {
+        int currentLevel = player.getLevel();
+        int upgrade = currentLevel + 1;
+
+        Level next = getLevel(upgrade);
+
+        player.setLevel(upgrade);
+        player.setCredit(player.getCredit() - next.credit);
+    }
+
     // Getting level values
     public Level getLevel(int level) {
         switch (level) {

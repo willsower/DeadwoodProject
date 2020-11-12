@@ -169,7 +169,7 @@ public class SystemManager {
                     player = 0;
                 }
 
-            } while (cardsFinished < 2); /* !9/10 cards */
+            } while (cardsFinished < 4); /* !9/10 cards */
         }
         // Calculate end score
         endFunction();

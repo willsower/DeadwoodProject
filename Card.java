@@ -20,24 +20,13 @@ public class Card {
     private int cardBudget;
     private String sceneDescription;
     private int cardID;
-    private Part[] part = new Part[3];
+    private ArrayList<Part> part = new ArrayList<Part>();
     private ArrayList<Player> playersInRoomOnCard = new ArrayList<Player>();
 
     public Card(String name, int budget, int cardID) {
         cardName = name;
         cardBudget = budget;
         this.cardID = cardID;
-
-        part = initPart(part);
-    }
-
-    // Initialize the parts
-    public Part[] initPart(Part[] parts) {
-        for (int i = 0; i < 3; i++) {
-            parts[i] = new Part();
-        }
-
-        return parts;
     }
 
     // Get functions
@@ -57,15 +46,15 @@ public class Card {
         return sceneDescription;
     }
 
-    public Part[] getPart() {
+    public ArrayList<Part> getPart() {
         return part;
     }
 
     public int getPartLevel(String partName) {
-        Part[] myPart = getPart();
-        for (int i = 0; i < myPart.length; i++) {
-            if (myPart[i].partName.equals(partName)) {
-                return myPart[i].level;
+        ArrayList<Part> myPart = getPart();
+        for (int i = 0; i < myPart.size(); i++) {
+            if (myPart.get(i).partName.equals(partName)) {
+                return myPart.get(i).level;
             }
         }
         return 0;
@@ -73,13 +62,13 @@ public class Card {
 
     // Get certain part level
     public int getPartLevel(int num) {
-        Part[] myParts = getPart();
-        return myParts[num].level;
+        ArrayList<Part> myParts = getPart();
+        return myParts.get(num).level;
     }
 
     public int getPartPriority(int num) {
-        Part[] myParts = getPart();
-        return myParts[num].priority;
+        ArrayList<Part> myParts = getPart();
+        return myParts.get(num).priority;
     }
 
     public ArrayList<Player> getPlayersInRoomOnCard() {
@@ -95,36 +84,35 @@ public class Card {
 
     // Set part name and level
     public void setPartNameLevel(int partNum, int partLevel, String partName, int pri) {
-        Part[] part = getPart();
+        Part obj = new Part();
 
-        part[partNum].partName = partName;
-        part[partNum].level = partLevel;
-        part[partNum].priority = pri;
+        obj.partName = partName;
+        obj.level = partLevel;
+        obj.priority = pri;
+
+        part.add(obj);
     }
 
     // Set part coordinates
     public void setPartCoords(int partNum, int x, int y, int h, int w) {
-        Part[] part = getPart();
 
-        part[partNum].xVal = x;
-        part[partNum].yVal = y;
-        part[partNum].hVal = h;
-        part[partNum].wVal = w;
+        part.get(partNum).xVal = x;
+        part.get(partNum).yVal = y;
+        part.get(partNum).hVal = h;
+        part.get(partNum).wVal = w;
 
     }
 
     // Set part line
     public void setPartLine(int partNum, String line) {
-        Part[] part = getPart();
-
-        part[partNum].line = line;
+        part.get(partNum).line = line;
     }
 
     public void setPartTaken(String partName, boolean taken) {
-        Part[] partTaken = getPart();
-        for (int i = 0; i < getPart().length; i++) {
-            if (partName.equals(partTaken[i].partName)) {
-                partTaken[i].isTaken = taken;
+        ArrayList<Part> partTaken = getPart();
+        for (int i = 0; i < getPart().size(); i++) {
+            if (partName.equals(partTaken.get(i).partName)) {
+                partTaken.get(i).isTaken = taken;
             }
         }
     }
@@ -132,12 +120,12 @@ public class Card {
     // Available parts in card
     public ArrayList<String> availablePartsOnCard(int playerRank) {
         ArrayList<String> available = new ArrayList<String>();
-        Part[] myParts = getPart();
+        ArrayList<Part> myParts = getPart();
 
-        for (int i = 0; i < 3; i++) {
-            if (myParts[i].isTaken == false) {
-                if(myParts[i].level <= playerRank) {
-                    available.add(myParts[i].partName);
+        for (int i = 0; i < myParts.size(); i++) {
+            if (myParts.get(i).isTaken == false) {
+                if(myParts.get(i).level <= playerRank) {
+                    available.add(myParts.get(i).partName);
                 }
             }
         }
@@ -160,17 +148,17 @@ public class Card {
         System.out.println("Budget = " + getCardBudget());
         System.out.println("Scene = " + getSceneDescription());
 
-        Part[] test = getPart();
+        // Part[] test = getPart();
 
-        for (int i = 0; i < 3; i++) {
-            System.out.println();
-            System.out.println(test[i].partName);
-            System.out.println("Part Level = " + test[i].level);
-            System.out.println("  xVal = " + test[i].xVal);
-            System.out.println("  yVal = " + test[i].yVal);
-            System.out.println("  hVal = " + test[i].hVal);
-            System.out.println("  wVal = " + test[i].wVal);
-            System.out.println("  line = " + test[i].line);
-        }
+        // for (int i = 0; i < 3; i++) {
+        //     System.out.println();
+        //     System.out.println(test[i].partName);
+        //     System.out.println("Part Level = " + test[i].level);
+        //     System.out.println("  xVal = " + test[i].xVal);
+        //     System.out.println("  yVal = " + test[i].yVal);
+        //     System.out.println("  hVal = " + test[i].hVal);
+        //     System.out.println("  wVal = " + test[i].wVal);
+        //     System.out.println("  line = " + test[i].line);
+        // }
     }
 }

@@ -190,6 +190,8 @@ public class Set {
         ArrayList<String> available = new ArrayList<String>();
         ArrayList<Part> partsAvailable = getParts();
 
+        System.out.println("TEST 1 " + available.isEmpty());
+
         for (int i = 0; i < partsAvailable.size(); i++) {
             if (partsAvailable.get(i).isTaken == false) {
                 if (partsAvailable.get(i).level <= playerRank) {
@@ -197,6 +199,7 @@ public class Set {
                 }
             }
         }
+        System.out.println("TEST 2 " + available.isEmpty());
         return available; //returns to onMove() in OnTurn.java
     }
 

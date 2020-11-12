@@ -59,7 +59,7 @@ public class OnTurn {
             // key of card name
             int cardNum = Deck.getInstance()
                     .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getCardID();
-
+            System.out.println(Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getCardName());
             String playerChoice = UserInterface.getInstance().roleChoice(partsOnCardAval, partsOffCardAval, cardNum,
                     player.getPlayerLocation());
 
@@ -184,7 +184,7 @@ public class OnTurn {
                         .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getCardID();
 
                 if ( Deck.getInstance().getCard(cardNum).getPlayersInRoomOnCard().isEmpty() == false) {
-                    /* mostly done */ ScoringManager.getInstance().endOfCard(player, cardBudget,
+                    ScoringManager.getInstance().endOfCard(player, cardBudget,
                             Deck.getInstance().getCard(cardNum).getPlayersInRoomOnCard(),
                             Board.getInstance().getSet(player.getPlayerLocation()).getPlayersInRoomOffCard());
                 } else {

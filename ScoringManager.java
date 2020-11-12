@@ -50,7 +50,6 @@ public class ScoringManager {
 
         for (int i = 0; i < budget; i++) {
             int temp = turn.roll();
-            System.out.println(temp);
             budgetHolder[i] = temp;
         }
 
@@ -64,10 +63,6 @@ public class ScoringManager {
                 index = 0;
             }
         }
-
-        System.out.println("Calc");
-        System.out.println(total[0]);
-        System.out.println(total[1]);
 
         return total;
     }

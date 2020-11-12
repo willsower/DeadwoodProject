@@ -93,7 +93,7 @@ public class UserInterface {
             int num = 0;
             int k = onCard.size();
             System.out.println();
-            
+
             do {
                 if (!onCard.isEmpty()) {
                     for (int i = 0; i < onCard.size(); i++) {
@@ -232,5 +232,13 @@ public class UserInterface {
         System.out.println("  Level 4 | Dollar: " +  Upgrade.getInstance().levelFour.dollar + " Credit: " + Upgrade.getInstance().levelFour.credit);
         System.out.println("  Level 5 | Dollar: " +  Upgrade.getInstance().levelFive.dollar + " Credit: " + Upgrade.getInstance().levelFive.credit);
         System.out.println("  Level 6 | Dollar: " +  Upgrade.getInstance().levelSix.dollar + " Credit: " + Upgrade.getInstance().levelSix.credit);
+    }
+
+    // Display player info
+    public void displayPlayerInfo(Player player) {
+        System.out.println("  Player level: " + player.getLevel());
+        System.out.println("  Player dollars: " + player.getDollar());
+        System.out.println("  Player credits: " + player.getCredit());
+        System.out.println("  Player practice chips " + player.getPracticeChip());
     }
 }

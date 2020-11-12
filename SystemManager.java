@@ -117,9 +117,7 @@ public class SystemManager {
             }
             ind++;
         }   
-
         Board.getInstance().assignCardToSet(Deck.getInstance().getCardShuffle(), day);
-
     }
 
     public void run() {

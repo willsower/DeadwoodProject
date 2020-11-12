@@ -143,8 +143,7 @@ public class OnTurn {
     public void rehearse(Player player) {
         if (player.getRoleLevel() + player.getPracticeChip() < 6) {
             player.setPracticeChip(player.getPracticeChip() + 1);
-            System.out.println("  You now have " + player.getPracticeChip() + " practice chips");
-            System.out.println("  You are on role level " + player.getRoleLevel());
+            UserInterface.getInstance().displayPlayerInfo(player);
         }
     }
 
@@ -175,6 +174,8 @@ public class OnTurn {
                 player.setDollar(player.getDollar() + 1);
             }
 
+            UserInterface.getInstance().displayPlayerInfo(player);
+
             // end of card
             if (counter == 0) {
                 int cardNum = Deck.getInstance()
@@ -197,6 +198,7 @@ public class OnTurn {
             if (player.getOffCardRole() == true) {
                 player.setDollar(player.getDollar() + 1);
             }
+            UserInterface.getInstance().displayPlayerInfo(player);
         }
         return false; // returns to turn() in onTurn.java
     }

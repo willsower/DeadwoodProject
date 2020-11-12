@@ -37,44 +37,22 @@ public class ScoringManager {
 
     // Calculates payout value and will return the int values in an
     // array
-    public static int[] calculatePayout(int budget) {
+    public static int[] calculatePayout(int budget) { //add perameter on howmany roles on card
         OnTurn turn = new OnTurn();
-
-        int highestRank = 0;
-        int middleRank = 0;
-        int lowestRank = 0;
+        //int array total[how many]
+        
         int[] total = new int[3];
-
+        int index = 0;
         // Rolls the amount of die equal to the budget.
         // Will add to each level how much should earn
-        for (int i = 1; i <= budget; i++) {
+        for (int i = 1; i <= budget; i++) {///////////////////////////////////////////////
             int temp = turn.roll();
-            switch (i) {
-                case 1:
-                    highestRank += temp;
-                    break;
-                case 2:
-                    middleRank += temp;
-                    break;
-                case 3:
-                    lowestRank += temp;
-                    break;
-                case 4:
-                    highestRank += temp;
-                    break;
-                case 5:
-                    middleRank += temp;
-                    break;
-                default:
-                    lowestRank += temp;
-                    break;
-            }
+            //tot[index] =temp
+            //index++
+            //if index > spots -> set back to zero
         }
 
-        // Populates array with payout values
-        total[0] = highestRank;
-        total[1] = middleRank;
-        total[2] = lowestRank;
+        
 
         return total;
     }
@@ -93,7 +71,7 @@ public class ScoringManager {
         System.out.println("End of Card: Bonuses distributed");
 
         // Give payout to on card players
-        for (Player p : playersOnCard) {
+        for (Player p : playersOnCard) { /////////////////////////////////////
 
             // If player has highest role rank (highest priority)
             if (p.getRolePriority() == 1) {

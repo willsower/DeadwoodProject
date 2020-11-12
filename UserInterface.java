@@ -91,11 +91,9 @@ public class UserInterface {
 
         if (val.equals("Y") || val.equals("y") || val.equals("Yes") || val.equals("yes")) {
             int num = 0;
-            System.out.println("onCard empty: " + onCard.isEmpty());
             int k = onCard.size();
-            System.out.println("offCard empty: " + offCard.isEmpty());
-            System.out.println("K " + k);
             System.out.println();
+            
             do {
                 if (!onCard.isEmpty()) {
                     for (int i = 0; i < onCard.size(); i++) {

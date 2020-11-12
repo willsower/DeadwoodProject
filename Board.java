@@ -1,3 +1,11 @@
+/*
+    Board class
+    Purpose: This class will hold all sets in a hashtable. Decided to use this data
+             structure to increase look up times by names of sets. Has a function to
+             assign card to each set at start of day
+    Singleton = true
+*/
+
 import org.w3c.dom.Document;
 import java.util.*;
 
@@ -32,7 +40,7 @@ public class Board {
         return getBoard().get(location);
     }
 
-    // Assigns cards to the set each time
+    // Assigns cards to the set each day
     public static void assignCardToSet(Integer[] deckOrder, int day) {
         int index = (day * 10) - 10;
         Enumeration<Set> values = getBoard().elements();
@@ -41,6 +49,7 @@ public class Board {
         while (values.hasMoreElements()) {
             Set set = values.nextElement();
 
+            // Doesn't set cards to trailer or casting office
             if (!set.getSetName().equals("trailer") && !set.getSetName().equals("office")) {
                 set.setCardNum(deckOrder[index]);
                 set.setHasCard(true);

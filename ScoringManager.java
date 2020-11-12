@@ -62,12 +62,6 @@ public class ScoringManager {
             }
         }
 
-        System.out.println("\nHELPER");
-        for (int i = 0; i < total.length; i++) {
-            System.out.println(total[i]);
-        }
-        System.out.println();
-
         return total;
     }
 
@@ -86,9 +80,7 @@ public class ScoringManager {
 
         // Give payout to on card players
         for (Player p : playersOnCard) { /////////////////////////////////////
-            System.out.println("Priority " + p.getRolePriority());
-            System.out.println("Cash " + payout[p.getRolePriority() - 1]);
-            System.out.println(payout.length);
+            System.out.println();
             // If player has highest role rank (highest priority)
             if (p.getRolePriority() == 1) {
                 p.setDollar(p.getDollar() + payout[0]);
@@ -109,6 +101,7 @@ public class ScoringManager {
 
         // Give payout to off card players
         for (Player p : playersOffCard) {
+            System.out.println();
             p.setDollar(p.getDollar() + bonusOffCard(p.getRoleLevel())); // role rank
             p.resetPlayers(false); //parameter is for isNotEndOfCard
             UserInterface.getInstance().displayPlayerInfo(p);

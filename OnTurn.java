@@ -188,6 +188,7 @@ public class OnTurn {
                     ScoringManager.getInstance().endCardNoCardWorkers(player, Board.getInstance().getSet(player.getPlayerLocation()).getPlayersInRoomOffCard());
                 }
 
+                Board.getInstance().getSet(player.getPlayerLocation()).resetSetAtCard();
                 Board.getInstance().getSet(player.getPlayerLocation()).setIsActive(false);
                 return true; // returns to turn() in onTurn.java
             }

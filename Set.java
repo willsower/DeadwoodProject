@@ -36,7 +36,7 @@ public class Set {
         int wVal;
         int hVal;
         String line;
-        boolean isTaken /*= false*/;
+        boolean isTaken;
     }
 
     // constructor
@@ -106,11 +106,9 @@ public class Set {
 
     public void setNeighbors(ArrayList<String> neigh, int index) {
         neighbor = new String[index];
-        // System.out.println(getSetName());
 
         for (int i = 0; i < index; i++) {
             neighbor[i] = neigh.get(i);
-            // System.out.println("  " + neighbor[i]);
         }
     }
 
@@ -189,9 +187,7 @@ public class Set {
     public ArrayList<String> availablePartsOffCard(int playerRank){
         ArrayList<String> available = new ArrayList<String>();
         ArrayList<Part> partsAvailable = getParts();
-System.out.println("Parts Available " + partsAvailable.size());
         for (int i = 0; i < partsAvailable.size(); i++) {
-System.out.println(partsAvailable.get(i).isTaken);
             if (partsAvailable.get(i).isTaken == false) {
                 if (partsAvailable.get(i).level <= playerRank) {
                     available.add(partsAvailable.get(i).partName);
@@ -246,17 +242,20 @@ System.out.println(partsAvailable.get(i).isTaken);
     public void resetSetDay() {
         hasCard = true;
         isActive = true;
-System.out.println("TEST");
 
         for (int i = 0; i < part.size(); i++) {
-            System.out.println("(1) " + part.get(i).isTaken);
             part.get(i).isTaken = false;
-            System.out.println("(2) " + part.get(i).isTaken);
         }
 
         playersInRoomOffCard.clear();
         
         shotCounter = numberOfTakes;
+    }
+
+    public void resetSetAtCard() {
+        for (int i = 0; i < part.size(); i++) {
+            part.get(i).isTaken = false;
+        }
     }
 
     // Print helper funciton

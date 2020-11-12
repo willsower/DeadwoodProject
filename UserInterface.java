@@ -86,6 +86,7 @@ public class UserInterface {
         String val;
         System.out.println();
 
+        System.out.println("Off card empty?? " + offCard.isEmpty());
         do {
             System.out.println("Would you like to take a role? (Y/N)");
             val = ob.nextLine();

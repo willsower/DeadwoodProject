@@ -2,7 +2,7 @@
     UserInterface class
     Purpose: Display user prompts and get user input throughout
              the game
-    Singleton Class
+    Singleton = true
 */
 
 import java.util.Scanner;

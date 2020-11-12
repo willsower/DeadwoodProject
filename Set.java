@@ -1,3 +1,11 @@
+/*
+    Set Class
+    Purpose: Will hold all data from board.xml. Will use the getters/setters
+             to grab and give the information. Will keep a list of players
+             on the offCard roles, and has functions to reset all the variables
+             if it's the next day
+*/
+
 import java.util.ArrayList;
 
 public class Set {
@@ -16,6 +24,7 @@ public class Set {
     private ArrayList<Player> playersInRoomOffCard = new ArrayList<Player>();
     private boolean isActive = true;
 
+    // Shot counter values
     class Take {
         int takeNumber;
         int xVal;
@@ -28,6 +37,7 @@ public class Set {
         }
     }
 
+    // Part values
     class Part {
         String partName;
         int level;
@@ -50,7 +60,7 @@ public class Set {
         return neigh;
     }
 
-    // getters
+    // getters functions
     public String getSetName() {
         return setName;
     }
@@ -91,12 +101,43 @@ public class Set {
         return cardNum;
     }
 
-    public int getShotCounter(){
+    public int getShotCounter() {
         return shotCounter;
     }
 
     public boolean getIsActive() {
         return isActive;
+    }
+
+    // Function to get list of all active sets
+    public Boolean[] getIsActiveList() {
+        Boolean[] list = new Boolean[neighbor.length];
+        for (int i = 0; i < neighbor.length; i++) {
+            list[i] = Board.getInstance().getSet(neighbor[i]).isActive;
+        }
+        return list;
+    }
+
+    // Get certain part level with number
+    public int getPartLevel(int num) {
+        ArrayList<Part> myParts = getParts();
+        return myParts.get(num).level;
+    }
+
+    // Get part level given the part name
+    public int getPartLevel(String partName) {
+        ArrayList<Part> myPart = getParts();
+        for (int i = 0; i < myPart.size(); i++) {
+            if (myPart.get(i).partName.equals(partName)) {
+                return myPart.get(i).level;
+            }
+        }
+        return 0;
+    }
+
+    // Return the playersInRoom offCard role list
+    public ArrayList<Player> getPlayersInRoomOffCard() {
+        return playersInRoomOffCard;
     }
 
     // setters
@@ -148,7 +189,7 @@ public class Set {
         obj.level = level;
 
         part.add(obj);
-    } 
+    }
 
     public void setPartLine(String line) {
         part.get(0).line = line;
@@ -161,6 +202,7 @@ public class Set {
         part.get(0).wVal = w;
     }
 
+    // Set part taken to whatever value is
     public void setPartTaken(String partName, boolean taken) {
         ArrayList<Part> partTaken = getParts();
         for (int i = 0; i < getParts().size(); i++) {
@@ -170,54 +212,10 @@ public class Set {
         }
     }
 
-    public void setShotCounter(int counter){
+    public void setShotCounter(int counter) {
         shotCounter = counter;
     }
 
-    // Function to get list of all active sets
-    public Boolean[] getIsActiveList() {
-        Boolean[] list = new Boolean[neighbor.length];
-        for (int i = 0; i < neighbor.length; i++) {
-            list[i] = Board.getInstance().getSet(neighbor[i]).isActive;
-        }
-        return list;
-    }
-
-    // Getting available cards
-    public ArrayList<String> availablePartsOffCard(int playerRank){
-        ArrayList<String> available = new ArrayList<String>();
-        ArrayList<Part> partsAvailable = getParts();
-        for (int i = 0; i < partsAvailable.size(); i++) {
-            if (partsAvailable.get(i).isTaken == false) {
-                if (partsAvailable.get(i).level <= playerRank) {
-                    available.add(partsAvailable.get(i).partName);
-                }
-            }
-        }
-        return available; //returns to onMove() in OnTurn.java
-    }
-
-    // Get certain part level 
-    public int getPartLevel(int num) {
-        ArrayList<Part> myParts = getParts();
-        return myParts.get(num).level;
-    }
-
-    public int getPartLevel(String partName){
-        ArrayList<Part> myPart = getParts();
-        for (int i = 0; i < myPart.size(); i++){
-            if (myPart.get(i).partName.equals(partName)){
-                return myPart.get(i).level;
-            }
-        }
-        return 0;
-    }
-
-    public ArrayList<Player> getPlayersInRoomOffCard() {
-        return playersInRoomOffCard;
-    }
-
-    //setters
     public void setHasCard(boolean val) {
         hasCard = val;
     }
@@ -230,10 +228,26 @@ public class Set {
         isActive = val;
     }
 
+    // Getting available cards
+    public ArrayList<String> availablePartsOffCard(int playerRank) {
+        ArrayList<String> available = new ArrayList<String>();
+        ArrayList<Part> partsAvailable = getParts();
+        for (int i = 0; i < partsAvailable.size(); i++) {
+            if (partsAvailable.get(i).isTaken == false) {
+                if (partsAvailable.get(i).level <= playerRank) {
+                    available.add(partsAvailable.get(i).partName);
+                }
+            }
+        }
+        return available; // returns to onMove() in OnTurn.java
+    }
+
+    // Add players to arrayList of offCard players
     public void addPlayerToRoomOffCard(Player player) {
         playersInRoomOffCard.add(player);
     }
 
+    // Remove players from arrayList of offCard players
     public void removePlayersFormRoomOffCard(Player player) {
         playersInRoomOffCard.clear();
     }
@@ -248,10 +262,11 @@ public class Set {
         }
 
         playersInRoomOffCard.clear();
-        
+
         shotCounter = numberOfTakes;
     }
 
+    // Reset set at end of card
     public void resetSetAtCard() {
         for (int i = 0; i < part.size(); i++) {
             part.get(i).isTaken = false;
@@ -277,23 +292,23 @@ public class Set {
         // System.out.println("Takes: ");
         // Take[] myTakes = getTake();
         // for (int i = 0; i < myTakes.length; i++) {
-        //     System.out.println("  " + myTakes[i].takeNumber);
-        //     System.out.println("  " + myTakes[i].xVal);
-        //     System.out.println("  " + myTakes[i].yVal);
-        //     System.out.println("  " + myTakes[i].hVal);
-        //     System.out.println("  " + myTakes[i].wVal);
+        // System.out.println(" " + myTakes[i].takeNumber);
+        // System.out.println(" " + myTakes[i].xVal);
+        // System.out.println(" " + myTakes[i].yVal);
+        // System.out.println(" " + myTakes[i].hVal);
+        // System.out.println(" " + myTakes[i].wVal);
         // }
 
         // System.out.println("Parts: ");
         // Part[] myPart = getParts();
         // for (int i = 0; i < myPart.length; i++) {
-        //     System.out.println("  " + myPart[i].partName);
-        //     System.out.println("  " + part[i].level);
-        //     System.out.println("  " + part[i].xVal);
-        //     System.out.println("  " + part[i].yVal);
-        //     System.out.println("  " + part[i].hVal);
-        //     System.out.println("  " + part[i].wVal);
-        //     System.out.println("  " + part[i].line);
+        // System.out.println(" " + myPart[i].partName);
+        // System.out.println(" " + part[i].level);
+        // System.out.println(" " + part[i].xVal);
+        // System.out.println(" " + part[i].yVal);
+        // System.out.println(" " + part[i].hVal);
+        // System.out.println(" " + part[i].wVal);
+        // System.out.println(" " + part[i].line);
         // }
     }
 

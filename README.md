@@ -24,6 +24,8 @@ Taichen Rose
 
 3. We should make functions in Set.java and Card.java that will update when a player takes a role. We do this in a function in onTurn and have a lot of ```player.setRole()``` or ```player.setThis()``` when we could call a function from player that does all this information with given parameters.
 
+4. Organize our file structure. Create src file, create static files such as our XML. For the final submission, our file structure will be more organized.
+
 ## Classes
 
 ### Main

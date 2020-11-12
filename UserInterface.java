@@ -209,12 +209,10 @@ public class UserInterface {
                         && !val.equals("Q"));
 
                 if (val.equals("C") || val.equals("c")) {
-                    player.setCredit(player.getCredit() - Upgrade.getInstance().getLevel(currentLevel++).credit);
-                    player.setLevel(currentLevel);
+                    Upgrade.getInstance().upgradeCredit(player);
                     playerUpgrade(player);
                 } else if (val.equals("D") || val.equals("d")) {
-                    player.setDollar(player.getDollar() - Upgrade.getInstance().getLevel(currentLevel++).dollar);
-                    player.setLevel(currentLevel);
+                    Upgrade.getInstance().upgradeDollar(player);
                     playerUpgrade(player);
                 }
                 // If player only has dollar to upgrade
@@ -226,8 +224,7 @@ public class UserInterface {
                         && !val.equals("N") && !val.equals("n"));
 
                 if (val.equals("Y") || val.equals("y") || val.equals("Yes") || val.equals("yes")) {
-                    player.setDollar(player.getDollar() - Upgrade.getInstance().getLevel(currentLevel++).dollar);
-                    player.setLevel(currentLevel);
+                    Upgrade.getInstance().upgradeDollar(player);
                     playerUpgrade(player);
                 }
                 // If player only has credit to upgrade
@@ -239,8 +236,7 @@ public class UserInterface {
                         && !val.equals("N") && !val.equals("n"));
 
                 if (val.equals("Y") || val.equals("y") || val.equals("Yes") || val.equals("yes")) {
-                    player.setCredit(player.getCredit() - Upgrade.getInstance().getLevel(currentLevel++).credit);
-                    player.setLevel(currentLevel);
+                    Upgrade.getInstance().upgradeCredit(player);
                     playerUpgrade(player);
                 }
             }

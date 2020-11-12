@@ -192,10 +192,10 @@ public class UserInterface {
     public void upgradePlayer(Player player, int currentLevel, String location, int dollar, int credit) {
         displayCastingOffice(player);
         Scanner ob = new Scanner(System.in);
-        String val;
+        String val = "";
 
         // Checks if user can upgrade
-        if (Upgrade.getInstance().canUpgrade(currentLevel, location, dollar, credit)) {
+        while (Upgrade.getInstance().canUpgrade(currentLevel, location, dollar, credit) && !val.equals("Q") && !val.equals("q")) {
             // If user has both credit and dollar to upgrade
             if (Upgrade.getInstance().playerHasCredit(currentLevel, credit)
                     && Upgrade.getInstance().playerHasDollar(currentLevel, dollar)) {

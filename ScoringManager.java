@@ -109,7 +109,7 @@ public class ScoringManager {
 
             UserInterface.getInstance().displayPlayerInfo(p);
         }
-
+System.out.println("TEST");
         // Give payout to off card players
         for (Player p : playersOffCard) {
             System.out.println();
@@ -117,6 +117,7 @@ public class ScoringManager {
             p.resetPlayers(false); // parameter is for isNotEndOfCard
             UserInterface.getInstance().displayPlayerInfo(p);
         }
+System.out.println("FAIL HERE????");
     }
 
     // Function to reset players if there were no onCard players

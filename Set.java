@@ -252,6 +252,7 @@ public class Set {
         }
 
         playersInRoomOffCard.clear();
+        
         shotCounter = numberOfTakes;
     }
 

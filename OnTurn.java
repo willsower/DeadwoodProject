@@ -163,9 +163,11 @@ public class OnTurn {
 
         // if success
         if (diceRoll + player.getPracticeChip() >= cardBudget) {
-            // if oncard
+            // if oncar
+            System.out.println(" ==== countF " +counter);
             counter -= 1;
             Board.getInstance().getSet(player.getPlayerLocation()).setShotCounter(counter);
+            System.out.println("   ==== countT " +counter);
 
             System.out.println("  SUCCESS IN ACTING");
             System.out.println("  Current Shot Counter: " + counter);
@@ -180,8 +182,9 @@ public class OnTurn {
             if (counter == 0) {
                 int cardNum = Deck.getInstance()
                         .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getCardID();
-                if (!(Deck.getInstance().getCard(cardNum).getPlayersInRoomOnCard()).isEmpty()) {
-                    ScoringManager.getInstance().endOfCard(player, cardBudget,
+
+                if ( Deck.getInstance().getCard(cardNum).getPlayersInRoomOnCard().isEmpty() == false) {
+                    /* mostly done */ ScoringManager.getInstance().endOfCard(player, cardBudget,
                             Deck.getInstance().getCard(cardNum).getPlayersInRoomOnCard(),
                             Board.getInstance().getSet(player.getPlayerLocation()).getPlayersInRoomOffCard());
                 } else {
@@ -227,6 +230,7 @@ public class OnTurn {
             System.out.println("  You are on card " + Deck.getInstance()
                     .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getCardName());
             System.out.println("  Your role is " + player.getRoleName());
+            System.out.println("  Card budget is " +   Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getCardBudget());
 
             // If player can rehearse or act, give them options
             if (player.getRoleLevel() + player.getPracticeChip() < 6) {

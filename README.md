@@ -26,6 +26,8 @@ Taichen Rose
 
 4. Organize our file structure. Create src file, create static files such as our XML. For the final submission, our file structure will be more organized.
 
+5. The printing while the player is moving in the text based version is not the best. We could have made this a little better. More intuitive, when payouts are being calculated some players are printed twice, they have the same info, but this just isn't necessary.
+
 ## Classes
 
 ### Main

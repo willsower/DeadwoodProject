@@ -189,56 +189,40 @@ public class UserInterface {
     // Upgrade player, it will check to see if player can upgrade then will prompt
     // user
     // on what to upgrade with.
-    public void upgradePlayer(Player player, int currentLevel, String location, int dollar, int credit) {
+    public int upgradePlayer(Player player, int currentLevel, String location, int dollar, int credit) {
         displayCastingOffice(player);
         Scanner ob = new Scanner(System.in);
-        String val = "";
-
+        String returnType = "";
+        int num = 0;
+        ArrayList<Integer> lev = new ArrayList<Integer>();
+       
         // Checks if user can upgrade
-        while (Upgrade.getInstance().canUpgrade(currentLevel, location, dollar, credit) && !val.equals("Q") && !val.equals("q")) {
-            // If user has both credit and dollar to upgrade
-            if (Upgrade.getInstance().playerHasCredit(currentLevel, credit)
-                    && Upgrade.getInstance().playerHasDollar(currentLevel, dollar)) {
-                do {
-                    System.out.println("Upgrade with credit or dollar? (C/D)");
-                    System.out.println("Type 'q' for quit]");
-                    val = ob.nextLine();
-                } while (!val.equals("C") && !val.equals("D") && !val.equals("q") && val.equals("c") && !val.equals("d")
-                        && !val.equals("Q"));
+        if (Upgrade.getInstance().canUpgrade(currentLevel, location, dollar, credit)) {
 
-                if (val.equals("C") || val.equals("c")) {
-                    Upgrade.getInstance().upgradeCredit(player);
-                    playerUpgrade(player);
-                } else if (val.equals("D") || val.equals("d")) {
-                    Upgrade.getInstance().upgradeDollar(player);
-                    playerUpgrade(player);
+            lev = Upgrade.getInstance().levelsCanUpgrade(player);
+            System.out.println();
+            do {
+                for (int i = 0; i < lev.size(); i++) {
+                    System.out.println("Press " + (i + 1) + " to upgrade to Level " + lev.get(i));
                 }
-                // If player only has dollar to upgrade
-            } else if (Upgrade.getInstance().playerHasDollar(currentLevel, dollar)) {
-                do {
-                    System.out.println("Upgrade with dollar? (Y/N)");
-                    val = ob.nextLine();
-                } while (!val.equals("Y") && !val.equals("y") && !val.equals("Yes") && !val.equals("yes")
-                        && !val.equals("N") && !val.equals("n"));
 
-                if (val.equals("Y") || val.equals("y") || val.equals("Yes") || val.equals("yes")) {
-                    Upgrade.getInstance().upgradeDollar(player);
-                    playerUpgrade(player);
-                }
-                // If player only has credit to upgrade
-            } else if (Upgrade.getInstance().playerHasCredit(currentLevel, credit)) {
-                do {
-                    System.out.println("Upgrade with credit? (Y/N)");
-                    val = ob.nextLine();
-                } while (!val.equals("Y") && !val.equals("y") && !val.equals("Yes") && !val.equals("yes")
-                        && !val.equals("N") && !val.equals("n"));
+                System.out.println("[Press q to quit]");
+                returnType = ob.nextLine();
 
-                if (val.equals("Y") || val.equals("y") || val.equals("Yes") || val.equals("yes")) {
-                    Upgrade.getInstance().upgradeCredit(player);
-                    playerUpgrade(player);
+                try {
+                    Integer.parseInt(returnType);
+                    num = Integer.parseInt(returnType);
+
+                } catch (NumberFormatException e) {
                 }
-            }
+            } while (!(num > 0 && num <= lev.size()) && !returnType.equals("Q") && !(returnType.equals("q")));
+        } else {
+            return 0;
         }
+        if (returnType.equals("Q") || returnType.equals("q")) {
+            return 0;
+        }
+        return lev.get(num - 1);
     }
 
     // Output player information

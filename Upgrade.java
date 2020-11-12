@@ -4,6 +4,9 @@
              Will call from UserInterface to help display and get user input on upgrade
     Singleton = true
 */
+
+import java.util.ArrayList;
+
 public class Upgrade {
     private static Upgrade instance = null;
 
@@ -70,25 +73,39 @@ public class Upgrade {
     }
 
     // Upgrade player using dollars
-    public void upgradeDollar(Player player) {
+    public void upgradeDollar(Player player, int level) {
         int currentLevel = player.getLevel();
-        int upgrade = currentLevel + 1;
 
-        Level next = getLevel(upgrade);
+        Level next = getLevel(level);
 
-        player.setLevel(upgrade);
+        player.setLevel(level);
         player.setDollar(player.getDollar() - next.dollar);
     }
 
     // Upgrade player using credits
-    public void upgradeCredit(Player player) {
+    public void upgradeCredit(Player player, int level) {
         int currentLevel = player.getLevel();
-        int upgrade = currentLevel + 1;
 
-        Level next = getLevel(upgrade);
+        Level next = getLevel(level);
 
-        player.setLevel(upgrade);
+        player.setLevel(level);
         player.setCredit(player.getCredit() - next.credit);
+    }
+
+    // Function to get how many levels can upgrade
+    public ArrayList<Integer> levelsCanUpgrade(Player player) {
+        int currentLevel = player.getLevel();
+        ArrayList<Integer> canUpgrade = new ArrayList<Integer>();
+        int credit = player.getCredit();
+        int dollar = player.getDollar();
+
+        for (int i = currentLevel + 1; i <= 6; i++) {
+            if (getLevel(i).credit <= credit || getLevel(i).dollar <= dollar) {
+                canUpgrade.add(i);
+            }
+        }
+
+        return canUpgrade;
     }
 
     // Getting level values

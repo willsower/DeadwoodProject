@@ -103,8 +103,16 @@ public class OnTurn {
             if (player.getPlayerLocation().equals("trailer")) {
                 // Do nothing
             } else if (player.getPlayerLocation().equals("office")) {
-                UserInterface.getInstance().upgradePlayer(player, player.getLevel(), player.getPlayerLocation(),
+                int up = UserInterface.getInstance().upgradePlayer(player, player.getLevel(), player.getPlayerLocation(),
                         player.getDollar(), player.getCredit());
+                if (up != 0) {
+                    if (player.getCredit() >= Upgrade.getInstance().getLevel(up).credit) {
+                        Upgrade.getInstance().upgradeCredit(player, up);
+                    } else {
+                        Upgrade.getInstance().upgradeDollar(player, up);
+                    }
+                    UserInterface.getInstance().playerUpgrade(player);
+                }
             } else {
                 if (Board.getInstance().getSet(player.getPlayerLocation()).getIsActive() == true) {
                     takeRole(player);
@@ -120,9 +128,18 @@ public class OnTurn {
     public void moveManager(Player player) {
         // Allow player to upgrade then move
         if (player.getPlayerLocation().equals("office")) {
-            UserInterface.getInstance().upgradePlayer(player, player.getLevel(), player.getPlayerLocation(),
+            int up = UserInterface.getInstance().upgradePlayer(player, player.getLevel(), player.getPlayerLocation(),
                     player.getDollar(), player.getCredit());
             moveTakeRoleOption(player);
+
+            if (up != 0) {
+                if (player.getCredit() >= Upgrade.getInstance().getLevel(up).credit) {
+                    Upgrade.getInstance().upgradeCredit(player, up);
+                } else {
+                    Upgrade.getInstance().upgradeDollar(player, up);
+                }
+                UserInterface.getInstance().playerUpgrade(player);
+            }
 
             // Allow player to move then take a role
         } else if (player.getPlayerLocation().equals("trailer")) {

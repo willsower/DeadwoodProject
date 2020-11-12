@@ -16,7 +16,7 @@ CLASSES	=	\
 	Upgrade.java	\
 	UserInterface.java \
 	Set.java \
-	Main.java	\
+	Deadwood.java	\
 
 default: classes
 

@@ -12,9 +12,15 @@ Taichen Rose
 
 ## Installation
 
+### If using Github
 1. Clone this repository
 2. If you use Unix terminal, you can type ```make``` to compile all files or ```make clean``` to delete all compiled classes.
 3. run ```java Main``` to start the program
+
+### If have zipped file
+1. Unzip file
+2. In the home directory, type ```make``` to comiple all files or ```make clean``` to delete all compiled classes.
+3. run ```java Main``` to start the program 
 
 ## Things We Would Have Changed
 
@@ -28,9 +34,19 @@ Taichen Rose
 
 5. The printing while the player is moving in the text based version is not the best. We could have made this a little better. More intuitive, when payouts are being calculated some players are printed twice, they have the same info, but this just isn't necessary.
 
+## Design Rationale
+
+### Text-Based Game
+
+Below in this section gives a list of our classes in a small detailed form. Essentially, we tried to keep all data in their own classes. For example, information that was pulled from parser regarding Board would be stored in the individidual Sets (Set class) and all sets would be combined into Board through a HashTable so look up times would be fast and easy.
+
+For Cards the rationale regarding the Set to Board is the same for Card to Deck. We pulled information from the parser and added to each Card object, and Deck would hold the array of Cards objects. The way we would randomize the cards at each start game is we had an Integer array of 1 through 40. We shuffled that array, and stored it in a variable. Whenvever we needed to set the card to a set, we would call that array, with the parameter of day so we would know on the first day, set the first 10 card numbers to the first ten sets. Second day, take the second ten numbers in the array and apply, etc.
+
+
+
 ## Classes
 
-### Main
+### Deadwood
 
 Main class is the class that will be run initially and calls system manager to start the game. This class prompts how many players will be playing.
 

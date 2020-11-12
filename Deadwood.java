@@ -1,10 +1,10 @@
 /*
-    Main Class
+    Deadwood Class
     Purpose: Initiates the game, asks how many players, then calls
              system manager to setup everything.
 */
 
-public class Main {
+public class Deadwood {
     public static void main(String[] args) {
         try {
             int numPlayers = UserInterface.getInstance().getNumPlayers();

@@ -1,6 +1,6 @@
 import java.util.Random;
 import java.util.ArrayList;
-import java.util.*;
+import java.util.Arrays; 
 
 public class ScoringManager {
 
@@ -40,22 +40,34 @@ public class ScoringManager {
     // array
     public static int[] calculatePayout(int budget, int totalRoles) { //add perameter on howmany roles on card
         OnTurn turn = new OnTurn();
+        System.out.println("CARD BUDGET " + budget );
+        System.out.println( "  total Roles " + totalRoles);
         
         int[] total = new int[totalRoles];
+        int[] budgetHolder = new int[budget];
         int index = 0;
         Arrays.fill(total, 0);
 
-        for (int i = 1; i <= budget; i++) {
+        for (int i = 0; i < budget; i++) {
             int temp = turn.roll();
-            total[index] += temp;
+            System.out.println(temp);
+            budgetHolder[i] = temp;
+        }
 
+        Arrays.sort(budgetHolder);
+
+        for (int i = budget - 1; i >= 0; i--) {
+            total[index] += budgetHolder[i];
             index++;
+
             if (index == totalRoles) {
                 index = 0;
             }
         }
 
-        
+        System.out.println("Calc");
+        System.out.println(total[0]);
+        System.out.println(total[1]);
 
         return total;
     }
@@ -88,7 +100,7 @@ public class ScoringManager {
             } else {
                 p.setDollar(p.getDollar() + payout[2]);
             }
-            System.out.println("  Player "+ p.getPlayerPriority() + " has "+ p.getDollar() + " dollars and " + p.getCredit() + " credits\nrPlayer " + p.getPlayerPriority() + " is rank " + p.getLevel());
+            System.out.println("  Player "+ p.getPlayerPriority() + " has "+ p.getDollar() + " dollars and " + p.getCredit() + " credits\nPlayer " + p.getPlayerPriority() + " is rank " + p.getLevel());
             
             p.resetPlayers(false); //parameter is for isNotEndOfCard
         }

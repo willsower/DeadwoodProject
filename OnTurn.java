@@ -74,7 +74,6 @@ public class OnTurn {
                 return true;
             }
         }
-
         return false;
     }
 

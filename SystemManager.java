@@ -133,6 +133,8 @@ public class SystemManager {
         // Run for each day
         for (int i = 0; i < days; i++) {
             int cardsFinished = 0;
+            System.out.println("   DAY " + (i + 1));
+            System.out.println("===========");
             resetAll(list, i + 1);
 
             do {

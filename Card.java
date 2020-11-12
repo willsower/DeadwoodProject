@@ -64,6 +64,16 @@ public class Card {
         return myParts.get(num).level;
     }
 
+    public int getPartPriority(String partName) {
+        ArrayList<Part> myPart = getPart();
+        for (int i = 0; i < myPart.size(); i++) {
+            if (myPart.get(i).partName.equals(partName)) {
+                return myPart.get(i).priority;
+            }
+        }
+        return 0;
+    }
+
     public int getPartPriority(int num) {
         ArrayList<Part> myParts = getPart();
         return myParts.get(num).priority;

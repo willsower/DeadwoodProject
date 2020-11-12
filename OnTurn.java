@@ -16,12 +16,12 @@ public class OnTurn {
     // Function to show that player has taken on card role
     // Updates Player and Card Attributes
     public static void takeOnCardRole(Player player, int roleNumber, int cardNum, String roleName) {
-        int level = Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum())
-                .getPartLevel(roleNumber - 1);
+        int level = Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getPartLevel(roleNumber - 1);
 
         int rolePriority = Deck.getInstance()
                 .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum())
                 .getPartPriority(roleNumber - 1);
+        System.out.println("pri after " + rolePriority);
 
         player.setOnCardRole(true);
         player.setRoleLevel(level);
@@ -156,7 +156,7 @@ public class OnTurn {
 
         System.out.println("  Card Budget: " + cardBudget);
         System.out.println("  Dice Rolled: " + diceRoll);
-        System.out.println("  Current Shot Counter " + counter);
+        System.out.println("  Shot Counter [Before Act] " + counter);
 
         // if success
         if (diceRoll + player.getPracticeChip() >= cardBudget) {

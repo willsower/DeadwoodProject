@@ -40,8 +40,6 @@ public class ScoringManager {
     // array
     public static int[] calculatePayout(int budget, int totalRoles) { //add perameter on howmany roles on card
         OnTurn turn = new OnTurn();
-        System.out.println("CARD BUDGET " + budget );
-        System.out.println( "  total Roles " + totalRoles);
         
         int[] total = new int[totalRoles];
         int[] budgetHolder = new int[budget];
@@ -82,7 +80,9 @@ public class ScoringManager {
 
         // Give payout to on card players
         for (Player p : playersOnCard) { /////////////////////////////////////
-
+            System.out.println("Priority " + p.getRolePriority());
+            System.out.println("Cash " + payout[p.getRolePriority() - 1]);
+            System.out.println(payout.length);
             // If player has highest role rank (highest priority)
             if (p.getRolePriority() == 1) {
                 p.setDollar(p.getDollar() + payout[0]);
@@ -114,6 +114,7 @@ public class ScoringManager {
 
         for (Player p : playersOffCard) {
             p.resetPlayers(false);
+            UserInterface.getInstance().displayPlayerInfo(p);
         }
     }
 }

@@ -61,7 +61,11 @@ public class UserInterface {
             System.out.println();
             do {
                 for (int i = 0; i < neighbors.length; i++) {
-                    System.out.println("Type " + (i + 1) + " to move to '" + neighbors[i] + "'" + " Active Set: " + isActive[i]);
+                    if (neighbors[i].equals("trailers") || neighbors[i].equals("office")) {
+                        System.out.println("Type " + (i + 1) + " to move to '" + neighbors[i] + "'");
+                    } else {
+                        System.out.println("Type " + (i + 1) + " to move to '" + neighbors[i] + "'" + " Active Set: " + isActive[i]);
+                    }
                 }
                 System.out.println("[Press q to forfeit turn]");
                 returnType = ob.nextLine();
@@ -100,6 +104,7 @@ public class UserInterface {
                         int level = Deck.getInstance().getCard(card).getPartLevel(onCard.get(i));
                         System.out.println(
                                 "Type " + (i + 1) + " to choose [on card] role of " + onCard.get(i) + " level " + level);
+                        System.out.println(Deck.getInstance().getCard(card).getPartPriority(onCard.get(i)));;
                     }
                 }
 
@@ -168,7 +173,7 @@ public class UserInterface {
     // user
     // on what to upgrade with.
     public void upgradePlayer(Player player, int currentLevel, String location, int dollar, int credit) {
-        displayCastingOffice();
+        displayCastingOffice(player);
         Scanner ob = new Scanner(System.in);
         String val;
         if (Upgrade.getInstance().canUpgrade(currentLevel, location, dollar, credit)) {
@@ -225,20 +230,23 @@ public class UserInterface {
     }
 
     // Display Casting Office Level upgrades
-    public void displayCastingOffice() {
+    public void displayCastingOffice(Player player) {
         System.out.println("Welcome to the Casting Office!");
         System.out.println("  Level 2 | Dollar: " +  Upgrade.getInstance().levelTwo.dollar + " Credit: " + Upgrade.getInstance().levelTwo.credit);
         System.out.println("  Level 3 | Dollar: " +  Upgrade.getInstance().levelThree.dollar + " Credit: " + Upgrade.getInstance().levelThree.credit);
         System.out.println("  Level 4 | Dollar: " +  Upgrade.getInstance().levelFour.dollar + " Credit: " + Upgrade.getInstance().levelFour.credit);
         System.out.println("  Level 5 | Dollar: " +  Upgrade.getInstance().levelFive.dollar + " Credit: " + Upgrade.getInstance().levelFive.credit);
         System.out.println("  Level 6 | Dollar: " +  Upgrade.getInstance().levelSix.dollar + " Credit: " + Upgrade.getInstance().levelSix.credit);
+
+        displayPlayerInfo(player);
     }
 
     // Display player info
     public void displayPlayerInfo(Player player) {
-        System.out.println("  Player level: " + player.getLevel());
-        System.out.println("  Player dollars: " + player.getDollar());
-        System.out.println("  Player credits: " + player.getCredit());
-        System.out.println("  Player practice chips " + player.getPracticeChip());
+        System.out.println("  Player " + player.getPlayerPriority());
+        System.out.println("    Player level: " + player.getLevel());
+        System.out.println("    Player dollars: " + player.getDollar());
+        System.out.println("    Player credits: " + player.getCredit());
+        System.out.println("    Player practice chips " + player.getPracticeChip());
     }
 }

@@ -2,6 +2,12 @@
 // Dr. Moushumi Sharmin
 // CSCI 345
 
+/*
+    Tai/Daria updated this file to parse boards.xml and cards.xml file
+    Populating information in Card.java and Set.java as we are parsing
+    the values from the XML files
+*/
+
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.ParserConfigurationException;
@@ -178,7 +184,7 @@ public class ParseXML {
                     int myTakes = 0;
                     for (int k = 0; k < takes.getLength(); k++) {
                         Node take = takes.item(k);
-        
+
                         if ("take".equals(take.getNodeName())) {
                             String takeNumber = take.getAttributes().getNamedItem("number").getNodeValue();
                             myTakes++;
@@ -213,8 +219,8 @@ public class ParseXML {
                         if ("part".equals(part.getNodeName())) {
                             String partName = part.getAttributes().getNamedItem("name").getNodeValue();
                             String partLevel = part.getAttributes().getNamedItem("level").getNodeValue();
-                            
-                            // System.out.println("  " + partName + "  Level: " + partLevel);
+
+                            // System.out.println(" " + partName + " Level: " + partLevel);
                             // System.out.println(partLevel);
 
                             setInfo.setPartNameLevel(k, partName, Integer.parseInt(partLevel));

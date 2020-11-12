@@ -271,6 +271,7 @@ public class Set {
         for (int i = 0; i < part.size(); i++) {
             part.get(i).isTaken = false;
         }
+        shotCounter = numberOfTakes;
     }
 
     // Print helper funciton

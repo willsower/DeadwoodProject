@@ -1,10 +1,12 @@
-//together!
+/*
+    Main Class
+    Purpose: Initiates the game, asks how many players, then calls
+             system manager to setup everything.
+*/
 
 public class Main {
     public static void main(String[] args) {
         try {
-            // ParseXML test = new ParseXML();
-            // test.getDocFromFile("boards.xml");
             int numPlayers = UserInterface.getInstance().getNumPlayers();
             systemManager(numPlayers);
 

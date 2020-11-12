@@ -1,5 +1,3 @@
-//Singleton
-//Tai
 public class Upgrade {
     private static Upgrade instance = null;
 

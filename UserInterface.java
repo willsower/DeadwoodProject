@@ -170,6 +170,7 @@ public class UserInterface {
     // user
     // on what to upgrade with.
     public void upgradePlayer(Player player, int currentLevel, String location, int dollar, int credit) {
+        displayCastingOffice();
         Scanner ob = new Scanner(System.in);
         String val;
         if (Upgrade.getInstance().canUpgrade(currentLevel, location, dollar, credit)) {
@@ -184,9 +185,11 @@ public class UserInterface {
                 if (val.equals("C") || val.equals("c")) {
                     player.setCredit(player.getCredit() - Upgrade.getInstance().getLevel(currentLevel++).credit);
                     player.setLevel(currentLevel);
+                    playerUpgrade(player);
                 } else if (val.equals("D") || val.equals("d")) {
                     player.setDollar(player.getDollar() - Upgrade.getInstance().getLevel(currentLevel++).dollar);
                     player.setLevel(currentLevel);
+                    playerUpgrade(player);
                 }
 
             } else if (Upgrade.getInstance().playerHasDollar(currentLevel, dollar)) {
@@ -198,6 +201,7 @@ public class UserInterface {
                 if (val.equals("Y") || val.equals("y") || val.equals("Yes") || val.equals("yes")) {
                     player.setDollar(player.getDollar() - Upgrade.getInstance().getLevel(currentLevel++).dollar);
                     player.setLevel(currentLevel);
+                    playerUpgrade(player);
                 }
             } else if (Upgrade.getInstance().playerHasCredit(currentLevel, credit)) {
                 do {
@@ -208,8 +212,27 @@ public class UserInterface {
                 if (val.equals("Y") || val.equals("y") || val.equals("Yes") || val.equals("yes")) {
                     player.setCredit(player.getCredit() - Upgrade.getInstance().getLevel(currentLevel++).credit);
                     player.setLevel(currentLevel);
+                    playerUpgrade(player);
                 }
             }
         }
+    }
+
+    // Output player information
+    public void playerUpgrade(Player player) {
+        System.out.println("\nJust upgraded!");
+        System.out.println("  Player rank: " + player.getLevel());
+        System.out.println("  Player dollars: " + player.getDollar());
+        System.out.println("  Player credits: " + player.getCredit());
+    }
+
+    // Display Casting Office Level upgrades
+    public void displayCastingOffice() {
+        System.out.println("Welcome to the Casting Office!");
+        System.out.println("  Level 2 | Dollar: " +  Upgrade.getInstance().levelTwo.dollar + " Credit: " + Upgrade.getInstance().levelTwo.credit);
+        System.out.println("  Level 3 | Dollar: " +  Upgrade.getInstance().levelThree.dollar + " Credit: " + Upgrade.getInstance().levelThree.credit);
+        System.out.println("  Level 4 | Dollar: " +  Upgrade.getInstance().levelFour.dollar + " Credit: " + Upgrade.getInstance().levelFour.credit);
+        System.out.println("  Level 5 | Dollar: " +  Upgrade.getInstance().levelFive.dollar + " Credit: " + Upgrade.getInstance().levelFive.credit);
+        System.out.println("  Level 6 | Dollar: " +  Upgrade.getInstance().levelSix.dollar + " Credit: " + Upgrade.getInstance().levelSix.credit);
     }
 }

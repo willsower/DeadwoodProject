@@ -1,6 +1,14 @@
+/*
+    ScoringManager Class
+    Purpose: This class will do anything scoring related. It will calculate the score
+             payouts at the end of the card. Also will calculate the final scores
+             at the end of the game. Will also distribute those payout to players
+    Singleton = true
+*/
+
 import java.util.Random;
 import java.util.ArrayList;
-import java.util.Arrays; 
+import java.util.Arrays;
 
 public class ScoringManager {
 
@@ -31,21 +39,22 @@ public class ScoringManager {
         return getRankPoints(rank, firstTotal);
     }
 
-/*do we use this function?*/    
+    /* do we use this function? */
     public static boolean onCard() {
         return true;
     }
 
     // Calculates payout value and will return the int values in an
     // array
-    public static int[] calculatePayout(int budget, int totalRoles) { //add perameter on howmany roles on card
+    public static int[] calculatePayout(int budget, int totalRoles) { // add perameter on howmany roles on card
         OnTurn turn = new OnTurn();
-        
+
         int[] total = new int[totalRoles];
         int[] budgetHolder = new int[budget];
         int index = 0;
         Arrays.fill(total, 0);
 
+        // Adding roll to array
         for (int i = 0; i < budget; i++) {
             int temp = turn.roll();
             budgetHolder[i] = temp;
@@ -53,6 +62,8 @@ public class ScoringManager {
 
         Arrays.sort(budgetHolder);
 
+        // Adding the rolls in the previous array to the payout
+        // array
         for (int i = budget - 1; i >= 0; i--) {
             total[index] += budgetHolder[i];
             index++;
@@ -73,9 +84,9 @@ public class ScoringManager {
     // Function to distribute end of card payouts to on card players and off card
     // players
     public void endOfCard(Player player, int cardBudget, ArrayList<Player> playersOnCard,
-        ArrayList<Player> playersOffCard, int cardSlots) {
+            ArrayList<Player> playersOffCard, int cardSlots) {
         int[] payout = calculatePayout(cardBudget, cardSlots);
-        
+
         System.out.println("\nEnd of Card: Bonuses distributed");
 
         // Give payout to on card players
@@ -85,16 +96,16 @@ public class ScoringManager {
             if (p.getRolePriority() == 1) {
                 p.setDollar(p.getDollar() + payout[0]);
 
-                // If player has median role rank (middle priority)
+            // If player has median role rank (middle priority)
             } else if (p.getRolePriority() == 2) {
                 p.setDollar(p.getDollar() + payout[1]);
 
-                // If player has low role rank (low priority)
+            // If player has low role rank (low priority)
             } else {
                 p.setDollar(p.getDollar() + payout[2]);
             }
-            
-            p.resetPlayers(false); //parameter is for isNotEndOfCard
+
+            p.resetPlayers(false); // parameter is for isNotEndOfCard
 
             UserInterface.getInstance().displayPlayerInfo(p);
         }
@@ -103,11 +114,12 @@ public class ScoringManager {
         for (Player p : playersOffCard) {
             System.out.println();
             p.setDollar(p.getDollar() + bonusOffCard(p.getRoleLevel())); // role rank
-            p.resetPlayers(false); //parameter is for isNotEndOfCard
+            p.resetPlayers(false); // parameter is for isNotEndOfCard
             UserInterface.getInstance().displayPlayerInfo(p);
         }
     }
 
+    // Function to reset players if there were no onCard players
     public void endCardNoCardWorkers(Player player, ArrayList<Player> playersOffCard) {
         System.out.println("\nEnd of Card: No Bonuses Given [No on card workers]");
 

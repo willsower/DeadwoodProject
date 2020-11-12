@@ -81,7 +81,7 @@ public class UserInterface {
         Scanner ob = new Scanner(System.in);
         String val;
         System.out.println();
-        System.out.println(onCard.isEmpty());
+
         do {
             System.out.println("Would you like to take a role? (Y/N)");
             val = ob.nextLine();

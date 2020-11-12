@@ -1,3 +1,11 @@
+/*
+    SystemManager Class
+    Purpose: This class is the power of this game. It will create the player objects, manage
+             how many days will be played, and will trigger the onTurn functions for each 
+             player when it's their turn. Will also calculate end of game metrics by calling
+             ScoringManager and will reset each day by calling helper functions
+*/
+
 import java.util.Arrays;
 import java.util.*;
 
@@ -106,16 +114,19 @@ public class SystemManager {
         UserInterface.getInstance().displayWinner(whoWon);
     }
 
+    // Resetall function will be called at the start of each game
+    // It will reset the variables in other classes, put players back into trailers
+    // Put cards on the appropriate sets
     public void resetAll(Player[] list, int day) {
-        // Reset player info 
+        // Reset player info
         for (int i = 0; i < getNumPlayer(); i++) {
-            list[i].resetPlayers(true); //parameter is for notEndOfCard
+            list[i].resetPlayers(true); // parameter is for notEndOfCard
         }
 
         Hashtable<String, Set> board = Board.getInstance().getBoard();
 
         Enumeration<Set> values = board.elements();
-        int ind = 0; 
+        int ind = 0;
         // iterate through values
         while (values.hasMoreElements()) {
             Set set = values.nextElement();
@@ -123,12 +134,14 @@ public class SystemManager {
                 set.resetSetDay();
             }
             ind++;
-        }   
+        }
         Board.getInstance().assignCardToSet(Deck.getInstance().getCardShuffle(), day);
     }
 
+    // This is the run function, will play for x amount of days
+    // and iterate through a do-while loop until the amount of cards
+    // have finished for that day.
     public void run() {
-        // Initialize onTurn
         OnTurn turn = new OnTurn();
         Player[] list = getPlayerList();
         int player = 0;

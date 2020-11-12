@@ -102,6 +102,7 @@ public class ScoringManager {
                 p.setDollar(p.getDollar() + payout[2]);
             }
             p.resetPlayers(false); // parameter is for isNotEndOfCard
+            UserInterface.getInstance().displayPlayerInfo(p);
         }
         // Give payout to off card players
         for (Player p : playersOffCard) {

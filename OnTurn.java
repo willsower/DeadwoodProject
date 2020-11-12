@@ -59,7 +59,7 @@ public class OnTurn {
             // key of card name
             int cardNum = Deck.getInstance()
                     .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getCardID();
-            System.out.println(Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getCardName());
+            System.out.println("  Card Name: " + Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getCardName());
             String playerChoice = UserInterface.getInstance().roleChoice(partsOnCardAval, partsOffCardAval, cardNum,
                     player.getPlayerLocation());
 
@@ -164,10 +164,8 @@ public class OnTurn {
         // if success
         if (diceRoll + player.getPracticeChip() >= cardBudget) {
             // if oncar
-            System.out.println(" ==== countF " +counter);
             counter -= 1;
             Board.getInstance().getSet(player.getPlayerLocation()).setShotCounter(counter);
-            System.out.println("   ==== countT " +counter);
 
             System.out.println("  SUCCESS IN ACTING");
             System.out.println("  Current Shot Counter: " + counter);

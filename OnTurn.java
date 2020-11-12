@@ -184,7 +184,7 @@ public class OnTurn {
                 if ( Deck.getInstance().getCard(cardNum).getPlayersInRoomOnCard().isEmpty() == false) {
                     ScoringManager.getInstance().endOfCard(player, cardBudget,
                             Deck.getInstance().getCard(cardNum).getPlayersInRoomOnCard(),
-                            Board.getInstance().getSet(player.getPlayerLocation()).getPlayersInRoomOffCard());
+                            Board.getInstance().getSet(player.getPlayerLocation()).getPlayersInRoomOffCard(), Deck.getInstance().getCard(cardNum).getPart().size());
                 } else {
                     ScoringManager.getInstance().endCardNoCardWorkers(player, Board.getInstance().getSet(player.getPlayerLocation()).getPlayersInRoomOffCard());
                 }

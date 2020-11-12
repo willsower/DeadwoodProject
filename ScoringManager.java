@@ -1,5 +1,6 @@
 import java.util.Random;
 import java.util.ArrayList;
+import java.util.*;
 
 public class ScoringManager {
 
@@ -37,19 +38,21 @@ public class ScoringManager {
 
     // Calculates payout value and will return the int values in an
     // array
-    public static int[] calculatePayout(int budget) { //add perameter on howmany roles on card
+    public static int[] calculatePayout(int budget, int totalRoles) { //add perameter on howmany roles on card
         OnTurn turn = new OnTurn();
-        //int array total[how many]
         
-        int[] total = new int[3];
+        int[] total = new int[totalRoles];
         int index = 0;
-        // Rolls the amount of die equal to the budget.
-        // Will add to each level how much should earn
-        for (int i = 1; i <= budget; i++) {///////////////////////////////////////////////
+        Arrays.fill(total, 0);
+
+        for (int i = 1; i <= budget; i++) {
             int temp = turn.roll();
-            //tot[index] =temp
-            //index++
-            //if index > spots -> set back to zero
+            total[index] += temp;
+
+            index++;
+            if (index == totalRoles) {
+                index = 0;
+            }
         }
 
         
@@ -65,8 +68,8 @@ public class ScoringManager {
     // Function to distribute end of card payouts to on card players and off card
     // players
     public void endOfCard(Player player, int cardBudget, ArrayList<Player> playersOnCard,
-        ArrayList<Player> playersOffCard) {
-        int[] payout = calculatePayout(cardBudget);
+        ArrayList<Player> playersOffCard, int cardSlots) {
+        int[] payout = calculatePayout(cardBudget, cardSlots);
         
         System.out.println("End of Card: Bonuses distributed");
 

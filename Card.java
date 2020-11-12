@@ -1,3 +1,9 @@
+/*
+    Card Class
+    Purpose: This class is populated by cards.xml using the parser. Will store what players
+             have taken a role on the card. 
+*/
+
 import java.util.ArrayList;
 
 public class Card {
@@ -64,6 +70,8 @@ public class Card {
         return myParts.get(num).level;
     }
 
+    // Get priority of the card rank. This helps when calculating
+    // payout at end of card with part name
     public int getPartPriority(String partName) {
         ArrayList<Part> myPart = getPart();
         for (int i = 0; i < myPart.size(); i++) {
@@ -74,11 +82,14 @@ public class Card {
         return 0;
     }
 
+    // Get priority of the card rank. This helps when calculating
+    // payout at end of card with part number
     public int getPartPriority(int num) {
         ArrayList<Part> myParts = getPart();
         return myParts.get(num).priority;
     }
 
+    // Gets players in the room on a card role
     public ArrayList<Player> getPlayersInRoomOnCard() {
         return playersInRoomOnCard;
     }
@@ -116,6 +127,7 @@ public class Card {
         part.get(partNum).line = line;
     }
 
+    // Will set whether the part has been taken
     public void setPartTaken(String partName, boolean taken) {
         ArrayList<Part> partTaken = getPart();
         for (int i = 0; i < getPart().size(); i++) {
@@ -132,7 +144,7 @@ public class Card {
 
         for (int i = 0; i < myParts.size(); i++) {
             if (myParts.get(i).isTaken == false) {
-                if(myParts.get(i).level <= playerRank) {
+                if (myParts.get(i).level <= playerRank) {
                     available.add(myParts.get(i).partName);
                 }
             }
@@ -140,10 +152,12 @@ public class Card {
         return available;
     }
 
+    // Adds plaeyrs to arrayList on card role
     public void addPlayerToRoomOnCard(Player player) {
         playersInRoomOnCard.add(player);
     }
 
+    // Removes players in arrayList on card role
     public void removePlayersFormRoomOnCard(Player player) {
         playersInRoomOnCard.clear();
     }
@@ -159,14 +173,14 @@ public class Card {
         // Part[] test = getPart();
 
         // for (int i = 0; i < 3; i++) {
-        //     System.out.println();
-        //     System.out.println(test[i].partName);
-        //     System.out.println("Part Level = " + test[i].level);
-        //     System.out.println("  xVal = " + test[i].xVal);
-        //     System.out.println("  yVal = " + test[i].yVal);
-        //     System.out.println("  hVal = " + test[i].hVal);
-        //     System.out.println("  wVal = " + test[i].wVal);
-        //     System.out.println("  line = " + test[i].line);
+        // System.out.println();
+        // System.out.println(test[i].partName);
+        // System.out.println("Part Level = " + test[i].level);
+        // System.out.println(" xVal = " + test[i].xVal);
+        // System.out.println(" yVal = " + test[i].yVal);
+        // System.out.println(" hVal = " + test[i].hVal);
+        // System.out.println(" wVal = " + test[i].wVal);
+        // System.out.println(" line = " + test[i].line);
         // }
     }
 }

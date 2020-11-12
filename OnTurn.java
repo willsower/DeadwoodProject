@@ -156,8 +156,7 @@ public class OnTurn {
 
         System.out.println("  Card Budget: " + cardBudget);
         System.out.println("  Dice Rolled: " + diceRoll);
-        System.out.println("  Player Practice Chips: " + player.getPracticeChip());
-        System.out.println("  Card Shot Counter " + counter);
+        System.out.println("  Current Shot Counter " + counter);
 
         // if success
         if (diceRoll + player.getPracticeChip() >= cardBudget) {
@@ -165,7 +164,7 @@ public class OnTurn {
             counter -= 1;
             Board.getInstance().getSet(player.getPlayerLocation()).setShotCounter(counter);
 
-            System.out.println("  SUCCESS IN ACTING");
+            System.out.println("\n  SUCCESS IN ACTING");
             System.out.println("  Current Shot Counter: " + counter);
             if (player.getOnCardRole() == true) { // on card
                 player.setCredit(player.getCredit() + 2);
@@ -194,7 +193,7 @@ public class OnTurn {
             }
 
         } else { // else fail
-            System.out.println("  FAILED IN ACTING");
+            System.out.println("\n  FAILED IN ACTING");
             if (player.getOffCardRole() == true) {
                 player.setDollar(player.getDollar() + 1);
             }
@@ -234,7 +233,7 @@ public class OnTurn {
             // If player can rehearse or act, give them options
             if (player.getRoleLevel() + player.getPracticeChip() < 6) {
                 int decide = UserInterface.getInstance().actOrRehearse();
-                System.out.println(decide);
+
                 if (decide == 1) {
                     endOfCard = act(player);
                 } else if (decide == 2) {

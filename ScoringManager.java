@@ -78,7 +78,7 @@ public class ScoringManager {
         ArrayList<Player> playersOffCard, int cardSlots) {
         int[] payout = calculatePayout(cardBudget, cardSlots);
         
-        System.out.println("End of Card: Bonuses distributed");
+        System.out.println("\nEnd of Card: Bonuses distributed");
 
         // Give payout to on card players
         for (Player p : playersOnCard) { /////////////////////////////////////
@@ -95,21 +95,22 @@ public class ScoringManager {
             } else {
                 p.setDollar(p.getDollar() + payout[2]);
             }
-            System.out.println("  Player "+ p.getPlayerPriority() + " has "+ p.getDollar() + " dollars and " + p.getCredit() + " credits\nPlayer " + p.getPlayerPriority() + " is rank " + p.getLevel());
             
             p.resetPlayers(false); //parameter is for isNotEndOfCard
+
+            UserInterface.getInstance().displayPlayerInfo(p);
         }
 
         // Give payout to off card players
         for (Player p : playersOffCard) {
             p.setDollar(p.getDollar() + bonusOffCard(p.getRoleLevel())); // role rank
-            System.out.println("  Player "+ p + " has "+ p.getDollar() + " dollars and " + p.getCredit() + " credits\nrPlayer " + p + " is rank " + p.getLevel());
             p.resetPlayers(false); //parameter is for isNotEndOfCard
+            UserInterface.getInstance().displayPlayerInfo(p);
         }
     }
 
     public void endCardNoCardWorkers(Player player, ArrayList<Player> playersOffCard) {
-        System.out.println("End of Card: No Bonuses Given [No on card workers]");
+        System.out.println("\nEnd of Card: No Bonuses Given [No on card workers]");
 
         for (Player p : playersOffCard) {
             p.resetPlayers(false);

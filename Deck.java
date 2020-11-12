@@ -1,8 +1,11 @@
+/*
+    Deck Class
+    Purpose: Creates a Deck of Card objects (40). Will create an int array of card order
+             for the game
+    Singleton = true
+*/
 
-//Tai
-//make singleton
 import org.w3c.dom.Document;
-import java.util.Arrays;
 import java.util.Random;
 
 public class Deck {
@@ -39,8 +42,17 @@ public class Deck {
         return deck;
     }
 
-    // Shuffle is going to create an array a random
-    // generated list of numbers. This will ensure
+    public Integer[] getCardShuffle() {
+        return cardShuffle;
+    }
+
+    public Card getCard(int cardNum) {
+        Card[] temp = getDeck();
+        return temp[cardNum - 1];
+    }
+
+    // Shuffle is going to create an array of a random
+    // generated list of numbers (1->40). This will ensure
     // randomness at every game
     public static Integer[] shuffle() {
         Integer[] list = new Integer[40];
@@ -59,16 +71,6 @@ public class Deck {
             list[i] = temp;
         }
 
-        // System.out.println(Arrays.toString(list));
         return list;
-    }
-
-    public Integer[] getCardShuffle() {
-        return cardShuffle;
-    }
-
-    public Card getCard(int cardNum) {
-        Card[] temp = getDeck();
-        return temp[cardNum - 1];
     }
 }

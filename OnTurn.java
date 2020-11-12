@@ -1,3 +1,11 @@
+/*
+    OnTurn Class
+    Purpose: This class has everything to do with player choices in game
+             Whether they decide to upgrade (which will call upgrade class),
+             Act, Rehearse, Move, or take a role. All these interactions
+             and calculations will be done in this class
+*/
+
 import java.util.Random;
 import java.util.ArrayList;
 
@@ -21,7 +29,6 @@ public class OnTurn {
         int rolePriority = Deck.getInstance()
                 .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum())
                 .getPartPriority(roleNumber - 1);
-        System.out.println("pri after " + rolePriority);
 
         player.setOnCardRole(true);
         player.setRoleLevel(level);
@@ -175,7 +182,7 @@ public class OnTurn {
 
             UserInterface.getInstance().displayPlayerInfo(player);
 
-            // end of card
+            // end of card, calculate payout will be called and reset card and player information
             if (counter == 0) {
                 int cardNum = Deck.getInstance()
                         .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getCardID();
@@ -250,49 +257,3 @@ public class OnTurn {
         return endOfCard; // return to SystemManager.java
     }
 }
-
-/*
- * TODO:
- * 
- * Bugs: 1. Fix ParseXML failure bug at beginning 2. Fix NullPtr exception at
- * this command Type 1 to move to 'Train Station' Type 2 to move to 'Ranch' Type
- * 3 to move to 'Secret Hideout' [Press q to quit] 1 Would you like to take a
- * role? (Y/N) yes Type 1 to choose [on card] role of Curious girl level 3 Type
- * 2 to choose [on card] role of Ghost of Plato level 4 Error =
- * java.lang.NullPointerException
- * 
- * Functions: 1. Implement the function that will be called at start of day to
- * set everything up (This is the same function that will be called to reset if
- * it is end day but at start) 1.a TODO this, go in each major class (Player,
- * Set, etc) and create a resetPlayer or resetSet function That we can call to
- * reset all players/sets/other classes. For example, we'd have to reset all
- * player.Location back to Trailers, and reset player.PracticeChip to 0, same
- * with set. We need to go to setParts and reset the isTaken to false and other
- * stuff. (Don't need to do Card, since the Card won't ever be played again). 2.
- * Have a better user input (use while loops and have a
- * "Are you sure you want to move" option) 3. Have better prints when player
- * enters room 4. Comment functions 5. Clean up functions 6. Need to adjust
- * shotcounters 7. Player can only take rank or lower 8. Reset practice chips of
- * end of card
- * 
- */
-
-/*
- * where do we include the lines? no make sure player cant leave role yes does
- * end of card mean end of day? or wrap scene go to bonuses -the counter in act
- * is for the shots the when its at 0 it would go to bonus,remove card, ect.. +
- * for rolechoice from userinterface - should check for valid number? -and
- * possibly for moveoption too when are the cards choisen from the deck? -is it
- * just shuffled and then one is provided when current card is done? + print
- * messages about success or fail for user need to update setup for different
- * group sizes for upgrade has the required amount they need set and/or
- * implimented need to create reset board for end of day
- */
-
-/*
- * REMINDER TO ME
- * 
- * shotCounter => 0 --> end of scene -> bonus endOfDay => 9/10 cards --> reset
- * deck and all players
- * 
- */

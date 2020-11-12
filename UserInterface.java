@@ -130,9 +130,8 @@ public class UserInterface {
                         System.out.println("Type " + (i + k + 1) + " to choose [off card] role of " + offCard.get(i)
                                 + " level " + level);
                     }
-                    System.out.println("[Press q to quit]");
                 }
-
+                System.out.println("[Press q to quit]");
                 returnType = ob.nextLine();
 
                 try {

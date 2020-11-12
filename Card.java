@@ -102,14 +102,24 @@ public class Card {
     }
 
     // Set part name and level
-    public void setPartNameLevel(int partNum, int partLevel, String partName, int pri) {
+    public void setPartNameLevel(int partNum, int partLevel, String partName) {
         Part obj = new Part();
 
         obj.partName = partName;
         obj.level = partLevel;
-        obj.priority = pri;
 
         part.add(obj);
+    }
+
+    // Sets part priority
+    public void setPartPriority() {
+        ArrayList<Part> partTaken = getPart();
+        int index = partTaken.size();
+
+        for (int i = 0; i < partTaken.size(); i++) {
+            partTaken.get(i).priority = index;
+            index--;
+        }
     }
 
     // Set part coordinates
@@ -120,6 +130,7 @@ public class Card {
         part.get(partNum).hVal = h;
         part.get(partNum).wVal = w;
 
+        setPartPriority();
     }
 
     // Set part line

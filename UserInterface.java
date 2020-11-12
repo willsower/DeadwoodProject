@@ -120,7 +120,6 @@ public class UserInterface {
                         int level = Deck.getInstance().getCard(card).getPartLevel(onCard.get(i));
                         System.out.println("Type " + (i + 1) + " to choose [on card] role of " + onCard.get(i)
                                 + " level " + level);
-                        System.out.println(Deck.getInstance().getCard(card).getPartPriority(onCard.get(i)));
                         ;
                     }
                 }

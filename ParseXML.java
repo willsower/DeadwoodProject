@@ -60,8 +60,6 @@ public class ParseXML {
             // System.out.println("Budget = " + cardBudget);
 
             // Initialize each card
-            int val = 3;
-
             deck[i] = new Card(cardCategory, Integer.parseInt(cardBudget), i + 1);
 
             // reads data
@@ -91,8 +89,8 @@ public class ParseXML {
                     // System.out.println("Part name = " + partName);
                     // System.out.println("Part level = " + partLevel);
 
-                    deck[i].setPartNameLevel(index, Integer.parseInt(partLevel), partName, val);
-                    val--;
+                    deck[i].setPartNameLevel(index, Integer.parseInt(partLevel), partName);
+
                     for (int k = 0; k < childrenOfChildren.getLength(); k++) {
                         Node subOfSub = childrenOfChildren.item(k);
 

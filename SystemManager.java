@@ -36,7 +36,7 @@ public class SystemManager {
                     players[i] = new Player(i + 1, 2, 0, 0, "trailer");
                     break;
                 default:
-                    players[i] = new Player(i + 1, 1, 0, 0, "trailer");
+                    players[i] = new Player(i + 1, 6, 0, 0, "trailer");
                     break;
             }
         }

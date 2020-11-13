@@ -15,12 +15,12 @@ Taichen Rose
 ### If using Github
 1. Clone this repository
 2. If you use Unix terminal, you can type ```make``` to compile all files or ```make clean``` to delete all compiled classes.
-3. run ```java Main``` to start the program
+3. run ```java Deadwood n``` to start the program, where n is a number between 2 - 8 [This will error if you do not enter anything as n.]
 
 ### If have zipped file
 1. Unzip file
 2. In the home directory, type ```make``` to comiple all files or ```make clean``` to delete all compiled classes.
-3. run ```java Main``` to start the program 
+3. run ```java Deadwood n``` to start the program, where n is a number between 2 - 8 [This will error if you do not enter anything as n.]
 
 ## Things We Would Have Changed
 

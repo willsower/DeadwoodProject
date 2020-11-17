@@ -28,7 +28,7 @@ public class Deck {
         Document doc = null;
         ParseXML parsing = new ParseXML();
         try {
-            doc = parsing.getDocFromFile("cards.xml");
+            doc = parsing.getDocFromFile("xml/cards.xml");
             deck = parsing.readCardData(doc);
 
             cardShuffle = shuffle();

@@ -22,7 +22,7 @@ public class Board {
             Document doc = null;
             ParseXML parsing = new ParseXML();
             try {
-                doc = parsing.getDocFromFile("boards.xml");
+                doc = parsing.getDocFromFile("xml/boards.xml");
                 board = parsing.readBoardData(doc);
             } catch (Exception e) {
                 System.out.println("Error = " + e);

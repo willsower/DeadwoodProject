@@ -14,12 +14,12 @@ Taichen Rose
 
 ### If using Github
 1. Clone this repository
-2. If you use Unix terminal, you can type ```make``` to compile all files or ```make clean``` to delete all compiled classes.
+2. Using intellij IDE, insert into project. In src directory type ```make``` to compile
 3. run ```java Deadwood n``` to start the program, where n is a number between 2 - 8 [This will error if you do not enter anything as n.]
 
 ### If have zipped file
 1. Unzip file
-2. In the home directory, type ```make``` to comiple all files or ```make clean``` to delete all compiled classes.
+2. Using intellij IDE, insert this project. In the src directory, type ```make``` to compile all files or ```make clean``` to delete all compiled classes.
 3. run ```java Deadwood n``` to start the program, where n is a number between 2 - 8 [This will error if you do not enter anything as n.]
 
 ## Things We Would Have Changed
@@ -30,9 +30,7 @@ Taichen Rose
 
 3. We should make functions in Set.java and Card.java that will update when a player takes a role. We do this in a function in onTurn and have a lot of ```player.setRole()``` or ```player.setThis()``` when we could call a function from player that does all this information with given parameters.
 
-4. Organize our file structure. Create src file, create static files such as our XML. For the final submission, our file structure will be more organized.
-
-5. The printing while the player is moving in the text based version is not the best. We could have made this a little better. More intuitive, when payouts are being calculated some players are printed twice, they have the same info, but this just isn't necessary.
+4. The printing while the player is moving in the text based version is not the best. We could have made this a little better. More intuitive, when payouts are being calculated some players are printed twice, they have the same info, but this just isn't necessary.
 
 ## Classes
 

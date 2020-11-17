@@ -26,11 +26,13 @@ public class Card {
     private int cardID;
     private ArrayList<Part> part = new ArrayList<Part>();
     private ArrayList<Player> playersInRoomOnCard = new ArrayList<Player>();
+    private Image image;
 
     public Card(String name, int budget, int cardID) {
         cardName = name;
         cardBudget = budget;
         this.cardID = cardID;
+        String fileName = cardID + ".png";
     }
 
     // Get functions

@@ -8,11 +8,13 @@
 
 import org.w3c.dom.Document;
 import java.util.*;
+import javafx.scene.image.Image;
 
 public class Board {
 
     private static Board instance = null;
     private static Hashtable<String, Set> board;
+    private static Image boardImage;
     
     // create instance
     public static Board getInstance() {
@@ -27,6 +29,8 @@ public class Board {
             } catch (Exception e) {
                 System.out.println("Error = " + e);
             }
+
+            boardImage = new Image("board.jpg");
         }
         return instance;
     }

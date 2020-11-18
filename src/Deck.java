@@ -33,7 +33,7 @@ public class Deck {
             doc = parsing.getDocFromFile("xml/cards.xml");
             deck = parsing.readCardData(doc);
 
-            backOfCard = new Image("img/CardBack.jpg");
+//            backOfCard = new Image("img/CardBack.jpg");
 //            backOfCardSmall = new Image("./images/CardBack-small.jpg");
             cardShuffle = shuffle();
         } catch (Exception e) {

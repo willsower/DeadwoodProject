@@ -4,10 +4,14 @@
     Singleton = true
 */
 
-import java.util.Scanner;
-import java.util.ArrayList;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.image.ImageView;
 
-public class UserInterfaceDisplay {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class UserInterfaceDisplay implements Initializable {
 
     private static UserInterfaceDisplay instance = null;
 
@@ -17,6 +21,13 @@ public class UserInterfaceDisplay {
             instance = new UserInterfaceDisplay();
         }
         return instance;
+    }
+
+    @FXML private ImageView boardImage;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
     }
 
     // Display winners of game
@@ -61,5 +72,4 @@ public class UserInterfaceDisplay {
         System.out.println("    Player credits: " + player.getCredit());
         System.out.println("    Player practice chips " + player.getPracticeChip());
     }
-
 }

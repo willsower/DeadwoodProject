@@ -30,7 +30,7 @@ public class Board {
                 System.out.println("Error = " + e);
             }
 
-            boardImage = new Image("board.jpg");
+//            boardImage = new Image("board.jpg");
         }
         return instance;
     }

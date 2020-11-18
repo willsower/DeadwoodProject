@@ -30,7 +30,7 @@ public class Board {
                 System.out.println("Error = " + e);
             }
 
-//            boardImage = new Image("board.jpg");
+            boardImage = new Image("board.jpg");
         }
         return instance;
     }
@@ -43,6 +43,8 @@ public class Board {
     public Set getSet(String location) {
         return getBoard().get(location);
     }
+
+    public Image getBoardImage() { return boardImage; }
 
     // Assigns cards to the set each day
     public static void assignCardToSet(Integer[] deckOrder, int day) {

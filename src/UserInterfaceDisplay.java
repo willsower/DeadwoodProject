@@ -27,6 +27,7 @@ public class UserInterfaceDisplay implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        System.out.println("RUN HEREE???");
         boardImage.setImage(Board.getInstance().getBoardImage());
     }
 

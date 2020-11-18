@@ -4,26 +4,49 @@
              system manager to setup everything.
 */
 import java.util.*;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.scene.Group;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
-public class Deadwood {
+public class Deadwood extends Application {
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("./View/Board.fxml"));
+        Scene scene = new Scene(root);
+
+        systemManager(2);
+        stage.setTitle("Board");
+        stage.setScene(scene);
+        stage.show();
+    }
+
     public static void main(String[] args) {
-        Scanner myOb = new Scanner(System.in);
-        String val = args[0];
-        int numberPlayers = 0;
-	    try {
-            numberPlayers = Integer.parseInt(val);
-        } catch (NumberFormatException nfe) {
-        }
-
-        while (!(numberPlayers >= 2 && numberPlayers <= 8)) {
-            System.out.println("How many players? (2 - 8) ");
-            val = myOb.nextLine();
-            try {
-                numberPlayers = Integer.parseInt(val);
-            } catch (NumberFormatException e) {
-            }
-        }
-        systemManager(numberPlayers);
+        launch(args);
+//        Scanner myOb = new Scanner(System.in);
+//        String val = args[0];
+//        int numberPlayers = 0;
+//	    try {
+//            numberPlayers = Integer.parseInt(val);
+//        } catch (NumberFormatException nfe) {
+//        }
+//
+//        while (!(numberPlayers >= 2 && numberPlayers <= 8)) {
+//            System.out.println("How many players? (2 - 8) ");
+//            val = myOb.nextLine();
+//            try {
+//                numberPlayers = Integer.parseInt(val);
+//            } catch (NumberFormatException e) {
+//            }
+//        }
+//        systemManager(numberPlayers);
 
     }
 

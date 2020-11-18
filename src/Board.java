@@ -6,7 +6,10 @@
     Singleton = true
 */
 
+import javafx.fxml.FXML;
 import org.w3c.dom.Document;
+
+import java.io.FileInputStream;
 import java.util.*;
 import javafx.scene.image.Image;
 
@@ -14,6 +17,7 @@ public class Board {
 
     private static Board instance = null;
     private static Hashtable<String, Set> board;
+    @FXML
     private static Image boardImage;
     
     // create instance
@@ -29,8 +33,15 @@ public class Board {
             } catch (Exception e) {
                 System.out.println("Error = " + e);
             }
+            System.out.println("alsdf");
+            try {
+                FileInputStream imageFile = new FileInputStream("../img/board.jpg");
+                boardImage = new Image(imageFile);
+                System.out.println("GOG");
+            } catch (Exception e) {
+                System.out.println("Error = " + e);
+            }
 
-            boardImage = new Image("board.jpg");
         }
         return instance;
     }
@@ -44,7 +55,11 @@ public class Board {
         return getBoard().get(location);
     }
 
-    public Image getBoardImage() { return boardImage; }
+    public Image getBoardImage() {
+        System.out.println(boardImage.toString());
+        System.out.println("HELLO");
+        return boardImage;
+    }
 
     // Assigns cards to the set each day
     public static void assignCardToSet(Integer[] deckOrder, int day) {

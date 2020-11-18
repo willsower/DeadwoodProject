@@ -5,6 +5,7 @@
 */
 
 import java.util.ArrayList;
+import javafx.scene.image.Image;
 
 public class Card {
     // Part object which will display roles on card
@@ -33,6 +34,9 @@ public class Card {
         cardBudget = budget;
         this.cardID = cardID;
         String fileName = cardID + ".png";
+//        System.out.print(fileName);
+//        image = new Image("./images/cards/" + fileName);
+//        System.out.print("hiiii");
     }
 
     // Get functions

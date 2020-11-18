@@ -7,11 +7,14 @@
 
 import org.w3c.dom.Document;
 import java.util.Random;
+import javafx.scene.image.Image;
 
 public class Deck {
     private Card[] deck;
     private Integer[] cardShuffle;
     private static Deck instance = null;
+    private Image backOfCard;
+    private Image backOfCardSmall;
 
     // create instance
     public static Deck getInstance() {
@@ -30,7 +33,8 @@ public class Deck {
         try {
             doc = parsing.getDocFromFile("xml/cards.xml");
             deck = parsing.readCardData(doc);
-
+//            String fileName = ".png";
+//            backOfCard = new Image("./images/cards/" + fileName);
             cardShuffle = shuffle();
         } catch (Exception e) {
             System.out.println("Error = " + e);

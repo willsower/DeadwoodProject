@@ -111,7 +111,7 @@ public class OnTurn {
                     } else {
                         Upgrade.getInstance().upgradeDollar(player, up);
                     }
-                    UserInterface.getInstance().playerUpgrade(player);
+/**/                    UserInterfaceDisplay.getInstance().playerUpgrade(player);
                 }
             } else {
                 if (Board.getInstance().getSet(player.getPlayerLocation()).getIsActive() == true) {
@@ -138,7 +138,7 @@ public class OnTurn {
                 } else {
                     Upgrade.getInstance().upgradeDollar(player, up);
                 }
-                UserInterface.getInstance().playerUpgrade(player);
+/**/                UserInterfaceDisplay.getInstance().playerUpgrade(player);
             }
 
             // Allow player to move then take a role
@@ -167,7 +167,7 @@ public class OnTurn {
     public void rehearse(Player player) {
         if (player.getRoleLevel() + player.getPracticeChip() < 6) {
             player.setPracticeChip(player.getPracticeChip() + 1);
-            UserInterface.getInstance().displayPlayerInfo(player);
+/**/            UserInterfaceDisplay.getInstance().displayPlayerInfo(player);
         }
     }
 
@@ -197,7 +197,7 @@ public class OnTurn {
                 player.setDollar(player.getDollar() + 1);
             }
 
-            UserInterface.getInstance().displayPlayerInfo(player);
+/**/            UserInterfaceDisplay.getInstance().displayPlayerInfo(player);
 
             // end of card, calculate payout will be called and reset card and player information
             if (counter == 0) {
@@ -222,7 +222,7 @@ public class OnTurn {
             if (player.getOffCardRole() == true) {
                 player.setDollar(player.getDollar() + 1);
             }
-            UserInterface.getInstance().displayPlayerInfo(player);
+/**/            UserInterfaceDisplay.getInstance().displayPlayerInfo(player);
         }
         return false; // returns to turn() in onTurn.java
     }

@@ -76,7 +76,7 @@ public class SystemManager {
         System.out.println("\n=========");
         System.out.println("Calculating end score");
         for (int i = 0; i < player.length; i++) {
-            UserInterface.getInstance().displayPlayerInfo(player[i]);
+/**/            UserInterfaceDisplay.getInstance().displayPlayerInfo(player[i]);
         }
         System.out.println("\n\n");
 
@@ -111,7 +111,7 @@ public class SystemManager {
             }
         }
 
-        UserInterface.getInstance().displayWinner(whoWon);
+/**/        UserInterfaceDisplay.getInstance().displayWinner(whoWon);
     }
 
     // Resetall function will be called at the start of each game

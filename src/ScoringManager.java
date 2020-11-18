@@ -104,7 +104,7 @@ public class ScoringManager {
                 p.setDollar(p.getDollar() + payout[2]);
             }
             p.resetPlayers(false); // parameter is for isNotEndOfCard
-            UserInterface.getInstance().displayPlayerInfo(p);
+/**/            UserInterfaceDisplay.getInstance().displayPlayerInfo(p);
         }
         System.out.println("Players off card: ");
         // Give payout to off card players
@@ -113,7 +113,7 @@ public class ScoringManager {
             System.out.println();
             p.setDollar(p.getDollar() + bonusOffCard(p.getRoleLevel())); // role rank
             p.resetPlayers(false); // parameter is for isNotEndOfCard
-            UserInterface.getInstance().displayPlayerInfo(p);
+/**/            UserInterfaceDisplay.getInstance().displayPlayerInfo(p);
         }
     }
 
@@ -124,7 +124,7 @@ public class ScoringManager {
         for (Player p : playersOffCard) {
             System.out.println("  Player " + p.getPlayerPriority());
             p.resetPlayers(false);
-            UserInterface.getInstance().displayPlayerInfo(p);
+/**/            UserInterfaceDisplay.getInstance().displayPlayerInfo(p);
         }
     }
 }

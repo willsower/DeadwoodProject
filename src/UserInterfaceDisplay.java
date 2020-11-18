@@ -27,7 +27,7 @@ public class UserInterfaceDisplay implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        boardImage.setImage(Board.getInstance().getBoardImage());
     }
 
     // Display winners of game

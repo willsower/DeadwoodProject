@@ -3,7 +3,7 @@
 
 # User-specific stuff
 .idea/
-.DS_Store/
+.DS_Store
 
 # IML for editor
 Deadwood.iml

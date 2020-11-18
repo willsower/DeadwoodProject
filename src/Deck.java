@@ -20,7 +20,6 @@ public class Deck {
     public static Deck getInstance() {
         if (instance == null) {
             instance = new Deck();
-
         }
         return instance;
     }
@@ -33,8 +32,9 @@ public class Deck {
         try {
             doc = parsing.getDocFromFile("xml/cards.xml");
             deck = parsing.readCardData(doc);
-//            String fileName = ".png";
-//            backOfCard = new Image("./images/cards/" + fileName);
+
+            backOfCard = new Image("img/CardBack.jpg");
+//            backOfCardSmall = new Image("./images/CardBack-small.jpg");
             cardShuffle = shuffle();
         } catch (Exception e) {
             System.out.println("Error = " + e);

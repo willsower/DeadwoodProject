@@ -6,10 +6,13 @@
              ScoringManager and will reset each day by calling helper functions
 */
 
+import javafx.fxml.Initializable;
+
+import java.net.URL;
 import java.util.*;
 
 
-public class SystemManager {
+public class SystemManager implements Initializable {
     private Player[] players;
     private int numPlayer;
     private static SystemManager instance = null;
@@ -20,6 +23,11 @@ public class SystemManager {
             instance = new SystemManager(num);
         }
         return instance;
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
     }
 
     // Turn manager initializes all players
@@ -148,7 +156,7 @@ public class SystemManager {
             ind++;
         }
         Board.getInstance().assignCardToSet(Deck.getInstance().getCardShuffle(), day);
-//        UserInterfaceDisplay.getInstance().setUpBoard(day, 2);
+        UserInterfaceDisplay.getInstance().setUpBoard(day, 2);
     }
 
     // This is the run function, will play for x amount of days

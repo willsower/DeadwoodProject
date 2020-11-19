@@ -92,7 +92,7 @@ public class UserInterfaceDisplay implements Initializable {
         displayNum.setVisible(false);
         //userInput.setDisable(true);
 
-        setUpBoard(1, Integer.parseInt( val));
+//        setUpBoard(1, Integer.parseInt(playerNum));
 
         SystemManager.getInstance(Integer.parseInt(val)).run();
     }

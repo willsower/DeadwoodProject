@@ -17,7 +17,7 @@ public class Deadwood extends Application {
         Parent root = loader.load();
         Scene scene = new Scene(root);
 
-        stage.setTitle("Board");
+        stage.setTitle("Deadwood");
         stage.setScene(scene);
         stage.show();
     }

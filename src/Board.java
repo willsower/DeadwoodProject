@@ -9,7 +9,6 @@
 import javafx.fxml.FXML;
 import org.w3c.dom.Document;
 
-import java.io.FileInputStream;
 import java.util.*;
 import javafx.scene.image.Image;
 
@@ -17,8 +16,7 @@ public class Board {
 
     private static Board instance = null;
     private static Hashtable<String, Set> board;
-    @FXML
-    private static Image boardImage;
+    @FXML private static Image boardImage;
     
     // create instance
     public static Board getInstance() {
@@ -34,6 +32,9 @@ public class Board {
                 System.out.println("Error = " + e);
             }
             System.out.println("alsdf");
+            boardImage = new Image("board.jpg");
+
+            System.out.println("test");
 //            try {
 //                System.out.println("Working Directory = " + System.getProperty("user.dir"));
 //                FileInputStream imageFile = new FileInputStream("/Users/taichen/Desktop/Tai/WWUClasses/CSCI345/DeadwoodProject/src/board.jpg");
@@ -56,7 +57,7 @@ public class Board {
     }
 
     public Image getBoardImage() {
-        System.out.println(boardImage.toString());
+        //System.out.println(boardImage.toString());
         System.out.println("HELLO");
         return boardImage;
     }

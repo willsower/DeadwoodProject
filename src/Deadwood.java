@@ -3,26 +3,21 @@
     Purpose: Initiates the game, asks how many players, then calls
              system manager to setup everything.
 */
-import java.util.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.scene.Group;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 
 public class Deadwood extends Application {
-
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("./View/Board.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("View/Board.fxml"));
         Scene scene = new Scene(root);
-
-        systemManager(2);
+        //Board.getInstance();
+        //@FXML boardImage;
+        //boardImage.setImage(Board.getInstance().getBoardImage());
+//        systemManager(2);
         stage.setTitle("Board");
         stage.setScene(scene);
         stage.show();

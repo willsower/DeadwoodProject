@@ -97,7 +97,7 @@ public class SystemManager implements Initializable {
     }
 
     // Sets board up at each day
-    public void setUpBoard(int day, int numPlayer) {
+    public void setUpBoard(int day) {
         boardImage.setVisible(true);
         deck.setVisible(true);
 
@@ -116,7 +116,14 @@ public class SystemManager implements Initializable {
 
         //Add players into trailers
         for (int i = 0; i < numPlayer; i++) {
-
+            ImageView imageView = new ImageView();
+            //Setting image to the image view
+            imageView.setImage(players[i].getPlayerImage());
+            //Setting the image view parameters
+            imageView.setX(10);
+            imageView.setY(10);
+            imageView.setFitWidth(575);
+            imageView.setPreserveRatio(true);
         }
 
         //close window --take out when continuing to run game
@@ -250,7 +257,7 @@ public class SystemManager implements Initializable {
             ind++;
         }
         Board.getInstance().assignCardToSet(Deck.getInstance().getCardShuffle(), day);
-        setUpBoard(day, getNumPlayer());
+        setUpBoard(day);
     }
 
     // This is the run function, will play for x amount of days
@@ -264,10 +271,10 @@ public class SystemManager implements Initializable {
         int days = calculateDaysPlayed();
 
         // Run for each day
-        for (int i = 0; i < days; i++) {
+//        for (int i = 0; i < days; i++) {
             int cardsFinished = 0;
-
-            resetAll(list, i + 1);
+        resetAll(list, 1);
+//            resetAll(list, i + 1);
 
 //            do {
 //                // If card has finished increment cards finished
@@ -283,7 +290,7 @@ public class SystemManager implements Initializable {
 //                }
 //
 //            } while (cardsFinished < 9); /* !9/10 cards */
-        }
+//        }
         // Calculate end score
         endFunction();
     }

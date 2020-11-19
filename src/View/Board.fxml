@@ -116,5 +116,50 @@
             <Font size="60.0" />
          </font>
       </Label>
+      <GridPane layoutX="93.0" layoutY="109.0" prefHeight="570.0" prefWidth="760.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="700.0" translateY="-49.0">
+               <image>
+                  <Image url="@../images/dice/b1.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="650.0" translateY="-80.0">
+               <image>
+                  <Image url="@../images/dice/c1.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="670.0" translateY="-40.0">
+               <image>
+                  <Image url="@../images/dice/g1.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="720.0" translateY="-80.0">
+               <image>
+                  <Image url="@../images/dice/o1.png" />
+               </image></ImageView>
+            <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="710.0" translateY="-120.0">
+               <image>
+                  <Image url="@../images/dice/p1.png" />
+               </image></ImageView>
+            <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="630.0" translateY="-25.0">
+               <image>
+                  <Image url="@../images/dice/r1.png" />
+               </image></ImageView>
+            <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="670.0" translateY="-110.0">
+               <image>
+                  <Image url="@../images/dice/v1.png" />
+               </image></ImageView>
+            <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="640.0" translateY="-52.0">
+               <image>
+                  <Image url="@../images/dice/y1.png" />
+               </image></ImageView>
+         </children>
+      </GridPane>
    </children>
 </AnchorPane>

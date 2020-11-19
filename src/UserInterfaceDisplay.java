@@ -29,17 +29,16 @@ public class UserInterfaceDisplay implements Initializable {
     }
 
     @FXML private ImageView boardImage;
+    @FXML private Label displayText;
+    @FXML private TextField userInput;
+    @FXML private TextField displayNum; //to test take out later
+    @FXML private Button submitButton;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         boardImage.setImage(Board.getInstance().getBoardImage());
         boardImage.setVisible(false);
     }
-
-    @FXML private Label displayText;
-    @FXML private TextField userInput;
-    @FXML private TextField displayNum; //to test take out later
-    @FXML private Button submitButton;
-    //String playerNum;
 
     //want this function to set the number of players and continue to the game
     //right now all it does is print the string the user inputs then display board image
@@ -62,7 +61,6 @@ public class UserInterfaceDisplay implements Initializable {
         stage.close();
 
         systemManager(Integer.parseInt(playerNum));
-
     }
 
     // Create system for players then run functionality

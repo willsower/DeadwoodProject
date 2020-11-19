@@ -6,6 +6,7 @@
 
 import java.util.ArrayList;
 import javafx.scene.image.Image;
+import javafx.fxml.FXML;
 
 public class Card {
     // Part object which will display roles on card
@@ -27,7 +28,7 @@ public class Card {
     private int cardID;
     private ArrayList<Part> part = new ArrayList<Part>();
     private ArrayList<Player> playersInRoomOnCard = new ArrayList<Player>();
-    private Image cardImage;
+    @FXML private Image cardImage;
 
     public Card(String name, int budget, int cardID) {
         cardName = name;

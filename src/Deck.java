@@ -8,13 +8,14 @@
 import org.w3c.dom.Document;
 import java.util.Random;
 import javafx.scene.image.Image;
+import javafx.fxml.FXML;
 
 public class Deck {
     private Card[] deck;
     private Integer[] cardShuffle;
     private static Deck instance = null;
-    private Image backOfCard;
-    private Image backOfCardSmall;
+    @FXML private Image backOfCard;
+    @FXML private Image backOfCardSmall;
 
     // create instance
     public static Deck getInstance() {

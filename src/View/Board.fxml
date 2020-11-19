@@ -60,7 +60,10 @@
          </children></HBox>
       <HBox prefHeight="100.0" prefWidth="175.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="15.0">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="deck" fitHeight="150.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/CardBack-small.jpg" />
+               </image></ImageView>
          </children>
       </HBox>
       <GridPane layoutX="100.0" layoutY="136.0" maxHeight="886.0" maxWidth="1100.0" prefHeight="750.0" prefWidth="1000.0">

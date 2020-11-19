@@ -29,6 +29,7 @@ public class UserInterfaceDisplay implements Initializable {
     }
 
     @FXML private ImageView boardImage;
+    @FXML private ImageView deck;
     @FXML private Label displayText;
     @FXML private TextField userInput;
     @FXML private TextField displayNum; //to test take out later
@@ -38,6 +39,7 @@ public class UserInterfaceDisplay implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         boardImage.setImage(Board.getInstance().getBoardImage());
         boardImage.setVisible(false);
+        deck.setVisible(false);
     }
 
     //want this function to set the number of players and continue to the game
@@ -55,6 +57,7 @@ public class UserInterfaceDisplay implements Initializable {
         //userInput.setDisable(true);
 
         boardImage.setVisible(true);
+        deck.setVisible(false);
 
         //close window --take out when continuing to run game
         Stage stage = (Stage) submitButton.getScene().getWindow();

@@ -33,8 +33,8 @@ public class UserInterfaceDisplay implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("RUN HEREE???");
         boardImage.setImage(Board.getInstance().getBoardImage());
+        boardImage.setVisible(false);
     }
-
 
     @FXML private Label displayText;
     @FXML private TextField userInput;
@@ -43,10 +43,18 @@ public class UserInterfaceDisplay implements Initializable {
 
 
     //want this function to set the number of players and continue to the game
-    //right now all it does is print the string the user inputs
+    //right now all it does is print the string the user inputs then display board image
     public void submitPlayers(ActionEvent event) {
         String playerNum = userInput.getText();
         displayNum.setText("number of players is " + playerNum);
+
+        submitButton.setVisible(false); //may also nee to disable all of these
+        displayText.setVisible(false);
+        userInput.setVisible(false);
+        displayNum.setVisible(false);
+        //userInput.setDisable(true);
+
+        boardImage.setVisible(true);
 
     }
 

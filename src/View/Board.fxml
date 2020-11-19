@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="850.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterfaceDisplay">
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterfaceDisplay">
    <children>
-      <ImageView fitHeight="900.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="700.0" fitWidth="1100.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/table.jpeg" />
          </image></ImageView>
@@ -89,7 +89,7 @@
             <ImageView fx:id="hotelCard" fitHeight="150.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" translateX="805.0" translateY="534.0" />
          </children>
       </GridPane>
-      <VBox alignment="TOP_CENTER" fillWidth="false" layoutX="81.0" layoutY="36.0" prefHeight="459.0" prefWidth="611.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="TOP_CENTER" fillWidth="false" layoutX="81.0" layoutY="36.0" spacing="20.0">
          <children>
             <Label fx:id="displayText" prefWidth="132.0" text="How many players?" />
             <TextField fx:id="userInput" promptText="2-8" />

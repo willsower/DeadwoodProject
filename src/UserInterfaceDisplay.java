@@ -67,10 +67,24 @@ public class UserInterfaceDisplay implements Initializable {
     //want this function to set the number of players and continue to the game
     //right now all it does is print the string the user inputs then display board image
     public void submitPlayers(ActionEvent event) {
-        String playerNum = userInput.getText();
+        String val = userInput.getText();
         //setPlayerNum(playerNum);
 
-        displayNum.setText("number of players is " + playerNum);
+        //String val;
+        int numberPlayers = 0;
+
+        while (!(numberPlayers >= 2 && numberPlayers <= 8)) {
+            //System.out.println("How many players? (2 - 8) ");
+            //val = myOb.nextLine();
+            val = userInput.getText();
+            try {
+                numberPlayers = Integer.parseInt(val);
+            } catch (NumberFormatException e) {
+            }
+        }
+
+
+        displayNum.setText("number of players is " + val);
 
         submitButton.setVisible(false); //may also nee to disable all of these
         displayText.setVisible(false);
@@ -78,9 +92,9 @@ public class UserInterfaceDisplay implements Initializable {
         displayNum.setVisible(false);
         //userInput.setDisable(true);
 
-        setUpBoard(1, Integer.parseInt(playerNum));
+        setUpBoard(1, Integer.parseInt( val));
 
-        SystemManager.getInstance(Integer.parseInt(playerNum)).run();
+        SystemManager.getInstance(Integer.parseInt(val)).run();
     }
 
     // Sets board up at each day

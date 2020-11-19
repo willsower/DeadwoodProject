@@ -6,7 +6,6 @@
              ScoringManager and will reset each day by calling helper functions
 */
 
-import java.util.Arrays;
 import java.util.*;
 
 public class SystemManager {

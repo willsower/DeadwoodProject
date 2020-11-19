@@ -14,9 +14,7 @@ public class Deadwood extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("View/Board.fxml"));
         Scene scene = new Scene(root);
-        //Board.getInstance();
-        //@FXML boardImage;
-        //boardImage.setImage(Board.getInstance().getBoardImage());
+
 //        systemManager(2);
         stage.setTitle("Board");
         stage.setScene(scene);

@@ -88,5 +88,5 @@ This class will hold all sets in a hashtable. Decided to use this data structure
 
 ## UML Diagram
 
-![UML Diagram](./img/UML.png)
+![UML Diagram](../../Desktop/Tai/CSCI345/DeadwoodProject/img/UML.png)
 

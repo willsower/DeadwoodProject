@@ -32,7 +32,7 @@ public class Board {
                 System.out.println("Error = " + e);
             }
             System.out.println("alsdf");
-            boardImage = new Image("board.jpg");
+            boardImage = new Image("images/board.jpg");
 
             System.out.println("test");
 //            try {

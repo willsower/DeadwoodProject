@@ -15,10 +15,15 @@ public class Deadwood extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("View/Board.fxml"));
         Scene scene = new Scene(root);
 
-//        systemManager(2);
+        // Get num players
+        int numPlayers = 2;
+
+        // Display board
         stage.setTitle("Board");
         stage.setScene(scene);
         stage.show();
+
+        systemManager(numPlayers);
     }
 
     public static void main(String[] args) {

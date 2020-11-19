@@ -17,9 +17,18 @@
                   <Image url="@../images/board.jpg" />
                </image>
                <HBox.margin>
-                  <Insets left="100.0" top="110.0" />
+                  <Insets left="100.0" top="140.0" />
                </HBox.margin>
             </ImageView>
          </children></HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="15.0">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/CardBack-small.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

@@ -55,6 +55,10 @@ public class Deck {
         return temp[cardNum - 1];
     }
 
+    public Image getBackOfCard() { return backOfCard; }
+
+    public Image getBackOfCardSmall() { return backOfCardSmall; }
+
     // Shuffle is going to create an array of a random
     // generated list of numbers (1->40). This will ensure
     // randomness at every game

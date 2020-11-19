@@ -21,6 +21,8 @@ import java.util.*;
 public class SystemManager implements Initializable {
     private Player[] players;
     private int numPlayer;
+    int cardsFinished = 0;
+    private Player currentP;
     private static SystemManager instance = null;
 
     // create instance
@@ -58,43 +60,68 @@ public class SystemManager implements Initializable {
     @FXML private Label dayDisplay; // Display current day
     @FXML private Label displayText;
     @FXML private TextField userInput;
-    @FXML private TextField displayNum; //to test take out later
     @FXML private Button submitButton;
+
+    //Action Buttons
+    @FXML private Button actButton;
+    @FXML private Button rehearseButton;
+    @FXML private Button upgradeButton;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         boardImage.setImage(Board.getInstance().getBoardImage());
         boardImage.setVisible(false);
         deck.setVisible(false);
+        makeButtonVisible(false,false,false);
+
     }
 
     //want this function to set the number of players and continue to the game
     //right now all it does is print the string the user inputs then display board image
     public void submitPlayers(ActionEvent event) {
-        String val = userInput.getText();
-        //setPlayerNum(playerNum);
-
-        //String val;
         int numberPlayers = 0;
-
-        val = userInput.getText();
+        String val = userInput.getText();
         try {
             numberPlayers = Integer.parseInt(val);
         } catch (NumberFormatException e) {
         }
 
         if (numberPlayers >= 2 && numberPlayers <= 8) {
-            displayNum.setText("number of players is " + val);
 
             submitButton.setVisible(false); //may also nee to disable all of these
             displayText.setVisible(false);
             userInput.setVisible(false);
-            displayNum.setVisible(false);
 
             init(Integer.parseInt(val));
             run();
         }
     }
+
+    public void actButtonAction(ActionEvent event) {
+        makeButtonVisible(false,false,false);
+        if( OnTurn.getInstance().act(currentP)) {
+            cardsFinished++;
+        }
+    }
+    
+    public void rehearseButtonAction(ActionEvent event) {
+        OnTurn.getInstance().rehearse(currentP);
+        makeButtonVisible(false, false,false);
+    }
+    public void upgradeButtonAction(ActionEvent event) {
+
+        makeButtonVisible(false,false,false);
+
+    }
+
+    public void makeButtonVisible(boolean act, boolean rehearse, boolean upgrade) {
+        actButton.setVisible(act);
+        rehearseButton.setVisible(rehearse);
+        upgradeButton.setVisible(upgrade);
+    }
+
+
+
 
     // Sets board up at each day
     public void setUpBoard(int day) {
@@ -271,16 +298,15 @@ public class SystemManager implements Initializable {
         int days = calculateDaysPlayed();
 
         // Run for each day
-//        for (int i = 0; i < days; i++) {
-            int cardsFinished = 0;
-        resetAll(list, 1);
-//            resetAll(list, i + 1);
+        for (int i = 0; i < days; i++) {
+            cardsFinished = 0;
+
+            resetAll(list, i + 1);
 
 //            do {
+//                currentP = list[player];
 //                // If card has finished increment cards finished
-//                if (turn.turn(list[player])) {
-//                    cardsFinished++;
-//                }
+//                turn.turn(list[player]);
 //
 //                player++; // Next player turn
 //
@@ -290,7 +316,7 @@ public class SystemManager implements Initializable {
 //                }
 //
 //            } while (cardsFinished < 9); /* !9/10 cards */
-//        }
+        }
         // Calculate end score
         endFunction();
     }

@@ -10,6 +10,17 @@ import java.util.Random;
 import java.util.ArrayList;
 
 public class OnTurn {
+    private static OnTurn instance = null;
+
+    // Create instance
+    public static OnTurn getInstance() {
+        if (instance == null) {
+            instance = new OnTurn();
+        }
+        return instance;
+    }
+
+
     // Return true if number is numeric
     // false if not
     public static boolean isNumeric(String str) {
@@ -249,26 +260,13 @@ public class OnTurn {
         if (player.getOffCardRole() == false && player.getOnCardRole() == false) {
             moveManager(player);
         } else {
-            System.out.println("  You are in room " + player.getPlayerLocation());
-            System.out.println("  You are on card " + Deck.getInstance()
-                    .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getCardName());
-            System.out.println("  Your role is " + player.getRoleName());
-            System.out.println("  Card budget is " +   Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getCardBudget());
 
             // If player can rehearse or act, give them options
             if (player.getRoleLevel() + player.getPracticeChip() < 6) {
-                int decide = UserInterface.getInstance().actOrRehearse();
-
-                if (decide == 1) {
-                    endOfCard = act(player);
-                } else if (decide == 2) {
-                    rehearse(player);
-                }
-                // If they can't rehearse anymore give them only act option
+                SystemManager.getInstance().makeButtonVisible(true,true,false);
+            // If they can't rehearse anymore give them only act option
             } else {
-                if (UserInterface.getInstance().act()) {
-                    endOfCard = act(player);
-                }
+                SystemManager.getInstance().makeButtonVisible(true,false,false);
             }
         }
         return endOfCard; // return to SystemManager.java

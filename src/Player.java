@@ -93,9 +93,6 @@ public class Player {
     public Image getPlayerImage() { return playerImage; }
 
     // Setter functions
-    public void setPlayerPriority(int priority) {
-        playerPriority = priority;
-    }
 
     public void setLevel(int level) {
         this.level = level;
@@ -154,30 +151,14 @@ public class Player {
     // Set color name for player
     public void setColorName(String name) {
         switch (name) {
-            case "b":
-                colorName = "Blue";
-                break;
-            case "c":
-                colorName = "Cadet Blue";
-                break;
-            case "g":
-                colorName = "Green";
-                break;
-            case "o":
-                colorName = "Orange";
-                break;
-            case "p":
-                colorName = "Purple";
-                break;
-            case "r":
-                colorName = "Red";
-                break;
-            case "v":
-                colorName = "Violet";
-                break;
-            default:
-                colorName = "Yellow";
-                break;
+            case "b" -> colorName = "Blue";
+            case "c" -> colorName = "Cadet Blue";
+            case "g" -> colorName = "Green";
+            case "o" -> colorName = "Orange";
+            case "p" -> colorName = "Purple";
+            case "r" -> colorName = "Red";
+            case "v" -> colorName = "Violet";
+            default -> colorName = "Yellow";
         }
     }
 

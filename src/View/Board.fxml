@@ -105,7 +105,6 @@
             <Label fx:id="displayText" prefWidth="132.0" text="How many players?" />
             <TextField fx:id="userInput" promptText="2-8" />
             <Button fx:id="submitButton" mnemonicParsing="false" onAction="#submitPlayers" text="Submit" />
-            <TextField fx:id="displayNum" />
          </children>
          <padding>
             <Insets top="40.0" />
@@ -161,5 +160,12 @@
                </image></ImageView>
          </children>
       </GridPane>
+      <VBox alignment="TOP_CENTER" spacing="20.0" AnchorPane.topAnchor="200.0">
+         <children>
+            <Button fx:id="actButton" mnemonicParsing="false" onAction="#actButtonAction" text="Act" />
+            <Button fx:id="rehearseButton" mnemonicParsing="false" onAction="#rehearseButtonAction" text="Rehearse" />
+            <Button fx:id="upgradeButton" mnemonicParsing="false" onAction="#upgradeButtonAction" text="Upgrade" />
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

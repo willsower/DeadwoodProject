@@ -10,6 +10,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Deadwood extends Application {
+    Stage startWindow;
+
+
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("View/Board.fxml"));

@@ -65,13 +65,6 @@ public class UserInterfaceDisplay implements Initializable {
 
     }
 
-//    public String getPlayerNum() {
-//        return playerNum;
-//    }
-//    public void setPlayerNum(String num) {
-//        playerNum = num;
-//    }
-
     // Create system for players then run functionality
     public static void systemManager(int numPlayers) {
         SystemManager systemManager = new SystemManager(numPlayers);

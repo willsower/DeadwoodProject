@@ -27,15 +27,14 @@ public class Card {
     private int cardID;
     private ArrayList<Part> part = new ArrayList<Part>();
     private ArrayList<Player> playersInRoomOnCard = new ArrayList<Player>();
+    private Image cardImage;
 
     public Card(String name, int budget, int cardID) {
         cardName = name;
         cardBudget = budget;
         this.cardID = cardID;
         String fileName = cardID + ".png";
-//        System.out.print(fileName);
-//        image = new Image("./images/cards/" + fileName);
-//        System.out.print("hiiii");
+        cardImage = new Image("./images/cards/" + fileName);
     }
 
     // Get functions
@@ -58,6 +57,8 @@ public class Card {
     public ArrayList<Part> getPart() {
         return part;
     }
+
+    public Image getCardImage() { return cardImage; }
 
     public int getPartLevel(String partName) {
         ArrayList<Part> myPart = getPart();

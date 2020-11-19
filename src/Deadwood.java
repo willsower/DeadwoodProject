@@ -10,37 +10,19 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Deadwood extends Application {
-    //Stage startWindow;
-    //Button submit;
 
     @Override
     public void start(Stage stage) throws Exception {
-        //Parent root1 = FXMLLoader.load(getClass().getResource("View/playerNumber.fxml"));
-        //Scene scene2 = new Scene(root1);
 
         Parent root = FXMLLoader.load(getClass().getResource("View/Board.fxml"));
         Scene scene = new Scene(root);
-        //Board.getInstance();
-        //@FXML boardImage;
-        //boardImage.setImage(Board.getInstance().getBoardImage());
-//        systemManager(2);
-        //stage.setTitle("playerNum");
-        //stage.setScene(scene2);
-        //stage.show();
+
+        //systemManager(2);
 
         stage.setTitle("Board");
         stage.setScene(scene);
         stage.show();
 
-
-        //create window
-        //startWindow = stage;
-        //startWindow.setTitle("Player Button");
-
-        //TextField playerNumInput = new TextField();
-
-        //button = new Button("Submit");
-        //button.setOnAction(e -> System.out.println(playerNumInput.getText()));
 
     }
 
@@ -63,12 +45,19 @@ public class Deadwood extends Application {
 //            }
 //        }
 //        systemManager(numberPlayers);
+        //String numberOfPlayers = UserInterfaceDisplay.getInstance().getPlayerNum();
+        //systemManager(Integer.parseInt(numberOfPlayers));
 
     }
+
+
+    /*
+     //moved to UserInterfaceDisplay for testing
 
     // Create system for players then run functionality
     public static void systemManager(int numPlayers) {
         SystemManager systemManager = new SystemManager(numPlayers);
         systemManager.run();
     }
+   */
 }

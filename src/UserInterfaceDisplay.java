@@ -11,6 +11,8 @@ import javafx.scene.control.Label;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,7 +20,6 @@ import java.util.ResourceBundle;
 public class UserInterfaceDisplay implements Initializable {
 
     private static UserInterfaceDisplay instance = null;
-
     // Create instance
     public static UserInterfaceDisplay getInstance() {
         if (instance == null) {
@@ -28,7 +29,6 @@ public class UserInterfaceDisplay implements Initializable {
     }
 
     @FXML private ImageView boardImage;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("RUN HEREE???");
@@ -38,14 +38,15 @@ public class UserInterfaceDisplay implements Initializable {
 
     @FXML private Label displayText;
     @FXML private TextField userInput;
-    @FXML private TextField displayNum;
+    @FXML private TextField displayNum; //to test
     @FXML private Button submitButton;
-
+    //String playerNum;
 
     //want this function to set the number of players and continue to the game
     //right now all it does is print the string the user inputs then display board image
     public void submitPlayers(ActionEvent event) {
         String playerNum = userInput.getText();
+        //setPlayerNum(playerNum);
         displayNum.setText("number of players is " + playerNum);
 
         submitButton.setVisible(false); //may also nee to disable all of these
@@ -56,6 +57,25 @@ public class UserInterfaceDisplay implements Initializable {
 
         boardImage.setVisible(true);
 
+        //close window --take out when continuing to run game
+        Stage stage = (Stage) submitButton.getScene().getWindow();
+        stage.close();
+
+        systemManager(Integer.parseInt(playerNum));
+
+    }
+
+//    public String getPlayerNum() {
+//        return playerNum;
+//    }
+//    public void setPlayerNum(String num) {
+//        playerNum = num;
+//    }
+
+    // Create system for players then run functionality
+    public static void systemManager(int numPlayers) {
+        SystemManager systemManager = new SystemManager(numPlayers);
+        systemManager.run();
     }
 
 

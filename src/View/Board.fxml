@@ -20,27 +20,27 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="currentPlayer" text="Current Player: 1" textFill="WHITE" translateY="-41.0">
+            <Label fx:id="currentPlayer" textFill="WHITE" translateY="-41.0">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label fx:id="playerDieColor" layoutX="10.0" layoutY="48.0" text="Die Color: Red" textFill="WHITE" translateX="20.0" translateY="-20.0">
+            <Label fx:id="playerDieColor" layoutX="10.0" layoutY="48.0" textFill="WHITE" translateX="20.0" translateY="-20.0">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <Label fx:id="playerDollar" layoutX="10.0" layoutY="48.0" text="Dollars: 0" textFill="WHITE" translateX="20.0" translateY="-2.0">
+            <Label fx:id="playerDollar" layoutX="10.0" layoutY="48.0" textFill="WHITE" translateX="20.0" translateY="-2.0">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <Label fx:id="playerCredit" layoutX="10.0" layoutY="48.0" text="Credits: 0" textFill="WHITE" translateX="20.0" translateY="17.0">
+            <Label fx:id="playerCredit" layoutX="10.0" layoutY="48.0" textFill="WHITE" translateX="20.0" translateY="17.0">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <Label fx:id="playerPracticeChip" layoutX="10.0" layoutY="48.0" text="Practice Chip: 0" textFill="WHITE" translateX="20.0" translateY="35.0">
+            <Label fx:id="playerPracticeChip" layoutX="10.0" layoutY="48.0" textFill="WHITE" translateX="20.0" translateY="35.0">
                <font>
                   <Font size="17.0" />
                </font>

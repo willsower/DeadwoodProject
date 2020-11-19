@@ -108,8 +108,12 @@ public class UserInterfaceDisplay implements Initializable {
 //        stage.close();
     }
 
-    public void showCurrentPlayerInfo() {
-
+    public void showCurrentPlayerInfo(int player, String color, int dollar, int credit, int practice) {
+        currentPlayer.setText("Current Player: " + player);
+        playerDieColor.setText("Die Color: " + color);
+        playerDollar.setText("Dollar: " + dollar);
+        playerCredit.setText("Credit " + credit);
+        playerPracticeChip.setText("Practice Chip: " + practice);
     }
 
     // Display winners of game

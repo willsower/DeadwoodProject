@@ -18,6 +18,7 @@ public class Player {
     private int rolePriority = 0;
     private String roleLocation;
     private String roleName; // part
+    private String colorName;
 
     // Constructor
     public Player(int playerPriority, int level, int dollar, int credit, String playerLocation) {
@@ -83,6 +84,8 @@ public class Player {
         return roleName;
     }
 
+    public String getColorName() { return colorName; }
+
     // Setter functions
     public void setPlayerPriority(int priority) {
         playerPriority = priority;
@@ -135,6 +138,8 @@ public class Player {
     public void setRoleName(String name) {
         roleName = name;
     }
+
+    public void setColorName(String name) { colorName = name; }
 
     // Function to reset players at the end of day or card
     // depending on the boolean value

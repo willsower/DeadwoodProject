@@ -21,13 +21,13 @@ public class Player {
     private String colorName;
 
     // Constructor
-    public Player(int playerPriority, int level, int dollar, int credit, String playerLocation) {
+    public Player(int playerPriority, int level, int dollar, int credit, String playerLocation, String color) {
         this.playerPriority = playerPriority;
         this.level = level;
         this.dollar = dollar;
         this.credit = credit;
         this.playerLocation = playerLocation;
-
+        setColorName(color);
         // printPlayerInfo();
     }
 
@@ -139,7 +139,37 @@ public class Player {
         roleName = name;
     }
 
-    public void setColorName(String name) { colorName = name; }
+    public void setColorName(String name) {
+        switch (name) {
+            case "b":
+                colorName = "Blue";
+                break;
+            case "c":
+                colorName = "Cadet Blue";
+                break;
+            case "g":
+                colorName = "Green";
+                break;
+            case "o":
+                colorName = "Orange";
+                break;
+            case "p":
+                colorName = "Purple";
+                break;
+            case "r":
+                colorName = "Red";
+                break;
+            case "v":
+                colorName = "Violet";
+                break;
+            case "w":
+                colorName = "White";
+                break;
+            default:
+                colorName = "Yellow";
+                break;
+        }
+    }
 
     // Function to reset players at the end of day or card
     // depending on the boolean value

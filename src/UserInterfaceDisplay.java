@@ -7,6 +7,10 @@
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
+import javafx.scene.control.Label;
+import javafx.event.ActionEvent;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Button;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -30,6 +34,22 @@ public class UserInterfaceDisplay implements Initializable {
         System.out.println("RUN HEREE???");
         boardImage.setImage(Board.getInstance().getBoardImage());
     }
+
+
+    @FXML private Label displayText;
+    @FXML private TextField userInput;
+    @FXML private TextField displayNum;
+    @FXML private Button submitButton;
+
+
+    //want this function to set the number of players and continue to the game
+    //right now all it does is print the string the user inputs
+    public void submitPlayers(ActionEvent event) {
+        String playerNum = userInput.getText();
+        displayNum.setText("number of players is " + playerNum);
+
+    }
+
 
     // Display winners of game
     public void displayWinner(Integer[] finals) {

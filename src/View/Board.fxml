@@ -123,41 +123,14 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="700.0" translateY="-49.0">
-               <image>
-                  <Image url="@../images/dice/b1.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="650.0" translateY="-80.0">
-               <image>
-                  <Image url="@../images/dice/c1.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="670.0" translateY="-40.0">
-               <image>
-                  <Image url="@../images/dice/g1.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="720.0" translateY="-80.0">
-               <image>
-                  <Image url="@../images/dice/o1.png" />
-               </image></ImageView>
-            <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="710.0" translateY="-120.0">
-               <image>
-                  <Image url="@../images/dice/p1.png" />
-               </image></ImageView>
-            <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="630.0" translateY="-25.0">
-               <image>
-                  <Image url="@../images/dice/r1.png" />
-               </image></ImageView>
-            <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="670.0" translateY="-110.0">
-               <image>
-                  <Image url="@../images/dice/v1.png" />
-               </image></ImageView>
-            <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="640.0" translateY="-52.0">
-               <image>
-                  <Image url="@../images/dice/y1.png" />
-               </image></ImageView>
+            <ImageView fx:id="player1" fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="700.0" translateY="-49.0" />
+            <ImageView fx:id="player2" fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="650.0" translateY="-80.0" />
+            <ImageView fx:id="player3" fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="670.0" translateY="-40.0" />
+            <ImageView fx:id="player4" fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="720.0" translateY="-80.0" />
+            <ImageView fx:id="player5" fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="710.0" translateY="-120.0" />
+            <ImageView fx:id="player6" fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="630.0" translateY="-25.0" />
+            <ImageView fx:id="player7" fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="670.0" translateY="-110.0" />
+            <ImageView fx:id="player8" fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="640.0" translateY="-52.0" />
          </children>
       </GridPane>
       <VBox alignment="TOP_CENTER" spacing="20.0" AnchorPane.topAnchor="200.0">

@@ -19,6 +19,7 @@ public class UserInterface {
         return instance;
     }
 
+    /*used elsewhere*/
     // Prompts user how many players will be playing
     // Will throw player in loop until they enter 2-8 players
     public static int getNumPlayers() {

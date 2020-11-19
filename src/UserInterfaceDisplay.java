@@ -80,8 +80,7 @@ public class UserInterfaceDisplay implements Initializable {
 
         setUpBoard(1);
 
-        SystemManager systemManager = new SystemManager(Integer.parseInt(playerNum));
-        systemManager.run();
+        SystemManager.getInstance(Integer.parseInt(playerNum)).run();
     }
 
     public void setUpBoard(int day) {

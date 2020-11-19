@@ -12,6 +12,15 @@ import java.util.*;
 public class SystemManager {
     private Player[] players;
     private int numPlayer;
+    private static SystemManager instance = null;
+
+    // create instance
+    public static SystemManager getInstance(int num) {
+        if (instance == null) {
+            instance = new SystemManager(num);
+        }
+        return instance;
+    }
 
     // Turn manager initializes all players
     public SystemManager(int numPlayer) {

@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+//import javafx.event.KeyEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -54,8 +55,10 @@ public class UserInterfaceDisplay implements Initializable {
     @FXML private Label dayDisplay; // Display current day
     @FXML private Label displayText;
     @FXML private TextField userInput;
-    @FXML private TextField displayNum; //to test take out later
+    //@FXML private TextField displayNum; //to test take out later
     @FXML private Button submitButton;
+
+    //userInput.setConverter(Integer.class);
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -69,33 +72,41 @@ public class UserInterfaceDisplay implements Initializable {
     public void submitPlayers(ActionEvent event) {
         String val = userInput.getText();
         //setPlayerNum(playerNum);
-
-        //String val;
         int numberPlayers = 0;
+        //val = userInput.getText();
+        try {
+            numberPlayers = Integer.parseInt(val);
+        } catch (NumberFormatException e) {
+        }
+        //String val;
 
-        while (!(numberPlayers >= 2 && numberPlayers <= 8)) {
+
+        if (numberPlayers >= 2 && numberPlayers <= 8) {
             //System.out.println("How many players? (2 - 8) ");
             //val = myOb.nextLine();
-            val = userInput.getText();
-            try {
-                numberPlayers = Integer.parseInt(val);
-            } catch (NumberFormatException e) {
-            }
+            submitButton.setVisible(false); //may also nee to disable all of these
+            displayText.setVisible(false);
+            userInput.setVisible(false);
+            //displayNum.setVisible(false);
+            //userInput.setDisable(true);
+
+            setUpBoard(1, Integer.parseInt(val));
+            SystemManager.getInstance(Integer.parseInt(val)).run();
+
         }
 
 
-        displayNum.setText("number of players is " + val);
+        //displayNum.setText("number of players is " + val);
 
-        submitButton.setVisible(false); //may also nee to disable all of these
-        displayText.setVisible(false);
-        userInput.setVisible(false);
-        displayNum.setVisible(false);
-        //userInput.setDisable(true);
 
-//        setUpBoard(1, Integer.parseInt(playerNum));
 
-        SystemManager.getInstance(Integer.parseInt(val)).run();
+
     }
+
+    public void keyTypeIntEvent() {
+
+    }
+
 
     // Sets board up at each day
     public void setUpBoard(int day, int numPlayer) {

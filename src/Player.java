@@ -175,9 +175,6 @@ public class Player {
             case "v":
                 colorName = "Violet";
                 break;
-            case "w":
-                colorName = "White";
-                break;
             default:
                 colorName = "Yellow";
                 break;

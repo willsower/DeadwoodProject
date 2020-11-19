@@ -139,7 +139,7 @@ public class SystemManager implements Initializable {
         players = new Player[numPlayer];
 
         // Array of dice colors
-        String[] playerDie = new String[]{"b", "c", "g", "o", "p", "r", "v", "w", "y"};
+        String[] playerDie = new String[]{"b", "c", "g", "o", "p", "r", "v", "y"};
 
         // Populate players
         for (int i = 0; i < numPlayer; i++) {

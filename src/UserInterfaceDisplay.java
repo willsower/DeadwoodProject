@@ -31,7 +31,6 @@ public class UserInterfaceDisplay implements Initializable {
     @FXML private ImageView boardImage;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println("RUN HEREE???");
         boardImage.setImage(Board.getInstance().getBoardImage());
         boardImage.setVisible(false);
     }
@@ -64,13 +63,6 @@ public class UserInterfaceDisplay implements Initializable {
         systemManager(Integer.parseInt(playerNum));
 
     }
-
-//    public String getPlayerNum() {
-//        return playerNum;
-//    }
-//    public void setPlayerNum(String num) {
-//        playerNum = num;
-//    }
 
     // Create system for players then run functionality
     public static void systemManager(int numPlayers) {

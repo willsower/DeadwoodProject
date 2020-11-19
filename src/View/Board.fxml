@@ -6,7 +6,7 @@
 
 <AnchorPane prefHeight="750.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterfaceDisplay">
    <children>
-      <HBox layoutY="6.0">
+      <HBox>
          <children>
             <ImageView fx:id="boardImage" fitHeight="750.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
                <image>

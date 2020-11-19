@@ -4,6 +4,8 @@
              player variables at the end of card or end of day
 */
 
+import javafx.scene.image.Image;
+
 public class Player {
     private int playerPriority;
     private int level;
@@ -19,6 +21,7 @@ public class Player {
     private String roleLocation;
     private String roleName; // part
     private String colorName;
+    private Image playerImage;
 
     // Constructor
     public Player(int playerPriority, int level, int dollar, int credit, String playerLocation, String color) {
@@ -28,6 +31,7 @@ public class Player {
         this.credit = credit;
         this.playerLocation = playerLocation;
         setColorName(color);
+        setPlayerImage();
         // printPlayerInfo();
     }
 
@@ -86,6 +90,8 @@ public class Player {
 
     public String getColorName() { return colorName; }
 
+    public Image getPlayerImage() { return playerImage; }
+
     // Setter functions
     public void setPlayerPriority(int priority) {
         playerPriority = priority;
@@ -139,6 +145,14 @@ public class Player {
         roleName = name;
     }
 
+    // Set current player's image
+    public void setPlayerImage() {
+        String col = getColorName().toLowerCase();
+
+        playerImage = new Image(col.charAt(0) + getLevel() + ".png");
+    }
+
+    // Set color name for player
     public void setColorName(String name) {
         switch (name) {
             case "b":

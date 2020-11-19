@@ -27,19 +27,19 @@ public class SystemManager {
         for (int i = 0; i < numPlayer; i++) {
             switch (numPlayer) {
                 case 5:
-                    players[i] = new Player(i + 1, 1, 0, 2, "trailer");
+                    players[i] = new Player(i + 1, 1, 0, 2, "trailer", playerDie[i]);
                     break;
                 case 6:
-                    players[i] = new Player(i + 1, 1, 0, 4, "trailer");
+                    players[i] = new Player(i + 1, 1, 0, 4, "trailer", playerDie[i]);
                     break;
                 case 7:
-                    players[i] = new Player(i + 1, 2, 0, 0, "trailer");
+                    players[i] = new Player(i + 1, 2, 0, 0, "trailer", playerDie[i]);
                     break;
                 case 8:
-                    players[i] = new Player(i + 1, 2, 0, 0, "trailer");
+                    players[i] = new Player(i + 1, 2, 0, 0, "trailer", playerDie[i]);
                     break;
                 default:
-                    players[i] = new Player(i + 1, 1, 0, 0, "trailer");
+                    players[i] = new Player(i + 1, 1, 0, 0, "trailer", playerDie[i]);
                     break;
             }
         }

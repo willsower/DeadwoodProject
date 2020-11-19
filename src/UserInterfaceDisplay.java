@@ -30,6 +30,16 @@ public class UserInterfaceDisplay implements Initializable {
 
     @FXML private ImageView boardImage;
     @FXML private ImageView deck;
+    @FXML private ImageView trainStationCard;
+    @FXML private ImageView jailCard;
+    @FXML private ImageView mainStreetCard;
+    @FXML private ImageView generalStoreCard;
+    @FXML private ImageView saloonCard;
+    @FXML private ImageView ranchCard;
+    @FXML private ImageView bankCard;
+    @FXML private ImageView secretHideoutCard;
+    @FXML private ImageView churchCard;
+    @FXML private ImageView hotelCard;
     @FXML private Label displayText;
     @FXML private TextField userInput;
     @FXML private TextField displayNum; //to test take out later
@@ -56,6 +66,10 @@ public class UserInterfaceDisplay implements Initializable {
         displayNum.setVisible(false);
         //userInput.setDisable(true);
 
+        setUpBoard(Integer.parseInt(playerNum));
+    }
+
+    public void setUpBoard(int playerNum) {
         boardImage.setVisible(true);
         deck.setVisible(false);
 
@@ -63,7 +77,7 @@ public class UserInterfaceDisplay implements Initializable {
         Stage stage = (Stage) submitButton.getScene().getWindow();
         stage.close();
 
-        systemManager(Integer.parseInt(playerNum));
+        systemManager(playerNum);
     }
 
     // Create system for players then run functionality

@@ -27,13 +27,4 @@ public class Deadwood extends Application {
     }
 
 
-    /*
-     //moved to UserInterfaceDisplay for testing
-
-    // Create system for players then run functionality
-    public static void systemManager(int numPlayers) {
-        SystemManager systemManager = new SystemManager(numPlayers);
-        systemManager.run();
-    }
-   */
 }

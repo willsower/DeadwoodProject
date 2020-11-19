@@ -78,12 +78,13 @@ public class UserInterfaceDisplay implements Initializable {
         displayNum.setVisible(false);
         //userInput.setDisable(true);
 
-        setUpBoard(1);
+        setUpBoard(1, Integer.parseInt(playerNum));
 
         SystemManager.getInstance(Integer.parseInt(playerNum)).run();
     }
 
-    public void setUpBoard(int day) {
+    // Sets board up at each day
+    public void setUpBoard(int day, int numPlayer) {
         boardImage.setVisible(true);
         deck.setVisible(true);
 
@@ -101,6 +102,9 @@ public class UserInterfaceDisplay implements Initializable {
         dayDisplay.setText("Day " + day);
 
         //Add players into trailers
+        for (int i = 0; i < numPlayer; i++) {
+
+        }
 
         //close window --take out when continuing to run game
 //        Stage stage = (Stage) submitButton.getScene().getWindow();

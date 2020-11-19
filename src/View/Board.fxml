@@ -84,7 +84,7 @@
             <ImageView fx:id="saloonCard" fitHeight="150.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" translateX="525.0" translateY="150.0" />
             <ImageView fx:id="ranchCard" fitHeight="150.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" translateX="208.0" translateY="315.0" />
             <ImageView fx:id="bankCard" fitHeight="150.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" translateX="517.0" translateY="313.0" />
-            <ImageView fx:id="secretHideout" fitHeight="150.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="527.0" />
+            <ImageView fx:id="secretHideoutCard" fitHeight="150.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="527.0" />
             <ImageView fx:id="churchCard" fitHeight="150.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" translateX="517.0" translateY="529.0" />
             <ImageView fx:id="hotelCard" fitHeight="150.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" translateX="805.0" translateY="534.0" />
          </children>

@@ -71,13 +71,24 @@ public class UserInterfaceDisplay implements Initializable {
 
     public void setUpBoard(int playerNum) {
         boardImage.setVisible(true);
-        deck.setVisible(false);
+        deck.setVisible(true);
+
+        trainStationCard.setImage(Deck.getInstance().getBackOfCardSmall());
+        jailCard.setImage(Deck.getInstance().getBackOfCardSmall());
+        mainStreetCard.setImage(Deck.getInstance().getBackOfCardSmall());
+        generalStoreCard.setImage(Deck.getInstance().getBackOfCardSmall());
+        saloonCard.setImage(Deck.getInstance().getBackOfCardSmall());
+        ranchCard.setImage(Deck.getInstance().getBackOfCardSmall());
+        bankCard.setImage(Deck.getInstance().getBackOfCardSmall());
+        secretHideoutCard.setImage(Deck.getInstance().getBackOfCardSmall());
+        churchCard.setImage(Deck.getInstance().getBackOfCardSmall());
+        hotelCard.setImage(Deck.getInstance().getBackOfCardSmall());
 
         //close window --take out when continuing to run game
-        Stage stage = (Stage) submitButton.getScene().getWindow();
-        stage.close();
+//        Stage stage = (Stage) submitButton.getScene().getWindow();
+//        stage.close();
 
-        systemManager(playerNum);
+//        systemManager(playerNum);
     }
 
     // Create system for players then run functionality

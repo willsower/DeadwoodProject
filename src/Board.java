@@ -34,13 +34,13 @@ public class Board {
                 System.out.println("Error = " + e);
             }
             System.out.println("alsdf");
-            try {
-                FileInputStream imageFile = new FileInputStream("../img/board.jpg");
-                boardImage = new Image(imageFile);
-                System.out.println("GOG");
-            } catch (Exception e) {
-                System.out.println("Error = " + e);
-            }
+//            try {
+//                System.out.println("Working Directory = " + System.getProperty("user.dir"));
+//                FileInputStream imageFile = new FileInputStream("/Users/taichen/Desktop/Tai/WWUClasses/CSCI345/DeadwoodProject/src/board.jpg");
+//                boardImage = new Image(imageFile);
+//            } catch (Exception e) {
+//                System.out.println("Error = " + e);
+//            }
 
         }
         return instance;

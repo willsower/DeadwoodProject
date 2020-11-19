@@ -30,6 +30,8 @@ public class UserInterfaceDisplay implements Initializable {
 
     @FXML private ImageView boardImage;
     @FXML private ImageView deck;
+
+    // Card Image Views
     @FXML private ImageView trainStationCard;
     @FXML private ImageView jailCard;
     @FXML private ImageView mainStreetCard;
@@ -40,6 +42,16 @@ public class UserInterfaceDisplay implements Initializable {
     @FXML private ImageView secretHideoutCard;
     @FXML private ImageView churchCard;
     @FXML private ImageView hotelCard;
+
+    // Player's display information
+    @FXML private Label currentPlayer;
+    @FXML private Label playerDieColor;
+    @FXML private Label playerDollar;
+    @FXML private Label playerCredit;
+    @FXML private Label playerPracticeChip;
+
+    // Text Display
+    @FXML private Label dayDisplay; // Display current day
     @FXML private Label displayText;
     @FXML private TextField userInput;
     @FXML private TextField displayNum; //to test take out later
@@ -87,11 +99,17 @@ public class UserInterfaceDisplay implements Initializable {
         churchCard.setImage(Deck.getInstance().getBackOfCardSmall());
         hotelCard.setImage(Deck.getInstance().getBackOfCardSmall());
 
+        dayDisplay.setText("Day " + day);
+
         //Add players into trailers
 
         //close window --take out when continuing to run game
 //        Stage stage = (Stage) submitButton.getScene().getWindow();
 //        stage.close();
+    }
+
+    public void showCurrentPlayerInfo() {
+
     }
 
     // Display winners of game

@@ -12,7 +12,7 @@
          <image>
             <Image url="@../images/table.jpeg" />
          </image></ImageView>
-      <GridPane prefHeight="101.0" prefWidth="227.0" translateX="800.0" translateY="20.0">
+      <GridPane prefHeight="101.0" prefWidth="227.0" translateX="846.0" translateY="20.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -20,27 +20,27 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Current Player: 1" textFill="WHITE" translateY="-41.0">
+            <Label fx:id="currentPlayer" text="Current Player: 1" textFill="WHITE" translateY="-41.0">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label layoutX="10.0" layoutY="48.0" text="Die Color: Red" textFill="WHITE" translateX="20.0" translateY="-20.0">
+            <Label fx:id="playerDieColor" layoutX="10.0" layoutY="48.0" text="Die Color: Red" textFill="WHITE" translateX="20.0" translateY="-20.0">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <Label layoutX="10.0" layoutY="48.0" text="Dollars: 0" textFill="WHITE" translateX="20.0" translateY="-2.0">
+            <Label fx:id="playerDollar" layoutX="10.0" layoutY="48.0" text="Dollars: 0" textFill="WHITE" translateX="20.0" translateY="-2.0">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <Label layoutX="10.0" layoutY="48.0" text="Credits: 0" textFill="WHITE" translateX="20.0" translateY="17.0">
+            <Label fx:id="playerCredit" layoutX="10.0" layoutY="48.0" text="Credits: 0" textFill="WHITE" translateX="20.0" translateY="17.0">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <Label layoutX="10.0" layoutY="48.0" text="Practice Chip: 0" textFill="WHITE" translateX="20.0" translateY="35.0">
+            <Label fx:id="playerPracticeChip" layoutX="10.0" layoutY="48.0" text="Practice Chip: 0" textFill="WHITE" translateX="20.0" translateY="35.0">
                <font>
                   <Font size="17.0" />
                </font>
@@ -100,5 +100,10 @@
             <Insets top="40.0" />
          </padding>
       </VBox>
+      <Label fx:id="dayDisplay" textFill="WHITE" translateX="525.0" translateY="24.0">
+         <font>
+            <Font size="60.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

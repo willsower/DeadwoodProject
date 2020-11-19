@@ -67,6 +67,16 @@ public class SystemManager implements Initializable {
     @FXML private Button rehearseButton;
     @FXML private Button upgradeButton;
 
+    //Player pieces
+    @FXML private ImageView player1;
+    @FXML private ImageView player2;
+    @FXML private ImageView player3;
+    @FXML private ImageView player4;
+    @FXML private ImageView player5;
+    @FXML private ImageView player6;
+    @FXML private ImageView player7;
+    @FXML private ImageView player8;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         boardImage.setImage(Board.getInstance().getBoardImage());
@@ -120,9 +130,6 @@ public class SystemManager implements Initializable {
         upgradeButton.setVisible(upgrade);
     }
 
-
-
-
     // Sets board up at each day
     public void setUpBoard(int day) {
         boardImage.setVisible(true);
@@ -143,14 +150,17 @@ public class SystemManager implements Initializable {
 
         //Add players into trailers
         for (int i = 0; i < numPlayer; i++) {
-            ImageView imageView = new ImageView();
-            //Setting image to the image view
-            imageView.setImage(players[i].getPlayerImage());
-            //Setting the image view parameters
-            imageView.setX(10);
-            imageView.setY(10);
-            imageView.setFitWidth(575);
-            imageView.setPreserveRatio(true);
+            int num = i + 1;
+            switch (num) {
+                case 1 -> player1.setImage(players[i].getPlayerImage());
+                case 2 -> player2.setImage(players[i].getPlayerImage());
+                case 3 -> player3.setImage(players[i].getPlayerImage());
+                case 4 -> player4.setImage(players[i].getPlayerImage());
+                case 5 -> player5.setImage(players[i].getPlayerImage());
+                case 6 -> player6.setImage(players[i].getPlayerImage());
+                case 7 -> player7.setImage(players[i].getPlayerImage());
+                default -> player8.setImage(players[i].getPlayerImage());
+            }
         }
 
         //close window --take out when continuing to run game

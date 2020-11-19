@@ -10,8 +10,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Deadwood extends Application {
+
     @Override
     public void start(Stage stage) throws Exception {
+
         Parent root = FXMLLoader.load(getClass().getResource("View/Board.fxml"));
         Scene scene = new Scene(root);
 
@@ -19,20 +21,28 @@ public class Deadwood extends Application {
         int numPlayers = 2;
 
         // Display board
+        //systemManager(2);
+
         stage.setTitle("Board");
         stage.setScene(scene);
         stage.show();
 
 //        systemManager(numPlayers);
+
     }
 
     public static void main(String[] args) {
         launch(args);
     }
 
+
+    /*
+     //moved to UserInterfaceDisplay for testing
+
     // Create system for players then run functionality
     public static void systemManager(int numPlayers) {
         SystemManager systemManager = new SystemManager(numPlayers);
         systemManager.run();
     }
+   */
 }

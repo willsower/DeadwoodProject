@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterfaceDisplay">
+    <children>
+      <VBox layoutX="157.0" layoutY="50.0">
+         <children>
+            <Label fx:id="displayText" text="How many players?" />
+            <TextField fx:id="userInput" promptText="2-8" />
+            <Button fx:id="submitButton" mnemonicParsing="false" onAction="#submitPlayers" text="Submit" />
+            <TextField fx:id="displayNum" />
+         </children>
+      </VBox>
+    </children>
+</AnchorPane>

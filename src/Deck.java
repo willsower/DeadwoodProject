@@ -8,7 +8,7 @@
 import org.w3c.dom.Document;
 import java.util.Random;
 import javafx.scene.image.Image;
-//HELLO
+
 public class Deck {
     private Card[] deck;
     private Integer[] cardShuffle;
@@ -33,8 +33,8 @@ public class Deck {
             doc = parsing.getDocFromFile("xml/cards.xml");
             deck = parsing.readCardData(doc);
 
-//            backOfCard = new Image("img/CardBack.jpg");
-//            backOfCardSmall = new Image("./images/CardBack-small.jpg");
+            backOfCard = new Image("./images/CardBack.jpg");
+            backOfCardSmall = new Image("./images/CardBack-small.jpg");
             cardShuffle = shuffle();
         } catch (Exception e) {
             System.out.println("Error = " + e);

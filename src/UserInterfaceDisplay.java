@@ -38,7 +38,7 @@ public class UserInterfaceDisplay implements Initializable {
 
     @FXML private Label displayText;
     @FXML private TextField userInput;
-    @FXML private TextField displayNum; //to test
+    @FXML private TextField displayNum; //to test take out later
     @FXML private Button submitButton;
     //String playerNum;
 

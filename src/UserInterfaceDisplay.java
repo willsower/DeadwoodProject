@@ -66,12 +66,13 @@ public class UserInterfaceDisplay implements Initializable {
         displayNum.setVisible(false);
         //userInput.setDisable(true);
 
+        setUpBoard(1);
+
         SystemManager systemManager = new SystemManager(Integer.parseInt(playerNum));
         systemManager.run();
     }
 
-    @FXML
-    public void setUpBoard() {
+    public void setUpBoard(int day) {
         boardImage.setVisible(true);
         deck.setVisible(true);
 

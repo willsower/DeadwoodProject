@@ -23,7 +23,7 @@ public class Deadwood extends Application {
         stage.setScene(scene);
         stage.show();
 
-        systemManager(numPlayers);
+//        systemManager(numPlayers);
     }
 
     public static void main(String[] args) {

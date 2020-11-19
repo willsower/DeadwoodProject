@@ -138,6 +138,7 @@ public class SystemManager {
             ind++;
         }
         Board.getInstance().assignCardToSet(Deck.getInstance().getCardShuffle(), day);
+        UserInterfaceDisplay.getInstance().setUpBoard(getNumPlayer());
     }
 
     // This is the run function, will play for x amount of days

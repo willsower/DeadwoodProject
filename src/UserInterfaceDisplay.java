@@ -66,7 +66,8 @@ public class UserInterfaceDisplay implements Initializable {
         displayNum.setVisible(false);
         //userInput.setDisable(true);
 
-        setUpBoard(Integer.parseInt(playerNum));
+        SystemManager systemManager = new SystemManager(Integer.parseInt(playerNum));
+        systemManager.run();
     }
 
     public void setUpBoard(int playerNum) {
@@ -88,15 +89,8 @@ public class UserInterfaceDisplay implements Initializable {
 //        Stage stage = (Stage) submitButton.getScene().getWindow();
 //        stage.close();
 
-//        systemManager(playerNum);
-    }
 
-    // Create system for players then run functionality
-    public static void systemManager(int numPlayers) {
-        SystemManager systemManager = new SystemManager(numPlayers);
-        systemManager.run();
     }
-
 
     // Display winners of game
     public void displayWinner(Integer[] finals) {

@@ -31,18 +31,8 @@ public class Board {
             } catch (Exception e) {
                 System.out.println("Error = " + e);
             }
-            System.out.println("alsdf");
+
             boardImage = new Image("images/board.jpg");
-
-            System.out.println("test");
-//            try {
-//                System.out.println("Working Directory = " + System.getProperty("user.dir"));
-//                FileInputStream imageFile = new FileInputStream("/Users/taichen/Desktop/Tai/WWUClasses/CSCI345/DeadwoodProject/src/board.jpg");
-//                boardImage = new Image(imageFile);
-//            } catch (Exception e) {
-//                System.out.println("Error = " + e);
-//            }
-
         }
         return instance;
     }
@@ -57,8 +47,6 @@ public class Board {
     }
 
     public Image getBoardImage() {
-        //System.out.println(boardImage.toString());
-        System.out.println("HELLO");
         return boardImage;
     }
 

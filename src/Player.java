@@ -148,8 +148,7 @@ public class Player {
     // Set current player's image
     public void setPlayerImage() {
         String col = getColorName().toLowerCase();
-
-        playerImage = new Image(col.charAt(0) + getLevel() + ".png");
+        playerImage = new Image("./images/dice/" + col.charAt(0) + getLevel() + ".png");
     }
 
     // Set color name for player

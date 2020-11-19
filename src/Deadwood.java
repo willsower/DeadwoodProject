@@ -17,18 +17,9 @@ public class Deadwood extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("View/Board.fxml"));
         Scene scene = new Scene(root);
 
-        // Get num players
-        int numPlayers = 2;
-
-        // Display board
-        //systemManager(2);
-
         stage.setTitle("Board");
         stage.setScene(scene);
         stage.show();
-
-//        systemManager(numPlayers);
-
     }
 
     public static void main(String[] args) {

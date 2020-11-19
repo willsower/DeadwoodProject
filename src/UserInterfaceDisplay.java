@@ -46,6 +46,7 @@ public class UserInterfaceDisplay implements Initializable {
     public void submitPlayers(ActionEvent event) {
         String playerNum = userInput.getText();
         //setPlayerNum(playerNum);
+
         displayNum.setText("number of players is " + playerNum);
 
         submitButton.setVisible(false); //may also nee to disable all of these
@@ -63,6 +64,13 @@ public class UserInterfaceDisplay implements Initializable {
         systemManager(Integer.parseInt(playerNum));
 
     }
+
+//    public String getPlayerNum() {
+//        return playerNum;
+//    }
+//    public void setPlayerNum(String num) {
+//        playerNum = num;
+//    }
 
     // Create system for players then run functionality
     public static void systemManager(int numPlayers) {

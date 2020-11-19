@@ -12,6 +12,17 @@
          <image>
             <Image url="@../images/table.jpeg" />
          </image></ImageView>
+      <VBox alignment="TOP_CENTER" fillWidth="false" layoutX="81.0" layoutY="36.0" prefHeight="459.0" prefWidth="611.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="displayText" prefWidth="132.0" text="How many players?" />
+            <TextField fx:id="userInput" promptText="2-8" />
+            <Button fx:id="submitButton" mnemonicParsing="false" onAction="#submitPlayers" text="Submit" />
+            <TextField fx:id="displayNum" />
+         </children>
+         <padding>
+            <Insets top="40.0" />
+         </padding>
+      </VBox>
       <GridPane translateX="800.0" translateY="20.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -43,11 +54,7 @@
          </children></HBox>
       <HBox prefHeight="100.0" prefWidth="175.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="15.0">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/CardBack-small.jpg" />
-               </image>
-            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </HBox>
       <GridPane layoutX="100.0" layoutY="136.0" maxHeight="886.0" maxWidth="1100.0" prefHeight="750.0" prefWidth="1000.0">
@@ -61,59 +68,17 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ImageView fitHeight="150.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" translateX="16.0" translateY="-26.0">
-               <image>
-                  <Image url="@../images/CardBack-small.jpg" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" translateX="232.0" translateY="-60.0">
-               <image>
-                  <Image url="@../images/CardBack-small.jpg" />
-               </image></ImageView>
-            <ImageView fitHeight="150.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" translateX="805.0" translateY="-60.0">
-               <image>
-                  <Image url="@../images/CardBack-small.jpg" />
-               </image></ImageView>
-            <ImageView fitHeight="150.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" translateX="306.0" translateY="152.0">
-               <image>
-                  <Image url="@../images/CardBack-small.jpg" />
-               </image></ImageView>
-            <ImageView fitHeight="150.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" translateX="525.0" translateY="150.0">
-               <image>
-                  <Image url="@../images/CardBack-small.jpg" />
-               </image></ImageView>
-            <ImageView fitHeight="150.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" translateX="208.0" translateY="315.0">
-               <image>
-                  <Image url="@../images/CardBack-small.jpg" />
-               </image></ImageView>
-            <ImageView fitHeight="150.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" translateX="517.0" translateY="313.0">
-               <image>
-                  <Image url="@../images/CardBack-small.jpg" />
-               </image></ImageView>
-            <ImageView fitHeight="150.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="527.0">
-               <image>
-                  <Image url="@../images/CardBack-small.jpg" />
-               </image></ImageView>
-            <ImageView fitHeight="150.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" translateX="517.0" translateY="529.0">
-               <image>
-                  <Image url="@../images/CardBack-small.jpg" />
-               </image></ImageView>
-            <ImageView fitHeight="150.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" translateX="805.0" translateY="534.0">
-               <image>
-                  <Image url="@../images/CardBack-small.jpg" />
-               </image></ImageView>
+            <ImageView fitHeight="150.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" translateX="16.0" translateY="-26.0" />
+            <ImageView fitHeight="150.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" translateX="232.0" translateY="-60.0" />
+            <ImageView fitHeight="150.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" translateX="805.0" translateY="-60.0" />
+            <ImageView fitHeight="150.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" translateX="306.0" translateY="152.0" />
+            <ImageView fitHeight="150.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" translateX="525.0" translateY="150.0" />
+            <ImageView fitHeight="150.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" translateX="208.0" translateY="315.0" />
+            <ImageView fitHeight="150.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" translateX="517.0" translateY="313.0" />
+            <ImageView fitHeight="150.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="527.0" />
+            <ImageView fitHeight="150.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" translateX="517.0" translateY="529.0" />
+            <ImageView fitHeight="150.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" translateX="805.0" translateY="534.0" />
          </children>
       </GridPane>
-      <VBox alignment="TOP_CENTER" fillWidth="false" layoutX="81.0" layoutY="36.0" prefHeight="459.0" prefWidth="611.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <Label fx:id="displayText" prefWidth="132.0" text="How many players?" />
-            <TextField fx:id="userInput" promptText="2-8" />
-            <Button fx:id="submitButton" mnemonicParsing="false" onAction="#submitPlayers" text="Submit" />
-            <TextField fx:id="displayNum" />
-         </children>
-         <padding>
-            <Insets top="40.0" />
-         </padding>
-      </VBox>
    </children>
 </AnchorPane>

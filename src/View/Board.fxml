@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterfaceDisplay">
+<AnchorPane prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SystemManager">
    <children>
       <GridPane prefHeight="691.0" prefWidth="924.0">
         <columnConstraints>
@@ -103,8 +103,9 @@
       <VBox alignment="TOP_CENTER" fillWidth="false" layoutX="81.0" layoutY="36.0" prefHeight="459.0" prefWidth="611.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label fx:id="displayText" prefWidth="132.0" text="How many players?" />
-            <TextField fx:id="userInput" onKeyTyped="#keyTypeIntEvent" promptText="2-8" />
+            <TextField fx:id="userInput" promptText="2-8" />
             <Button fx:id="submitButton" mnemonicParsing="false" onAction="#submitPlayers" text="Submit" />
+            <TextField fx:id="displayNum" />
          </children>
          <padding>
             <Insets top="40.0" />

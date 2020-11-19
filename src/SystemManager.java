@@ -6,7 +6,13 @@
              ScoringManager and will reset each day by calling helper functions
 */
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 
 import java.net.URL;
 import java.util.*;
@@ -18,20 +24,108 @@ public class SystemManager implements Initializable {
     private static SystemManager instance = null;
 
     // create instance
-    public static SystemManager getInstance(int num) {
+    public static SystemManager getInstance() {
         if (instance == null) {
-            instance = new SystemManager(num);
+            instance = new SystemManager();
         }
         return instance;
     }
 
+    @FXML
+    private ImageView boardImage;
+    @FXML private ImageView deck;
+
+    // Card Image Views
+    @FXML private ImageView trainStationCard;
+    @FXML private ImageView jailCard;
+    @FXML private ImageView mainStreetCard;
+    @FXML private ImageView generalStoreCard;
+    @FXML private ImageView saloonCard;
+    @FXML private ImageView ranchCard;
+    @FXML private ImageView bankCard;
+    @FXML private ImageView secretHideoutCard;
+    @FXML private ImageView churchCard;
+    @FXML private ImageView hotelCard;
+
+    // Player's display information
+    @FXML private Label currentPlayer;
+    @FXML private Label playerDieColor;
+    @FXML private Label playerDollar;
+    @FXML private Label playerCredit;
+    @FXML private Label playerPracticeChip;
+
+    // Text Display
+    @FXML private Label dayDisplay; // Display current day
+    @FXML private Label displayText;
+    @FXML private TextField userInput;
+    @FXML private TextField displayNum; //to test take out later
+    @FXML private Button submitButton;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        boardImage.setImage(Board.getInstance().getBoardImage());
+        boardImage.setVisible(false);
+        deck.setVisible(false);
+    }
 
+    //want this function to set the number of players and continue to the game
+    //right now all it does is print the string the user inputs then display board image
+    public void submitPlayers(ActionEvent event) {
+        String val = userInput.getText();
+        //setPlayerNum(playerNum);
+
+        //String val;
+        int numberPlayers = 0;
+
+        val = userInput.getText();
+        try {
+            numberPlayers = Integer.parseInt(val);
+        } catch (NumberFormatException e) {
+        }
+
+        if (numberPlayers >= 2 && numberPlayers <= 8) {
+            displayNum.setText("number of players is " + val);
+
+            submitButton.setVisible(false); //may also nee to disable all of these
+            displayText.setVisible(false);
+            userInput.setVisible(false);
+            displayNum.setVisible(false);
+
+            init(Integer.parseInt(val));
+            run();
+        }
+    }
+
+    // Sets board up at each day
+    public void setUpBoard(int day, int numPlayer) {
+        boardImage.setVisible(true);
+        deck.setVisible(true);
+
+        trainStationCard.setImage(Deck.getInstance().getBackOfCardSmall());
+        jailCard.setImage(Deck.getInstance().getBackOfCardSmall());
+        mainStreetCard.setImage(Deck.getInstance().getBackOfCardSmall());
+        generalStoreCard.setImage(Deck.getInstance().getBackOfCardSmall());
+        saloonCard.setImage(Deck.getInstance().getBackOfCardSmall());
+        ranchCard.setImage(Deck.getInstance().getBackOfCardSmall());
+        bankCard.setImage(Deck.getInstance().getBackOfCardSmall());
+        secretHideoutCard.setImage(Deck.getInstance().getBackOfCardSmall());
+        churchCard.setImage(Deck.getInstance().getBackOfCardSmall());
+        hotelCard.setImage(Deck.getInstance().getBackOfCardSmall());
+
+        dayDisplay.setText("Day " + day);
+
+        //Add players into trailers
+        for (int i = 0; i < numPlayer; i++) {
+
+        }
+
+        //close window --take out when continuing to run game
+//        Stage stage = (Stage) submitButton.getScene().getWindow();
+//        stage.close();
     }
 
     // Turn manager initializes all players
-    public SystemManager(int numPlayer) {
+    public void init(int numPlayer) {
         this.numPlayer = numPlayer;
 
         // Init num players array
@@ -156,7 +250,7 @@ public class SystemManager implements Initializable {
             ind++;
         }
         Board.getInstance().assignCardToSet(Deck.getInstance().getCardShuffle(), day);
-        UserInterfaceDisplay.getInstance().setUpBoard(day, 2);
+        setUpBoard(day, getNumPlayer());
     }
 
     // This is the run function, will play for x amount of days

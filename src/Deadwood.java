@@ -13,8 +13,8 @@ public class Deadwood extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-
-        Parent root = FXMLLoader.load(getClass().getResource("View/Board.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("View/Board.fxml"));
+        Parent root = loader.load();
         Scene scene = new Scene(root);
 
         stage.setTitle("Board");

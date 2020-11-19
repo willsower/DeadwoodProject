@@ -70,7 +70,8 @@ public class UserInterfaceDisplay implements Initializable {
         systemManager.run();
     }
 
-    public void setUpBoard(int playerNum) {
+    @FXML
+    public void setUpBoard() {
         boardImage.setVisible(true);
         deck.setVisible(true);
 
@@ -85,11 +86,11 @@ public class UserInterfaceDisplay implements Initializable {
         churchCard.setImage(Deck.getInstance().getBackOfCardSmall());
         hotelCard.setImage(Deck.getInstance().getBackOfCardSmall());
 
+        //Add players into trailers
+
         //close window --take out when continuing to run game
 //        Stage stage = (Stage) submitButton.getScene().getWindow();
 //        stage.close();
-
-
     }
 
     // Display winners of game

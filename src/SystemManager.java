@@ -138,7 +138,7 @@ public class SystemManager {
             ind++;
         }
         Board.getInstance().assignCardToSet(Deck.getInstance().getCardShuffle(), day);
-        UserInterfaceDisplay.getInstance().setUpBoard(getNumPlayer());
+        UserInterfaceDisplay.getInstance().setUpBoard();
     }
 
     // This is the run function, will play for x amount of days
@@ -154,25 +154,23 @@ public class SystemManager {
         // Run for each day
         for (int i = 0; i < days; i++) {
             int cardsFinished = 0;
-            System.out.println("\n===========");
-            System.out.println("   DAY " + (i + 1));
-            System.out.println("===========");
+
             resetAll(list, i + 1);
 
-            do {
-                // If card has finished increment cards finished
-                if (turn.turn(list[player])) {
-                    cardsFinished++;
-                }
-
-                player++; // Next player turn
-
-                // Reset back to player 1
-                if (player == list.length) {
-                    player = 0;
-                }
-
-            } while (cardsFinished < 9); /* !9/10 cards */
+//            do {
+//                // If card has finished increment cards finished
+//                if (turn.turn(list[player])) {
+//                    cardsFinished++;
+//                }
+//
+//                player++; // Next player turn
+//
+//                // Reset back to player 1
+//                if (player == list.length) {
+//                    player = 0;
+//                }
+//
+//            } while (cardsFinished < 9); /* !9/10 cards */
         }
         // Calculate end score
         endFunction();

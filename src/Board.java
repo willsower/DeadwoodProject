@@ -31,7 +31,6 @@ public class Board {
             } catch (Exception e) {
                 System.out.println("Error = " + e);
             }
-
             boardImage = new Image("images/board.jpg");
         }
         return instance;
@@ -47,6 +46,7 @@ public class Board {
     }
 
     public Image getBoardImage() {
+        System.out.println("adf");
         return boardImage;
     }
 

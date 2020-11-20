@@ -114,7 +114,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ImageView fx:id="player1" fitHeight="150.0" fitWidth="25.0" onDragDetected="#handlePlayerDrag" pickOnBounds="true" preserveRatio="true" translateX="700.0" translateY="-49.0" />
+            <ImageView fx:id="player1" fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="700.0" translateY="-49.0" />
             <ImageView fx:id="player2" fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="650.0" translateY="-80.0" />
             <ImageView fx:id="player3" fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="670.0" translateY="-40.0" />
             <ImageView fx:id="player4" fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="720.0" translateY="-80.0" />

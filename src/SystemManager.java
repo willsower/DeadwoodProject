@@ -94,7 +94,6 @@ public class SystemManager implements Initializable {
         boardImage.setVisible(false);
         deck.setVisible(false);
         makeButtonVisible(false,false,false,false);
-
     }
 
     //want this function to set the number of players and continue to the game
@@ -127,10 +126,9 @@ public class SystemManager implements Initializable {
         makeButtonVisible(false, false,false,false);
     }
     public void upgradeButtonAction(ActionEvent event) {
-
         makeButtonVisible(false,false,false, false);
-
     }
+
     public void rollDieAction(ActionEvent event) {
         rollDieButton.setVisible(false);
         if( OnTurn.getInstance().act(currentP)) {
@@ -147,6 +145,54 @@ public class SystemManager implements Initializable {
 
     public void printLabel(String str) {
         actPrintLabel.setText(str);
+    }
+
+    public void toTrailers(ActionEvent event) {
+
+    }
+
+    public void toMainStreet(ActionEvent event) {
+
+    }
+
+    public void toSaloon(ActionEvent event) {
+
+    }
+
+    public void toSecretHideout(ActionEvent event) {
+
+    }
+
+    public void toBank(ActionEvent event) {
+
+    }
+
+    public void toChurch(ActionEvent event) {
+
+    }
+
+    public void toJail(ActionEvent event) {
+
+    }
+
+    public void toGeneralStore(ActionEvent event) {
+
+    }
+
+    public void toOffice(ActionEvent event) {
+
+    }
+
+    public void toRanch(ActionEvent event) {
+
+    }
+
+    public void toTrainStation(ActionEvent event) {
+
+    }
+
+    public void toHotel(ActionEvent event) {
+
     }
 
     // Sets board up at each day

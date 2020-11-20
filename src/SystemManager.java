@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.Node;
 import javafx.scene.input.DragEvent;
 import javafx.event.EventHandler;
 import javafx.scene.input.*;
@@ -147,52 +148,9 @@ public class SystemManager implements Initializable {
         actPrintLabel.setText(str);
     }
 
-    public void toTrailers(ActionEvent event) {
-
-    }
-
-    public void toMainStreet(ActionEvent event) {
-
-    }
-
-    public void toSaloon(ActionEvent event) {
-
-    }
-
-    public void toSecretHideout(ActionEvent event) {
-
-    }
-
-    public void toBank(ActionEvent event) {
-
-    }
-
-    public void toChurch(ActionEvent event) {
-
-    }
-
-    public void toJail(ActionEvent event) {
-
-    }
-
-    public void toGeneralStore(ActionEvent event) {
-
-    }
-
-    public void toOffice(ActionEvent event) {
-
-    }
-
-    public void toRanch(ActionEvent event) {
-
-    }
-
-    public void toTrainStation(ActionEvent event) {
-
-    }
-
-    public void toHotel(ActionEvent event) {
-
+    public void onMove(ActionEvent event) {
+        System.out.println(((Node) event.getSource()).getId());
+        OnTurn.getInstance().movePlayer(currentP);
     }
 
     // Sets board up at each day

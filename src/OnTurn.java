@@ -95,6 +95,14 @@ public class OnTurn {
         return false;
     }
 
+    public void movePlayer(Player player) {
+
+    }
+
+    public void showMove(Player player) {
+        String[] neighbors = Board.getInstance().getSet(player.getPlayerLocation()).getNeighbor();
+    }
+
     // Ultimately the move option. Once moved, will allow players to take a role
     // Will also allow user to upgrade if they moved into casting office
     public void moveTakeRoleOption(Player player) {
@@ -259,9 +267,8 @@ public class OnTurn {
     // Will return true if card has finished
     // will return false if not
     public boolean turn(Player player) {
-        System.out.println("\n==========");
-        System.out.println("Player " + player.getPlayerPriority() + " turn!");
         boolean endOfCard = false;
+
         // If player has not taken a role, let them move
         if (player.getOffCardRole() == false && player.getOnCardRole() == false) {
             moveManager(player);

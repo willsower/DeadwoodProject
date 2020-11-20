@@ -155,45 +155,45 @@
             <Insets top="40.0" />
          </padding>
       </VBox>
-      <Button fx:id="mainStreetToTrailers" mnemonicParsing="false" onAction="#toTrailers" rotate="90.0" styleClass="arrow" translateX="840.0" translateY="250.0" visible="false" />
-      <Button fx:id="trailersToMainStreet" layoutX="36.0" layoutY="-8.0" mnemonicParsing="false" onAction="#toMainStreet" rotate="270.0" styleClass="arrow" translateX="803.0" translateY="250.0" visible="false" />
-      <Button fx:id="trailersToHotel" layoutX="-12.0" layoutY="7.0" mnemonicParsing="false" onAction="#toHotel" rotate="90.0" styleClass="arrow" translateX="836.0" translateY="375.0" visible="false" />
-      <Button fx:id="hotelToTrailers" layoutX="18.0" mnemonicParsing="false" onAction="#toTrailers" rotate="270.0" styleClass="arrow" translateX="805.0" translateY="376.0" visible="false" />
-      <Button fx:id="saloonToMainStreet" layoutX="18.0" mnemonicParsing="false" onAction="#toMainStreet" rotate="270.0" styleClass="arrow" translateX="553.0" translateY="213.0" visible="false" />
-      <Button fx:id="mainStreetToSaloon" layoutX="18.0" mnemonicParsing="false" onAction="#toSaloon" rotate="90.0" styleClass="arrow" translateX="553.0" translateY="220.0" visible="false" />
-      <Button fx:id="saloonToBank" layoutX="18.0" mnemonicParsing="false" onAction="#toBank" rotate="90.0" styleClass="arrow" translateX="567.0" translateY="384.0" visible="false" />
-      <Button fx:id="bankToSaloon" layoutX="18.0" mnemonicParsing="false" onAction="#toSaloon" rotate="270.0" styleClass="arrow" translateX="565.0" translateY="376.0" visible="false" />
-      <Button fx:id="churchToBank" layoutX="18.0" mnemonicParsing="false" onAction="#toBank" rotate="270.0" styleClass="arrow" translateX="584.0" translateY="503.0" visible="false" />
-      <Button fx:id="bankToChurch" layoutX="18.0" mnemonicParsing="false" onAction="#toChurch" rotate="90.0" styleClass="arrow" translateX="585.0" translateY="510.0" visible="false" />
-      <Button fx:id="jailToGeneralStore" layoutX="18.0" mnemonicParsing="false" onAction="#toGeneralStore" rotate="90.0" styleClass="arrow" translateX="413.0" translateY="254.0" visible="false" />
-      <Button fx:id="generalStoreToJail" layoutX="18.0" mnemonicParsing="false" onAction="#toJail" rotate="270.0" styleClass="arrow" translateX="413.0" translateY="248.0" visible="false" />
-      <Button fx:id="ranchToGeneralStore" layoutX="18.0" mnemonicParsing="false" onAction="#toGeneralStore" rotate="270.0" styleClass="arrow" translateX="427.0" translateY="376.0" visible="false" />
-      <Button fx:id="generalStoreToRanch" layoutX="18.0" mnemonicParsing="false" onAction="#toRanch" rotate="90.0" styleClass="arrow" translateX="429.0" translateY="382.0" visible="false" />
-      <Button fx:id="secretHideoutToRanch" layoutX="18.0" mnemonicParsing="false" onAction="#toRanch" rotate="270.0" styleClass="arrow" translateX="421.0" translateY="532.0" visible="false" />
-      <Button fx:id="ranchToSecretHideout" layoutX="18.0" mnemonicParsing="false" onAction="#toSecretHideout" rotate="90.0" styleClass="arrow" translateX="422.0" translateY="539.0" visible="false" />
-      <Button fx:id="trainStationToOffice" layoutX="18.0" mnemonicParsing="false" onAction="#toOffice" rotate="90.0" styleClass="arrow" translateX="185.0" translateY="383.0" visible="false" />
-      <Button fx:id="officeToTrainStation" layoutX="18.0" mnemonicParsing="false" onAction="#toTrainStation" rotate="270.0" styleClass="arrow" translateX="184.0" translateY="376.0" visible="false" />
-      <Button fx:id="secretHideoutToOffice" layoutX="18.0" mnemonicParsing="false" onAction="#toOffice" rotate="270.0" styleClass="arrow" translateX="166.0" translateY="517.0" visible="false" />
-      <Button fx:id="officeToSecretHideout" layoutX="18.0" mnemonicParsing="false" onAction="#toSecretHideout" rotate="90.0" styleClass="arrow" translateX="167.0" translateY="525.0" visible="false" />
-      <Button fx:id="jailToTrainStation" layoutX="16.0" mnemonicParsing="false" onAction="#toTrainStation" rotate="180.0" styleClass="arrow" translateX="273.0" translateY="151.0" visible="false" />
-      <Button fx:id="trainStationToJail" layoutX="16.0" mnemonicParsing="false" onAction="#toJail" styleClass="arrow" translateX="279.0" translateY="150.0" visible="false" />
-      <Button fx:id="mainStreetToJail" layoutX="18.0" mnemonicParsing="false" onAction="#toJail" rotate="180.0" styleClass="arrow" translateX="490.0" translateY="161.0" visible="false" />
-      <Button fx:id="jailToMainStreet" layoutX="18.0" mnemonicParsing="false" onAction="#toMainStreet" styleClass="arrow" translateX="496.0" translateY="160.0" visible="false" />
-      <Button fx:id="trainStationToGeneralStore" layoutX="18.0" mnemonicParsing="false" onAction="#toGeneralStore" styleClass="arrow" translateX="241.0" translateY="322.0" visible="false" />
-      <Button fx:id="generalStoreToTrainStation" layoutX="18.0" mnemonicParsing="false" onAction="#toTrainStation" rotate="180.0" styleClass="arrow" translateX="234.0" translateY="322.0" visible="false" />
-      <Button fx:id="saloonToGeneralStore" layoutX="18.0" mnemonicParsing="false" onAction="#toGeneralStore" rotate="180.0" styleClass="arrow" translateX="489.0" translateY="312.0" visible="false" />
-      <Button fx:id="generalStoreToSaloon" layoutX="18.0" mnemonicParsing="false" onAction="#toSaloon" styleClass="arrow" translateX="497.0" translateY="312.0" visible="false" />
-      <Button fx:id="saloonToTrailers" layoutX="18.0" mnemonicParsing="false" onAction="#toTrailers" styleClass="arrow" translateX="740.0" translateY="320.0" visible="false" />
-      <Button fx:id="trailersToSaloon" layoutX="18.0" layoutY="-20.0" mnemonicParsing="false" onAction="#toSaloon" rotate="180.0" styleClass="arrow" translateX="736.0" translateY="342.0" visible="false" />
-      <Button fx:id="ranchToOffice" layoutX="18.0" mnemonicParsing="false" onAction="#toOffice" rotate="180.0" styleClass="arrow" translateX="252.0" translateY="434.0" visible="false" />
-      <Button fx:id="officeToRanch" layoutX="18.0" mnemonicParsing="false" onAction="#toRanch" styleClass="arrow" translateX="260.0" translateY="432.0" visible="false" />
-      <Button fx:id="bankToRanch" layoutX="18.0" mnemonicParsing="false" onAction="#toRanch" rotate="180.0" styleClass="arrow" translateX="490.0" translateY="444.0" visible="false" />
-      <Button fx:id="ranchToBank" layoutX="18.0" mnemonicParsing="false" onAction="#toBank" styleClass="arrow" translateX="497.0" translateY="444.0" visible="false" />
-      <Button fx:id="bankToHotel" layoutX="18.0" mnemonicParsing="false" onAction="#toHotel" styleClass="arrow" translateX="750.0" translateY="431.0" visible="false" />
-      <Button fx:id="hotelToBank" layoutX="18.0" mnemonicParsing="false" onAction="#toBank" rotate="180.0" styleClass="arrow" translateX="742.0" translateY="429.0" visible="false" />
-      <Button fx:id="churchToSecretHideout" layoutX="18.0" mnemonicParsing="false" onAction="#toSecretHideout" rotate="180.0" styleClass="arrow" translateX="488.0" translateY="598.0" visible="false" />
-      <Button fx:id="secretHideoutToChurch" layoutX="18.0" mnemonicParsing="false" onAction="#toChurch" styleClass="arrow" translateX="497.0" translateY="598.0" visible="false" />
-      <Button fx:id="churchToHotel" layoutX="18.0" mnemonicParsing="false" onAction="#toHotel" styleClass="arrow" translateX="710.0" translateY="596.0" visible="false" />
-      <Button fx:id="hotelToChurch" layoutX="18.0" mnemonicParsing="false" onAction="#toChurch" rotate="180.0" styleClass="arrow" translateX="705.0" translateY="596.0" visible="false" />
+      <Button fx:id="toTrailersFromMainStreet" mnemonicParsing="false" onAction="#onMove" rotate="90.0" styleClass="arrow" translateX="840.0" translateY="250.0" visible="false" />
+      <Button fx:id="toMainStreetFromTrailers" layoutX="36.0" layoutY="-8.0" mnemonicParsing="false" onAction="#onMove" rotate="270.0" styleClass="arrow" translateX="803.0" translateY="250.0" visible="false" />
+      <Button fx:id="toHotelFromTrailers" layoutX="-12.0" layoutY="7.0" mnemonicParsing="false" onAction="#onMove" rotate="90.0" styleClass="arrow" translateX="836.0" translateY="375.0" visible="false" />
+      <Button fx:id="toTrailersFromHotel" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="270.0" styleClass="arrow" translateX="805.0" translateY="376.0" visible="false" />
+      <Button fx:id="toMainStreetFromSaloon" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="270.0" styleClass="arrow" translateX="553.0" translateY="213.0" visible="false" />
+      <Button fx:id="toSaloonFromMainStreet" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="90.0" styleClass="arrow" translateX="553.0" translateY="220.0" visible="false" />
+      <Button fx:id="toBankFromSaloon" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="90.0" styleClass="arrow" translateX="567.0" translateY="384.0" visible="false" />
+      <Button fx:id="toSaloonFromBank" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="270.0" styleClass="arrow" translateX="565.0" translateY="376.0" visible="false" />
+      <Button fx:id="toBankFromChurch" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="270.0" styleClass="arrow" translateX="584.0" translateY="503.0" visible="false" />
+      <Button fx:id="toChurchFromBank" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="90.0" styleClass="arrow" translateX="585.0" translateY="510.0" visible="false" />
+      <Button fx:id="toGeneralStoreFromJail" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="90.0" styleClass="arrow" translateX="413.0" translateY="254.0" visible="false" />
+      <Button fx:id="toJailFromGeneralStore" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="270.0" styleClass="arrow" translateX="413.0" translateY="248.0" visible="false" />
+      <Button fx:id="toGeneralStoreFromRanch" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="270.0" styleClass="arrow" translateX="427.0" translateY="376.0" visible="false" />
+      <Button fx:id="toRanchFromGeneralStore" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="90.0" styleClass="arrow" translateX="429.0" translateY="382.0" visible="false" />
+      <Button fx:id="toRanchFromSecretHideout" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="270.0" styleClass="arrow" translateX="421.0" translateY="532.0" visible="false" />
+      <Button fx:id="toSecretHideoutFromRanch" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="90.0" styleClass="arrow" translateX="422.0" translateY="539.0" visible="false" />
+      <Button fx:id="toOfficeFromTrainStation" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="90.0" styleClass="arrow" translateX="185.0" translateY="383.0" visible="false" />
+      <Button fx:id="toTrainStationFromOffice" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="270.0" styleClass="arrow" translateX="184.0" translateY="376.0" visible="false" />
+      <Button fx:id="toOfficeFromSecretHideout" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="270.0" styleClass="arrow" translateX="166.0" translateY="517.0" visible="false" />
+      <Button fx:id="toSecretHideoutFromOffice" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="90.0" styleClass="arrow" translateX="167.0" translateY="525.0" visible="false" />
+      <Button fx:id="toTrainStationFromJail" layoutX="16.0" mnemonicParsing="false" onAction="#onMove" rotate="180.0" styleClass="arrow" translateX="273.0" translateY="151.0" visible="false" />
+      <Button fx:id="toJailFromTrainStation" layoutX="16.0" mnemonicParsing="false" onAction="#onMove" styleClass="arrow" translateX="279.0" translateY="150.0" visible="false" />
+      <Button fx:id="toJailFromMainStreet" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="180.0" styleClass="arrow" translateX="490.0" translateY="161.0" visible="false" />
+      <Button fx:id="toMainStreetFromJail" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" styleClass="arrow" translateX="496.0" translateY="160.0" visible="false" />
+      <Button fx:id="toGeneralStoreFromTrainStation" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" styleClass="arrow" translateX="241.0" translateY="322.0" visible="false" />
+      <Button fx:id="toTrainStationFromGeneralStore" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="180.0" styleClass="arrow" translateX="234.0" translateY="322.0" visible="false" />
+      <Button fx:id="toGeneralStoreFromSaloon" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="180.0" styleClass="arrow" translateX="489.0" translateY="312.0" visible="false" />
+      <Button fx:id="toSaloonFromGeneralStore" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" styleClass="arrow" translateX="497.0" translateY="312.0" visible="false" />
+      <Button fx:id="toTrailersFromSaloon" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" styleClass="arrow" translateX="740.0" translateY="320.0" visible="false" />
+      <Button fx:id="toSaloonFromTrailers" layoutX="18.0" layoutY="-20.0" mnemonicParsing="false" onAction="#onMove" rotate="180.0" styleClass="arrow" translateX="736.0" translateY="342.0" visible="false" />
+      <Button fx:id="toOfficeFromRanch" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="180.0" styleClass="arrow" translateX="252.0" translateY="434.0" visible="false" />
+      <Button fx:id="toRanchFromOffice" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" styleClass="arrow" translateX="260.0" translateY="432.0" visible="false" />
+      <Button fx:id="toRanchFromBank" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="180.0" styleClass="arrow" translateX="490.0" translateY="444.0" visible="false" />
+      <Button fx:id="toBankFromRanch" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" styleClass="arrow" translateX="497.0" translateY="444.0" visible="false" />
+      <Button fx:id="toHotelFromBank" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" styleClass="arrow" translateX="750.0" translateY="431.0" visible="false" />
+      <Button fx:id="toBankFromHotel" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="180.0" styleClass="arrow" translateX="742.0" translateY="429.0" visible="false" />
+      <Button fx:id="toSecretHideoutFromChurch" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="180.0" styleClass="arrow" translateX="488.0" translateY="598.0" visible="false" />
+      <Button fx:id="toChurchFromSecretHideout" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" styleClass="arrow" translateX="497.0" translateY="598.0" visible="false" />
+      <Button fx:id="toHotelFromChurch" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" styleClass="arrow" translateX="710.0" translateY="596.0" visible="false" />
+      <Button fx:id="toChurchFromHotel" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="180.0" styleClass="arrow" translateX="705.0" translateY="596.0" visible="false" />
    </children>
 </AnchorPane>

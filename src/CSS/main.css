@@ -1,28 +1,9 @@
-
-.upArrow {
-
-}
-
-.downArrow {
-
-}
-
-.leftArrow {
-  -fx-width: 0;
-  -fx-height: 0;
-
-  -fx-border-top-width: 10px;
-  -fx-border-top-style: solid transparent;
-
-  -fx-border-bottom-width: 10px;
-  -fx-border-bottom-style: solid transparent;
-
-  -fx-border-right-width: 10px;
-  -fx-border-right-style: solid;
-  -fx-border-right-color: blue;
-}
-
-.rightArrow {
-    -fx-shape: "M150 0 L75 200 L225 200 Z";
+.arrow {
+    -fx-shape: "M0,0 L0,6 L9,3 Z";
     -fx-background-color: red;
 }
+M150 0 L75 200 L225 200 Z
+
+M 100 100 L 300 100 L 200 300 z
+
+M0,0 L0,6 L9,3 z

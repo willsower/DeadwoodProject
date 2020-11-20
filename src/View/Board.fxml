@@ -155,45 +155,45 @@
             <Insets top="40.0" />
          </padding>
       </VBox>
-      <Button mnemonicParsing="false" rotate="90.0" styleClass="downArrow" text="Button" translateX="839.0" translateY="250.0" />
-      <Button mnemonicParsing="false" rotate="90.0" styleClass="upArrow" text="Button" translateX="803.0" translateY="250.0" />
-      <Button mnemonicParsing="false" rotate="90.0" styleClass="downArrow" text="Button" translateX="826.0" translateY="380.0" />
-      <Button mnemonicParsing="false" rotate="90.0" styleClass="upArrow" text="Button" translateX="791.0" translateY="380.0" />
-      <Button mnemonicParsing="false" rotate="90.0" styleClass="upArrow" text="Button" translateX="534.0" translateY="220.0" />
-      <Button mnemonicParsing="false" rotate="90.0" styleClass="downArrow" text="Button" translateX="572.0" translateY="220.0" />
-      <Button mnemonicParsing="false" rotate="90.0" styleClass="downArrow" text="Button" translateX="577.0" translateY="380.0" />
-      <Button mnemonicParsing="false" rotate="90.0" styleClass="upArrow" text="Button" translateX="543.0" translateY="380.0" />
-      <Button mnemonicParsing="false" rotate="90.0" styleClass="upArrow" text="Button" translateX="563.0" translateY="507.0" />
-      <Button mnemonicParsing="false" rotate="90.0" styleClass="downArrow" text="Button" translateX="601.0" translateY="507.0" />
-      <Button mnemonicParsing="false" rotate="90.0" styleClass="downArrow" text="Button" translateX="423.0" translateY="250.0" />
-      <Button mnemonicParsing="false" rotate="90.0" styleClass="upArrow" text="Button" translateX="391.0" translateY="250.0" />
-      <Button mnemonicParsing="false" rotate="90.0" styleClass="upArrow" text="Button" translateX="409.0" translateY="378.0" />
-      <Button mnemonicParsing="false" rotate="90.0" styleClass="downArrow" text="Button" translateX="445.0" translateY="379.0" />
-      <Button mnemonicParsing="false" rotate="90.0" styleClass="upArrow" text="Button" translateX="405.0" translateY="537.0" />
-      <Button mnemonicParsing="false" rotate="90.0" styleClass="downArrow" text="Button" translateX="438.0" translateY="537.0" />
-      <Button mnemonicParsing="false" rotate="90.0" styleClass="downArrow" text="Button" translateX="200.0" translateY="379.0" />
-      <Button mnemonicParsing="false" rotate="90.0" styleClass="upArrow" text="Button" translateX="163.0" translateY="379.0" />
-      <Button mnemonicParsing="false" rotate="90.0" styleClass="upArrow" text="Button" translateX="150.0" translateY="522.0" />
-      <Button mnemonicParsing="false" rotate="90.0" styleClass="downArrow" text="Button" translateX="183.0" translateY="522.0" />
-      <Button mnemonicParsing="false" styleClass="rightArrow" text="Button" translateX="275.0" translateY="164.0" />
-      <Button mnemonicParsing="false" styleClass="leftArrow" text="Button" translateX="276.0" translateY="132.0" />
-      <Button mnemonicParsing="false" styleClass="rightArrow" text="Button" translateX="494.0" translateY="176.0" />
-      <Button mnemonicParsing="false" styleClass="leftArrow" text="Button" translateX="494.0" translateY="143.0" />
-      <Button mnemonicParsing="false" styleClass="leftArrow" text="Button" translateX="237.0" translateY="308.0" />
-      <Button mnemonicParsing="false" styleClass="rightArrow" text="Button" translateX="237.0" translateY="342.0" />
-      <Button mnemonicParsing="false" styleClass="rightArrow" text="Button" translateX="493.0" translateY="325.0" />
-      <Button mnemonicParsing="false" styleClass="leftArrow" text="Button" translateX="493.0" translateY="293.0" />
-      <Button mnemonicParsing="false" styleClass="leftArrow" text="Button" translateX="736.0" translateY="309.0" />
-      <Button mnemonicParsing="false" styleClass="rightArrow" text="Button" translateX="736.0" translateY="342.0" />
-      <Button mnemonicParsing="false" styleClass="leftArrow" text="Button" translateX="255.0" translateY="417.0" />
-      <Button mnemonicParsing="false" styleClass="rightArrow" text="Button" translateX="255.0" translateY="449.0" />
-      <Button mnemonicParsing="false" styleClass="rightArrow" text="Button" translateX="493.0" translateY="454.0" />
-      <Button mnemonicParsing="false" styleClass="leftArrow" text="Button" translateX="493.0" translateY="425.0" />
-      <Button mnemonicParsing="false" styleClass="leftArrow" text="Button" translateX="746.0" translateY="414.0" />
-      <Button mnemonicParsing="false" styleClass="rightArrow" text="Button" translateX="746.0" translateY="447.0" />
-      <Button mnemonicParsing="false" styleClass="rightArrow" text="Button" translateX="494.0" translateY="613.0" />
-      <Button mnemonicParsing="false" styleClass="leftArrow" text="Button" translateX="494.0" translateY="580.0" />
-      <Button mnemonicParsing="false" styleClass="leftArrow" text="Button" translateX="707.0" translateY="580.0" />
-      <Button mnemonicParsing="false" styleClass="rightArrow" text="Button" translateX="707.0" translateY="613.0" />
+      <Button layoutX="18.0" mnemonicParsing="false" rotate="90.0" styleClass="arrow" translateX="839.0" translateY="250.0" />
+      <Button layoutX="18.0" mnemonicParsing="false" rotate="270.0" styleClass="arrow" translateX="803.0" translateY="250.0" />
+      <Button layoutX="18.0" mnemonicParsing="false" rotate="90.0" styleClass="arrow" translateX="826.0" translateY="380.0" />
+      <Button layoutX="18.0" mnemonicParsing="false" rotate="270.0" styleClass="arrow" translateX="791.0" translateY="380.0" />
+      <Button layoutX="18.0" mnemonicParsing="false" rotate="270.0" styleClass="arrow" translateX="534.0" translateY="220.0" />
+      <Button layoutX="18.0" mnemonicParsing="false" rotate="90.0" styleClass="arrow" translateX="572.0" translateY="220.0" />
+      <Button layoutX="18.0" mnemonicParsing="false" rotate="90.0" styleClass="arrow" translateX="577.0" translateY="380.0" />
+      <Button layoutX="18.0" mnemonicParsing="false" rotate="270.0" styleClass="arrow" translateX="543.0" translateY="380.0" />
+      <Button layoutX="18.0" mnemonicParsing="false" rotate="270.0" styleClass="arrow" translateX="563.0" translateY="507.0" />
+      <Button layoutX="18.0" mnemonicParsing="false" rotate="90.0" styleClass="arrow" translateX="601.0" translateY="507.0" />
+      <Button layoutX="18.0" mnemonicParsing="false" rotate="90.0" styleClass="arrow" translateX="423.0" translateY="250.0" />
+      <Button layoutX="18.0" mnemonicParsing="false" rotate="270.0" styleClass="arrow" translateX="391.0" translateY="250.0" />
+      <Button layoutX="18.0" mnemonicParsing="false" styleClass="arrow" translateX="409.0" translateY="378.0" />
+      <Button layoutX="18.0" mnemonicParsing="false" styleClass="arrow" translateX="445.0" translateY="379.0" />
+      <Button layoutX="18.0" mnemonicParsing="false" rotate="270.0" styleClass="arrow" translateX="405.0" translateY="537.0" />
+      <Button layoutX="18.0" mnemonicParsing="false" rotate="90.0" styleClass="arrow" translateX="438.0" translateY="537.0" />
+      <Button layoutX="18.0" mnemonicParsing="false" rotate="90.0" styleClass="arrow" translateX="200.0" translateY="379.0" />
+      <Button layoutX="18.0" mnemonicParsing="false" rotate="270.0" styleClass="arrow" translateX="163.0" translateY="379.0" />
+      <Button layoutX="18.0" mnemonicParsing="false" rotate="270.0" styleClass="arrow" translateX="150.0" translateY="522.0" />
+      <Button layoutX="18.0" mnemonicParsing="false" rotate="90.0" styleClass="arrow" translateX="183.0" translateY="522.0" />
+      <Button layoutX="16.0" mnemonicParsing="false" rotate="90.0" styleClass="arrow" translateX="275.0" translateY="164.0" />
+      <Button layoutX="16.0" mnemonicParsing="false" styleClass="arrow" translateX="276.0" translateY="132.0" />
+      <Button layoutX="18.0" mnemonicParsing="false" rotate="180.0" styleClass="arrow" translateX="494.0" translateY="176.0" />
+      <Button layoutX="18.0" mnemonicParsing="false" styleClass="arrow" translateX="494.0" translateY="143.0" />
+      <Button layoutX="18.0" mnemonicParsing="false" rotate="90.0" styleClass="arrow" translateX="237.0" translateY="308.0" />
+      <Button layoutX="18.0" mnemonicParsing="false" rotate="90.0" styleClass="arrow" translateX="237.0" translateY="342.0" />
+      <Button layoutX="18.0" mnemonicParsing="false" rotate="180.0" styleClass="arrow" translateX="493.0" translateY="325.0" />
+      <Button layoutX="18.0" mnemonicParsing="false" styleClass="arrow" translateX="493.0" translateY="293.0" />
+      <Button layoutX="18.0" mnemonicParsing="false" rotate="90.0" styleClass="arrow" translateX="736.0" translateY="309.0" />
+      <Button layoutX="18.0" mnemonicParsing="false" rotate="90.0" styleClass="arrow" translateX="736.0" translateY="342.0" />
+      <Button layoutX="18.0" mnemonicParsing="false" rotate="180.0" styleClass="arrow" translateX="255.0" translateY="417.0" />
+      <Button layoutX="18.0" mnemonicParsing="false" styleClass="arrow" translateX="255.0" translateY="449.0" />
+      <Button layoutX="18.0" mnemonicParsing="false" rotate="90.0" styleClass="arrow" translateX="493.0" translateY="454.0" />
+      <Button layoutX="18.0" mnemonicParsing="false" rotate="90.0" styleClass="arrow" translateX="493.0" translateY="425.0" />
+      <Button layoutX="18.0" mnemonicParsing="false" rotate="90.0" styleClass="arrow" translateX="746.0" translateY="414.0" />
+      <Button layoutX="18.0" mnemonicParsing="false" rotate="90.0" styleClass="arrow" translateX="746.0" translateY="447.0" />
+      <Button layoutX="18.0" mnemonicParsing="false" rotate="180.0" styleClass="arrow" translateX="494.0" translateY="613.0" />
+      <Button layoutX="18.0" mnemonicParsing="false" styleClass="arrow" translateX="494.0" translateY="580.0" />
+      <Button layoutX="18.0" mnemonicParsing="false" styleClass="arrow" translateX="707.0" translateY="580.0" />
+      <Button layoutX="18.0" mnemonicParsing="false" rotate="180.0" styleClass="arrow" translateX="707.0" translateY="613.0" />
    </children>
 </AnchorPane>

@@ -13,6 +13,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.DragEvent;
+import javafx.event.EventHandler;
+import javafx.scene.input.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Rectangle;
+
 
 import java.net.URL;
 import java.util.*;
@@ -23,6 +29,8 @@ public class SystemManager implements Initializable {
     int cardsFinished = 0;
     private Player currentP;
     private static SystemManager instance = null;
+    private Double lastX = null;
+    private Double lastY = null;
 
     // create instance
     public static SystemManager getInstance() {
@@ -321,10 +329,10 @@ public class SystemManager implements Initializable {
             resetAll(list, i + 1);
 
 //            do {
-//                currentP = list[player];
-//                // If card has finished increment cards finished
-//                turn.turn(list[player]);
-//
+                currentP = list[player];
+                // If card has finished increment cards finished
+                turn.turn(list[player]);
+
 //                player++; // Next player turn
 //
 //                // Reset back to player 1

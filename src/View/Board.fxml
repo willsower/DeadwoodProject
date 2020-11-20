@@ -100,6 +100,38 @@
             <ImageView fx:id="hotelCard" fitHeight="150.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" translateX="704.0" translateY="493.0" />
          </children>
       </GridPane>
+      <Label fx:id="dayDisplay" textFill="WHITE" translateX="394.0" translateY="11.0">
+         <font>
+            <Font size="60.0" />
+         </font>
+      </Label>
+      <GridPane layoutX="93.0" layoutY="109.0" prefHeight="570.0" prefWidth="760.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <ImageView fx:id="player1" fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="700.0" translateY="-49.0" />
+            <ImageView fx:id="player2" fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="650.0" translateY="-80.0" />
+            <ImageView fx:id="player3" fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="670.0" translateY="-40.0" />
+            <ImageView fx:id="player4" fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="720.0" translateY="-80.0" />
+            <ImageView fx:id="player5" fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="710.0" translateY="-120.0" />
+            <ImageView fx:id="player6" fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="630.0" translateY="-25.0" />
+            <ImageView fx:id="player7" fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="670.0" translateY="-110.0" />
+            <ImageView fx:id="player8" fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateX="640.0" translateY="-52.0" />
+         </children>
+      </GridPane>
+      <VBox alignment="TOP_CENTER" spacing="20.0" AnchorPane.topAnchor="200.0">
+         <children>
+            <Button fx:id="actButton" mnemonicParsing="false" onAction="#actButtonAction" text="Act" />
+            <Button fx:id="rehearseButton" mnemonicParsing="false" onAction="#rehearseButtonAction" text="Rehearse" />
+            <Button fx:id="upgradeButton" mnemonicParsing="false" onAction="#upgradeButtonAction" text="Upgrade" />
+         </children>
+      </VBox>
+      <Label fx:id="actPrintLabel" />
+      <Button fx:id="rollDieButton" mnemonicParsing="false" onAction="#rollDieAction" text="Roll Die" AnchorPane.topAnchor="350.0" />
       <VBox alignment="TOP_CENTER" fillWidth="false" layoutX="81.0" layoutY="36.0" prefHeight="459.0" prefWidth="611.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label fx:id="displayText" prefWidth="132.0" text="How many players?" />
@@ -110,19 +142,5 @@
             <Insets top="40.0" />
          </padding>
       </VBox>
-      <Label fx:id="dayDisplay" textFill="WHITE" translateX="394.0" translateY="11.0">
-         <font>
-            <Font size="60.0" />
-         </font>
-      </Label>
-      <VBox alignment="TOP_CENTER" spacing="20.0" AnchorPane.topAnchor="200.0">
-         <children>
-            <Button fx:id="actButton" mnemonicParsing="false" onAction="#actButtonAction" text="Act" />
-            <Button fx:id="rehearseButton" mnemonicParsing="false" onAction="#rehearseButtonAction" text="Rehearse" />
-            <Button fx:id="upgradeButton" mnemonicParsing="false" onAction="#upgradeButtonAction" text="Upgrade" />
-         </children>
-      </VBox>
-      <Label fx:id="actPrintLabel" />
-      <Button fx:id="rollDieButton" mnemonicParsing="false" onAction="#rollDieAction" text="Roll Die" AnchorPane.topAnchor="350.0" />
    </children>
 </AnchorPane>

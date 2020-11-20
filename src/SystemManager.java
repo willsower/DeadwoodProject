@@ -86,7 +86,8 @@ public class SystemManager implements Initializable {
         boardImage.setImage(Board.getInstance().getBoardImage());
         boardImage.setVisible(false);
         deck.setVisible(false);
-        makeButtonVisible(false,false,false,false);
+        makeButtonVisible(false,false,false);
+        rollDieButton.setVisible(false);
 
     }
 
@@ -112,17 +113,20 @@ public class SystemManager implements Initializable {
     }
 
     public void actButtonAction(ActionEvent event) {
-        makeButtonVisible(false,false,false, true);
+        makeButtonVisible(false,false,false);
+        rollDieButton.setVisible(true);
 
     }
     
     public void rehearseButtonAction(ActionEvent event) {
         OnTurn.getInstance().rehearse(currentP);
-        makeButtonVisible(false, false,false,false);
+        makeButtonVisible(false, false,false);
     }
     public void upgradeButtonAction(ActionEvent event) {
-
-        makeButtonVisible(false,false,false, false);
+        makeButtonVisible(false,false,false);
+        //show list of lable
+        //show buttons
+        //call upgrade class
 
     }
     public void rollDieAction(ActionEvent event) {
@@ -134,11 +138,11 @@ public class SystemManager implements Initializable {
     }
 
 
-    public void makeButtonVisible(boolean act, boolean rehearse, boolean upgrade, boolean roll) {
+    public void makeButtonVisible(boolean act, boolean rehearse, boolean upgrade) {
         actButton.setVisible(act);
         rehearseButton.setVisible(rehearse);
         upgradeButton.setVisible(upgrade);
-        rollDieButton.setVisible(roll);
+
     }
 
     public void printLabel(String str) {

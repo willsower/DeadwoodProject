@@ -114,6 +114,8 @@ public class OnTurn {
             if (player.getPlayerLocation().equals("trailer")) {
                 // Do nothing
             } else if (player.getPlayerLocation().equals("office")) {
+                //visible upgrade button
+
                 int up = UserInterface.getInstance().upgradePlayer(player, player.getLevel(), player.getPlayerLocation(),
                         player.getDollar(), player.getCredit());
                 if (up != 0) {
@@ -269,10 +271,10 @@ public class OnTurn {
 
             // If player can rehearse or act, give them options
             if (player.getRoleLevel() + player.getPracticeChip() < 6) {
-                SystemManager.getInstance().makeButtonVisible(true,true,false, false);
+                SystemManager.getInstance().makeButtonVisible(true,true,false);
             // If they can't rehearse anymore give them only act option
             } else {
-                SystemManager.getInstance().makeButtonVisible(true,false,false,false);
+                SystemManager.getInstance().makeButtonVisible(true,false,false);
             }
         }
         return endOfCard; // return to SystemManager.java

@@ -13,10 +13,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.TransferMode;
+import java.awt.event.MouseEvent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.Node;
 
 import java.net.URL;
 import java.util.*;
-
 
 public class SystemManager implements Initializable {
     private Player[] players;
@@ -113,7 +118,6 @@ public class SystemManager implements Initializable {
 
     public void actButtonAction(ActionEvent event) {
         makeButtonVisible(false,false,false, true);
-
     }
     
     public void rehearseButtonAction(ActionEvent event) {
@@ -130,9 +134,7 @@ public class SystemManager implements Initializable {
         if( OnTurn.getInstance().act(currentP)) {
             cardsFinished++;
         }
-
     }
-
 
     public void makeButtonVisible(boolean act, boolean rehearse, boolean upgrade, boolean roll) {
         actButton.setVisible(act);
@@ -143,6 +145,20 @@ public class SystemManager implements Initializable {
 
     public void printLabel(String str) {
         actPrintLabel.setText(str);
+    }
+
+    // Function to be called when dragging to different scenes
+    // This function is drag over function
+    @FXML
+    private void handleDragArea(DragEvent event) {
+        System.out.println("Hiiii");
+        event.acceptTransferModes(TransferMode.ANY);
+    }
+
+    @FXML
+    private void handlePlayerDrag(DragEvent event) {
+
+
     }
 
     // Sets board up at each day
@@ -177,10 +193,6 @@ public class SystemManager implements Initializable {
                 default -> player8.setImage(players[i].getPlayerImage());
             }
         }
-
-        //close window --take out when continuing to run game
-//        Stage stage = (Stage) submitButton.getScene().getWindow();
-//        stage.close();
     }
 
     // Turn manager initializes all players

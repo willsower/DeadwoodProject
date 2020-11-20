@@ -88,7 +88,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ImageView fx:id="trainStationCard" fitHeight="150.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" translateX="103.0" translateY="67.0" />
+            <ImageView fx:id="trainStationCard" fitHeight="150.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" translateX="153.0" translateY="67.0" />
             <ImageView fx:id="jailCard" fitHeight="150.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" translateX="319.0" translateY="41.0" />
             <ImageView fx:id="mainStreetCard" fitHeight="150.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" translateX="754.0" translateY="42.0" />
             <ImageView fx:id="generalStoreCard" fitHeight="150.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" translateX="374.0" translateY="202.0" />

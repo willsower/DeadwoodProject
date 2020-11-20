@@ -122,5 +122,7 @@
             <Button fx:id="upgradeButton" mnemonicParsing="false" onAction="#upgradeButtonAction" text="Upgrade" />
          </children>
       </VBox>
+      <Label fx:id="actPrintLabel" />
+      <Button fx:id="rollDieButton" mnemonicParsing="false" onAction="#rollDieAction" text="Roll Die" AnchorPane.topAnchor="350.0" />
    </children>
 </AnchorPane>

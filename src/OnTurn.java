@@ -189,6 +189,10 @@ public class OnTurn {
         int counter = Board.getInstance().getSet(player.getPlayerLocation()).getShotCounter();
         int diceRoll = roll();
 
+        //String strDiceRoll = Integer.toString(diceRoll);
+
+        SystemManager.getInstance().printLabel(Integer.toString(diceRoll));
+
         System.out.println("  Card Budget: " + cardBudget);
         System.out.println("  Dice Rolled: " + diceRoll);
         System.out.println("  Shot Counter [Before Act] " + counter);
@@ -199,7 +203,8 @@ public class OnTurn {
             counter -= 1;
             Board.getInstance().getSet(player.getPlayerLocation()).setShotCounter(counter);
 
-            System.out.println("\n  SUCCESS IN ACTING");
+            //System.out.println("\n  SUCCESS IN ACTING");
+            SystemManager.getInstance().printLabel("SUCCESS IN ACTING");
             System.out.println("  Current Shot Counter: " + counter);
             if (player.getOnCardRole() == true) { // on card
                 player.setCredit(player.getCredit() + 2);
@@ -229,7 +234,8 @@ public class OnTurn {
             }
 
         } else { // else fail
-            System.out.println("\n  FAILED IN ACTING");
+            //System.out.println("\n  FAILED IN ACTING");
+            SystemManager.getInstance().printLabel("FAILED IN ACTING");
             if (player.getOffCardRole() == true) {
                 player.setDollar(player.getDollar() + 1);
             }
@@ -263,10 +269,10 @@ public class OnTurn {
 
             // If player can rehearse or act, give them options
             if (player.getRoleLevel() + player.getPracticeChip() < 6) {
-                SystemManager.getInstance().makeButtonVisible(true,true,false);
+                SystemManager.getInstance().makeButtonVisible(true,true,false, false);
             // If they can't rehearse anymore give them only act option
             } else {
-                SystemManager.getInstance().makeButtonVisible(true,false,false);
+                SystemManager.getInstance().makeButtonVisible(true,false,false,false);
             }
         }
         return endOfCard; // return to SystemManager.java

@@ -66,13 +66,17 @@ public class SystemManager implements Initializable {
     @FXML private Button actButton;
     @FXML private Button rehearseButton;
     @FXML private Button upgradeButton;
+    @FXML private Button rollDieButton;
+
+    @FXML private Label actPrintLabel;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         boardImage.setImage(Board.getInstance().getBoardImage());
         boardImage.setVisible(false);
         deck.setVisible(false);
-        makeButtonVisible(false,false,false);
+        makeButtonVisible(false,false,false,false);
 
     }
 
@@ -98,26 +102,36 @@ public class SystemManager implements Initializable {
     }
 
     public void actButtonAction(ActionEvent event) {
-        makeButtonVisible(false,false,false);
+        makeButtonVisible(false,false,false, true);
+
+    }
+    public void rehearseButtonAction(ActionEvent event) {
+        OnTurn.getInstance().rehearse(currentP);
+        makeButtonVisible(false, false,false,false);
+    }
+    public void upgradeButtonAction(ActionEvent event) {
+
+        makeButtonVisible(false,false,false, false);
+
+    }
+    public void rollDieAction(ActionEvent event) {
+        rollDieButton.setVisible(false);
         if( OnTurn.getInstance().act(currentP)) {
             cardsFinished++;
         }
 
     }
-    public void rehearseButtonAction(ActionEvent event) {
-        OnTurn.getInstance().rehearse(currentP);
-        makeButtonVisible(false, false,false);
-    }
-    public void upgradeButtonAction(ActionEvent event) {
 
-        makeButtonVisible(false,false,false);
 
-    }
-
-    public void makeButtonVisible(boolean act, boolean rehearse, boolean upgrade) {
+    public void makeButtonVisible(boolean act, boolean rehearse, boolean upgrade, boolean roll) {
         actButton.setVisible(act);
         rehearseButton.setVisible(rehearse);
         upgradeButton.setVisible(upgrade);
+        rollDieButton.setVisible(roll);
+    }
+
+    public void printLabel(String str) {
+        actPrintLabel.setText(str);
     }
 
 

@@ -331,7 +331,7 @@ public class SystemManager implements Initializable {
 //            do {
                 currentP = list[player];
                 // If card has finished increment cards finished
-                turn.turn(list[player]);
+//                turn.turn(list[player]);
 
 //                player++; // Next player turn
 //

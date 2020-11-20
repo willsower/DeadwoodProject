@@ -115,17 +115,20 @@ public class OnTurn {
                 // Do nothing
             } else if (player.getPlayerLocation().equals("office")) {
                 //visible upgrade button
-
-                int up = UserInterface.getInstance().upgradePlayer(player, player.getLevel(), player.getPlayerLocation(),
-                        player.getDollar(), player.getCredit());
-                if (up != 0) {
-                    if (player.getCredit() >= Upgrade.getInstance().getLevel(up).credit) {
-                        Upgrade.getInstance().upgradeCredit(player, up);
-                    } else {
-                        Upgrade.getInstance().upgradeDollar(player, up);
-                    }
-/**/                    UserInterfaceDisplay.getInstance().playerUpgrade(player);
+                if (Upgrade.getInstance().canUpgrade(player.getLevel(), player.getPlayerLocation(), player.getDollar(), player.getCredit())) {
+                    SystemManager.getInstance().makeButtonVisible(false, false, true);
                 }
+//                int up = UserInterface.getInstance().upgradePlayer(player, player.getLevel(), player.getPlayerLocation(),
+//                        player.getDollar(), player.getCredit());
+//
+                int rankNumChoice = SystemManager.getInstance().getUpgradeRankChoice();
+                if (player.getCredit() >= Upgrade.getInstance().getLevel(rankNumChoice).credit) {
+                    Upgrade.getInstance().upgradeCredit(player, rankNumChoice);
+                } else {
+                    Upgrade.getInstance().upgradeDollar(player, rankNumChoice);
+                }
+/**/              UserInterfaceDisplay.getInstance().playerUpgrade(player);
+
             } else {
                 if (Board.getInstance().getSet(player.getPlayerLocation()).getIsActive() == true) {
                     takeRole(player);
@@ -141,6 +144,7 @@ public class OnTurn {
     public void moveManager(Player player) {
         // Allow player to upgrade then move
         if (player.getPlayerLocation().equals("office")) {
+            SystemManager.getInstance().makeButtonVisible(false,false,true);
             int up = UserInterface.getInstance().upgradePlayer(player, player.getLevel(), player.getPlayerLocation(),
                     player.getDollar(), player.getCredit());
             moveTakeRoleOption(player);

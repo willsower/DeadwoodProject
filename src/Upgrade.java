@@ -41,6 +41,7 @@ public class Upgrade {
         if (location.equals("office")) {
             if (currentLevel < 6) {
                 if (playerHasCredit(currentLevel, credit) || playerHasDollar(currentLevel, dollar)) {
+                    SystemManager.getInstance().setPayButtonsVisible(playerHasDollar(currentLevel, dollar), playerHasCredit(currentLevel, credit));
                     return true;
                 }
             }
@@ -56,7 +57,7 @@ public class Upgrade {
         if (upgradeLevel.dollar > dollar) {
             return false;
         }
-
+        //SystemManager.getInstance().makePayButtonsVisible(true, false);
         return true;
     }
 
@@ -68,7 +69,7 @@ public class Upgrade {
         if (upgradeLevel.credit > credit) {
             return false;
         }
-
+        //SystemManager.getInstance().makePayButtonsVisible(false, true);
         return true;
     }
 
@@ -102,6 +103,7 @@ public class Upgrade {
         for (int i = currentLevel + 1; i <= 6; i++) {
             if (getLevel(i).credit <= credit || getLevel(i).dollar <= dollar) {
                 canUpgrade.add(i);
+                SystemManager.getInstance().addUpgradeOptions(i);
             }
         }
 

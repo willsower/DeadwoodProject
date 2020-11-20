@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -23,6 +24,9 @@ public class SystemManager implements Initializable {
     private int numPlayer;
     int cardsFinished = 0;
     private Player currentP;
+    int rankChoice;
+    boolean dollarVisible;
+    boolean creditVisible;
     private static SystemManager instance = null;
 
     // create instance
@@ -67,9 +71,12 @@ public class SystemManager implements Initializable {
     @FXML private Button rehearseButton;
     @FXML private Button upgradeButton;
     @FXML private Button rollDieButton;
+    @FXML private Button upgradeRankButton;
+    @FXML private Button payWDollarButton;
+    @FXML private Button payWCreditButton;
 
     @FXML private Label actPrintLabel;
-
+    @FXML private ChoiceBox<Integer> upgradeOptions;
 
     //Player pieces
     @FXML private ImageView player1;
@@ -88,6 +95,8 @@ public class SystemManager implements Initializable {
         deck.setVisible(false);
         makeButtonVisible(false,false,false);
         rollDieButton.setVisible(false);
+        upgradeOptions.setVisible(false);
+        upgradeRankButton.setVisible(false);
 
     }
 
@@ -117,18 +126,7 @@ public class SystemManager implements Initializable {
         rollDieButton.setVisible(true);
 
     }
-    
-    public void rehearseButtonAction(ActionEvent event) {
-        OnTurn.getInstance().rehearse(currentP);
-        makeButtonVisible(false, false,false);
-    }
-    public void upgradeButtonAction(ActionEvent event) {
-        makeButtonVisible(false,false,false);
-        //show list of lable
-        //show buttons
-        //call upgrade class
 
-    }
     public void rollDieAction(ActionEvent event) {
         rollDieButton.setVisible(false);
         if( OnTurn.getInstance().act(currentP)) {
@@ -137,6 +135,62 @@ public class SystemManager implements Initializable {
 
     }
 
+    public void rehearseButtonAction(ActionEvent event) {
+        OnTurn.getInstance().rehearse(currentP);
+        makeButtonVisible(false, false,false);
+    }
+
+    public void upgradeButtonAction(ActionEvent event) {
+        makeButtonVisible(false,false,false);
+        //upgradeOptions.setValue(2);
+        Upgrade.getInstance().levelsCanUpgrade(currentP); //set add upgrade options
+        upgradeOptions.setVisible(true);
+        upgradeRankButton.setVisible(true);
+
+        //show buttons
+        //call upgrade class
+
+    }
+
+    public void upgradeRankAction(ActionEvent event){
+        rankChoice = upgradeOptions.getValue();
+        upgradeOptions.setVisible(false);
+        upgradeRankButton.setVisible(false);
+        //button for credit button for dollar
+
+        makePayButtonsVisible(dollarVisible,creditVisible);  /////////////////////////////continue here
+    }
+
+    public int getUpgradeRankChoice() {
+        return rankChoice;
+    }
+
+    public void addUpgradeOptions(int num) {
+        upgradeOptions.getItems().add(num);
+    }
+
+    public void payWDollarAction(ActionEvent event) {
+
+    }
+
+    public void payWCreditAction(ActionEvent event) {
+
+    }
+
+    public void setPayButtonsVisible(boolean dollar, boolean credit) {
+        dollarVisible = dollar;
+        creditVisible = credit;
+    }
+    public void makePayButtonsVisible(boolean dollar, boolean credit) {
+        payWDollarButton.setVisible(dollar);
+        payWCreditButton.setVisible(credit);
+//        if (dollar) {
+//            payWDollarButton.setVisible(dollar);
+//        }
+//        if (credit){
+//            payWCreditButton.setVisible(credit);
+//        }
+    }
 
     public void makeButtonVisible(boolean act, boolean rehearse, boolean upgrade) {
         actButton.setVisible(act);

@@ -129,7 +129,49 @@ public class SystemManager implements Initializable {
         boardImage.setVisible(false);
         deck.setVisible(false);
         makeButtonVisible(false,false,false,false);
-        toMainStreetFromtrailers.setVisible(true);
+        setButtons(false);
+    }
+
+    public void setButtons(boolean val) {
+        toSaloonFromMainStreet.setVisible(val);
+        toJailFromMainStreet.setVisible(val);
+        toMainStreetFromtrailers.setVisible(val);
+        toSaloonFromtrailers.setVisible(val);
+        toHotelFromtrailers.setVisible(val);
+        toChurchFromHotel.setVisible(val);
+        totrailersFromMainStreet.setVisible(val);
+        totrailersFromHotel.setVisible(val);
+        toSecretHideoutFromChurch.setVisible(val);
+        toHotelFromChurch.setVisible(val);
+        toBankFromChurch.setVisible(val);
+        toSaloonFromBank.setVisible(val);
+        toChurchFromBank.setVisible(val);
+        toHotelFromBank.setVisible(val);
+        toRanchFromBank.setVisible(val);
+        totrailersFromSaloon.setVisible(val);
+        toBankFromSaloon.setVisible(val);
+        toGeneralStoreFromSaloon.setVisible(val);
+        toMainStreetFromSaloon.setVisible(val);
+        toChurchFromSecretHideout.setVisible(val);
+        toRanchFromSecretHideout.setVisible(val);
+        toofficeFromSecretHideout.setVisible(val);
+        toBankFromRanch.setVisible(val);
+        toGeneralStoreFromRanch.setVisible(val);
+        toofficeFromRanch.setVisible(val);
+        toSecretHideoutFromRanch.setVisible(val);
+        toRanchFromGeneralStore.setVisible(val);
+        toSaloonFromGeneralStore.setVisible(val);
+        toJailFromGeneralStore.setVisible(val);
+        toTrainStationFromGeneralStore.setVisible(val);
+        toMainStreetFromJail.setVisible(val);
+        toGeneralStoreFromJail.setVisible(val);
+        toTrainStationFromJail.setVisible(val);
+        toJailFromTrainStation.setVisible(val);
+        toGeneralStoreFromTrainStation.setVisible(val);
+        toofficeFromTrainStation.setVisible(val);
+        toTrainStationFromoffice.setVisible(val);
+        toRanchFromoffice.setVisible(val);
+        toSecretHideoutFromoffice.setVisible(val);
     }
 
     //want this function to set the number of players and continue to the game

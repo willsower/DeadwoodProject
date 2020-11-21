@@ -7,6 +7,7 @@
 */
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import org.w3c.dom.Document;
 
 import java.util.*;

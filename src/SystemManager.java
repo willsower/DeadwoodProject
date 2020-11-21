@@ -69,9 +69,46 @@ public class SystemManager implements Initializable {
     @FXML private Button rehearseButton;
     @FXML private Button upgradeButton;
     @FXML private Button rollDieButton;
-
     @FXML private Label actPrintLabel;
-
+    @FXML private Button totrailersFromMainStreet;
+    @FXML private Button toSaloonFromMainStreet;
+    @FXML private Button toJailFromMainStreet;
+    @FXML private Button toMainStreetFromtrailers;
+    @FXML private Button toSaloonFromtrailers;
+    @FXML private Button toHotelFromtrailers;
+    @FXML private Button toChurchFromHotel;
+    @FXML private Button totrailersFromHotel;
+    @FXML private Button toBankFromChurch;
+    @FXML private Button toSecretHideoutFromChurch;
+    @FXML private Button toHotelFromChurch;
+    @FXML private Button toSaloonFromBank;
+    @FXML private Button toRanchFromBank;
+    @FXML private Button toChurchFromBank;
+    @FXML private Button toHotelFromBank;
+    @FXML private Button totrailersFromSaloon;
+    @FXML private Button toBankFromSaloon;
+    @FXML private Button toGeneralStoreFromSaloon;
+    @FXML private Button toMainStreetFromSaloon;
+    @FXML private Button toChurchFromSecretHideout;
+    @FXML private Button toRanchFromSecretHideout;
+    @FXML private Button toofficeFromSecretHideout;
+    @FXML private Button toBankFromRanch;
+    @FXML private Button toGeneralStoreFromRanch;
+    @FXML private Button toofficeFromRanch;
+    @FXML private Button toSecretHideoutFromRanch;
+    @FXML private Button toRanchFromGeneralStore;
+    @FXML private Button toSaloonFromGeneralStore;
+    @FXML private Button toJailFromGeneralStore;
+    @FXML private Button toTrainStationFromGeneralStore;
+    @FXML private Button toMainStreetFromJail;
+    @FXML private Button toGeneralStoreFromJail;
+    @FXML private Button toTrainStationFromJail;
+    @FXML private Button toJailFromTrainStation;
+    @FXML private Button toGeneralStoreFromTrainStation;
+    @FXML private Button toofficeFromTrainStation;
+    @FXML private Button toTrainStationFromoffice;
+    @FXML private Button toRanchFromoffice;
+    @FXML private Button toSecretHideoutFromoffice;
 
     //Player pieces
     @FXML private ImageView player1;
@@ -82,6 +119,7 @@ public class SystemManager implements Initializable {
     @FXML private ImageView player6;
     @FXML private ImageView player7;
     @FXML private ImageView player8;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -178,6 +216,74 @@ public class SystemManager implements Initializable {
                 case 7 -> player7.setImage(players[i].getPlayerImage());
                 default -> player8.setImage(players[i].getPlayerImage());
             }
+        }
+    }
+
+    public void addButtons(Set set, String name) {
+        switch (name) {
+            case "Main Street":
+                set.getOut().add(totrailersFromMainStreet);
+                set.getOut().add(toSaloonFromMainStreet);
+                set.getOut().add(toJailFromMainStreet);
+                break;
+            case "trailers":
+                set.getOut().add(toMainStreetFromtrailers);
+                set.getOut().add(toSaloonFromtrailers);
+                set.getOut().add(toHotelFromtrailers);
+                break;
+            case "Hotel":
+                set.getOut().add(toChurchFromHotel);
+                set.getOut().add(totrailersFromHotel);
+                break;
+            case "Church":
+                set.getOut().add(toBankFromChurch);
+                set.getOut().add(toSecretHideoutFromChurch);
+                set.getOut().add(toHotelFromChurch);
+                break;
+            case "Bank":
+                set.getOut().add(toSaloonFromBank);
+                set.getOut().add(toRanchFromBank);
+                set.getOut().add(toChurchFromBank);
+                set.getOut().add(toHotelFromBank);
+                break;
+            case "Saloon":
+                set.getOut().add(totrailersFromSaloon);
+                set.getOut().add(toBankFromSaloon);
+                set.getOut().add(toGeneralStoreFromSaloon);
+                set.getOut().add(toMainStreetFromSaloon);
+                break;
+            case "Secret Hideout":
+                set.getOut().add(toChurchFromSecretHideout);
+                set.getOut().add(toRanchFromSecretHideout);
+                set.getOut().add(toofficeFromSecretHideout);
+                break;
+            case "Ranch":
+                set.getOut().add(toBankFromRanch);
+                set.getOut().add(toGeneralStoreFromRanch);
+                set.getOut().add(toofficeFromRanch);
+                set.getOut().add(toSecretHideoutFromRanch);
+                break;
+            case "General Store":
+                set.getOut().add(toRanchFromGeneralStore);
+                set.getOut().add(toSaloonFromGeneralStore);
+                set.getOut().add(toJailFromGeneralStore);
+                set.getOut().add(toTrainStationFromGeneralStore);
+                break;
+            case "Jail":
+                set.getOut().add(toMainStreetFromJail);
+                set.getOut().add(toGeneralStoreFromJail);
+                set.getOut().add(toTrainStationFromJail);
+                break;
+            case "Train Station":
+                set.getOut().add(toJailFromTrainStation);
+                set.getOut().add(toGeneralStoreFromTrainStation);
+                set.getOut().add(toofficeFromTrainStation);
+                break;
+            default:
+                set.getOut().add(toTrainStationFromoffice);
+                set.getOut().add(toRanchFromoffice);
+                set.getOut().add(toSecretHideoutFromoffice);
+                break;
         }
     }
 

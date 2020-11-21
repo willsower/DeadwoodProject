@@ -145,35 +145,48 @@ public class SystemManager implements Initializable {
     // Set buttons visible for when moving
     @FXML
     public void showButton(String location) {
+        Pane obj = new Pane();
         switch (location) {
             case "Main Street":
-
+                obj = mainStreet;
                 break;
             case "trailer":
-              for (int i = 0; i < trailer.getChildren().size(); i++) {
-                  trailer.getChildren().get(i).setVisible(true);
-              }
+                obj = trailer;
                 break;
             case "office":
+                obj = office;
                 break;
             case "Secret Hideout":
+                obj = secretHideout;
                 break;
             case "Train Station":
+                obj = trainStation;
                 break;
             case "Ranch":
+                obj = ranch;
                 break;
             case "Jail":
+                obj = jail;
                 break;
             case "Hotel":
+                obj = hotel;
                 break;
             case "Bank":
+                obj = bank;
                 break;
             case "Saloon":
+                obj = saloon;
                 break;
             case "General Store":
+                obj = generalStore;
                 break;
             default:
+                obj = church;
                 break;
+        }
+        obj.toFront();
+        for (int i = 0; i < obj.getChildren().size(); i++) {
+            obj.getChildren().get(i).setVisible(true);
         }
     }
 
@@ -271,8 +284,8 @@ public class SystemManager implements Initializable {
     }
 
     public void onMove(ActionEvent event) {
-        System.out.println(((Node) event.getSource()).getId());
-        OnTurn.getInstance().movePlayer(currentP);
+        String name = ((Node) event.getSource()).getId().toString();
+        OnTurn.getInstance().movePlayer(currentP, name);
     }
 
     // Sets board up at each day
@@ -438,6 +451,29 @@ public class SystemManager implements Initializable {
         setUpBoard(day);
     }
 
+    // Function turn will give player options at start of turn
+    // Will return true if card has finished
+    // will return false if not
+    public boolean turn(Player player) {
+        boolean endOfCard = false;
+
+        // If player has not taken a role, let them move
+        if (player.getOffCardRole() == false && player.getOnCardRole() == false) {
+//            moveManager(player);
+            showButton(player.getPlayerLocation());
+        } else {
+
+            // If player can rehearse or act, give them options
+            if (player.getRoleLevel() + player.getPracticeChip() < 6) {
+                SystemManager.getInstance().makeButtonVisible(true,true,false, false);
+                // If they can't rehearse anymore give them only act option
+            } else {
+                SystemManager.getInstance().makeButtonVisible(true,false,false,false);
+            }
+        }
+        return endOfCard; // return to SystemManager.java
+    }
+
     // This is the run function, will play for x amount of days
     // and iterate through a do-while loop until the amount of cards
     // have finished for that day.
@@ -449,7 +485,7 @@ public class SystemManager implements Initializable {
         int days = calculateDaysPlayed();
 
         // Run for each day
-        for (int i = 0; i < days; i++) {
+        for (int i = 0; i < /*days*/1; i++) {
             cardsFinished = 0;
 
             resetAll(list, i + 1);
@@ -457,8 +493,8 @@ public class SystemManager implements Initializable {
 //            do {
                 currentP = list[player];
                 // If card has finished increment cards finished
-//                turn.turn(list[player]);
-showButton(list[player].getPlayerLocation());
+                turn(list[player]);
+//showButton(list[player].getPlayerLocation());
 //                player++; // Next player turn
 //
 //                // Reset back to player 1
@@ -469,6 +505,6 @@ showButton(list[player].getPlayerLocation());
 //            } while (cardsFinished < 9); /* !9/10 cards */
         }
         // Calculate end score
-        endFunction();
+//        endFunction();
     }
 }

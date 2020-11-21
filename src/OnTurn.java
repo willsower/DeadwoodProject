@@ -96,9 +96,9 @@ public class OnTurn {
         return false;
     }
 
-    public void movePlayer(Player player) {
+    public void movePlayer(Player player, String location) {
         // Display move button options
-        SystemManager.getInstance().showButton(player.getPlayerLocation());
+
     }
 
     // Ultimately the move option. Once moved, will allow players to take a role
@@ -161,7 +161,7 @@ public class OnTurn {
             // Allow player to move then take a role
         } else if (player.getPlayerLocation().equals("trailer")) {
 //            moveTakeRoleOption(player);
-            movePlayer(player);
+//            movePlayer(player);
 
             // First allow player to take a role on the board
             // If they choose not to take role, let them move to another location
@@ -176,7 +176,7 @@ public class OnTurn {
 
             if (choice == false) {
 //                moveTakeRoleOption(player);
-                movePlayer(player);
+//                movePlayer(player);
             }
         }
     }

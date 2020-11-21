@@ -14,6 +14,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.Node;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 
 import java.net.URL;
 import java.util.*;
@@ -127,6 +129,7 @@ public class SystemManager implements Initializable {
         boardImage.setVisible(false);
         deck.setVisible(false);
         makeButtonVisible(false,false,false,false);
+        toMainStreetFromtrailers.setVisible(true);
     }
 
     //want this function to set the number of players and continue to the game
@@ -219,73 +222,79 @@ public class SystemManager implements Initializable {
         }
     }
 
-    public void addButtons(Set set, String name) {
-        switch (name) {
-            case "Main Street":
-                set.getOut().add(totrailersFromMainStreet);
-                set.getOut().add(toSaloonFromMainStreet);
-                set.getOut().add(toJailFromMainStreet);
-                break;
-            case "trailers":
-                set.getOut().add(toMainStreetFromtrailers);
-                set.getOut().add(toSaloonFromtrailers);
-                set.getOut().add(toHotelFromtrailers);
-                break;
-            case "Hotel":
-                set.getOut().add(toChurchFromHotel);
-                set.getOut().add(totrailersFromHotel);
-                break;
-            case "Church":
-                set.getOut().add(toBankFromChurch);
-                set.getOut().add(toSecretHideoutFromChurch);
-                set.getOut().add(toHotelFromChurch);
-                break;
-            case "Bank":
-                set.getOut().add(toSaloonFromBank);
-                set.getOut().add(toRanchFromBank);
-                set.getOut().add(toChurchFromBank);
-                set.getOut().add(toHotelFromBank);
-                break;
-            case "Saloon":
-                set.getOut().add(totrailersFromSaloon);
-                set.getOut().add(toBankFromSaloon);
-                set.getOut().add(toGeneralStoreFromSaloon);
-                set.getOut().add(toMainStreetFromSaloon);
-                break;
-            case "Secret Hideout":
-                set.getOut().add(toChurchFromSecretHideout);
-                set.getOut().add(toRanchFromSecretHideout);
-                set.getOut().add(toofficeFromSecretHideout);
-                break;
-            case "Ranch":
-                set.getOut().add(toBankFromRanch);
-                set.getOut().add(toGeneralStoreFromRanch);
-                set.getOut().add(toofficeFromRanch);
-                set.getOut().add(toSecretHideoutFromRanch);
-                break;
-            case "General Store":
-                set.getOut().add(toRanchFromGeneralStore);
-                set.getOut().add(toSaloonFromGeneralStore);
-                set.getOut().add(toJailFromGeneralStore);
-                set.getOut().add(toTrainStationFromGeneralStore);
-                break;
-            case "Jail":
-                set.getOut().add(toMainStreetFromJail);
-                set.getOut().add(toGeneralStoreFromJail);
-                set.getOut().add(toTrainStationFromJail);
-                break;
-            case "Train Station":
-                set.getOut().add(toJailFromTrainStation);
-                set.getOut().add(toGeneralStoreFromTrainStation);
-                set.getOut().add(toofficeFromTrainStation);
-                break;
-            default:
-                set.getOut().add(toTrainStationFromoffice);
-                set.getOut().add(toRanchFromoffice);
-                set.getOut().add(toSecretHideoutFromoffice);
-                break;
-        }
-    }
+//    public void addButtons(Set set, String name) {
+//
+//        switch (name) {
+//            case "Main Street":
+//                set.getOut().add(totrailersFromMainStreet);
+//                set.getOut().add(toSaloonFromMainStreet);
+//                set.getOut().add(toJailFromMainStreet);
+//                break;
+//            case "trailer":
+////                toMainStreetFromtrailers = (Button) Deadwood.getPrimaryStage().getScene().lookup("#toMainStreetFromtrailers");
+//                set.getOut().add(toMainStreetFromtrailers);
+//                set.getOut().add(toSaloonFromtrailers);
+//                set.getOut().add(toHotelFromtrailers);
+////                System.out.println(toMainStreetFromtrailers.getId());
+//                System.out.println(set.getOut().get(0));
+//                System.out.println(set.getOut().get(1));
+//                System.out.println(set.getOut().get(2));
+//                break;
+//            case "Hotel":
+//                set.getOut().add(toChurchFromHotel);
+//                set.getOut().add(totrailersFromHotel);
+//                break;
+//            case "Church":
+//                set.getOut().add(toBankFromChurch);
+//                set.getOut().add(toSecretHideoutFromChurch);
+//                set.getOut().add(toHotelFromChurch);
+//                break;
+//            case "Bank":
+//                set.getOut().add(toSaloonFromBank);
+//                set.getOut().add(toRanchFromBank);
+//                set.getOut().add(toChurchFromBank);
+//                set.getOut().add(toHotelFromBank);
+//                break;
+//            case "Saloon":
+//                set.getOut().add(totrailersFromSaloon);
+//                set.getOut().add(toBankFromSaloon);
+//                set.getOut().add(toGeneralStoreFromSaloon);
+//                set.getOut().add(toMainStreetFromSaloon);
+//                break;
+//            case "Secret Hideout":
+//                set.getOut().add(toChurchFromSecretHideout);
+//                set.getOut().add(toRanchFromSecretHideout);
+//                set.getOut().add(toofficeFromSecretHideout);
+//                break;
+//            case "Ranch":
+//                set.getOut().add(toBankFromRanch);
+//                set.getOut().add(toGeneralStoreFromRanch);
+//                set.getOut().add(toofficeFromRanch);
+//                set.getOut().add(toSecretHideoutFromRanch);
+//                break;
+//            case "General Store":
+//                set.getOut().add(toRanchFromGeneralStore);
+//                set.getOut().add(toSaloonFromGeneralStore);
+//                set.getOut().add(toJailFromGeneralStore);
+//                set.getOut().add(toTrainStationFromGeneralStore);
+//                break;
+//            case "Jail":
+//                set.getOut().add(toMainStreetFromJail);
+//                set.getOut().add(toGeneralStoreFromJail);
+//                set.getOut().add(toTrainStationFromJail);
+//                break;
+//            case "Train Station":
+//                set.getOut().add(toJailFromTrainStation);
+//                set.getOut().add(toGeneralStoreFromTrainStation);
+//                set.getOut().add(toofficeFromTrainStation);
+//                break;
+//            default:
+//                set.getOut().add(toTrainStationFromoffice);
+//                set.getOut().add(toRanchFromoffice);
+//                set.getOut().add(toSecretHideoutFromoffice);
+//                break;
+//        }
+//    }
 
     // Set buttons visible for when moving
     @FXML

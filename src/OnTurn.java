@@ -98,6 +98,9 @@ public class OnTurn {
 
     public void movePlayer(Player player) {
         ArrayList<Button> neighborButton = Board.getInstance().getSet(player.getPlayerLocation()).getOut();
+//        for (int i = 0; i < neighborButton.size(); i++) {
+//            System.out.println(neighborButton.get(i));
+//        }
         // Display options
         SystemManager.getInstance().showButton(neighborButton);
     }
@@ -161,7 +164,8 @@ public class OnTurn {
 
             // Allow player to move then take a role
         } else if (player.getPlayerLocation().equals("trailer")) {
-            moveTakeRoleOption(player);
+//            moveTakeRoleOption(player);
+            movePlayer(player);
 
             // First allow player to take a role on the board
             // If they choose not to take role, let them move to another location
@@ -175,7 +179,8 @@ public class OnTurn {
             }
 
             if (choice == false) {
-                moveTakeRoleOption(player);
+//                moveTakeRoleOption(player);
+                movePlayer(player);
             }
         }
     }

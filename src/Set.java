@@ -111,7 +111,12 @@ public class Set {
         return isActive;
     }
 
-    public ArrayList<Button> getOut() { return out; }
+    public ArrayList<Button> getOut() {
+//        for (int i = 0; i < out.size(); i++) {
+//            System.out.println(out.get(i));
+//        }
+        return out;
+    }
 
     // Function to get list of all active sets
     public Boolean[] getIsActiveList() {
@@ -214,6 +219,10 @@ public class Set {
                 partTaken.get(i).isTaken = taken;
             }
         }
+    }
+
+    public void addToButtonList(Button name) {
+        out.add(name);
     }
 
     public void setShotCounter(int counter) {

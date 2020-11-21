@@ -14,12 +14,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.Node;
-import javafx.scene.input.DragEvent;
-import javafx.event.EventHandler;
-import javafx.scene.input.*;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.shape.Rectangle;
-
 
 import java.net.URL;
 import java.util.*;

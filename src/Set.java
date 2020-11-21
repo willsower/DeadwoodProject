@@ -7,6 +7,7 @@
 */
 
 import java.util.ArrayList;
+import javafx.scene.control.Button;
 
 public class Set {
 
@@ -23,6 +24,7 @@ public class Set {
     private int shotCounter;
     private ArrayList<Player> playersInRoomOffCard = new ArrayList<Player>();
     private boolean isActive = true;
+    private ArrayList<Button> out = new ArrayList<>();
 
     // Shot counter values
     class Take {
@@ -108,6 +110,8 @@ public class Set {
     public boolean getIsActive() {
         return isActive;
     }
+
+    public ArrayList<Button> getOut() { return out; }
 
     // Function to get list of all active sets
     public Boolean[] getIsActiveList() {

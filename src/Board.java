@@ -29,6 +29,14 @@ public class Board {
             try {
                 doc = parsing.getDocFromFile("xml/boards.xml");
                 board = parsing.readBoardData(doc);
+
+                Enumeration<Set> values = getBoard().elements();
+
+                // iterate through values
+                while (values.hasMoreElements()) {
+                    Set set = values.nextElement();
+                    SystemManager.getInstance().addButtons(set, set.getSetName());
+                }
             } catch (Exception e) {
                 System.out.println("Error = " + e);
             }

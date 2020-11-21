@@ -287,6 +287,14 @@ public class SystemManager implements Initializable {
         }
     }
 
+    // Set buttons visible for when moving
+    @FXML
+    public void showButton(ArrayList<Button> buttons) {
+        for (int i = 0; i < buttons.size(); i++) {
+            buttons.get(i).setVisible(true);
+        }
+    }
+
     // Turn manager initializes all players
     public void init(int numPlayer) {
         this.numPlayer = numPlayer;
@@ -435,7 +443,7 @@ public class SystemManager implements Initializable {
 //            do {
                 currentP = list[player];
                 // If card has finished increment cards finished
-//                turn.turn(list[player]);
+                turn.turn(list[player]);
 
 //                player++; // Next player turn
 //

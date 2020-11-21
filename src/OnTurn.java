@@ -8,6 +8,7 @@
 
 import java.util.Random;
 import java.util.ArrayList;
+import javafx.scene.control.Button;
 
 public class OnTurn {
     private static OnTurn instance = null;
@@ -96,14 +97,9 @@ public class OnTurn {
     }
 
     public void movePlayer(Player player) {
-
-    }
-
-    public void showMove(Player player) {
-        String[] neighbors = Board.getInstance().getSet(player.getPlayerLocation()).getNeighbor();
-
+        ArrayList<Button> neighborButton = Board.getInstance().getSet(player.getPlayerLocation()).getOut();
         // Display options
-
+        SystemManager.getInstance().showButton(neighborButton);
     }
 
     // Ultimately the move option. Once moved, will allow players to take a role

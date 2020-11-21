@@ -101,6 +101,9 @@ public class OnTurn {
 
     public void showMove(Player player) {
         String[] neighbors = Board.getInstance().getSet(player.getPlayerLocation()).getNeighbor();
+
+        // Display options
+
     }
 
     // Ultimately the move option. Once moved, will allow players to take a role

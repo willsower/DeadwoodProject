@@ -155,10 +155,10 @@
             <Insets top="40.0" />
          </padding>
       </VBox>
-      <Button fx:id="toTrailersFromMainStreet" mnemonicParsing="false" onAction="#onMove" rotate="90.0" styleClass="arrow" translateX="840.0" translateY="250.0" visible="false" />
-      <Button fx:id="toMainStreetFromTrailers" layoutX="36.0" layoutY="-8.0" mnemonicParsing="false" onAction="#onMove" rotate="270.0" styleClass="arrow" translateX="803.0" translateY="250.0" visible="false" />
-      <Button fx:id="toHotelFromTrailers" layoutX="-12.0" layoutY="7.0" mnemonicParsing="false" onAction="#onMove" rotate="90.0" styleClass="arrow" translateX="836.0" translateY="375.0" visible="false" />
-      <Button fx:id="toTrailersFromHotel" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="270.0" styleClass="arrow" translateX="805.0" translateY="376.0" visible="false" />
+      <Button fx:id="totrailersFromMainStreet" mnemonicParsing="false" onAction="#onMove" rotate="90.0" styleClass="arrow" translateX="840.0" translateY="250.0" visible="false" />
+      <Button fx:id="toMainStreetFromtrailers" layoutX="36.0" layoutY="-8.0" mnemonicParsing="false" onAction="#onMove" rotate="270.0" styleClass="arrow" translateX="803.0" translateY="250.0" visible="false" />
+      <Button fx:id="toHotelFromtrailers" layoutX="-12.0" layoutY="7.0" mnemonicParsing="false" onAction="#onMove" rotate="90.0" styleClass="arrow" translateX="836.0" translateY="375.0" visible="false" />
+      <Button fx:id="totrailersFromHotel" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="270.0" styleClass="arrow" translateX="805.0" translateY="376.0" visible="false" />
       <Button fx:id="toMainStreetFromSaloon" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="270.0" styleClass="arrow" translateX="553.0" translateY="213.0" visible="false" />
       <Button fx:id="toSaloonFromMainStreet" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="90.0" styleClass="arrow" translateX="553.0" translateY="220.0" visible="false" />
       <Button fx:id="toBankFromSaloon" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="90.0" styleClass="arrow" translateX="567.0" translateY="384.0" visible="false" />
@@ -171,10 +171,10 @@
       <Button fx:id="toRanchFromGeneralStore" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="90.0" styleClass="arrow" translateX="429.0" translateY="382.0" visible="false" />
       <Button fx:id="toRanchFromSecretHideout" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="270.0" styleClass="arrow" translateX="421.0" translateY="532.0" visible="false" />
       <Button fx:id="toSecretHideoutFromRanch" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="90.0" styleClass="arrow" translateX="422.0" translateY="539.0" visible="false" />
-      <Button fx:id="toOfficeFromTrainStation" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="90.0" styleClass="arrow" translateX="185.0" translateY="383.0" visible="false" />
-      <Button fx:id="toTrainStationFromOffice" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="270.0" styleClass="arrow" translateX="184.0" translateY="376.0" visible="false" />
-      <Button fx:id="toOfficeFromSecretHideout" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="270.0" styleClass="arrow" translateX="166.0" translateY="517.0" visible="false" />
-      <Button fx:id="toSecretHideoutFromOffice" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="90.0" styleClass="arrow" translateX="167.0" translateY="525.0" visible="false" />
+      <Button fx:id="toofficeFromTrainStation" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="90.0" styleClass="arrow" translateX="185.0" translateY="383.0" visible="false" />
+      <Button fx:id="toTrainStationFromoffice" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="270.0" styleClass="arrow" translateX="184.0" translateY="376.0" visible="false" />
+      <Button fx:id="toofficeFromSecretHideout" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="270.0" styleClass="arrow" translateX="166.0" translateY="517.0" visible="false" />
+      <Button fx:id="toSecretHideoutFromoffice" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="90.0" styleClass="arrow" translateX="167.0" translateY="525.0" visible="false" />
       <Button fx:id="toTrainStationFromJail" layoutX="16.0" mnemonicParsing="false" onAction="#onMove" rotate="180.0" styleClass="arrow" translateX="273.0" translateY="151.0" visible="false" />
       <Button fx:id="toJailFromTrainStation" layoutX="16.0" mnemonicParsing="false" onAction="#onMove" styleClass="arrow" translateX="279.0" translateY="150.0" visible="false" />
       <Button fx:id="toJailFromMainStreet" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="180.0" styleClass="arrow" translateX="490.0" translateY="161.0" visible="false" />
@@ -183,10 +183,10 @@
       <Button fx:id="toTrainStationFromGeneralStore" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="180.0" styleClass="arrow" translateX="234.0" translateY="322.0" visible="false" />
       <Button fx:id="toGeneralStoreFromSaloon" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="180.0" styleClass="arrow" translateX="489.0" translateY="312.0" visible="false" />
       <Button fx:id="toSaloonFromGeneralStore" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" styleClass="arrow" translateX="497.0" translateY="312.0" visible="false" />
-      <Button fx:id="toTrailersFromSaloon" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" styleClass="arrow" translateX="740.0" translateY="320.0" visible="false" />
-      <Button fx:id="toSaloonFromTrailers" layoutX="18.0" layoutY="-20.0" mnemonicParsing="false" onAction="#onMove" rotate="180.0" styleClass="arrow" translateX="736.0" translateY="342.0" visible="false" />
-      <Button fx:id="toOfficeFromRanch" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="180.0" styleClass="arrow" translateX="252.0" translateY="434.0" visible="false" />
-      <Button fx:id="toRanchFromOffice" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" styleClass="arrow" translateX="260.0" translateY="432.0" visible="false" />
+      <Button fx:id="totrailersFromSaloon" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" styleClass="arrow" translateX="740.0" translateY="320.0" visible="false" />
+      <Button fx:id="toSaloonFromtrailers" layoutX="18.0" layoutY="-20.0" mnemonicParsing="false" onAction="#onMove" rotate="180.0" styleClass="arrow" translateX="736.0" translateY="342.0" visible="false" />
+      <Button fx:id="toofficeFromRanch" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="180.0" styleClass="arrow" translateX="252.0" translateY="434.0" visible="false" />
+      <Button fx:id="toRanchFromoffice" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" styleClass="arrow" translateX="260.0" translateY="432.0" visible="false" />
       <Button fx:id="toRanchFromBank" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" rotate="180.0" styleClass="arrow" translateX="490.0" translateY="444.0" visible="false" />
       <Button fx:id="toBankFromRanch" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" styleClass="arrow" translateX="497.0" translateY="444.0" visible="false" />
       <Button fx:id="toHotelFromBank" layoutX="18.0" mnemonicParsing="false" onAction="#onMove" styleClass="arrow" translateX="750.0" translateY="431.0" visible="false" />

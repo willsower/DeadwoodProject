@@ -96,9 +96,34 @@ public class OnTurn {
         return false;
     }
 
-    public void movePlayer(Player player, String location) {
-        // Display move button options
+    public String parseMoveTo(String location) {
+        String name = "";
+        int countCaps = 0;
+        boolean flag = false;
+        for (int i = 2; i < location.length(); i++) {
+            if (location.charAt(i) == 'F') {
+                break;
+            } else if (Character.isUpperCase(location.charAt(i))) {
+                countCaps++;
 
+                if (countCaps == 2) {
+                    flag = true;
+                }
+            }
+
+            if (flag) {
+                name += " ";
+                flag = false;
+            }
+
+            name += location.charAt(i);
+        }
+        return name;
+    }
+
+    public void movePlayer(Player player, String location) {
+        String newLocation = parseMoveTo(location);
+        player.setPlayerLocation(newLocation);
     }
 
     // Ultimately the move option. Once moved, will allow players to take a role

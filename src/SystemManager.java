@@ -128,7 +128,7 @@ public class SystemManager implements Initializable {
     @FXML private Button upgradeRankButton;
     @FXML private Button payWDollarButton;
     @FXML private Button payWCreditButton;
-    
+
     @FXML private ChoiceBox<Integer> upgradeOptions;
 
     //Player pieces
@@ -250,9 +250,9 @@ public class SystemManager implements Initializable {
     public void makeButtonVisible(boolean act, boolean rehearse, boolean upgrade, boolean roll) {
         makeButtonVisible(false,false,false);
         //upgradeOptions.setValue(2);
-        Upgrade.getInstance().levelsCanUpgrade(currentP); //set add upgrade options
-        upgradeOptions.setVisible(true);
-        upgradeRankButton.setVisible(true);
+//        Upgrade.getInstance().levelsCanUpgrade(currentP); //set add upgrade options
+//        upgradeOptions.setVisible(true);
+//        upgradeRankButton.setVisible(true);
 
         //show buttons
         //call upgrade class

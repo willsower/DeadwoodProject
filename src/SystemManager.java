@@ -157,45 +157,7 @@ public class SystemManager implements Initializable {
     // Set buttons visible for when moving
     @FXML
     public void showButton(String location) {
-        Pane obj = new Pane();
-        switch (location) {
-            case "Main Street":
-                obj = mainStreet;
-                break;
-            case "trailer":
-                obj = trailer;
-                break;
-            case "office":
-                obj = office;
-                break;
-            case "Secret Hideout":
-                obj = secretHideout;
-                break;
-            case "Train Station":
-                obj = trainStation;
-                break;
-            case "Ranch":
-                obj = ranch;
-                break;
-            case "Jail":
-                obj = jail;
-                break;
-            case "Hotel":
-                obj = hotel;
-                break;
-            case "Bank":
-                obj = bank;
-                break;
-            case "Saloon":
-                obj = saloon;
-                break;
-            case "General Store":
-                obj = generalStore;
-                break;
-            default:
-                obj = church;
-                break;
-        }
+        Pane obj = getButtonLocation(location);
         obj.toFront();
         for (int i = 0; i < obj.getChildren().size(); i++) {
             obj.getChildren().get(i).setVisible(true);
@@ -303,16 +265,74 @@ public class SystemManager implements Initializable {
         actButton.setVisible(act);
         rehearseButton.setVisible(rehearse);
         upgradeButton.setVisible(upgrade);
-
     }
 
     public void printLabel(String str) {
         actPrintLabel.setText(str);
     }
 
+    public Pane getButtonLocation(String location) {
+        Pane obj = new Pane();
+        switch (location) {
+            case "Main Street":
+                obj = mainStreet;
+                break;
+            case "trailer":
+                obj = trailer;
+                break;
+            case "office":
+                obj = office;
+                break;
+            case "Secret Hideout":
+                obj = secretHideout;
+                break;
+            case "Train Station":
+                obj = trainStation;
+                break;
+            case "Ranch":
+                obj = ranch;
+                break;
+            case "Jail":
+                obj = jail;
+                break;
+            case "Hotel":
+                obj = hotel;
+                break;
+            case "Bank":
+                obj = bank;
+                break;
+            case "Saloon":
+                obj = saloon;
+                break;
+            case "General Store":
+                obj = generalStore;
+                break;
+            default:
+                obj = church;
+                break;
+        }
+        return obj;
+    }
+
+    public ImageView playerPerson(int val) {
+        return switch (val) {
+            case 1 -> player1;
+            case 2 -> player2;
+            case 3 -> player3;
+            case 4 -> player4;
+            case 5 -> player5;
+            case 6 -> player6;
+            case 7 -> player7;
+            default -> player8;
+        };
+    }
     public void onMove(ActionEvent event) {
         String name = ((Node) event.getSource()).getId().toString();
+        Pane previousArea = getButtonLocation(currentP.getPlayerLocation());
         OnTurn.getInstance().movePlayer(currentP, name);
+        Pane newArea = getButtonLocation(currentP.getPlayerLocation());
+
+
     }
 
     // Sets board up at each day

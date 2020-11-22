@@ -8,7 +8,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="700.0" stylesheets="@../CSS/main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SystemManager">
    <children>
-      <GridPane prefHeight="691.0" prefWidth="924.0">
+      <GridPane prefHeight="691.0" prefWidth="924.0" AnchorPane.leftAnchor="0.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -124,7 +124,7 @@
             <Pane prefHeight="200.0" prefWidth="200.0" />
          </children>
       </GridPane>
-      <VBox alignment="TOP_CENTER" spacing="20.0" AnchorPane.topAnchor="200.0">
+      <VBox alignment="TOP_CENTER" spacing="20.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="160.0">
          <children>
             <Button fx:id="actButton" mnemonicParsing="false" onAction="#actButtonAction" text="Act" />
             <Button fx:id="rehearseButton" mnemonicParsing="false" onAction="#rehearseButtonAction" text="Rehearse" />
@@ -218,6 +218,25 @@
          <padding>
             <Insets top="40.0" />
          </padding>
+      </VBox>
+      <VBox alignment="TOP_CENTER" layoutY="400.0" AnchorPane.topAnchor="400.0">
+         <children>
+            <ChoiceBox prefWidth="150.0" />
+            <Button fx:id="upgradeRankButton" mnemonicParsing="false" onAction="#upgradeRankAction" text="Upgrade Rank">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </VBox>
+      <VBox layoutX="20.0" layoutY="480.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="480.0">
+         <children>
+            <Button fx:id="payWDollarButton" mnemonicParsing="false" onAction="#payWDollarAction" text="Pay with Dollar" />
+            <Button fx:id="payWCreditButton" mnemonicParsing="false" onAction="#payWCreditAction" text="Pay with Credit" />
+         </children>
       </VBox>
    </children>
 </AnchorPane>

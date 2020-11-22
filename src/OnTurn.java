@@ -145,16 +145,21 @@ public class OnTurn {
             if (player.getPlayerLocation().equals("trailer")) {
                 // Do nothing
             } else if (player.getPlayerLocation().equals("office")) {
-                int up = UserInterface.getInstance().upgradePlayer(player, player.getLevel(), player.getPlayerLocation(),
-                        player.getDollar(), player.getCredit());
-                if (up != 0) {
-                    if (player.getCredit() >= Upgrade.getInstance().getLevel(up).credit) {
-                        Upgrade.getInstance().upgradeCredit(player, up);
-                    } else {
-                        Upgrade.getInstance().upgradeDollar(player, up);
-                    }
-/**/                    UserInterfaceDisplay.getInstance().playerUpgrade(player);
+                //visible upgrade button
+                if (Upgrade.getInstance().canUpgrade(player.getLevel(), player.getPlayerLocation(), player.getDollar(), player.getCredit())) {
+                    SystemManager.getInstance().makeButtonVisible(false, false, true);
                 }
+//                int up = UserInterface.getInstance().upgradePlayer(player, player.getLevel(), player.getPlayerLocation(),
+//                        player.getDollar(), player.getCredit());
+//
+                int rankNumChoice = SystemManager.getInstance().getUpgradeRankChoice();
+                if (player.getCredit() >= Upgrade.getInstance().getLevel(rankNumChoice).credit) {
+                    Upgrade.getInstance().upgradeCredit(player, rankNumChoice);
+                } else {
+                    Upgrade.getInstance().upgradeDollar(player, rankNumChoice);
+                }
+/**/              UserInterfaceDisplay.getInstance().playerUpgrade(player);
+
             } else {
                 if (Board.getInstance().getSet(player.getPlayerLocation()).getIsActive() == true) {
                     takeRole(player);
@@ -170,6 +175,7 @@ public class OnTurn {
     public void moveManager(Player player) {
         // Allow player to upgrade then move
         if (player.getPlayerLocation().equals("office")) {
+            SystemManager.getInstance().makeButtonVisible(false,false,true);
             int up = UserInterface.getInstance().upgradePlayer(player, player.getLevel(), player.getPlayerLocation(),
                     player.getDollar(), player.getCredit());
             moveTakeRoleOption(player);
@@ -301,10 +307,10 @@ public class OnTurn {
 
             // If player can rehearse or act, give them options
             if (player.getRoleLevel() + player.getPracticeChip() < 6) {
-                SystemManager.getInstance().makeButtonVisible(true,true,false, false);
+                SystemManager.getInstance().makeButtonVisible(true,true,false);
             // If they can't rehearse anymore give them only act option
             } else {
-                SystemManager.getInstance().makeButtonVisible(true,false,false,false);
+                SystemManager.getInstance().makeButtonVisible(true,false,false);
             }
         }
         return endOfCard; // return to SystemManager.java

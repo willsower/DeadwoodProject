@@ -156,11 +156,13 @@ public class SystemManager implements Initializable {
 
     // Set buttons visible for when moving
     @FXML
-    public void showButton(String location) {
+    public void showButton(String location, boolean val) {
         Pane obj = getButtonLocation(location);
-        obj.toFront();
+        if (val) {
+            obj.toFront();
+        }
         for (int i = 0; i < obj.getChildren().size(); i++) {
-            obj.getChildren().get(i).setVisible(true);
+            obj.getChildren().get(i).setVisible(val);
         }
     }
 
@@ -328,11 +330,21 @@ public class SystemManager implements Initializable {
     }
     public void onMove(ActionEvent event) {
         String name = ((Node) event.getSource()).getId().toString();
+        // Don't display button for move
+        showButton(currentP.getPlayerLocation(), false);
+
+        // Put player in new set area
         Pane previousArea = getButtonLocation(currentP.getPlayerLocation());
         OnTurn.getInstance().movePlayer(currentP, name);
         Pane newArea = getButtonLocation(currentP.getPlayerLocation());
 
+        ImageView thisPlayer = playerPerson(currentP.getPlayerPriority());
+        previousArea.getChildren().remove(thisPlayer);
+        newArea.getChildren().add(thisPlayer);
 
+        // Check if card is flipped, if not flip
+
+        // If role left give them role options
     }
 
     // Sets board up at each day
@@ -507,7 +519,7 @@ public class SystemManager implements Initializable {
         // If player has not taken a role, let them move
         if (player.getOffCardRole() == false && player.getOnCardRole() == false) {
 //            moveManager(player);
-            showButton(player.getPlayerLocation());
+            showButton(player.getPlayerLocation(), true);
         } else {
 
             // If player can rehearse or act, give them options
@@ -532,24 +544,24 @@ public class SystemManager implements Initializable {
         int days = calculateDaysPlayed();
 
         // Run for each day
-        for (int i = 0; i < /*days*/1; i++) {
+        for (int i = 0; i < days; i++) {
             cardsFinished = 0;
 
             resetAll(list, i + 1);
 
-//            do {
+            do {
                 currentP = list[player];
                 // If card has finished increment cards finished
                 turn(list[player]);
-//showButton(list[player].getPlayerLocation());
-//                player++; // Next player turn
+
+                player++; // Next player turn
 //
 //                // Reset back to player 1
-//                if (player == list.length) {
-//                    player = 0;
-//                }
+                if (player == list.length) {
+                    player = 0;
+                }
 //
-//            } while (cardsFinished < 9); /* !9/10 cards */
+            } while (cardsFinished < 9); /* !9/10 cards */
         }
         // Calculate end score
 //        endFunction();

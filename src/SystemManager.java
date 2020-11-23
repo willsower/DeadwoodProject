@@ -465,7 +465,7 @@ public class SystemManager implements Initializable {
                     players[i] = new Player(i + 1, 2, 0, 0, "trailer", playerDie[i]);
                     break;
                 default:
-                    players[i] = new Player(i + 1, 1, 10, 10, "trailer", playerDie[i]);
+                    players[i] = new Player(i + 1, 1, 0, 0, "trailer", playerDie[i]);
                     break;
             }
         }

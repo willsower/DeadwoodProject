@@ -58,17 +58,6 @@
             </Label>
          </children>
       </GridPane>
-      <HBox>
-         <children>
-            <ImageView fx:id="boardImage" fitHeight="700.0" fitWidth="760.0" pickOnBounds="true" preserveRatio="true" translateX="140.0" translateY="106.0">
-               <image>
-                  <Image url="@../images/board.jpg" />
-               </image>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </ImageView>
-         </children></HBox>
       <HBox prefHeight="100.0" prefWidth="140.0" translateX="-18.0" translateY="2.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="15.0">
          <children>
             <ImageView fx:id="deck" fitHeight="150.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-1.0">
@@ -114,6 +103,17 @@
       </VBox>
       <Label fx:id="actPrintLabel" />
       <Button fx:id="rollDieButton" mnemonicParsing="false" onAction="#rollDieAction" text="Roll Die" AnchorPane.topAnchor="350.0" />
+      <HBox>
+         <children>
+            <ImageView fx:id="boardImage" fitHeight="700.0" fitWidth="760.0" pickOnBounds="true" preserveRatio="true" translateX="140.0" translateY="106.0">
+               <image>
+                  <Image url="@../images/board.jpg" />
+               </image>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </ImageView>
+         </children></HBox>
       <Pane fx:id="trailer" layoutX="764.0" layoutY="261.0" prefHeight="126.0" prefWidth="130.0">
          <children>
             <Button fx:id="toMainStreetFromtrailers" mnemonicParsing="false" onAction="#onMove" rotate="270.0" styleClass="arrow" translateX="71.0" translateY="-20.0" visible="false" />
@@ -227,6 +227,6 @@
             <Button fx:id="payWCreditButton" mnemonicParsing="false" onAction="#payWCreditAction" text="Pay with Credit" />
          </children>
       </VBox>
-      <Button fx:id="nextPlayer" layoutX="-65.0" layoutY="71.0" mnemonicParsing="false" onAction="#nextPlayerPush" prefHeight="50.0" prefWidth="96.0" text="Next Turn" translateX="100.0" translateY="-30.0" visible="false" />
+      <Button fx:id="nextPlayer" layoutX="-65.0" layoutY="71.0" mnemonicParsing="false" onAction="#nextPlayerPush" prefHeight="50.0" prefWidth="96.0" text="Next Turn" translateX="100.0" translateY="-30.0" />
    </children>
 </AnchorPane>

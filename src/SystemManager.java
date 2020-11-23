@@ -160,6 +160,7 @@ public class SystemManager implements Initializable {
         boardImage.setVisible(false);
         deck.setVisible(false);
         makeButtonVisible(false, false, false, false);
+        nextPlayer.setVisible(false);
 
     // makeButtonVisible(false,false,false);
         rollDieButton.setVisible(false);
@@ -202,6 +203,10 @@ public class SystemManager implements Initializable {
 
             init(Integer.parseInt(val));
             currentP = getPlayerList()[0];
+
+            boardImage.setVisible(true);
+            setUpBoard(day);
+
             turn(getPlayerList()[0]);
         }
     }
@@ -343,17 +348,18 @@ public class SystemManager implements Initializable {
 
         // If role left give them role options
 
-
+        nextPlayer.setVisible(true);
     }
 
     public void nextPlayerPush(ActionEvent event) {
         nextPlayer.setVisible(false);
 
+        player++; // Next player turn
+
         if (player == getPlayerList().length) {
             player = 0;
         }
 
-        player++; // Next player turn
         currentP = getPlayerList()[player];
         // If card has finished increment cards finished
         turn(currentP);
@@ -367,7 +373,6 @@ public class SystemManager implements Initializable {
                 resetAll(getPlayerList(), day);
             }
         }
-
     }
 
     // Sets board up at each day
@@ -549,13 +554,12 @@ public class SystemManager implements Initializable {
 
             // If player can rehearse or act, give them options
             if (player.getRoleLevel() + player.getPracticeChip() < 6) {
-                SystemManager.getInstance().makeButtonVisible(true,true,false, false);
+                                            makeButtonVisible(true,true,false, false);
                 // If they can't rehearse anymore give them only act option
             } else {
-                SystemManager.getInstance().makeButtonVisible(true,false,false,false);
+                makeButtonVisible(true,false,false,false);
             }
         }
-        nextPlayer.setVisible(true);
         return endOfCard; // return to SystemManager.java
     }
 

@@ -172,49 +172,13 @@ public class SystemManager implements Initializable {
 
     // Set buttons visible for when moving
     @FXML
-    public void showButton(String location) {
-        Pane obj = new Pane();
-        switch (location) {
-            case "Main Street":
-                obj = mainStreet;
-                break;
-            case "trailer":
-                obj = trailer;
-                break;
-            case "office":
-                obj = office;
-                break;
-            case "Secret Hideout":
-                obj = secretHideout;
-                break;
-            case "Train Station":
-                obj = trainStation;
-                break;
-            case "Ranch":
-                obj = ranch;
-                break;
-            case "Jail":
-                obj = jail;
-                break;
-            case "Hotel":
-                obj = hotel;
-                break;
-            case "Bank":
-                obj = bank;
-                break;
-            case "Saloon":
-                obj = saloon;
-                break;
-            case "General Store":
-                obj = generalStore;
-                break;
-            default:
-                obj = church;
-                break;
+    public void showButton(String location, boolean val) {
+        Pane obj = getButtonLocation(location);
+        if (val) {
+            obj.toFront();
         }
-        obj.toFront();
         for (int i = 0; i < obj.getChildren().size(); i++) {
-            obj.getChildren().get(i).setVisible(true);
+            obj.getChildren().get(i).setVisible(val);
         }
     }
 
@@ -326,9 +290,78 @@ public class SystemManager implements Initializable {
         actPrintLabel.setText(str);
     }
 
+    public Pane getButtonLocation(String location) {
+        Pane obj = new Pane();
+        switch (location) {
+            case "Main Street":
+                obj = mainStreet;
+                break;
+            case "trailer":
+                obj = trailer;
+                break;
+            case "office":
+                obj = office;
+                break;
+            case "Secret Hideout":
+                obj = secretHideout;
+                break;
+            case "Train Station":
+                obj = trainStation;
+                break;
+            case "Ranch":
+                obj = ranch;
+                break;
+            case "Jail":
+                obj = jail;
+                break;
+            case "Hotel":
+                obj = hotel;
+                break;
+            case "Bank":
+                obj = bank;
+                break;
+            case "Saloon":
+                obj = saloon;
+                break;
+            case "General Store":
+                obj = generalStore;
+                break;
+            default:
+                obj = church;
+                break;
+        }
+        return obj;
+    }
+
+    public ImageView playerPerson(int val) {
+        return switch (val) {
+            case 1 -> player1;
+            case 2 -> player2;
+            case 3 -> player3;
+            case 4 -> player4;
+            case 5 -> player5;
+            case 6 -> player6;
+            case 7 -> player7;
+            default -> player8;
+        };
+    }
     public void onMove(ActionEvent event) {
         String name = ((Node) event.getSource()).getId().toString();
+        // Don't display button for move
+        showButton(currentP.getPlayerLocation(), false);
+
+        // Put player in new set area
+        Pane previousArea = getButtonLocation(currentP.getPlayerLocation());
         OnTurn.getInstance().movePlayer(currentP, name);
+        Pane newArea = getButtonLocation(currentP.getPlayerLocation());
+
+        ImageView thisPlayer = playerPerson(currentP.getPlayerPriority());
+        previousArea.getChildren().remove(thisPlayer);
+        newArea.getChildren().add(thisPlayer);
+
+        // Check if card is flipped, if not flip
+
+        // If role left give them role options
     }
 
     // Sets board up at each day
@@ -505,7 +538,7 @@ public class SystemManager implements Initializable {
         // If player has not taken a role, let them move
         if (player.getOffCardRole() == false && player.getOnCardRole() == false) {
 //            moveManager(player);
-            showButton(player.getPlayerLocation());
+            showButton(player.getPlayerLocation(), true);
         } else {
 
             // If player can rehearse or act, give them options
@@ -530,24 +563,24 @@ public class SystemManager implements Initializable {
         int days = calculateDaysPlayed();
 
         // Run for each day
-        for (int i = 0; i < /*days*/1; i++) {
+        for (int i = 0; i < days; i++) {
             cardsFinished = 0;
 
             resetAll(list, i + 1);
 
-//            do {
+            do {
                 currentP = list[player];
                 // If card has finished increment cards finished
                 turn(list[player]);
-//showButton(list[player].getPlayerLocation());
-//                player++; // Next player turn
+
+                player++; // Next player turn
 //
 //                // Reset back to player 1
-//                if (player == list.length) {
-//                    player = 0;
-//                }
+                if (player == list.length) {
+                    player = 0;
+                }
 //
-//            } while (cardsFinished < 9); /* !9/10 cards */
+            } while (cardsFinished < 9); /* !9/10 cards */
         }
         // Calculate end score
 //        endFunction();

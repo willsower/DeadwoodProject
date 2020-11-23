@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.AccessibleRole;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -31,6 +32,8 @@ public class SystemManager implements Initializable {
     boolean dollarVisible;
     boolean creditVisible;
     private static SystemManager instance = null;
+    private int player = 0;
+    private int day = 1;
 
     // create instance
     public static SystemManager getInstance() {
@@ -84,7 +87,7 @@ public class SystemManager implements Initializable {
 
 
     @FXML private Label actPrintLabel; //print to user success, fail, etc..
-
+    @FXML private Button nextPlayer;
 
     @FXML private Button totrailersFromMainStreet;
     @FXML private Button toSaloonFromMainStreet;
@@ -140,8 +143,6 @@ public class SystemManager implements Initializable {
     @FXML private Pane church;
     @FXML private Pane bank;
 
-
-
     //Player pieces
     @FXML private ImageView player1;
     @FXML private ImageView player2;
@@ -167,8 +168,7 @@ public class SystemManager implements Initializable {
         upgradeRankButton.setVisible(false);
         payWDollarButton.setVisible(false);
         payWCreditButton.setVisible(false);
-
-}
+    }
 
     // Set buttons visible for when moving
     @FXML
@@ -178,7 +178,9 @@ public class SystemManager implements Initializable {
             obj.toFront();
         }
         for (int i = 0; i < obj.getChildren().size(); i++) {
-            obj.getChildren().get(i).setVisible(val);
+            if (obj.getChildren().get(i).getAccessibleRole().compareTo(AccessibleRole.BUTTON) == 0) {
+                obj.getChildren().get(i).setVisible(val);
+            }
         }
     }
 
@@ -199,7 +201,8 @@ public class SystemManager implements Initializable {
             userInput.setVisible(false);
 
             init(Integer.parseInt(val));
-            run();
+            currentP = getPlayerList()[0];
+            turn(getPlayerList()[0]);
         }
     }
 
@@ -232,6 +235,7 @@ public class SystemManager implements Initializable {
         makeButtonVisible(false,false,false, false);
         Upgrade.getInstance().levelsCanUpgrade(currentP); //set add upgrade options
         upgradeOptions.setValue(0);
+        loadData();
         upgradeOptions.setVisible(true);     ////////////////////////////////// I think I need to all do show() and setDisable() etc.....//////
         upgradeRankButton.setVisible(true);
 
@@ -291,45 +295,21 @@ public class SystemManager implements Initializable {
     }
 
     public Pane getButtonLocation(String location) {
-        Pane obj = new Pane();
-        switch (location) {
-            case "Main Street":
-                obj = mainStreet;
-                break;
-            case "trailer":
-                obj = trailer;
-                break;
-            case "office":
-                obj = office;
-                break;
-            case "Secret Hideout":
-                obj = secretHideout;
-                break;
-            case "Train Station":
-                obj = trainStation;
-                break;
-            case "Ranch":
-                obj = ranch;
-                break;
-            case "Jail":
-                obj = jail;
-                break;
-            case "Hotel":
-                obj = hotel;
-                break;
-            case "Bank":
-                obj = bank;
-                break;
-            case "Saloon":
-                obj = saloon;
-                break;
-            case "General Store":
-                obj = generalStore;
-                break;
-            default:
-                obj = church;
-                break;
-        }
+        new Pane();
+        Pane obj = switch (location) {
+            case "Main Street" -> mainStreet;
+            case "trailer" -> trailer;
+            case "office" -> office;
+            case "Secret Hideout" -> secretHideout;
+            case "Train Station" -> trainStation;
+            case "Ranch" -> ranch;
+            case "Jail" -> jail;
+            case "Hotel" -> hotel;
+            case "Bank" -> bank;
+            case "Saloon" -> saloon;
+            case "General Store" -> generalStore;
+            default -> church;
+        };
         return obj;
     }
 
@@ -362,6 +342,32 @@ public class SystemManager implements Initializable {
         // Check if card is flipped, if not flip
 
         // If role left give them role options
+
+
+    }
+
+    public void nextPlayerPush(ActionEvent event) {
+        nextPlayer.setVisible(false);
+
+        if (player == getPlayerList().length) {
+            player = 0;
+        }
+
+        player++; // Next player turn
+        currentP = getPlayerList()[player];
+        // If card has finished increment cards finished
+        turn(currentP);
+
+        if (cardsFinished == 9) {
+            cardsFinished = 0;
+            day++;
+            if (calculateDaysPlayed() + 1 == day) {
+                endFunction();
+            } else {
+                resetAll(getPlayerList(), day);
+            }
+        }
+
     }
 
     // Sets board up at each day
@@ -549,40 +555,41 @@ public class SystemManager implements Initializable {
                 SystemManager.getInstance().makeButtonVisible(true,false,false,false);
             }
         }
+        nextPlayer.setVisible(true);
         return endOfCard; // return to SystemManager.java
     }
 
     // This is the run function, will play for x amount of days
     // and iterate through a do-while loop until the amount of cards
     // have finished for that day.
-    public void run() {
-        OnTurn turn = new OnTurn();
-        Player[] list = getPlayerList();
-        int player = 0;
-
-        int days = calculateDaysPlayed();
-
-        // Run for each day
-        for (int i = 0; i < days; i++) {
-            cardsFinished = 0;
-
-            resetAll(list, i + 1);
-
-            do {
-                currentP = list[player];
-                // If card has finished increment cards finished
-                turn(list[player]);
-
-                player++; // Next player turn
+//    public void run() {
+//        OnTurn turn = new OnTurn();
+//        Player[] list = getPlayerList();
+//        int player = 0;
 //
-//                // Reset back to player 1
-                if (player == list.length) {
-                    player = 0;
-                }
+//        int days = calculateDaysPlayed();
 //
-            } while (cardsFinished < 9); /* !9/10 cards */
-        }
-        // Calculate end score
-//        endFunction();
-    }
+//        // Run for each day
+//        for (int i = 0; i < days; i++) {
+//            cardsFinished = 0;
+//
+//            resetAll(list, i + 1);
+//
+//            do {
+//                currentP = list[player];
+//                // If card has finished increment cards finished
+//                turn(list[player]);
+//
+//                player++; // Next player turn
+////
+////                // Reset back to player 1
+//                if (player == list.length) {
+//                    player = 0;
+//                }
+////
+//            } while (cardsFinished < 9); /* !9/10 cards */
+//        }
+//        // Calculate end score
+////        endFunction();
+//    }
 }

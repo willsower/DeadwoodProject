@@ -177,10 +177,10 @@ public class OnTurn {
 
     // Overall the move manager will allow users to move, upgrade or take role
     // depending on their locations
-    public void moveManager(Player player) {
+    public void moveManager(Player player) { /* IS THIS BEING CALLED */
         // Allow player to upgrade then move
         if (player.getPlayerLocation().equals("office")) {
-            SystemManager.getInstance().makeButtonVisible(false, false, true);
+            SystemManager.getInstance().makeButtonVisible(false, false, true);//should not need this
             if (Upgrade.getInstance().canUpgrade(player.getLevel(), player.getPlayerLocation(), player.getDollar(), player.getCredit())) {
                 SystemManager.getInstance().makeButtonVisible(false, false, true);
             }

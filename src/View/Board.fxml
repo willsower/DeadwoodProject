@@ -66,7 +66,7 @@
                </image></ImageView>
          </children>
       </HBox>
-      <GridPane layoutY="7.0" maxHeight="886.0" maxWidth="1100.0" prefHeight="668.0" prefWidth="894.0">
+      <GridPane fx:id="backOfCardGrid" layoutY="7.0" maxHeight="886.0" maxWidth="1100.0" prefHeight="668.0" prefWidth="894.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

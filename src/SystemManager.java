@@ -18,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.Node;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
 import java.net.URL;
@@ -46,6 +47,7 @@ public class SystemManager implements Initializable {
     @FXML private ImageView boardImage;
     @FXML private ImageView deck;
 
+    @FXML private GridPane backOfCardGrid;
     // Card Image Views
     @FXML private ImageView trainStationCard;
     @FXML private ImageView jailCard;
@@ -161,8 +163,10 @@ public class SystemManager implements Initializable {
         deck.setVisible(false);
         makeButtonVisible(false, false, false, false);
         nextPlayer.setVisible(false);
+        //nextPlayer.setAlwaysOnTop(true);
 
         rollDieButton.setVisible(false);
+
         upgradeOptions.setValue(0);
         upgradeOptions.setVisible(false); // may also need to disable
         upgradeRankButton.setVisible(false);
@@ -180,6 +184,7 @@ public class SystemManager implements Initializable {
         for (int i = 0; i < obj.getChildren().size(); i++) {
             if (obj.getChildren().get(i).getAccessibleRole().compareTo(AccessibleRole.BUTTON) == 0) {
                 obj.getChildren().get(i).setVisible(val);
+                obj.getChildren().get(i).toFront();
             }
         }
     }
@@ -204,9 +209,31 @@ public class SystemManager implements Initializable {
             currentP = getPlayerList()[0];
 
             boardImage.setVisible(true);
+            System.out.print("test 1");
             setUpBoard(day);
 
+//            backOfCardGrid.setVisible(true);
+//            backOfCardGrid.setGridLinesVisible(true);
+//            //backOfCardGrid.toFront();
+//            trainStationCard.setVisible(true);
+//            trainStationCard.toFront();
+//            jailCard.setVisible(true);
+//            jailCard.toFront();
+//            mainStreetCard.setVisible(true);
+//            mainStreetCard.toFront();
+//            generalStoreCard.setVisible(true);
+//            saloonCard.setVisible(true);
+//            ranchCard.setVisible(true);
+//            bankCard.setVisible(true);
+//            secretHideoutCard.setVisible(true);
+//            churchCard.setVisible(true);
+//            hotelCard.setVisible(true);
+//            System.out.print(hotelCard.getImage().getUrl()); //gets to here
+//            hotelCard.toFront();
+
+
             turn(getPlayerList()[0]);
+            System.out.print("test 2");
         }
     }
 
@@ -230,6 +257,7 @@ public class SystemManager implements Initializable {
         makeButtonVisible(false, false,false);
     }
 
+    /* WON'T NEED - TAKE OUT */
     public void makeButtonVisible(boolean act, boolean rehearse, boolean upgrade, boolean roll) {
         makeButtonVisible(false,false,false);
 
@@ -239,7 +267,7 @@ public class SystemManager implements Initializable {
         System.out.print("test1");
         makeButtonVisible(false,false,false, false);
         Upgrade.getInstance().levelsCanUpgrade(currentP); //set add upgrade options
-        upgradeOptions.setValue(0);
+        //upgradeOptions.setValue(0);
         loadData();
         upgradeOptions.setVisible(true);     ///// I think I need to all do show() and setDisable() etc.....//////
         upgradeRankButton.setVisible(true);
@@ -248,7 +276,7 @@ public class SystemManager implements Initializable {
         //call upgrade class
     }
 
-    public void upgradeRankAction(ActionEvent event){
+    public void upgradeRankAction(ActionEvent event){ /* NEED TO FIX THE UPGRADE BUTTON TO HIDE WHEN LEFT ROOM */
         rankChoice = upgradeOptions.getValue();  // may need to add hide() and setDisable() etc.....
         upgradeOptions.setVisible(false);
         upgradeRankButton.setVisible(false);
@@ -266,8 +294,8 @@ public class SystemManager implements Initializable {
     }
 
     public void loadData(){
-        list.removeAll(list);
-        list.add(0);
+        list.removeAll(list);   /* NOT WORKING THE WAY IT SHOULD */
+        list.add(0); //may not need but currently using to check if they enter zero then do nothing
         upgradeOptions.getItems().addAll(list);
     }
 
@@ -294,10 +322,10 @@ public class SystemManager implements Initializable {
         actButton.setVisible(act);
         rehearseButton.toFront();
         rehearseButton.setVisible(rehearse);
-        System.out.print("test3");
+        //System.out.print("test3");
 
         upgradeButton.setVisible(upgrade);
-        System.out.print("test5");
+        //System.out.print("test5");
     }
 
     public void printLabel(String str) { //print to user success, fail, etc..
@@ -349,9 +377,12 @@ public class SystemManager implements Initializable {
         previousArea.getChildren().remove(thisPlayer);
         newArea.getChildren().add(thisPlayer);
 
-        // Check if card is flipped, if not flip
+        /* Check if card is flipped, if not flip */   //////////////////////////////////////////////////////////////////
 
-        // If role left give them role options
+
+
+        /* If role left give them role options */
+
 
         if (currentP.getPlayerLocation().equals("office")) {
             //visible upgrade button
@@ -361,6 +392,9 @@ public class SystemManager implements Initializable {
             }
             //call onturn function
             upgradeButton.toFront();
+        } else {
+            makeButtonVisible(false, false, true);
+
         }
 
         nextPlayer.setVisible(true);
@@ -406,6 +440,7 @@ public class SystemManager implements Initializable {
         churchCard.setImage(Deck.getInstance().getBackOfCardSmall());
         hotelCard.setImage(Deck.getInstance().getBackOfCardSmall());
 
+        backOfCardGrid.toFront();
         trainStationCard.setVisible(true);
         jailCard.setVisible(true);
         mainStreetCard.setVisible(true);
@@ -416,10 +451,7 @@ public class SystemManager implements Initializable {
         secretHideoutCard.setVisible(true);
         churchCard.setVisible(true);
         hotelCard.setVisible(true);
-        System.out.print(hotelCard.getImage().getUrl());
-        hotelCard.toFront();
-
-        trainStationCard.toFront();  /////////////////////////////////////////////////////////////////////////////
+         /////////////////////////////////////////////////////////////////////////////
 
         dayDisplay.setText("Day " + day);
 
@@ -581,7 +613,7 @@ public class SystemManager implements Initializable {
 //            moveManager(player);
             if (player.getPlayerLocation().equals("office")) {
                 //visible upgrade button
-                makeButtonVisible(false, false, true);
+                makeButtonVisible(false, false, true); /* SHOULD NOT NEED */
                 if (Upgrade.getInstance().canUpgrade(player.getLevel(), player.getPlayerLocation(), player.getDollar(), player.getCredit())) {
                     makeButtonVisible(false, false, true);
                 }
@@ -589,15 +621,17 @@ public class SystemManager implements Initializable {
                 upgradeButton.toFront();
             }
             showButton(player.getPlayerLocation(), true); //location buttons
-            //take role options
+
+
+            /* NEED TAKE ROLE OPTION */
 
         } else {
             // If player can rehearse or act, give them options
             if (player.getRoleLevel() + player.getPracticeChip() < 6) {
-                                            makeButtonVisible(true,true,false, false);
+                makeButtonVisible(true,true,false, false); //get rid of roll
                 // If they can't rehearse anymore give them only act option
             } else {
-                makeButtonVisible(true,false,false,false);
+                makeButtonVisible(true,false,false,false); //get rid of roll
             }
         }
         return endOfCard; // return to SystemManager.java

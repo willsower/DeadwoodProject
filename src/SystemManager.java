@@ -354,7 +354,6 @@ public class SystemManager implements Initializable {
         String name = ((Node) event.getSource()).getId().toString();
         // Don't display button for move
         showButton(currentP.getPlayerLocation(), false);
-
         // Put player in new set area
         Pane previousArea = getButtonLocation(currentP.getPlayerLocation());
         boolean cardFlip = OnTurn.getInstance().movePlayer(currentP, name);

@@ -304,7 +304,6 @@ public class SystemManager implements Initializable {
     }
 
     public Pane getButtonLocation(String location) {
-        new Pane();
         Pane obj = switch (location) {
             case "Main Street" -> mainStreet;
             case "trailer" -> trailer;
@@ -322,6 +321,22 @@ public class SystemManager implements Initializable {
         return obj;
     }
 
+    public ImageView getCard(String location) {
+        ImageView obj = switch (location) {
+            case "Main Street" -> mainStreetCard;
+            case "Secret Hideout" -> secretHideoutCard;
+            case "Train Station" -> trainStationCard;
+            case "Ranch" -> ranchCard;
+            case "Jail" -> jailCard;
+            case "Hotel" -> hotelCard;
+            case "Bank" -> bankCard;
+            case "Saloon" -> saloonCard;
+            case "General Store" -> generalStoreCard;
+            default -> churchCard;
+        };
+        return obj;
+    }
+
     public ImageView playerPerson(int val) {
         return switch (val) {
             case 1 -> player1;
@@ -334,6 +349,7 @@ public class SystemManager implements Initializable {
             default -> player8;
         };
     }
+
     public void onMove(ActionEvent event) {
         String name = ((Node) event.getSource()).getId().toString();
         // Don't display button for move
@@ -350,7 +366,7 @@ public class SystemManager implements Initializable {
 
         // Check if card is flipped, if not flip
         if (!cardFlip) {
-
+            getCard(currentP.getPlayerLocation()).setImage(Deck.getInstance().getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getCardImage());
         }
 
         // If role left give them role options

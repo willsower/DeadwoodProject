@@ -163,7 +163,7 @@ public class SystemManager implements Initializable {
     // makeButtonVisible(false,false,false);
         rollDieButton.setVisible(false);
         upgradeOptions.setValue(0);
-        upgradeOptions.setDisable(true);
+        upgradeOptions.setVisible(false); // may also need to disable
         upgradeRankButton.setVisible(false);
         payWDollarButton.setVisible(false);
         payWCreditButton.setVisible(false);
@@ -268,7 +268,7 @@ public class SystemManager implements Initializable {
         makeButtonVisible(false,false,false, false);
         Upgrade.getInstance().levelsCanUpgrade(currentP); //set add upgrade options
         upgradeOptions.setValue(0);
-        upgradeOptions.setDisable(false);
+        upgradeOptions.setVisible(true);     ////////////////////////////////// I think I need to all do show() and setDisable() etc.....//////
         upgradeRankButton.setVisible(true);
 
         //show buttons
@@ -276,11 +276,11 @@ public class SystemManager implements Initializable {
     }
 
     public void upgradeRankAction(ActionEvent event){
-        rankChoice = upgradeOptions.getValue();
-        upgradeOptions.setDisable(true);
+        rankChoice = upgradeOptions.getValue();  // may need to add hide() and setDisable() etc.....
+        upgradeOptions.setVisible(false);
         upgradeRankButton.setVisible(false);
         //button for credit & button for dollar
-        makePayButtonsVisible(dollarVisible,creditVisible);  /////////////////////////////continue here
+        makePayButtonsVisible(dollarVisible,creditVisible);
     }
 
     public int getUpgradeRankChoice() {
@@ -310,26 +310,16 @@ public class SystemManager implements Initializable {
     public void setPayButtonsVisible(boolean dollar, boolean credit) {
         dollarVisible = dollar;
         creditVisible = credit;
-
     }
     public void makePayButtonsVisible(boolean dollar, boolean credit) {
         payWDollarButton.setVisible(dollar);
         payWCreditButton.setVisible(credit);
-
-//        if (dollar) {
-//            payWDollarButton.setVisible(dollar);
-//        }
-//        if (credit){
-//            payWCreditButton.setVisible(credit);
-//        }
-
     }
 
     public void makeButtonVisible(boolean act, boolean rehearse, boolean upgrade) {
         actButton.setVisible(act);
         rehearseButton.setVisible(rehearse);
         upgradeButton.setVisible(upgrade);
-
     }
 
     public void printLabel(String str) { //print to user success, fail, etc..

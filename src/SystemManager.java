@@ -365,6 +365,8 @@ public class SystemManager implements Initializable {
 
         // Check if card is flipped, if not flip
         if (!cardFlip) {
+//            System.out.println(currentP.getPlayerLocation());
+//            System.out.println(Deck.getInstance().getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getCardImage());
 //            getCard(currentP.getPlayerLocation()).setImage(Deck.getInstance().getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getCardImage());
         }
 

@@ -2,3 +2,8 @@
     -fx-shape: "M0,0 L0,6 L9,3 Z";
     -fx-background-color: red;
 }
+
+.button:hover {
+    -fx-background-color: green;
+    -fx-scale-y: 1.1;
+}

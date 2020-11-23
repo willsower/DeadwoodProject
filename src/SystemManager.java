@@ -353,6 +353,16 @@ public class SystemManager implements Initializable {
 
         // If role left give them role options
 
+        if (currentP.getPlayerLocation().equals("office")) {
+            //visible upgrade button
+            makeButtonVisible(false, false, true);
+            if (Upgrade.getInstance().canUpgrade(currentP.getLevel(), currentP.getPlayerLocation(), currentP.getDollar(), currentP.getCredit())) {
+                makeButtonVisible(false, false, true);
+            }
+            //call onturn function
+            upgradeButton.toFront();
+        }
+
         nextPlayer.setVisible(true);
     }
 
@@ -441,8 +451,8 @@ public class SystemManager implements Initializable {
         for (int i = 0; i < numPlayer; i++) {
             switch (numPlayer) {
                 case 5:
-                    //players[i] = new Player(i + 1, 1, 0, 2, "trailer", playerDie[i]);
-                    players[i] = new Player(i + 1, 1, 10, 10, "Train Station", playerDie[i]); /* TEST UPGRADE */
+                    players[i] = new Player(i + 1, 1, 0, 2, "trailer", playerDie[i]);
+//                    players[i] = new Player(i + 1, 1, 10, 10, "Train Station", playerDie[i]); /* TEST UPGRADE */
                     //System.out.println("TEST 3");
                     break;
                 case 6:
@@ -580,7 +590,6 @@ public class SystemManager implements Initializable {
             //take role options
 
         } else {
-
             // If player can rehearse or act, give them options
             if (player.getRoleLevel() + player.getPracticeChip() < 6) {
                                             makeButtonVisible(true,true,false, false);
@@ -591,38 +600,4 @@ public class SystemManager implements Initializable {
         }
         return endOfCard; // return to SystemManager.java
     }
-
-    // This is the run function, will play for x amount of days
-    // and iterate through a do-while loop until the amount of cards
-    // have finished for that day.
-//    public void run() {
-//        OnTurn turn = new OnTurn();
-//        Player[] list = getPlayerList();
-//        int player = 0;
-//
-//        int days = calculateDaysPlayed();
-//
-//        // Run for each day
-//        for (int i = 0; i < days; i++) {
-//            cardsFinished = 0;
-//
-//            resetAll(list, i + 1);
-//
-//            do {
-//                currentP = list[player];
-//                // If card has finished increment cards finished
-//                turn(list[player]);
-//
-//                player++; // Next player turn
-////
-////                // Reset back to player 1
-//                if (player == list.length) {
-//                    player = 0;
-//                }
-////
-//            } while (cardsFinished < 9); /* !9/10 cards */
-//        }
-//        // Calculate end score
-////        endFunction();
-//    }
 }

@@ -563,12 +563,12 @@ public class SystemManager implements Initializable {
         int days = calculateDaysPlayed();
 
         // Run for each day
-        for (int i = 0; i < days; i++) {
+        for (int i = 0; i < /*days*/1; i++) {
             cardsFinished = 0;
 
             resetAll(list, i + 1);
 
-            do {
+            //do {
                 currentP = list[player];
                 // If card has finished increment cards finished
                 turn(list[player]);
@@ -580,7 +580,7 @@ public class SystemManager implements Initializable {
                     player = 0;
                 }
 //
-            } while (cardsFinished < 9); /* !9/10 cards */
+            //} while (cardsFinished < 9); /* !9/10 cards */
         }
         // Calculate end score
 //        endFunction();

@@ -406,19 +406,6 @@ public class SystemManager implements Initializable {
         churchCard.setImage(Deck.getInstance().getBackOfCardSmall());
         hotelCard.setImage(Deck.getInstance().getBackOfCardSmall());
 
-        trainStationCard.setVisible(true);
-        jailCard.setVisible(true);
-        mainStreetCard.setVisible(true);
-        generalStoreCard.setVisible(true);
-        saloonCard.setVisible(true);
-        ranchCard.setVisible(true);
-        bankCard.setVisible(true);
-        secretHideoutCard.setVisible(true);
-        churchCard.setVisible(true);
-        hotelCard.setVisible(true);
-
-        trainStationCard.toFront();
-
         dayDisplay.setText("Day " + day);
 
         //Add players into trailers

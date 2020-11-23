@@ -180,7 +180,7 @@ public class OnTurn {
     public void moveManager(Player player) {
         // Allow player to upgrade then move
         if (player.getPlayerLocation().equals("office")) {
-
+            SystemManager.getInstance().makeButtonVisible(false, false, true);
             if (Upgrade.getInstance().canUpgrade(player.getLevel(), player.getPlayerLocation(), player.getDollar(), player.getCredit())) {
                 SystemManager.getInstance().makeButtonVisible(false, false, true);
             }

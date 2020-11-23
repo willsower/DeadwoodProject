@@ -121,9 +121,12 @@ public class OnTurn {
         return name;
     }
 
-    public void movePlayer(Player player, String location) {
+    // Function to check if card has been flipped or not already
+    // Also this function will move the player location, and set it
+    public boolean movePlayer(Player player, String location) {
         String newLocation = parseMoveTo(location);
         player.setPlayerLocation(newLocation);
+        return Board.getInstance().getSet(newLocation).getIsCardFlipped();
     }
 
     // Ultimately the move option. Once moved, will allow players to take a role

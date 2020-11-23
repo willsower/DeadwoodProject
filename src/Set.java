@@ -25,6 +25,7 @@ public class Set {
     private ArrayList<Player> playersInRoomOffCard = new ArrayList<Player>();
     private boolean isActive = true;
     private ArrayList<Button> out = new ArrayList<>();
+    private boolean isCardFlipped = false;
 
     // Shot counter values
     class Take {
@@ -110,6 +111,8 @@ public class Set {
     public boolean getIsActive() {
         return isActive;
     }
+
+    public boolean getIsCardFlipped() { return isCardFlipped; }
 
     public ArrayList<Button> getOut() {
 //        for (int i = 0; i < out.size(); i++) {
@@ -241,6 +244,8 @@ public class Set {
         isActive = val;
     }
 
+    public void setIsCardFlipped(boolean val) { isCardFlipped = val; }
+
     // Getting available cards
     public ArrayList<String> availablePartsOffCard(int playerRank) {
         ArrayList<String> available = new ArrayList<String>();
@@ -273,10 +278,9 @@ public class Set {
         for (int i = 0; i < part.size(); i++) {
             part.get(i).isTaken = false;
         }
-
         playersInRoomOffCard.clear();
-
         shotCounter = numberOfTakes;
+        isCardFlipped = false;
     }
 
     // Reset set at end of card
@@ -286,6 +290,7 @@ public class Set {
         }
         playersInRoomOffCard.clear();
         shotCounter = numberOfTakes;
+        isCardFlipped = false;
     }
 
     // Print helper funciton

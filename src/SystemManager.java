@@ -232,7 +232,6 @@ public class SystemManager implements Initializable {
 
     public void makeButtonVisible(boolean act, boolean rehearse, boolean upgrade, boolean roll) {
         makeButtonVisible(false,false,false);
-
     }
 
     public void upgradeButtonAction(ActionEvent event) {
@@ -342,7 +341,7 @@ public class SystemManager implements Initializable {
 
         // Put player in new set area
         Pane previousArea = getButtonLocation(currentP.getPlayerLocation());
-        OnTurn.getInstance().movePlayer(currentP, name);
+        boolean cardFlip = OnTurn.getInstance().movePlayer(currentP, name);
         Pane newArea = getButtonLocation(currentP.getPlayerLocation());
 
         ImageView thisPlayer = playerPerson(currentP.getPlayerPriority());
@@ -350,9 +349,18 @@ public class SystemManager implements Initializable {
         newArea.getChildren().add(thisPlayer);
 
         // Check if card is flipped, if not flip
+        if (!cardFlip) {
+
+        }
 
         // If role left give them role options
 
+        letUpgrade();
+
+        nextPlayer.setVisible(true);
+    }
+
+    public void letUpgrade() {
         if (currentP.getPlayerLocation().equals("office")) {
             //visible upgrade button
             makeButtonVisible(false, false, true);
@@ -362,8 +370,6 @@ public class SystemManager implements Initializable {
             //call onturn function
             upgradeButton.toFront();
         }
-
-        nextPlayer.setVisible(true);
     }
 
     public void nextPlayerPush(ActionEvent event) {
@@ -564,23 +570,16 @@ public class SystemManager implements Initializable {
         // If player has not taken a role, let them move
         if (player.getOffCardRole() == false && player.getOnCardRole() == false) {
 //            moveManager(player);
-            if (player.getPlayerLocation().equals("office")) {
-                //visible upgrade button
-                makeButtonVisible(false, false, true);
-                if (Upgrade.getInstance().canUpgrade(player.getLevel(), player.getPlayerLocation(), player.getDollar(), player.getCredit())) {
-                    makeButtonVisible(false, false, true);
-                }
-                //call onturn function
-                upgradeButton.toFront();
-            }
+            letUpgrade();
             showButton(player.getPlayerLocation(), true); //location buttons
             //take role options
 
         } else {
             // If player can rehearse or act, give them options
             if (player.getRoleLevel() + player.getPracticeChip() < 6) {
-                                            makeButtonVisible(true,true,false, false);
-                // If they can't rehearse anymore give them only act option
+                makeButtonVisible(true,true,false, false);
+
+            // If they can't rehearse anymore give them only act option
             } else {
                 makeButtonVisible(true,false,false,false);
             }

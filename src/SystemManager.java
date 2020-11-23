@@ -162,7 +162,6 @@ public class SystemManager implements Initializable {
         makeButtonVisible(false, false, false, false);
         nextPlayer.setVisible(false);
 
-    // makeButtonVisible(false,false,false);
         rollDieButton.setVisible(false);
         upgradeOptions.setValue(0);
         upgradeOptions.setVisible(false); // may also need to disable
@@ -390,6 +389,19 @@ public class SystemManager implements Initializable {
         secretHideoutCard.setImage(Deck.getInstance().getBackOfCardSmall());
         churchCard.setImage(Deck.getInstance().getBackOfCardSmall());
         hotelCard.setImage(Deck.getInstance().getBackOfCardSmall());
+
+        trainStationCard.setVisible(true);
+        jailCard.setVisible(true);
+        mainStreetCard.setVisible(true);
+        generalStoreCard.setVisible(true);
+        saloonCard.setVisible(true);
+        ranchCard.setVisible(true);
+        bankCard.setVisible(true);
+        secretHideoutCard.setVisible(true);
+        churchCard.setVisible(true);
+        hotelCard.setVisible(true);
+
+        trainStationCard.toFront();
 
         dayDisplay.setText("Day " + day);
 

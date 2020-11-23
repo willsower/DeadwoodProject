@@ -153,12 +153,17 @@ public class OnTurn {
 //                        player.getDollar(), player.getCredit());
 //
                 int rankNumChoice = SystemManager.getInstance().getUpgradeRankChoice();
-                if (player.getCredit() >= Upgrade.getInstance().getLevel(rankNumChoice).credit) {
-                    Upgrade.getInstance().upgradeCredit(player, rankNumChoice);
-                } else {
-                    Upgrade.getInstance().upgradeDollar(player, rankNumChoice);
+                if (rankNumChoice >0 && rankNumChoice < 7) {
+                    if (player.getCredit() >= Upgrade.getInstance().getLevel(rankNumChoice).credit && player.getDollar() >= Upgrade.getInstance().getLevel(rankNumChoice).dollar) {
+                        Upgrade.getInstance().upgradeCredit(player, rankNumChoice);
+                        Upgrade.getInstance().upgradeDollar(player, rankNumChoice);
+                    } else if (player.getCredit() >= Upgrade.getInstance().getLevel(rankNumChoice).credit) {
+                        Upgrade.getInstance().upgradeCredit(player, rankNumChoice);
+                    } else {
+                        Upgrade.getInstance().upgradeDollar(player, rankNumChoice);
+                    }
+                    UserInterfaceDisplay.getInstance().playerUpgrade(player);
                 }
-/**/              UserInterfaceDisplay.getInstance().playerUpgrade(player);
 
             } else {
                 if (Board.getInstance().getSet(player.getPlayerLocation()).getIsActive() == true) {
@@ -175,18 +180,25 @@ public class OnTurn {
     public void moveManager(Player player) {
         // Allow player to upgrade then move
         if (player.getPlayerLocation().equals("office")) {
-            SystemManager.getInstance().makeButtonVisible(false,false,true);
-            int up = UserInterface.getInstance().upgradePlayer(player, player.getLevel(), player.getPlayerLocation(),
-                    player.getDollar(), player.getCredit());
-            moveTakeRoleOption(player);
 
-            if (up != 0) {
-                if (player.getCredit() >= Upgrade.getInstance().getLevel(up).credit) {
-                    Upgrade.getInstance().upgradeCredit(player, up);
+            if (Upgrade.getInstance().canUpgrade(player.getLevel(), player.getPlayerLocation(), player.getDollar(), player.getCredit())) {
+                SystemManager.getInstance().makeButtonVisible(false, false, true);
+            }
+            //SystemManager.getInstance().makeButtonVisible(false,false,true);
+            //int up = UserInterface.getInstance().upgradePlayer(player, player.getLevel(), player.getPlayerLocation(), player.getDollar(), player.getCredit());
+            moveTakeRoleOption(player); /* dont know why this is being called here */
+
+            int rankNumChoice = SystemManager.getInstance().getUpgradeRankChoice();
+            if (rankNumChoice >0 && rankNumChoice < 7) {
+                if (player.getCredit() >= Upgrade.getInstance().getLevel(rankNumChoice).credit && player.getDollar() >= Upgrade.getInstance().getLevel(rankNumChoice).dollar) {
+                    Upgrade.getInstance().upgradeCredit(player, rankNumChoice);
+                    Upgrade.getInstance().upgradeDollar(player, rankNumChoice);
+                } else if (player.getCredit() >= Upgrade.getInstance().getLevel(rankNumChoice).credit) {
+                    Upgrade.getInstance().upgradeCredit(player, rankNumChoice);
                 } else {
-                    Upgrade.getInstance().upgradeDollar(player, up);
+                    Upgrade.getInstance().upgradeDollar(player, rankNumChoice);
                 }
-/**/                UserInterfaceDisplay.getInstance().playerUpgrade(player);
+                UserInterfaceDisplay.getInstance().playerUpgrade(player);
             }
 
             // Allow player to move then take a role

@@ -167,6 +167,8 @@ public class Player {
     public void resetPlayers(boolean isNotAfterCard) {
         if (isNotAfterCard) { // true
             playerLocation = "trailer";
+            //playerLocation = "office"; /* TEST UPGRADE */
+            //System.out.println("TEST 1");
         }
         practiceChip = 0;
         onCardRole = false;

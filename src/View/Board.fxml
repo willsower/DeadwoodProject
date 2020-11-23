@@ -221,7 +221,7 @@
       </VBox>
       <VBox alignment="TOP_CENTER" layoutY="400.0" AnchorPane.topAnchor="400.0">
          <children>
-            <ChoiceBox prefWidth="150.0" />
+            <ChoiceBox fx:id="upgradeOptions" prefWidth="150.0" />
             <Button fx:id="upgradeRankButton" mnemonicParsing="false" onAction="#upgradeRankAction" text="Upgrade Rank">
                <VBox.margin>
                   <Insets top="10.0" />

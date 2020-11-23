@@ -241,7 +241,7 @@ public class SystemManager implements Initializable {
         Upgrade.getInstance().levelsCanUpgrade(currentP); //set add upgrade options
         upgradeOptions.setValue(0);
         loadData();
-        upgradeOptions.setVisible(true);     ////////////////////////////////// I think I need to all do show() and setDisable() etc.....//////
+        upgradeOptions.setVisible(true);     ///// I think I need to all do show() and setDisable() etc.....//////
         upgradeRankButton.setVisible(true);
 
         //show buttons
@@ -406,8 +406,10 @@ public class SystemManager implements Initializable {
         secretHideoutCard.setVisible(true);
         churchCard.setVisible(true);
         hotelCard.setVisible(true);
+        System.out.print(hotelCard.getImage().getUrl());
+        hotelCard.toFront();
 
-        trainStationCard.toFront();
+        trainStationCard.toFront();  /////////////////////////////////////////////////////////////////////////////
 
         dayDisplay.setText("Day " + day);
 

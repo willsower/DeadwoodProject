@@ -190,7 +190,7 @@ public class UserInterface {
     // Upgrade player, it will check to see if player can upgrade then will prompt
     // user
     // on what to upgrade with.
-    public int upgradePlayer(Player player, int currentLevel, String location, int dollar, int credit) {
+   /* public int upgradePlayer(Player player, int currentLevel, String location, int dollar, int credit) {
         UserInterfaceDisplay.getInstance().displayCastingOffice(player);
         Scanner ob = new Scanner(System.in);
         String returnType = "";
@@ -224,7 +224,7 @@ public class UserInterface {
             return 0;
         }
         return lev.get(num - 1);
-    }
+    } */
 //
 ////====    // Output player information
 //    public void playerUpgrade(Player player) {

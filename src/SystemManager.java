@@ -62,7 +62,6 @@ public class SystemManager implements Initializable {
 
     // Player's display information
     @FXML private Label currentPlayer;
-    @FXML private Label playerDieColor;
     @FXML private Label playerDollar;
     @FXML private Label playerCredit;
     @FXML private Label playerPracticeChip;
@@ -87,9 +86,9 @@ public class SystemManager implements Initializable {
     ObservableList<Integer> list = FXCollections.observableArrayList();
     @FXML private ChoiceBox<Integer> upgradeOptions;
 
-
     @FXML private Label actPrintLabel; //print to user success, fail, etc..
     @FXML private Button nextPlayer;
+
 
     @FXML private Button totrailersFromMainStreet;
     @FXML private Button toSaloonFromMainStreet;
@@ -164,10 +163,8 @@ public class SystemManager implements Initializable {
         makeButtonVisible(false, false, false, false); /* DONT THINK ROLL IS NEEDED */
         nextPlayer.setVisible(false);
 
-
         rollDieButton.setVisible(false);
 
-        //upgradeOptions.setValue(0);
         upgradeOptions.setVisible(false); // may also need to disable
         upgradeRankButton.setVisible(false);
         payWDollarButton.setVisible(false);
@@ -211,7 +208,6 @@ public class SystemManager implements Initializable {
             System.out.print("test 1");
             setUpBoard(day);
 
-
             turn(getPlayerList()[0]);
             System.out.print("test 2");
         }
@@ -235,7 +231,7 @@ public class SystemManager implements Initializable {
         makeButtonVisible(false, false,false);
     }
 
-    /* WON'T NEED - TAKE OUT */
+    /* WON'T NEED - TAKE OUT - maybe */
     public void makeButtonVisible(boolean act, boolean rehearse, boolean upgrade, boolean roll) {
         makeButtonVisible(false,false,false);
     }
@@ -249,8 +245,6 @@ public class SystemManager implements Initializable {
         upgradeOptions.setVisible(true);     ///// I think I need to all do show() and setDisable() etc.....//////
         upgradeRankButton.setVisible(true);
 
-        //show buttons
-        //call upgrade class
     }
 
     public void upgradeRankAction(ActionEvent event){ /* NEED TO FIX THE UPGRADE BUTTON TO HIDE WHEN LEFT ROOM */
@@ -259,29 +253,22 @@ public class SystemManager implements Initializable {
             upgradeOptions.setVisible(false);
             upgradeRankButton.setVisible(false);
 
-            //System.out.println("Dollar " + dollarVisible);
-            //System.out.println("Credit " + creditVisible);
             payWDollarButton.setVisible(dollarVisible);
-            payWDollarButton.toFront();
+            payWDollarButton.toFront(); //may not need
             payWCreditButton.setVisible(creditVisible);
-            payWCreditButton.toFront();
+            payWCreditButton.toFront(); //may not need
 
         } else {
             actPrintLabel.setText("Can't upgrade to that rank");
             upgradeOptions.setVisible(false);
             upgradeRankButton.setVisible(false);
 
-            /* NEXT TURN set in pay with buttons */
+            /* NEXT TURN set in pay with buttons */ /////////////////////////////////////////////////////
         }
     }
 
     public int getUpgradeRankChoice() {
         return rankChoice;
-    }
-
-    public void addUpgradeOptions(int num) {
-        //upgradeOptions.getItems().add(num);
-        list.add(num);
     }
 
     public void loadData(){
@@ -305,7 +292,6 @@ public class SystemManager implements Initializable {
             }
         }
         upgradeOptions.getItems().addAll(list);
-        //System.out.println(list);
     }
 
 
@@ -318,7 +304,11 @@ public class SystemManager implements Initializable {
         System.out.println(list);
         //list.clear();
         upgradeOptions.getItems().clear();
-        //System.out.println(upgradeOptions.itemsProperty());
+
+        currentP.setPlayerImage();
+        playerPerson(currentP.getPlayerPriority()).setImage(currentP.getPlayerImage());
+
+        playerDollar.setText("Dollars: " + currentP.getDollar());
     }
 
     public void payWCreditAction(ActionEvent event) {
@@ -330,6 +320,11 @@ public class SystemManager implements Initializable {
         System.out.println(list);
         //list.clear();
         upgradeOptions.getItems().clear();
+
+        currentP.setPlayerImage();
+        playerPerson(currentP.getPlayerPriority()).setImage(currentP.getPlayerImage());
+
+        playerCredit.setText("Credits: " + currentP.getCredit());
     }
 
     public void setPayButtonsVisible(boolean dollar, boolean credit) {
@@ -338,14 +333,11 @@ public class SystemManager implements Initializable {
     }
 
     public void makeButtonVisible(boolean act, boolean rehearse, boolean upgrade) {
-        actButton.toFront();
+        actButton.toFront(); //may not need
         actButton.setVisible(act);
-        rehearseButton.toFront();
+        rehearseButton.toFront(); //may not need
         rehearseButton.setVisible(rehearse);
-        //System.out.print("test3");
-
         upgradeButton.setVisible(upgrade);
-        //System.out.print("test5");
     }
 
     public void printLabel(String str) { //print to user success, fail, etc..
@@ -417,8 +409,9 @@ public class SystemManager implements Initializable {
             getCard(currentP.getPlayerLocation()).setImage(Deck.getInstance().getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getCardImage());
         }
 
-        letUpgrade();
+        /* TAKE ROLE OPTION */   //////////////////////////////////////////////////////////
 
+        letUpgrade();
         nextPlayer.setVisible(true);
     }
 
@@ -438,18 +431,16 @@ public class SystemManager implements Initializable {
                     default -> setPayButtonsVisible(false, true);
                 }
             }
-            //call onturn function
-            //upgradeButton.toFront(); ///////////////////////////////////////////////////
 
-        } else {
-            makeButtonVisible(false, false, false);
-            //nextPlayer.setVisible(true);
+        } else if (!currentP.getPlayerLocation().equals("trailer")){
+            makeButtonVisible(false,false, false);
+
+            /* TAKE ROLE OPTION */ //////////////////////////////////////////////////////////
         }
     }
 
     public void nextPlayerPush(ActionEvent event) {
         nextPlayer.setVisible(false);
-
         player++; // Next player turn
 
         if (player == getPlayerList().length) {
@@ -457,6 +448,16 @@ public class SystemManager implements Initializable {
         }
 
         currentP = getPlayerList()[player];
+
+        currentPlayer.setText("Player " + currentP.getPlayerPriority() + ": " +currentP.getColorName());
+        playerDollar.setText("Dollars: " + currentP.getDollar());
+        playerCredit.setText("Credits: " + currentP.getCredit());
+        playerPracticeChip.setText("Practice Chips: " + currentP.getPracticeChip());
+        upgradeOptions.setVisible(false);
+        upgradeRankButton.setVisible(false);
+        payWDollarButton.setVisible(false);
+        payWCreditButton.setVisible(false);
+
         // If card has finished increment cards finished
         turn(currentP);
 
@@ -503,6 +504,11 @@ public class SystemManager implements Initializable {
                 default -> player8.setImage(players[i].getPlayerImage());
             }
         }
+
+        currentPlayer.setText("Player " + currentP.getPlayerPriority() + ": "+ currentP.getColorName());
+        playerDollar.setText("Dollars: " + currentP.getDollar());
+        playerCredit.setText("Credits: " + currentP.getCredit());
+        playerPracticeChip.setText("Practice Chips: "+ 0);
     }
 
     // Turn manager initializes all players
@@ -520,8 +526,6 @@ public class SystemManager implements Initializable {
             switch (numPlayer) {
                 case 5:
                     players[i] = new Player(i + 1, 1, 0, 2, "trailer", playerDie[i]);
-                    //players[i] = new Player(i + 1, 1, 10, 10, "trailer", playerDie[i]); /* TEST UPGRADE */
-                    //System.out.println("TEST 3");
                     break;
                 case 6:
                     players[i] = new Player(i + 1, 1, 0, 4, "trailer", playerDie[i]);
@@ -533,9 +537,8 @@ public class SystemManager implements Initializable {
                     players[i] = new Player(i + 1, 2, 0, 0, "trailer", playerDie[i]);
                     break;
                 default:
-                    //players[i] = new Player(i + 1, 1, 0, 0, "trailer", playerDie[i]);
-                    players[i] = new Player(i + 1, 1, 10, 10, "office", playerDie[i]);
-
+                    players[i] = new Player(i + 1, 1, 0, 0, "trailer", playerDie[i]);
+                    //players[i] = new Player(i + 1, 1, 10, 10, "office", playerDie[i]); //upgrade testing
                     break;
             }
         }
@@ -574,7 +577,7 @@ public class SystemManager implements Initializable {
 
         System.out.println("\n=========");
         System.out.println("Calculating end score");
-        for (int i = 0; i < player.length; i++) {
+        for (int i = 0; i < player.length; i++) { //probably dont need
 /**/            UserInterfaceDisplay.getInstance().displayPlayerInfo(player[i]);
         }
         System.out.println("\n\n");
@@ -610,7 +613,7 @@ public class SystemManager implements Initializable {
             }
         }
 
-/**/        UserInterfaceDisplay.getInstance().displayWinner(whoWon);
+/**/        UserInterfaceDisplay.getInstance().displayWinner(whoWon); //dont need
     }
 
     // Resetall function will be called at the start of each game
@@ -650,9 +653,9 @@ public class SystemManager implements Initializable {
 //            moveManager(player);
             letUpgrade();
             showButton(player.getPlayerLocation(), true); //location buttons
+            nextPlayer.setVisible(true); //skip turn
 
-
-            /* NEED TAKE ROLE OPTION */
+            /* NEED TAKE ROLE OPTION */ //////////////////////////////////////////////////////////
 
         } else {
             // If player can rehearse or act, give them options

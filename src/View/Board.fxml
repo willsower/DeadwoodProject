@@ -36,22 +36,17 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label fx:id="playerDieColor" layoutX="10.0" layoutY="48.0" textFill="WHITE" translateX="20.0" translateY="-20.0">
+            <Label fx:id="playerCredit" layoutX="10.0" layoutY="48.0" textFill="WHITE" translateX="20.0" translateY="-15.0">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <Label fx:id="playerDollar" layoutX="10.0" layoutY="48.0" textFill="WHITE" translateX="20.0" translateY="-2.0">
+            <Label fx:id="playerDollar" layoutX="10.0" layoutY="48.0" textFill="WHITE" translateX="20.0" translateY="5.0">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <Label fx:id="playerCredit" layoutX="10.0" layoutY="48.0" textFill="WHITE" translateX="20.0" translateY="17.0">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Label>
-            <Label fx:id="playerPracticeChip" layoutX="10.0" layoutY="48.0" textFill="WHITE" translateX="20.0" translateY="35.0">
+            <Label fx:id="playerPracticeChip" layoutX="10.0" layoutY="48.0" textFill="WHITE" translateX="20.0" translateY="25.0">
                <font>
                   <Font size="17.0" />
                </font>

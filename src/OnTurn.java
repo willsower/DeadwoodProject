@@ -73,14 +73,14 @@ public class OnTurn {
         ArrayList<String> partsOffCardAval = Board.getInstance().getSet(player.getPlayerLocation())
                 .availablePartsOffCard(player.getLevel());
         if (partsOnCardAval.isEmpty() && partsOffCardAval.isEmpty()) {
-            System.out.println("  NO PARTS AVAILABLE FOR YOUR CURRENTLY");
         } else {
             // key of card name
             int cardNum = Deck.getInstance()
                     .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getCardID();
             System.out.println("  Card Name: " + Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getCardName());
-            String playerChoice = UserInterface.getInstance().roleChoice(partsOnCardAval, partsOffCardAval, cardNum,
-                    player.getPlayerLocation());
+//            String playerChoice = UserInterface.getInstance().roleChoice(partsOnCardAval, partsOffCardAval, cardNum,
+//                    player.getPlayerLocation());
+            String playerChoice = "5";
 
             if (isNumeric(playerChoice)) { // choice for which role to take
                 int roleNumber = Integer.parseInt(playerChoice);
@@ -94,6 +94,30 @@ public class OnTurn {
             }
         }
         return false;
+    }
+
+    // Function to get array of parts available  off the card
+    public ArrayList<String> getPartsAvailOffCard(Player player) {
+        ArrayList<String> partsOffCardAval = Board.getInstance().getSet(player.getPlayerLocation())
+                .availablePartsOffCard(player.getLevel());
+
+        for (int i = 0; i < partsOffCardAval.size(); i++) {
+            partsOffCardAval.get(i).replace(",", "");
+        }
+        return partsOffCardAval;
+    }
+
+    // Function to get array of parts available on the card
+    public ArrayList<String> getPartsAvailOnCard(Player player) {
+        ArrayList<String> partsOnCardAval = Deck.getInstance()
+                .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum())
+                .availablePartsOnCard(player.getLevel());
+
+        for (int i = 0; i < partsOnCardAval.size(); i++) {
+            partsOnCardAval.get(i).replace(",", "");
+        }
+
+        return partsOnCardAval;
     }
 
     public String parseMoveTo(String location) {
@@ -134,104 +158,6 @@ public class OnTurn {
         }
     }
 
-    // Ultimately the move option. Once moved, will allow players to take a role
-    // Will also allow user to upgrade if they moved into casting office
-    public void moveTakeRoleOption(Player player) {
-        // Gets neighbors of room player currently is in
-        String[] neighbors = Board.getInstance().getSet(player.getPlayerLocation()).getNeighbor();
-        Boolean[] isActiveList = Board.getInstance().getSet(player.getPlayerLocation()).getIsActiveList();
-
-        // Get user input if player wants to move
-        String move = UserInterface.getInstance().moveOption(player, neighbors, isActiveList);
-        int numNeighbors = neighbors.length;
-
-        // If player enters number, move to that area
-        if (isNumeric(move)) {
-            player.setPlayerLocation(neighbors[Integer.parseInt(move) - 1]);
-            System.out.println("  You are in room " + player.getPlayerLocation());
-
-            if (player.getPlayerLocation().equals("trailer")) {
-                // Do nothing
-            } else if (player.getPlayerLocation().equals("office")) {
-                //visible upgrade button
-//                if (Upgrade.getInstance().canUpgrade(player.getLevel(), player.getPlayerLocation(), player.getDollar(), player.getCredit())) {
-//                    SystemManager.getInstance().makeButtonVisible(false, false, true);
-//                }
-//                int up = UserInterface.getInstance().upgradePlayer(player, player.getLevel(), player.getPlayerLocation(),
-//                        player.getDollar(), player.getCredit());
-//
-                int rankNumChoice = SystemManager.getInstance().getUpgradeRankChoice();
-                if (rankNumChoice >0 && rankNumChoice < 7) {
-                    if (player.getCredit() >= Upgrade.getInstance().getLevel(rankNumChoice).credit && player.getDollar() >= Upgrade.getInstance().getLevel(rankNumChoice).dollar) {
-                        Upgrade.getInstance().upgradeCredit(player, rankNumChoice);
-                        Upgrade.getInstance().upgradeDollar(player, rankNumChoice);
-                    } else if (player.getCredit() >= Upgrade.getInstance().getLevel(rankNumChoice).credit) {
-                        Upgrade.getInstance().upgradeCredit(player, rankNumChoice);
-                    } else {
-                        Upgrade.getInstance().upgradeDollar(player, rankNumChoice);
-                    }
-                    UserInterfaceDisplay.getInstance().playerUpgrade(player);
-                }
-
-            } else {
-                if (Board.getInstance().getSet(player.getPlayerLocation()).getIsActive() == true) {
-                    takeRole(player);
-                } else {
-                    System.out.println("  SCENE IS FINISHED");
-                }
-            }
-        }
-    }
-
-    // Overall the move manager will allow users to move, upgrade or take role
-    // depending on their locations
-    public void moveManager(Player player) { /* IS THIS BEING CALLED */
-        // Allow player to upgrade then move
-        if (player.getPlayerLocation().equals("office")) {
-            SystemManager.getInstance().makeButtonVisible(false, false, true);//should not need this
-//            if (Upgrade.getInstance().canUpgrade(player.getLevel(), player.getPlayerLocation(), player.getDollar(), player.getCredit())) {
-//                SystemManager.getInstance().makeButtonVisible(false, false, true);
-//            }
-            //SystemManager.getInstance().makeButtonVisible(false,false,true);
-            //int up = UserInterface.getInstance().upgradePlayer(player, player.getLevel(), player.getPlayerLocation(), player.getDollar(), player.getCredit());
-            moveTakeRoleOption(player); /* dont know why this is being called here */
-
-            int rankNumChoice = SystemManager.getInstance().getUpgradeRankChoice();
-            if (rankNumChoice >0 && rankNumChoice < 7) {
-                if (player.getCredit() >= Upgrade.getInstance().getLevel(rankNumChoice).credit && player.getDollar() >= Upgrade.getInstance().getLevel(rankNumChoice).dollar) {
-                    Upgrade.getInstance().upgradeCredit(player, rankNumChoice);
-                    Upgrade.getInstance().upgradeDollar(player, rankNumChoice);
-                } else if (player.getCredit() >= Upgrade.getInstance().getLevel(rankNumChoice).credit) {
-                    Upgrade.getInstance().upgradeCredit(player, rankNumChoice);
-                } else {
-                    Upgrade.getInstance().upgradeDollar(player, rankNumChoice);
-                }
-                UserInterfaceDisplay.getInstance().playerUpgrade(player);
-            }
-
-            // Allow player to move then take a role
-        } else if (player.getPlayerLocation().equals("trailer")) {
-//            moveTakeRoleOption(player);
-//            movePlayer(player);
-
-            // First allow player to take a role on the board
-            // If they choose not to take role, let them move to another location
-            // Then give user option to take role there
-        } else {
-            boolean choice = false;
-            if (Board.getInstance().getSet(player.getPlayerLocation()).getIsActive() == true) {
-                choice = takeRole(player);
-            } else {
-                System.out.println("  SCENE IS FINISHED");
-            }
-
-            if (choice == false) {
-//                moveTakeRoleOption(player);
-//                movePlayer(player);
-            }
-        }
-    }
-
     // Function to rehearse
     // Player is not able to reherase if they already have 5 practice chips
     public void rehearse(Player player) {
@@ -248,13 +174,7 @@ public class OnTurn {
         int counter = Board.getInstance().getSet(player.getPlayerLocation()).getShotCounter();
         int diceRoll = roll();
 
-        //String strDiceRoll = Integer.toString(diceRoll);
-
         SystemManager.getInstance().printLabel(Integer.toString(diceRoll));
-
-        System.out.println("  Card Budget: " + cardBudget);
-        System.out.println("  Dice Rolled: " + diceRoll);
-        System.out.println("  Shot Counter [Before Act] " + counter);
 
         // if success
         if (diceRoll + player.getPracticeChip() >= cardBudget) {
@@ -262,7 +182,6 @@ public class OnTurn {
             counter -= 1;
             Board.getInstance().getSet(player.getPlayerLocation()).setShotCounter(counter);
 
-            //System.out.println("\n  SUCCESS IN ACTING");
             SystemManager.getInstance().printLabel("SUCCESS IN ACTING");
             System.out.println("  Current Shot Counter: " + counter);
             if (player.getOnCardRole() == true) { // on card
@@ -271,8 +190,7 @@ public class OnTurn {
                 player.setCredit(player.getCredit() + 1);
                 player.setDollar(player.getDollar() + 1);
             }
-
-/**/            UserInterfaceDisplay.getInstance().displayPlayerInfo(player);
+            UserInterfaceDisplay.getInstance().displayPlayerInfo(player);
 
             // end of card, calculate payout will be called and reset card and player information
             if (counter == 0) {
@@ -312,27 +230,5 @@ public class OnTurn {
         int upperBound = 6;
 
         return ran.nextInt(upperBound - lowerBound + 1) + lowerBound;
-    }
-
-    // Function turn will give player options at start of turn
-    // Will return true if card has finished
-    // will return false if not
-    public boolean turn(Player player) {
-        boolean endOfCard = false;
-
-        // If player has not taken a role, let them move
-        if (player.getOffCardRole() == false && player.getOnCardRole() == false) {
-            moveManager(player);
-        } else {
-
-            // If player can rehearse or act, give them options
-            if (player.getRoleLevel() + player.getPracticeChip() < 6) {
-                SystemManager.getInstance().makeButtonVisible(true,true,false);
-            // If they can't rehearse anymore give them only act option
-            } else {
-                SystemManager.getInstance().makeButtonVisible(true,false,false);
-            }
-        }
-        return endOfCard; // return to SystemManager.java
     }
 }

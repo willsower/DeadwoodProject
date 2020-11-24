@@ -74,19 +74,13 @@ public class SystemManager implements Initializable {
     @FXML private Button submitButton;
 
     //Action Buttons
-    @FXML private Button actButton;
-    @FXML private Button rehearseButton;
-    @FXML private Button upgradeButton;
-    @FXML private Button rollDieButton;
+    @FXML private Button actButton, rehearseButton, upgradeButton, rollDieButton;
 
     //upgrade buttons
-    @FXML private Button upgradeRankButton;
-    @FXML private Button payWDollarButton;
-    @FXML private Button payWCreditButton;
+    @FXML private Button upgradeRankButton, payWDollarButton, payWCreditButton;
 
     ObservableList<Integer> list = FXCollections.observableArrayList();
     @FXML private ChoiceBox<Integer> upgradeOptions;
-
 
     @FXML private Label actPrintLabel; //print to user success, fail, etc..
     @FXML private Button nextPlayer;
@@ -132,29 +126,10 @@ public class SystemManager implements Initializable {
     @FXML private Button toSecretHideoutFromoffice;
 
     // Pane values
-    @FXML private Pane trailer;
-    @FXML private Pane office;
-    @FXML private Pane mainStreet;
-    @FXML private Pane saloon;
-    @FXML private Pane hotel;
-    @FXML private Pane ranch;
-    @FXML private Pane generalStore;
-    @FXML private Pane trainStation;
-    @FXML private Pane secretHideout;
-    @FXML private Pane jail;
-    @FXML private Pane church;
-    @FXML private Pane bank;
+    @FXML private Pane trailer, office, mainStreet, saloon, hotel, ranch, generalStore, trainStation, secretHideout, jail, church, bank;
 
     //Player pieces
-    @FXML private ImageView player1;
-    @FXML private ImageView player2;
-    @FXML private ImageView player3;
-    @FXML private ImageView player4;
-    @FXML private ImageView player5;
-    @FXML private ImageView player6;
-    @FXML private ImageView player7;
-    @FXML private ImageView player8;
-
+    @FXML private ImageView player1, player2, player3, player4, player5, player6, player7, player8;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -279,11 +254,6 @@ public class SystemManager implements Initializable {
         return rankChoice;
     }
 
-    public void addUpgradeOptions(int num) {
-        //upgradeOptions.getItems().add(num);
-        list.add(num);
-    }
-
     public void loadData(){
         //list.removeAll(list);
         System.out.println(list);
@@ -307,7 +277,6 @@ public class SystemManager implements Initializable {
         upgradeOptions.getItems().addAll(list);
         //System.out.println(list);
     }
-
 
     public void payWDollarAction(ActionEvent event) {
         Upgrade.getInstance().upgradeDollar(currentP, rankChoice);
@@ -420,6 +389,15 @@ public class SystemManager implements Initializable {
         letUpgrade();
 
         nextPlayer.setVisible(true);
+    }
+
+    public void showOffCardRoleOptions() {
+        ArrayList<String> offCard = OnTurn.getInstance().getPartsAvailOffCard(currentP);
+
+    }
+
+    public void takeOffCardRole(ActionEvent event) {
+        System.out.println("PUSH");
     }
 
     public void letUpgrade() {

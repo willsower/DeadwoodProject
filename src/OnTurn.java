@@ -55,11 +55,11 @@ public class OnTurn {
 
     // Function to show that player has taken off card role
     // Updates Player and Set Attributes
-    public static void takeOffCardRole(Player player, int roleNumber, int size, String setName, String roleName) {
-        int level = Board.getInstance().getSet(player.getPlayerLocation()).getPartLevel(roleNumber - size - 1);
+    public static void takeOffCardRole(Player player, String roleName, String setName) {
+        Set set = Board.getInstance().getSet(setName);
 
         player.setOffCardRole(true);
-        player.setRoleLevel(level);
+        player.setRoleLevel(set.getPartLevel(setName));
         player.setRoleLocation(player.getPlayerLocation());
         player.setRoleName(roleName);
         Board.getInstance().getSet(setName).addPlayerToRoomOffCard(player);
@@ -89,8 +89,8 @@ public class OnTurn {
                 if (roleNumber <= partsOnCardAval.size()) {
                     takeOnCardRole(player, roleNumber, cardNum, partsOnCardAval.get(roleNumber - 1));
                 } else {
-                    takeOffCardRole(player, roleNumber, partsOnCardAval.size(), player.getPlayerLocation(),
-                            partsOffCardAval.get(roleNumber - partsOnCardAval.size() - 1));
+//                    takeOffCardRole(player, roleNumber, partsOnCardAval.size(), player.getPlayerLocation(),
+//                            partsOffCardAval.get(roleNumber - partsOnCardAval.size() - 1));
                 }
                 return true;
             }
@@ -120,6 +120,21 @@ public class OnTurn {
         }
 
         return partsOnCardAval;
+    }
+
+    public String parseForSet(String location) {
+        String name = "";
+        for (int i = 0; i < location.length(); i++) {
+            if (i == 0) {
+                name += Character.toUpperCase(location.charAt(i));
+            } else if (Character.isUpperCase(location.charAt(i))) {
+                name += " ";
+                name += location.charAt(i);
+            } else {
+                name += location.charAt(i);
+            }
+        }
+        return name;
     }
 
     public String parseMoveTo(String location) {

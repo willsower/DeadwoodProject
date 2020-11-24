@@ -337,7 +337,16 @@ public class SystemManager implements Initializable {
     }
 
     public void offCardRole(ActionEvent event) {
-        System.out.println("PUSH");
+        String name = ((Node) event.getSource()).getId();
+        String set = OnTurn.getInstance().parseForSet(((Node) event.getSource()).getParent().getParent().getId());
+
+        OnTurn.getInstance().takeOffCardRole(currentP, name, set);
+
+        Pane previousPane = getButtonLocation(currentP.getPlayerLocation());
+        ImageView thisPlayer = playerPerson(currentP.getPlayerPriority());
+        previousPane.getChildren().remove(thisPlayer);
+        Button newPane = ((Button) event.getSource());
+        System.out.println(newPane.getId());
     }
 
     public void showRoles(boolean val) {
@@ -362,10 +371,6 @@ public class SystemManager implements Initializable {
             }
             i++;
         }
-    }
-
-    public void takeOffCardRole(MouseEvent event) {
-        System.out.println("PUSH");
     }
 
     public void letUpgrade() {

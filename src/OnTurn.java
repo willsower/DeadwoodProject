@@ -55,15 +55,15 @@ public class OnTurn {
 
     // Function to show that player has taken off card role
     // Updates Player and Set Attributes
-    public static void takeOffCardRole(Player player, int roleNumber, int size, String setName, String roleName) {
-        int level = Board.getInstance().getSet(player.getPlayerLocation()).getPartLevel(roleNumber - size - 1);
+    public static void takeOffCardRole(Player player, String roleName, int size, String setName) {
+//        int level = Board.getInstance().getSet(player.getPlayerLocation()).getPartLevel(roleNumber - size - 1);
 
-        player.setOffCardRole(true);
-        player.setRoleLevel(level);
-        player.setRoleLocation(player.getPlayerLocation());
-        player.setRoleName(roleName);
-        Board.getInstance().getSet(setName).addPlayerToRoomOffCard(player);
-        Board.getInstance().getSet(setName).setPartTaken(roleName, true);
+//        player.setOffCardRole(true);
+//        player.setRoleLevel(level);
+//        player.setRoleLocation(player.getPlayerLocation());
+//        player.setRoleName(roleName);
+//        Board.getInstance().getSet(setName).addPlayerToRoomOffCard(player);
+//        Board.getInstance().getSet(setName).setPartTaken(roleName, true);
     }
 
     // Function for taking a role
@@ -89,8 +89,8 @@ public class OnTurn {
                 if (roleNumber <= partsOnCardAval.size()) {
                     takeOnCardRole(player, roleNumber, cardNum, partsOnCardAval.get(roleNumber - 1));
                 } else {
-                    takeOffCardRole(player, roleNumber, partsOnCardAval.size(), player.getPlayerLocation(),
-                            partsOffCardAval.get(roleNumber - partsOnCardAval.size() - 1));
+//                    takeOffCardRole(player, roleNumber, partsOnCardAval.size(), player.getPlayerLocation(),
+//                            partsOffCardAval.get(roleNumber - partsOnCardAval.size() - 1));
                 }
                 return true;
             }

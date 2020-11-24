@@ -339,8 +339,12 @@ public class SystemManager implements Initializable {
     }
 
     public void offCardRole(ActionEvent event) {
-        System.out.println("PUSH");
+        String name = ((Node) event.getSource()).getId();
+        System.out.println(name);
+
     }
+
+    public void takeOffCardRole(ActionEvent event) {}; //DELETE
 
     public void showRoles(boolean val) {
         if (!currentP.getPlayerLocation().equals("trailer") && !currentP.getPlayerLocation().equals("office")) {
@@ -364,10 +368,6 @@ public class SystemManager implements Initializable {
             }
             i++;
         }
-    }
-
-    public void takeOffCardRole(MouseEvent event) {
-        System.out.println("PUSH");
     }
 
     public void letUpgrade() {

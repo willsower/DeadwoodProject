@@ -29,15 +29,9 @@ public class Board {
             try {
                 doc = parsing.getDocFromFile("xml/boards.xml");
                 board = parsing.readBoardData(doc);
-                System.out.println("TESTING");
-//
-//                Enumeration<Set> values = getBoard().elements();
-//
-//                // iterate through values
-//                while (values.hasMoreElements()) {
-//                    Set set = values.nextElement();
-//                    SystemManager.getInstance().addButtons(set, set.getSetName());
-//                }
+
+                assignCardToSet(Deck.getInstance().getCardShuffle(), 1);
+
             } catch (Exception e) {
                 System.out.println("Error = " + e);
             }

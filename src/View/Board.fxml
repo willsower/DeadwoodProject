@@ -122,7 +122,7 @@
          </children></Pane>
       <Pane fx:id="mainStreet" layoutX="523.0" layoutY="103.0" prefHeight="126.0" prefWidth="371.0">
          <children>
-            <Button fx:id="totrailersFromMainStreet" mnemonicParsing="false" onAction="#onMove" rotate="90.0" styleClass="arrow" translateX="313.0" translateY="146.0" visible="false" />
+            <Button fx:id="totrailerFromMainStreet" mnemonicParsing="false" onAction="#onMove" rotate="90.0" styleClass="arrow" translateX="313.0" translateY="146.0" visible="false" />
             <Button fx:id="toSaloonFromMainStreet" mnemonicParsing="false" onAction="#onMove" rotate="90.0" styleClass="arrow" translateX="50.0" translateY="120.0" visible="false" />
             <Button fx:id="toJailFromMainStreet" mnemonicParsing="false" onAction="#onMove" rotate="180.0" styleClass="arrow" translateX="-17.0" translateY="52.0" visible="false" />
          </children></Pane>
@@ -131,7 +131,7 @@
             <Button fx:id="toMainStreetFromSaloon" mnemonicParsing="false" onAction="#onMove" rotate="270.0" styleClass="arrow" translateX="50.0" translateY="-22.0" visible="false" />
             <Button fx:id="toBankFromSaloon" mnemonicParsing="false" onAction="#onMove" rotate="90.0" styleClass="arrow" translateX="56.0" translateY="146.0" visible="false" />
             <Button fx:id="toGeneralStoreFromSaloon" mnemonicParsing="false" onAction="#onMove" rotate="180.0" styleClass="arrow" translateX="-17.0" translateY="73.0" visible="false" />
-            <Button fx:id="totrailersFromSaloon" mnemonicParsing="false" onAction="#onMove" styleClass="arrow" translateX="236.0" translateY="82.0" visible="false" />
+            <Button fx:id="totrailerFromSaloon" mnemonicParsing="false" onAction="#onMove" styleClass="arrow" translateX="236.0" translateY="82.0" visible="false" />
          </children></Pane>
       <Pane fx:id="bank" layoutX="523.0" layoutY="391.0" prefHeight="126.0" prefWidth="244.0">
          <children>
@@ -148,7 +148,7 @@
          </children></Pane>
       <Pane fx:id="hotel" layoutX="773.0" layoutY="393.0" prefHeight="283.0" prefWidth="121.0">
          <children>
-            <Button fx:id="totrailersFromHotel" mnemonicParsing="false" onAction="#onMove" rotate="270.0" styleClass="arrow" translateX="50.0" translateY="-19.0" visible="false" />
+            <Button fx:id="totrailerFromHotel" mnemonicParsing="false" onAction="#onMove" rotate="270.0" styleClass="arrow" translateX="50.0" translateY="-19.0" visible="false" />
             <Button fx:id="toBankFromHotel" mnemonicParsing="false" onAction="#onMove" rotate="180.0" styleClass="arrow" translateX="-13.0" translateY="39.0" visible="false" />
             <Button fx:id="toChurchFromHotel" mnemonicParsing="false" onAction="#onMove" rotate="180.0" styleClass="arrow" translateX="-53.0" translateY="201.0" visible="false" />
          </children></Pane>

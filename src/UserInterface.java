@@ -198,28 +198,28 @@ public class UserInterface {
         ArrayList<Integer> lev = new ArrayList<Integer>();
        
         // Checks if user can upgrade
-        if (Upgrade.getInstance().canUpgrade(currentLevel, location, dollar, credit)) {
-
-            lev = Upgrade.getInstance().levelsCanUpgrade(player);
-            System.out.println();
-            do {
-                for (int i = 0; i < lev.size(); i++) {
-                    System.out.println("Press " + (i + 1) + " to upgrade to Level " + lev.get(i));
-                }
-
-                System.out.println("[Press q to quit]");
-                returnType = ob.nextLine();
-
-                try {
-                    Integer.parseInt(returnType);
-                    num = Integer.parseInt(returnType);
-
-                } catch (NumberFormatException e) {
-                }
-            } while (!(num > 0 && num <= lev.size()) && !returnType.equals("Q") && !(returnType.equals("q")));
-        } else {
-            return 0;
-        }
+//        if (Upgrade.getInstance().canUpgrade(currentLevel, location, dollar, credit)) {
+//
+//            lev = Upgrade.getInstance().levelsCanUpgrade(player);
+//            System.out.println();
+//            do {
+//                for (int i = 0; i < lev.size(); i++) {
+//                    System.out.println("Press " + (i + 1) + " to upgrade to Level " + lev.get(i));
+//                }
+//
+//                System.out.println("[Press q to quit]");
+//                returnType = ob.nextLine();
+//
+//                try {
+//                    Integer.parseInt(returnType);
+//                    num = Integer.parseInt(returnType);
+//
+//                } catch (NumberFormatException e) {
+//                }
+//            } while (!(num > 0 && num <= lev.size()) && !returnType.equals("Q") && !(returnType.equals("q")));
+//        } else {
+//            return 0;
+//        }
         if (returnType.equals("Q") || returnType.equals("q")) {
             return 0;
         }

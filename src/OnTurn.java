@@ -154,9 +154,9 @@ public class OnTurn {
                 // Do nothing
             } else if (player.getPlayerLocation().equals("office")) {
                 //visible upgrade button
-                if (Upgrade.getInstance().canUpgrade(player.getLevel(), player.getPlayerLocation(), player.getDollar(), player.getCredit())) {
-                    SystemManager.getInstance().makeButtonVisible(false, false, true);
-                }
+//                if (Upgrade.getInstance().canUpgrade(player.getLevel(), player.getPlayerLocation(), player.getDollar(), player.getCredit())) {
+//                    SystemManager.getInstance().makeButtonVisible(false, false, true);
+//                }
 //                int up = UserInterface.getInstance().upgradePlayer(player, player.getLevel(), player.getPlayerLocation(),
 //                        player.getDollar(), player.getCredit());
 //
@@ -189,9 +189,9 @@ public class OnTurn {
         // Allow player to upgrade then move
         if (player.getPlayerLocation().equals("office")) {
             SystemManager.getInstance().makeButtonVisible(false, false, true);//should not need this
-            if (Upgrade.getInstance().canUpgrade(player.getLevel(), player.getPlayerLocation(), player.getDollar(), player.getCredit())) {
-                SystemManager.getInstance().makeButtonVisible(false, false, true);
-            }
+//            if (Upgrade.getInstance().canUpgrade(player.getLevel(), player.getPlayerLocation(), player.getDollar(), player.getCredit())) {
+//                SystemManager.getInstance().makeButtonVisible(false, false, true);
+//            }
             //SystemManager.getInstance().makeButtonVisible(false,false,true);
             //int up = UserInterface.getInstance().upgradePlayer(player, player.getLevel(), player.getPlayerLocation(), player.getDollar(), player.getCredit());
             moveTakeRoleOption(player); /* dont know why this is being called here */

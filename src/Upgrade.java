@@ -37,17 +37,23 @@ public class Upgrade {
     Level levelSix = new Level(6, 40, 25);
 
     // Check if player can upgrade to next level
-    public boolean canUpgrade(int currentLevel, String location, int dollar, int credit) {
+    // Return 0 if can't upgrade
+    // Return 1 if can upgrade with both dollar and credit
+    // Return 2 if can upgrade with dollar
+    // Return 3 if can upgrade with credit
+    public int canUpgrade(int currentLevel, String location, int dollar, int credit) {
         if (location.equals("office")) {
             if (currentLevel < 6) {
-                if (playerHasCredit(currentLevel, credit) || playerHasDollar(currentLevel, dollar)) {
-                    SystemManager.getInstance().setPayButtonsVisible(playerHasDollar(currentLevel, dollar), playerHasCredit(currentLevel, credit));
-
-                    return true;
+                if (playerHasCredit(currentLevel, credit) && playerHasDollar(currentLevel, dollar)) {
+                    return 1;
+                } else if (playerHasCredit(currentLevel, credit)) {
+                    return 3;
+                } else if (playerHasDollar(currentLevel, dollar)) {
+                    return 2;
                 }
             }
         }
-        return false;
+        return 0;
     }
 
     // Check if player has enough dollars for next level

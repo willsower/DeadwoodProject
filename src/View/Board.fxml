@@ -83,14 +83,14 @@
             <Button fx:id="toMainStreetFromtrailers" mnemonicParsing="false" onAction="#onMove" rotate="270.0" styleClass="arrow" translateX="71.0" translateY="-20.0" visible="false" />
             <Button fx:id="toHotelFromtrailers" mnemonicParsing="false" onAction="#onMove" rotate="90.0" styleClass="arrow" translateX="60.0" translateY="122.0" visible="false" />
             <Button fx:id="toSaloonFromtrailers" mnemonicParsing="false" onAction="#onMove" rotate="180.0" styleClass="arrow" translateX="-16.0" translateY="60.0" visible="false" />
-            <ImageView fx:id="player1" fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="player2" fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="player3" fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="player4" fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="player5" fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="player6" fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="player7" fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="player8" fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="player1" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="player2" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="player3" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="player4" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="player5" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="player6" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="player7" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="player8" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
          </children></Pane>
       <Pane fx:id="mainStreet" layoutX="523.0" layoutY="103.0" prefHeight="126.0" prefWidth="371.0">
          <children>

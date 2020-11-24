@@ -164,6 +164,7 @@ public class SystemManager implements Initializable {
         System.out.println("test34566");
         makeButtonVisible(false,false,false);
         //Upgrade.getInstance().levelsCanUpgrade(currentP); //set add upgrade options
+        upgradeOptions.getItems().clear();
         upgradeOptions.setValue(0);
         loadData();
         upgradeOptions.setVisible(true);     ///// I think I need to all do show() and setDisable() etc.....//////
@@ -174,6 +175,7 @@ public class SystemManager implements Initializable {
     public void upgradeRankAction(ActionEvent event){ /* NEED TO FIX THE UPGRADE BUTTON TO HIDE WHEN LEFT ROOM */
         rankChoice = upgradeOptions.getValue();  // may need to add hide() and setDisable() etc.....
         if (rankChoice > 1 && rankChoice < 7 ) {
+            actPrintLabel.setText("");
             upgradeOptions.setVisible(false);
             upgradeRankButton.setVisible(false);
 
@@ -183,15 +185,15 @@ public class SystemManager implements Initializable {
             payWCreditButton.toFront(); //may not need
 
         } else {
-            actPrintLabel.setText("Can't upgrade to that rank");
-            upgradeOptions.setVisible(false);
-            upgradeRankButton.setVisible(false);
+            actPrintLabel.setText("Can't upgrade to that rank"); /* fix placement of label*/
+            //upgradeOptions.setVisible(false); //should not need
+            //upgradeRankButton.setVisible(false); //should not need
 
             /* NEXT TURN set in pay with buttons */ /////////////////////////////////////////////////////
         }
     }
 
-    public int getUpgradeRankChoice() {
+    public int getUpgradeRankChoice() { // should not need
         return rankChoice;
     }
 
@@ -223,10 +225,8 @@ public class SystemManager implements Initializable {
         payWDollarButton.setVisible(false);
         payWCreditButton.setVisible(false);
         nextPlayer.setVisible(true);
-        //list.removeAll(list);   /* */
-        System.out.println(list);
-        //list.clear();
-        upgradeOptions.getItems().clear();
+        //System.out.println(list);
+        //upgradeOptions.getItems().clear();
 
         currentP.setPlayerImage();
         playerPerson(currentP.getPlayerPriority()).setImage(currentP.getPlayerImage());
@@ -239,10 +239,8 @@ public class SystemManager implements Initializable {
         payWDollarButton.setVisible(false);
         payWCreditButton.setVisible(false);
         nextPlayer.setVisible(true);
-        //list.removeAll(list);   /* */
-        System.out.println(list);
-        //list.clear();
-        upgradeOptions.getItems().clear();
+        //System.out.println(list);
+        //upgradeOptions.getItems().clear();
 
         currentP.setPlayerImage();
         playerPerson(currentP.getPlayerPriority()).setImage(currentP.getPlayerImage());
@@ -394,6 +392,7 @@ public class SystemManager implements Initializable {
         }
     }
 
+    // Function will end the current players turn and set player label information for next player
     public void nextPlayerPush(ActionEvent event) {
         showRoles(false);
         nextPlayer.setVisible(false);
@@ -402,17 +401,23 @@ public class SystemManager implements Initializable {
         if (player == players.length) {
             player = 0;
         }
-
         currentP = players[player];
 
+        // Set label with player information
         currentPlayer.setText("Player " + currentP.getPlayerPriority() + ": " +currentP.getColorName());
         playerDollar.setText("Dollars: " + currentP.getDollar());
         playerCredit.setText("Credits: " + currentP.getCredit());
         playerPracticeChip.setText("Practice Chips: " + currentP.getPracticeChip());
 
-        // If card has finished increment cards finished
+        // Hide all upgrade related buttons in case player decides to not upgrade after pushing upgrade button
+        upgradeOptions.setVisible(false);
+        upgradeRankButton.setVisible(false);
+        payWDollarButton.setVisible(false);
+        payWCreditButton.setVisible(false);
+
         turn(currentP);
 
+        // If card has finished increment cards finished
         if (cardsFinished == 9) {
             cardsFinished = 0;
             day++;
@@ -457,6 +462,7 @@ public class SystemManager implements Initializable {
             }
         }
 
+        /* May need to move elsewhere */
         currentPlayer.setText("Player " + currentP.getPlayerPriority() + ": "+ currentP.getColorName());
         playerDollar.setText("Dollars: " + currentP.getDollar());
         playerCredit.setText("Credits: " + currentP.getCredit());

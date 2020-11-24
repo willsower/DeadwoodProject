@@ -29,6 +29,7 @@ public class Board {
             try {
                 doc = parsing.getDocFromFile("xml/boards.xml");
                 board = parsing.readBoardData(doc);
+                System.out.println("TESTING");
 //
 //                Enumeration<Set> values = getBoard().elements();
 //
@@ -55,7 +56,6 @@ public class Board {
     }
 
     public Image getBoardImage() {
-        System.out.println("adf");
         return boardImage;
     }
 
@@ -73,6 +73,7 @@ public class Board {
                 set.setCardNum(deckOrder[index]);
                 set.setHasCard(true);
                 set.setIsActive(true);
+
             
                 index++;
             }

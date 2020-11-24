@@ -184,7 +184,6 @@ public class SystemManager implements Initializable {
         for (int i = 0; i < obj.getChildren().size(); i++) {
             if (obj.getChildren().get(i).getAccessibleRole().compareTo(AccessibleRole.BUTTON) == 0) {
                 obj.getChildren().get(i).setVisible(val);
-                obj.getChildren().get(i).toFront();
             }
         }
     }
@@ -386,8 +385,8 @@ public class SystemManager implements Initializable {
 
         // Check if card is flipped, if not flip
         if (!cardFlip) {
-//            System.out.println(currentP.getPlayerLocation());
-//            System.out.println(Deck.getInstance().getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getCardImage());
+
+            System.out.println(Deck.getInstance().getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getCardImage());
 //            getCard(currentP.getPlayerLocation()).setImage(Deck.getInstance().getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getCardImage());
         }
 
@@ -407,7 +406,7 @@ public class SystemManager implements Initializable {
             //call onturn function
             upgradeButton.toFront();
         } else {
-            makeButtonVisible(false, false, true);
+            makeButtonVisible(false, false, false);
 
         }
     }

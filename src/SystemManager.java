@@ -333,8 +333,20 @@ public class SystemManager implements Initializable {
         nextPlayer.setVisible(true);
     }
 
-    public void showOffCardRoleOptions() {
+    public void showOffCardRoleOptions(boolean val) {
         ArrayList<String> offCard = OnTurn.getInstance().getPartsAvailOffCard(currentP);
+        Pane obj = getButtonLocation(currentP.getPlayerLocation());
+        int i = 0;
+        while (i < offCard.size()) {
+            for (int j = 0; j < obj.getChildren().size(); j++) {
+                String name = obj.getChildren().get(j).getId();
+                if (obj.getChildren().get(j).getAccessibleRole().compareTo(AccessibleRole.IMAGE_VIEW) == 0 && name.equals(offCard.get(i))) {
+                    obj.getChildren().get(j).setVisible(val);
+                    break;
+                }
+            }
+            i++;
+        }
     }
 
     public void takeOffCardRole(ActionEvent event) {
@@ -449,7 +461,6 @@ public class SystemManager implements Initializable {
 
         // If player has not taken a role, let them move
         if (player.getOffCardRole() == false && player.getOnCardRole() == false) {
-//            moveManager(player);
             letUpgrade();
             showButton(player.getPlayerLocation(), true); //location buttons
             nextPlayer.setVisible(true); //skip turn

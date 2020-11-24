@@ -161,7 +161,7 @@ public class SystemManager implements Initializable {
         boardImage.setImage(Board.getInstance().getBoardImage());
         boardImage.setVisible(false);
         deck.setVisible(false);
-        makeButtonVisible(false, false, false, false);
+        makeButtonVisible(false, false, false, false); /* DONT THINK ROLL IS NEEDED */
         nextPlayer.setVisible(false);
 
 
@@ -184,7 +184,6 @@ public class SystemManager implements Initializable {
         for (int i = 0; i < obj.getChildren().size(); i++) {
             if (obj.getChildren().get(i).getAccessibleRole().compareTo(AccessibleRole.BUTTON) == 0) {
                 obj.getChildren().get(i).setVisible(val);
-                obj.getChildren().get(i).toFront();
             }
         }
     }
@@ -265,8 +264,11 @@ public class SystemManager implements Initializable {
             //button for credit & button for dollar
             makePayButtonsVisible(dollarVisible,creditVisible);
         } else {
-            actPrintLabel.setText("Can't upgrade");
-            /* NEXT TURN ???? */ //maybe
+            actPrintLabel.setText("Can't upgrade to that rank");
+
+            /* NEXT TURN ???? */ //maybe /////////////////////////////////////////////////////////////////////
+
+
         }
 //        upgradeOptions.setVisible(false);
 //        upgradeRankButton.setVisible(false);
@@ -390,7 +392,6 @@ public class SystemManager implements Initializable {
 //            getCard(currentP.getPlayerLocation()).setImage(Deck.getInstance().getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getCardImage());
         }
 
-
         letUpgrade();
 
         nextPlayer.setVisible(true);
@@ -399,14 +400,14 @@ public class SystemManager implements Initializable {
     public void letUpgrade() {
         if (currentP.getPlayerLocation().equals("office")) {
             //visible upgrade button
-            makeButtonVisible(false, false, true);
+            //makeButtonVisible(false, false, true);
             if (Upgrade.getInstance().canUpgrade(currentP.getLevel(), currentP.getPlayerLocation(), currentP.getDollar(), currentP.getCredit())) {
                 makeButtonVisible(false, false, true);
             }
             //call onturn function
-            upgradeButton.toFront();
+            upgradeButton.toFront(); ///////////////////////////////////////////////////
         } else {
-            makeButtonVisible(false, false, true);
+            makeButtonVisible(false, false, false);
 
         }
     }

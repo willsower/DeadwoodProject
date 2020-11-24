@@ -68,48 +68,7 @@ public class SystemManager implements Initializable {
 
     @FXML private Label actPrintLabel; //print to user success, fail, etc..
     @FXML private Button nextPlayer;
-
-
-    @FXML private Button totrailersFromMainStreet;
-    @FXML private Button toSaloonFromMainStreet;
-    @FXML private Button toJailFromMainStreet;
-    @FXML private Button toMainStreetFromtrailers;
-    @FXML private Button toSaloonFromtrailers;
-    @FXML private Button toHotelFromtrailers;
-    @FXML private Button toChurchFromHotel;
-    @FXML private Button totrailersFromHotel;
-    @FXML private Button toBankFromChurch;
-    @FXML private Button toSecretHideoutFromChurch;
-    @FXML private Button toHotelFromChurch;
-    @FXML private Button toSaloonFromBank;
-    @FXML private Button toRanchFromBank;
-    @FXML private Button toChurchFromBank;
-    @FXML private Button toHotelFromBank;
-    @FXML private Button totrailersFromSaloon;
-    @FXML private Button toBankFromSaloon;
-    @FXML private Button toGeneralStoreFromSaloon;
-    @FXML private Button toMainStreetFromSaloon;
-    @FXML private Button toChurchFromSecretHideout;
-    @FXML private Button toRanchFromSecretHideout;
-    @FXML private Button toofficeFromSecretHideout;
-    @FXML private Button toBankFromRanch;
-    @FXML private Button toGeneralStoreFromRanch;
-    @FXML private Button toofficeFromRanch;
-    @FXML private Button toSecretHideoutFromRanch;
-    @FXML private Button toRanchFromGeneralStore;
-    @FXML private Button toSaloonFromGeneralStore;
-    @FXML private Button toJailFromGeneralStore;
-    @FXML private Button toTrainStationFromGeneralStore;
-    @FXML private Button toMainStreetFromJail;
-    @FXML private Button toGeneralStoreFromJail;
-    @FXML private Button toTrainStationFromJail;
-    @FXML private Button toJailFromTrainStation;
-    @FXML private Button toGeneralStoreFromTrainStation;
-    @FXML private Button toofficeFromTrainStation;
-    @FXML private Button toTrainStationFromoffice;
-    @FXML private Button toRanchFromoffice;
-    @FXML private Button toSecretHideoutFromoffice;
-
+    
     // Pane values
     @FXML private Pane trailer, office, mainStreet, saloon, hotel, ranch, generalStore, trainStation, secretHideout, jail, church, bank;
 
@@ -352,7 +311,7 @@ public class SystemManager implements Initializable {
     }
 
     public void onMove(ActionEvent event) {
-        String name = ((Node) event.getSource()).getId().toString();
+        String name = ((Node) event.getSource()).getId();
         // Don't display button for move
         showButton(currentP.getPlayerLocation(), false);
         // Put player in new set area

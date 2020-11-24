@@ -255,12 +255,12 @@ public class SystemManager implements Initializable {
 
     public void upgradeRankAction(ActionEvent event){ /* NEED TO FIX THE UPGRADE BUTTON TO HIDE WHEN LEFT ROOM */
         rankChoice = upgradeOptions.getValue();  // may need to add hide() and setDisable() etc.....
-        if (rankChoice >1 && rankChoice < 7 ) {
+        if (rankChoice > 1 && rankChoice < 7 ) {
             upgradeOptions.setVisible(false);
             upgradeRankButton.setVisible(false);
 
-            System.out.println("Dollar " + dollarVisible);
-            System.out.println("Credit " + creditVisible);
+            //System.out.println("Dollar " + dollarVisible);
+            //System.out.println("Credit " + creditVisible);
             payWDollarButton.setVisible(dollarVisible);
             payWDollarButton.toFront();
             payWCreditButton.setVisible(creditVisible);
@@ -271,7 +271,7 @@ public class SystemManager implements Initializable {
             upgradeOptions.setVisible(false);
             upgradeRankButton.setVisible(false);
 
-            /* NEXT TURN ???? */ //maybe /////////////////////////////////////////////////////////////////////
+            /* NEXT TURN set in pay with buttons */
         }
     }
 
@@ -285,44 +285,54 @@ public class SystemManager implements Initializable {
     }
 
     public void loadData(){
-        list.removeAll(list);   /* NOT WORKING THE WAY IT SHOULD */
-       // list.clear();
-
-        list.add(0); //may not need but currently using to check if they enter zero then do nothing
-       //
+        //list.removeAll(list);
+        System.out.println(list);
+        list.clear();
+        System.out.println(list);
+        for (int l : list){
+           list.removeAll(l);
+           System.out.println(list);
+        }
+        list.add(0);
 
         int currentLevel = currentP.getLevel();
-        //ArrayList<Integer> canUpgrade = new ArrayList<Integer>();
         int credit = currentP.getCredit();
         int dollar = currentP.getDollar();
 
         for (int i = currentLevel + 1; i <= 6; i++) {
             if (Upgrade.getInstance().getLevel(i).credit <= credit || Upgrade.getInstance().getLevel(i).dollar <= dollar) {
-                //canUpgrade.add(i);
-                //SystemManager.getInstance().addUpgradeOptions(i);
                 list.add(i);
             }
         }
-
         upgradeOptions.getItems().addAll(list);
-
+        //System.out.println(list);
     }
 
 
     public void payWDollarAction(ActionEvent event) {
         Upgrade.getInstance().upgradeDollar(currentP, rankChoice);
         payWDollarButton.setVisible(false);
+        payWCreditButton.setVisible(false);
+        nextPlayer.setVisible(true);
+        //list.removeAll(list);   /* */
+        System.out.println(list);
+        //list.clear();
+        upgradeOptions.getItems().clear();
+        //System.out.println(upgradeOptions.itemsProperty());
     }
 
     public void payWCreditAction(ActionEvent event) {
         Upgrade.getInstance().upgradeCredit(currentP, rankChoice);
+        payWDollarButton.setVisible(false);
         payWCreditButton.setVisible(false);
+        nextPlayer.setVisible(true);
+        //list.removeAll(list);   /* */
+        System.out.println(list);
+        //list.clear();
+        upgradeOptions.getItems().clear();
     }
 
     public void setPayButtonsVisible(boolean dollar, boolean credit) {
-        System.out.println("HHHHHHHHHHHHHHHHHHHHH");
-        System.out.println(dollar);
-        System.out.println(credit);
         dollarVisible = dollar;
         creditVisible = credit;
     }
@@ -415,6 +425,7 @@ public class SystemManager implements Initializable {
     public void letUpgrade() {
         if (currentP.getPlayerLocation().equals("office")) {
             System.out.println("TEST ");
+            nextPlayer.setVisible(true);
             //visible upgrade button
             //makeButtonVisible(false, false, true);
             //Upgrade.getInstance().levelsCanUpgrade(currentP); //populate choice box
@@ -428,11 +439,11 @@ public class SystemManager implements Initializable {
                 }
             }
             //call onturn function
-            upgradeButton.toFront(); ///////////////////////////////////////////////////
-            System.out.println("TEST 5 ");
+            //upgradeButton.toFront(); ///////////////////////////////////////////////////
+
         } else {
             makeButtonVisible(false, false, false);
-
+            //nextPlayer.setVisible(true);
         }
     }
 

@@ -44,31 +44,16 @@ public class SystemManager implements Initializable {
         return instance;
     }
 
-    @FXML private ImageView boardImage;
-    @FXML private ImageView deck;
+    @FXML private ImageView boardImage, deck;
 
-    @FXML private GridPane backOfCardGrid;
     // Card Image Views
-    @FXML private ImageView trainStationCard;
-    @FXML private ImageView jailCard;
-    @FXML private ImageView mainStreetCard;
-    @FXML private ImageView generalStoreCard;
-    @FXML private ImageView saloonCard;
-    @FXML private ImageView ranchCard;
-    @FXML private ImageView bankCard;
-    @FXML private ImageView secretHideoutCard;
-    @FXML private ImageView churchCard;
-    @FXML private ImageView hotelCard;
+    @FXML private ImageView trainStationCard, jailCard, mainStreetCard, generalStoreCard, saloonCard, ranchCard, bankCard, secretHideoutCard, churchCard, hotelCard;
 
     // Player's display information
-    @FXML private Label currentPlayer;
-    @FXML private Label playerDollar;
-    @FXML private Label playerCredit;
-    @FXML private Label playerPracticeChip;
+    @FXML private Label currentPlayer, playerDollar, playerCredit, playerPracticeChip;
 
     // Text Display
-    @FXML private Label dayDisplay; // Display current day
-    @FXML private Label displayText;
+    @FXML private Label dayDisplay, displayText; // Display current day
     @FXML private TextField userInput;
     @FXML private Button submitButton;
 

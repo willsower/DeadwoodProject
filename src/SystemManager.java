@@ -340,11 +340,12 @@ public class SystemManager implements Initializable {
 
     public void offCardRole(ActionEvent event) {
         String name = ((Node) event.getSource()).getId();
-        System.out.println(name);
+        String set = OnTurn.getInstance().parseForSet(((Node) event.getSource()).getParent().getParent().getId());
+
+        OnTurn.getInstance().takeOffCardRole(currentP, name, set);
+
 
     }
-
-    public void takeOffCardRole(ActionEvent event) {}; //DELETE
 
     public void showRoles(boolean val) {
         if (!currentP.getPlayerLocation().equals("trailer") && !currentP.getPlayerLocation().equals("office")) {

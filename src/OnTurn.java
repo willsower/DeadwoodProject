@@ -55,15 +55,15 @@ public class OnTurn {
 
     // Function to show that player has taken off card role
     // Updates Player and Set Attributes
-    public static void takeOffCardRole(Player player, String roleName, int size, String setName) {
-//        int level = Board.getInstance().getSet(player.getPlayerLocation()).getPartLevel(roleNumber - size - 1);
+    public static void takeOffCardRole(Player player, String roleName, String setName) {
+        Set set = Board.getInstance().getSet(setName);
 
-//        player.setOffCardRole(true);
-//        player.setRoleLevel(level);
-//        player.setRoleLocation(player.getPlayerLocation());
-//        player.setRoleName(roleName);
-//        Board.getInstance().getSet(setName).addPlayerToRoomOffCard(player);
-//        Board.getInstance().getSet(setName).setPartTaken(roleName, true);
+        player.setOffCardRole(true);
+        player.setRoleLevel(set.getPartLevel(setName));
+        player.setRoleLocation(player.getPlayerLocation());
+        player.setRoleName(roleName);
+        Board.getInstance().getSet(setName).addPlayerToRoomOffCard(player);
+        Board.getInstance().getSet(setName).setPartTaken(roleName, true);
     }
 
     // Function for taking a role
@@ -120,6 +120,21 @@ public class OnTurn {
         }
 
         return partsOnCardAval;
+    }
+
+    public String parseForSet(String location) {
+        String name = "";
+        for (int i = 0; i < location.length(); i++) {
+            if (i == 0) {
+                name += Character.toUpperCase(location.charAt(i));
+            } else if (Character.isUpperCase(location.charAt(i))) {
+                name += " ";
+                name += location.charAt(i);
+            } else {
+                name += location.charAt(i);
+            }
+        }
+        return name;
     }
 
     public String parseMoveTo(String location) {

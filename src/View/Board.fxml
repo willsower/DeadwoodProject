@@ -102,41 +102,21 @@
             <ImageView fx:id="shotTwo" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="160.0" translateY="16.0" />
             <Pane fx:id="Railroad_Worker" prefHeight="30.0" prefWidth="30.0" translateX="21.0" translateY="17.0" visible="false">
                <children>
-                  <ImageView fx:id="Railroad_Worker" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="offCardRoles">
-                     <image>
-                        <Image url="@../images/square.png" />
-                     </image>
-                  </ImageView>
                   <Button fx:id="Railroad_Worker" mnemonicParsing="false" onAction="#offCardRole" opacity="0.76" prefHeight="30.0" prefWidth="30.0" />
                </children>
             </Pane>
             <Pane fx:id="Falls_off_Roof" prefHeight="30.0" prefWidth="30.0" translateX="75.0" translateY="19.0" visible="false">
                <children>
-                  <ImageView fx:id="Falls_off_Roof" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/square.png" />
-                     </image>
-                  </ImageView>
                   <Button fx:id="Falls_off_Roof" mnemonicParsing="false" onAction="#offCardRole" prefHeight="30.0" prefWidth="30.0" text="Button" />
                </children>
             </Pane>
             <Pane fx:id="Women_in_Black_Dress" prefHeight="30.0" prefWidth="30.0" translateX="21.0" translateY="69.0" visible="false">
                <children>
-                  <ImageView fx:id="Women_in_Black_Dress" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/square.png" />
-                     </image>
-                  </ImageView>
                   <Button fx:id="Women_in_Black_Dress" mnemonicParsing="false" onAction="#offCardRole" prefHeight="30.0" prefWidth="30.0" text="Button" />
                </children>
             </Pane>
             <Pane fx:id="Mayor_McGinty" prefHeight="30.0" prefWidth="30.0" translateX="74.0" translateY="69.0" visible="false">
                <children>
-                  <ImageView fx:id="Mayor_McGinty" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/square.png" />
-                     </image>
-                  </ImageView>
                   <Button fx:id="Mayor_McGinty" mnemonicParsing="false" onAction="#offCardRole" prefHeight="30.0" prefWidth="30.0" text="Button" />
                </children></Pane>
             <ImageView fx:id="shotThree" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="194.0" translateY="16.0" />
@@ -467,7 +447,7 @@
                </children></Pane>
             <Pane fx:id="Cyrus_the_Gunfighter" prefHeight="30.0" prefWidth="30.0" translateX="28.0" translateY="225.0" visible="false">
                <children>
-                  <ImageView fx:id="Cyrus_the_Gunfighter" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="Cyrus_the_Gunfighter" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/square.png" />
                      </image>

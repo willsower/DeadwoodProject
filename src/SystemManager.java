@@ -331,12 +331,10 @@ public class SystemManager implements Initializable {
     }
 
     public void setPayButtonsVisible(boolean dollar, boolean credit) {
-        System.out.println("HHHHHHHHHHHHHHHHHHHHH");
-        System.out.println(dollar);
-        System.out.println(credit);
         dollarVisible = dollar;
         creditVisible = credit;
     }
+
 //    public void makePayButtonsVisible(boolean dollar, boolean credit) {
 //
 //        payWDollarButton.setVisible(dollar);
@@ -439,8 +437,8 @@ public class SystemManager implements Initializable {
                 System.out.println("TEST 7 ");
             }
             //call onturn function
-            upgradeButton.toFront(); ///////////////////////////////////////////////////
-            System.out.println("TEST 5 ");
+            //upgradeButton.toFront(); ///////////////////////////////////////////////////
+
         } else {
             makeButtonVisible(false, false, false);
 

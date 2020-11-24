@@ -42,7 +42,7 @@ public class Upgrade {
             if (currentLevel < 6) {
                 if (playerHasCredit(currentLevel, credit) || playerHasDollar(currentLevel, dollar)) {
                     SystemManager.getInstance().setPayButtonsVisible(playerHasDollar(currentLevel, dollar), playerHasCredit(currentLevel, credit));
-                    System.out.println("TESTING !)!");
+
                     return true;
                 }
             }

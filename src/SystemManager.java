@@ -386,7 +386,7 @@ public class SystemManager implements Initializable {
         // Check if card is flipped, if not flip
         if (!cardFlip) {
 
-            System.out.println(Deck.getInstance().getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getCardImage());
+//            System.out.println(Deck.getInstance().getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getCardImage());
 //            getCard(currentP.getPlayerLocation()).setImage(Deck.getInstance().getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getCardImage());
         }
 
@@ -398,6 +398,7 @@ public class SystemManager implements Initializable {
 
     public void letUpgrade() {
         if (currentP.getPlayerLocation().equals("office")) {
+            System.out.println("TEST");
             //visible upgrade button
             makeButtonVisible(false, false, true);
             if (Upgrade.getInstance().canUpgrade(currentP.getLevel(), currentP.getPlayerLocation(), currentP.getDollar(), currentP.getCredit())) {

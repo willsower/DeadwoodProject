@@ -6,6 +6,8 @@
              and calculations will be done in this class
 */
 
+import java.util.Enumeration;
+import java.util.Hashtable;
 import java.util.Random;
 import java.util.ArrayList;
 
@@ -230,5 +232,124 @@ public class OnTurn {
         int upperBound = 6;
 
         return ran.nextInt(upperBound - lowerBound + 1) + lowerBound;
+    }
+
+    // Calculate days of play
+    public int calculateDaysPlayed(int numPlayer) {
+        if (numPlayer == 2 || numPlayer == 3) {
+            return 3;
+        }
+        return 4;
+    }
+
+    // Set zero array to 0
+    public Integer[] zero(Integer[] curr) {
+        for (int i = 0; i < curr.length; i++) {
+            curr[i] = 0;
+        }
+        return curr;
+    }
+
+    // Get the final scores
+    public void endFunction(Player[] player, int numPlayer) {
+        Integer[] whoWon = new Integer[numPlayer];
+        int index = 0;
+
+        System.out.println("\n=========");
+        System.out.println("Calculating end score");
+        for (int i = 0; i < player.length; i++) { //probably dont need
+            /**/            UserInterfaceDisplay.getInstance().displayPlayerInfo(player[i]);
+        }
+        System.out.println("\n\n");
+
+        // Set everything to 0
+        whoWon = zero(whoWon);
+
+        // Set final score for players
+        for (int i = 0; i < numPlayer; i++) {
+            player[i].setFinalScore(ScoringManager.getInstance().finalScore(player[i].getLevel(), player[i].getDollar(),
+                    player[i].getCredit()));
+
+            // First player goes in
+            if (whoWon[0] == 0) {
+                whoWon[0] = 1;
+
+                // If player score is higher than current
+            } else if (player[i].getFinalScore() != 0
+                    && player[i].getFinalScore() > player[whoWon[index] - 1].getFinalScore()) {
+                // If there are no ties
+                if (whoWon[1] == 0) {
+                    whoWon[index] = i + 1;
+                    // Else there is a tie
+                } else {
+                    index = 0;
+                    whoWon = zero(whoWon);
+                    whoWon[index] = i + 1;
+                }
+                // Else if player has a tie with another player, put them in list
+            } else if (player[i].getFinalScore() == player[whoWon[index] - 1].getFinalScore()) {
+                index++;
+                whoWon[index] = i + 1;
+            }
+        }
+
+        /**/        UserInterfaceDisplay.getInstance().displayWinner(whoWon); //dont need
+    }
+
+    // Resetall function will be called at the start of each game
+    // It will reset the variables in other classes, put players back into trailers
+    // Put cards on the appropriate sets
+    public void resetHelper(Player[] list, int day, int numPlayer) {
+        // Reset player info
+        for (int i = 0; i < numPlayer; i++) {
+            list[i].resetPlayers(true); // parameter is for notEndOfCard
+        }
+
+        Hashtable<String, Set> board = Board.getInstance().getBoard();
+
+        Enumeration<Set> values = board.elements();
+        int ind = 0;
+        // iterate through values
+        while (values.hasMoreElements()) {
+            Set set = values.nextElement();
+            if (ind < 10) {
+                set.resetSetDay();
+            }
+            ind++;
+        }
+
+        Board.getInstance().assignCardToSet(Deck.getInstance().getCardShuffle(), day);
+    }
+
+    // Turn manager initializes all players
+    public Player[] init(int numPlayer) {
+
+        // Init num players array
+        Player[] players = new Player[numPlayer];
+
+        // Array of dice colors
+        String[] playerDie = new String[]{"b", "c", "g", "o", "p", "r", "v", "y"};
+
+        // Populate players
+        for (int i = 0; i < numPlayer; i++) {
+            switch (numPlayer) {
+                case 5:
+                    players[i] = new Player(i + 1, 1, 0, 2, "trailer", playerDie[i]);
+                    break;
+                case 6:
+                    players[i] = new Player(i + 1, 1, 0, 4, "trailer", playerDie[i]);
+                    break;
+                case 7:
+                    players[i] = new Player(i + 1, 2, 0, 0, "trailer", playerDie[i]);
+                    break;
+                case 8:
+                    players[i] = new Player(i + 1, 2, 0, 0, "trailer", playerDie[i]);
+                    break;
+                default:
+                    players[i] = new Player(i + 1, 1, 0, 0, "trailer", playerDie[i]);
+                    break;
+            }
+        }
+        return players;
     }
 }

@@ -8,6 +8,6 @@
     -fx-scale-y: 1.1;
 }
 
-.offCardRoles {
+.offCardRoles:hover {
     -fx-background-color: blue;
 }

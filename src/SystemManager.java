@@ -18,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.Node;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
@@ -327,15 +328,16 @@ public class SystemManager implements Initializable {
             getCard(currentP.getPlayerLocation()).setImage(Deck.getInstance().getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getCardImage());
         }
 
-        /* TAKE ROLE OPTION */   //////////////////////////////////////////////////////////
-
-        letUpgrade();
+        // Let player do next turn, show role options, let player upgrade if applicable
         nextPlayer.setVisible(true);
+        showRoles(true);
+        letUpgrade();
     }
 
     public void showRoles(boolean val) {
         if (!currentP.getPlayerLocation().equals("trailer") && !currentP.getPlayerLocation().equals("office")) {
             showOffCardRoleOptions(val);
+//            showOnCardRoleOptions(val);
         }
     }
 
@@ -345,8 +347,9 @@ public class SystemManager implements Initializable {
         int i = 0;
         while (i < offCard.size()) {
             for (int j = 0; j < obj.getChildren().size(); j++) {
-                String name = obj.getChildren().get(j).getId();
+                String name = obj.getChildren().get(j).getId().replace("_", " ");
                 if (obj.getChildren().get(j).getAccessibleRole().compareTo(AccessibleRole.IMAGE_VIEW) == 0 && name.equals(offCard.get(i))) {
+                    obj.getChildren().get(j).setPickOnBounds(true);
                     obj.getChildren().get(j).setVisible(val);
                     break;
                 }
@@ -355,7 +358,7 @@ public class SystemManager implements Initializable {
         }
     }
 
-    public void takeOffCardRole(ActionEvent event) {
+    public void takeOffCardRole(MouseEvent event) {
         System.out.println("PUSH");
     }
 
@@ -384,6 +387,7 @@ public class SystemManager implements Initializable {
     }
 
     public void nextPlayerPush(ActionEvent event) {
+        showRoles(false);
         nextPlayer.setVisible(false);
         player++; // Next player turn
 
@@ -469,10 +473,6 @@ public class SystemManager implements Initializable {
         if (player.getOffCardRole() == false && player.getOnCardRole() == false) {
             letUpgrade();
             showButton(player.getPlayerLocation(), true); //location buttons
-            nextPlayer.setVisible(true); //skip turn
-
-            /* NEED TAKE ROLE OPTION */ //////////////////////////////////////////////////////////
-
         } else {
             // If player can rehearse or act, give them options
             if (player.getRoleLevel() + player.getPracticeChip() < 6) {

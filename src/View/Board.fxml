@@ -283,12 +283,6 @@
             <Insets />
          </opaqueInsets>
       </VBox>
-      <VBox layoutX="20.0" layoutY="480.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="480.0">
-         <children>
-            <Button fx:id="payWDollarButton" mnemonicParsing="false" onAction="#payWDollarAction" text="Pay with Dollar" />
-            <Button fx:id="payWCreditButton" mnemonicParsing="false" onAction="#payWCreditAction" text="Pay with Credit" />
-         </children>
-      </VBox>
       <VBox alignment="TOP_CENTER" spacing="20.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="160.0">
          <children>
             <Button fx:id="actButton" mnemonicParsing="false" onAction="#actButtonAction" text="Act" />
@@ -298,5 +292,11 @@
       </VBox>
       <Button fx:id="rollDieButton" mnemonicParsing="false" onAction="#rollDieAction" text="Roll Die" AnchorPane.topAnchor="350.0" />
       <Button fx:id="nextPlayer" layoutX="-65.0" layoutY="71.0" mnemonicParsing="false" onAction="#nextPlayerPush" prefHeight="50.0" prefWidth="96.0" text="Next Turn" translateX="100.0" translateY="-30.0" />
+      <VBox layoutX="20.0" layoutY="480.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="480.0">
+         <children>
+            <Button fx:id="payWDollarButton" mnemonicParsing="false" onAction="#payWDollarAction" text="Pay with Dollar" />
+            <Button fx:id="payWCreditButton" mnemonicParsing="false" onAction="#payWCreditAction" text="Pay with Credit" />
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

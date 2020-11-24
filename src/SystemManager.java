@@ -509,8 +509,6 @@ public class SystemManager implements Initializable {
             switch (numPlayer) {
                 case 5:
                     players[i] = new Player(i + 1, 1, 0, 2, "trailer", playerDie[i]);
-                    //players[i] = new Player(i + 1, 1, 10, 10, "trailer", playerDie[i]); /* TEST UPGRADE */
-                    //System.out.println("TEST 3");
                     break;
                 case 6:
                     players[i] = new Player(i + 1, 1, 0, 4, "trailer", playerDie[i]);
@@ -522,9 +520,7 @@ public class SystemManager implements Initializable {
                     players[i] = new Player(i + 1, 2, 0, 0, "trailer", playerDie[i]);
                     break;
                 default:
-                    //players[i] = new Player(i + 1, 1, 0, 0, "trailer", playerDie[i]);
-                    players[i] = new Player(i + 1, 1, 10, 10, "office", playerDie[i]);
-
+                    players[i] = new Player(i + 1, 1, 0, 0, "trailer", playerDie[i]);
                     break;
             }
         }

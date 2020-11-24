@@ -344,7 +344,11 @@ public class SystemManager implements Initializable {
 
         OnTurn.getInstance().takeOffCardRole(currentP, name, set);
 
-
+        Pane previousPane = getButtonLocation(currentP.getPlayerLocation());
+        ImageView thisPlayer = playerPerson(currentP.getPlayerPriority());
+        previousPane.getChildren().remove(thisPlayer);
+        Button newPane = ((Button) event.getSource());
+        System.out.println(newPane.getId());
     }
 
     public void showRoles(boolean val) {

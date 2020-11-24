@@ -21,6 +21,7 @@ import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.util.*;
@@ -57,6 +58,7 @@ public class SystemManager implements Initializable {
     @FXML private Label dayDisplay, displayText; // Display current day
     @FXML private TextField userInput;
     @FXML private Button submitButton;
+    @FXML private VBox numPlayerBox;
 
     //Action Buttons
     @FXML private Button actButton, rehearseButton, upgradeButton, rollDieButton;
@@ -121,6 +123,8 @@ public class SystemManager implements Initializable {
             submitButton.setVisible(false); //may also nee to disable all of these
             displayText.setVisible(false);
             userInput.setVisible(false);
+            numPlayerBox.setVisible(false);
+            numPlayerBox.setDisable(true);
 
             players = OnTurn.getInstance().init(Integer.parseInt(val));
             numPlayer = Integer.parseInt(val);
@@ -334,6 +338,10 @@ public class SystemManager implements Initializable {
         letUpgrade();
     }
 
+    public void offCardRole(ActionEvent event) {
+        System.out.println("PUSH");
+    }
+
     public void showRoles(boolean val) {
         if (!currentP.getPlayerLocation().equals("trailer") && !currentP.getPlayerLocation().equals("office")) {
             showOffCardRoleOptions(val);
@@ -350,6 +358,7 @@ public class SystemManager implements Initializable {
                 String name = obj.getChildren().get(j).getId().replace("_", " ");
                 if (obj.getChildren().get(j).getAccessibleRole().compareTo(AccessibleRole.PARENT) == 0 && name.equals(offCard.get(i))) {
                     obj.getChildren().get(j).setVisible(val);
+                    obj.getChildren().get(j).toFront();
                     break;
                 }
             }

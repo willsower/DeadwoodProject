@@ -127,6 +127,7 @@
                         <Image url="@../images/square.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="Women_in_Black_Dress" mnemonicParsing="false" onAction="#offCardRole" prefHeight="30.0" prefWidth="30.0" text="Button" />
                </children>
             </Pane>
             <Pane fx:id="Mayor_McGinty" prefHeight="30.0" prefWidth="30.0" translateX="74.0" translateY="69.0" visible="false">
@@ -136,6 +137,7 @@
                         <Image url="@../images/square.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="Mayor_McGinty" mnemonicParsing="false" onAction="#offCardRole" prefHeight="30.0" prefWidth="30.0" text="Button" />
                </children></Pane>
             <ImageView fx:id="shotThree" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="194.0" translateY="16.0" />
          </children></Pane>
@@ -155,6 +157,7 @@
                         <Image url="@../images/square.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="Woman_in_Red_Dress" mnemonicParsing="false" onAction="#offCardRole" prefHeight="30.0" prefWidth="30.0" text="Button" />
                </children>
             </Pane>
             <Pane fx:id="Reluctant_Farmer" prefHeight="30.0" prefWidth="30.0" translateX="174.0" translateY="91.0" visible="false">
@@ -164,6 +167,7 @@
                         <Image url="@../images/square.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="Reluctant_Farmer" mnemonicParsing="false" onAction="#offCardRole" prefHeight="30.0" prefWidth="30.0" text="Button" />
                </children>
             </Pane>
          </children></Pane>
@@ -182,6 +186,7 @@
                         <Image url="@../images/square.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="Flustered_Teller" mnemonicParsing="false" onAction="#offCardRole" prefHeight="30.0" prefWidth="30.0" text="Button" />
                </children></Pane>
             <Pane fx:id="Suspicious_Gentleman" prefHeight="30.0" prefWidth="30.0" translateX="195.0" translateY="66.0" visible="false">
                <children>
@@ -190,6 +195,7 @@
                         <Image url="@../images/square.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="Suspicious_Gentleman" mnemonicParsing="false" onAction="#offCardRole" prefHeight="30.0" prefWidth="30.0" text="Button" />
                </children></Pane>
          </children></Pane>
       <Pane fx:id="church" layoutX="522.0" layoutY="524.0" prefHeight="150.0" prefWidth="207.0">
@@ -207,6 +213,7 @@
                         <Image url="@../images/square.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="Dead_Man" mnemonicParsing="false" onAction="#offCardRole" prefHeight="30.0" prefWidth="30.0" text="Button" />
                </children>
             </Pane>
             <Pane fx:id="Crying_Woman" prefHeight="30.0" prefWidth="30.0" translateX="162.0" translateY="95.0" visible="false">
@@ -216,6 +223,7 @@
                         <Image url="@../images/square.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="Crying_Woman" mnemonicParsing="false" onAction="#offCardRole" prefHeight="30.0" prefWidth="30.0" text="Button" />
                </children>
             </Pane>
          </children></Pane>
@@ -235,6 +243,7 @@
                         <Image url="@../images/square.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="Sleeping_Drunkard" mnemonicParsing="false" onAction="#offCardRole" prefHeight="30.0" prefWidth="30.0" text="Button" />
                </children></Pane>
             <Pane fx:id="Falls_from_Balcony" prefHeight="30.0" prefWidth="30.0" translateX="71.0" translateY="66.0" visible="false">
                <children>
@@ -243,6 +252,7 @@
                         <Image url="@../images/square.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="Falls_from_Balcony" mnemonicParsing="false" onAction="#offCardRole" prefHeight="30.0" prefWidth="30.0" text="Button" />
                </children>
             </Pane>
             <Pane fx:id="Faro_Player" prefHeight="30.0" prefWidth="30.0" translateX="29.0" translateY="34.0" visible="false">
@@ -252,6 +262,7 @@
                         <Image url="@../images/square.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="Faro_Player" mnemonicParsing="false" onAction="#offCardRole" prefHeight="30.0" prefWidth="30.0" text="Button" />
                </children>
             </Pane>
             <Pane fx:id="Australian_Bartender" prefHeight="30.0" prefWidth="30.0" translateX="30.0" translateY="90.0" visible="false">
@@ -261,6 +272,7 @@
                         <Image url="@../images/square.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="Australian_Bartender" mnemonicParsing="false" onAction="#offCardRole" prefHeight="30.0" prefWidth="30.0" text="Button" />
                </children>
             </Pane>
          </children></Pane>
@@ -280,6 +292,7 @@
                         <Image url="@../images/square.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="Clumsy_Pit_Fighter" mnemonicParsing="false" onAction="#offCardRole" prefHeight="30.0" prefWidth="30.0" text="Button" />
                </children>
             </Pane>
             <Pane fx:id="Thug_with_Knife" prefHeight="30.0" prefWidth="30.0" translateX="325.0" translateY="11.0" visible="false">
@@ -289,6 +302,7 @@
                         <Image url="@../images/square.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="Thug_with_Knife" mnemonicParsing="false" onAction="#offCardRole" prefHeight="30.0" prefWidth="30.0" text="Button" />
                </children>
             </Pane>
             <Pane fx:id="Dangerous_Tom" prefHeight="30.0" prefWidth="30.0" translateX="270.0" translateY="68.0" visible="false">
@@ -298,6 +312,7 @@
                         <Image url="@../images/square.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="Dangerous_Tom" mnemonicParsing="false" onAction="#offCardRole" prefHeight="30.0" prefWidth="30.0" text="Button" />
                </children>
             </Pane>
             <Pane fx:id="Penny_who_is_lost" prefHeight="30.0" prefWidth="30.0" translateX="324.0" translateY="68.0" visible="false">
@@ -307,6 +322,7 @@
                         <Image url="@../images/square.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="Penny_who_is_lost" mnemonicParsing="false" onAction="#offCardRole" prefHeight="30.0" prefWidth="30.0" text="Button" />
                </children>
             </Pane>
          </children></Pane>
@@ -332,6 +348,7 @@
                         <Image url="@../images/square.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="Shot_in_Leg" mnemonicParsing="false" onAction="#offCardRole" prefHeight="30.0" prefWidth="30.0" text="Button" />
                </children>
             </Pane>
             <Pane fx:id="Saucy_Fred" prefHeight="30.0" prefWidth="30.0" translateX="169.0" translateY="98.0" visible="false">
@@ -341,6 +358,7 @@
                         <Image url="@../images/square.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="Saucy_Fred" mnemonicParsing="false" onAction="#offCardRole" prefHeight="30.0" prefWidth="30.0" text="Button" />
                </children>
             </Pane>
             <Pane fx:id="Man_Under_Horse" prefHeight="30.0" prefWidth="30.0" translateX="169.0" translateY="45.0" visible="false">
@@ -350,6 +368,7 @@
                         <Image url="@../images/square.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="Man_Under_Horse" mnemonicParsing="false" onAction="#offCardRole" prefHeight="30.0" prefWidth="30.0" text="Button" />
                </children>
             </Pane>
          </children></Pane>
@@ -369,6 +388,7 @@
                         <Image url="@../images/square.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="Man_in_Overalls" mnemonicParsing="false" onAction="#offCardRole" prefHeight="30.0" prefWidth="30.0" text="Button" />
                </children></Pane>
             <Pane fx:id="Mister_Keach" prefHeight="30.0" prefWidth="30.0" translateX="22.0" translateY="61.0" visible="false">
                <children>
@@ -377,6 +397,7 @@
                         <Image url="@../images/square.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="Mister_Keach" mnemonicParsing="false" onAction="#offCardRole" prefHeight="30.0" prefWidth="30.0" text="Button" />
                </children>
             </Pane>
          </children></Pane>
@@ -394,6 +415,7 @@
                         <Image url="@../images/square.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="Prisoner_In_Cell" mnemonicParsing="false" onAction="#offCardRole" prefHeight="30.0" prefWidth="30.0" text="Button" />
                </children></Pane>
             <Pane fx:id="Feller_in_Irons" prefHeight="30.0" prefWidth="30.0" translateX="167.0" translateY="67.0" visible="false">
                <children>
@@ -402,6 +424,7 @@
                         <Image url="@../images/square.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="Feller_in_Irons" mnemonicParsing="false" onAction="#offCardRole" prefHeight="30.0" prefWidth="30.0" text="Button" />
                </children></Pane>
          </children></Pane>
       <Pane fx:id="trainStation" layoutX="143.0" layoutY="106.0" prefHeight="283.0" prefWidth="121.0">
@@ -420,6 +443,7 @@
                         <Image url="@../images/square.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="Dragged_by_Train" mnemonicParsing="false" onAction="#offCardRole" prefHeight="30.0" prefWidth="30.0" text="Button" />
                </children>
             </Pane>
             <Pane fx:id="Crusty_Prospector" prefHeight="30.0" prefWidth="30.0" translateX="69.0" translateY="144.0" visible="false">
@@ -429,6 +453,7 @@
                         <Image url="@../images/square.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="Crusty_Prospector" mnemonicParsing="false" onAction="#offCardRole" prefHeight="30.0" prefWidth="30.0" text="Button" />
                </children>
             </Pane>
             <Pane fx:id="Preacher_with_Bag" prefHeight="30.0" prefWidth="30.0" translateX="69.0" translateY="203.0" visible="false">
@@ -438,6 +463,7 @@
                         <Image url="@../images/square.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="Preacher_with_Bag" mnemonicParsing="false" onAction="#offCardRole" prefHeight="30.0" prefWidth="30.0" text="Button" />
                </children></Pane>
             <Pane fx:id="Cyrus_the_Gunfighter" prefHeight="30.0" prefWidth="30.0" translateX="28.0" translateY="225.0" visible="false">
                <children>
@@ -446,6 +472,7 @@
                         <Image url="@../images/square.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="Cyrus_the_Gunfighter" mnemonicParsing="false" onAction="#offCardRole" prefHeight="30.0" prefWidth="30.0" text="Button" />
                </children></Pane>
          </children></Pane>
       <VBox alignment="TOP_CENTER" fillWidth="false" layoutX="81.0" layoutY="36.0" prefHeight="459.0" prefWidth="611.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

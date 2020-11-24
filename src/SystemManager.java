@@ -348,8 +348,7 @@ public class SystemManager implements Initializable {
         while (i < offCard.size()) {
             for (int j = 0; j < obj.getChildren().size(); j++) {
                 String name = obj.getChildren().get(j).getId().replace("_", " ");
-                if (obj.getChildren().get(j).getAccessibleRole().compareTo(AccessibleRole.IMAGE_VIEW) == 0 && name.equals(offCard.get(i))) {
-                    obj.getChildren().get(j).setPickOnBounds(true);
+                if (obj.getChildren().get(j).getAccessibleRole().compareTo(AccessibleRole.PARENT) == 0 && name.equals(offCard.get(i))) {
                     obj.getChildren().get(j).setVisible(val);
                     break;
                 }

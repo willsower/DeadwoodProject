@@ -333,6 +333,12 @@ public class SystemManager implements Initializable {
         nextPlayer.setVisible(true);
     }
 
+    public void showRoles(boolean val) {
+        if (!currentP.getPlayerLocation().equals("trailer") && !currentP.getPlayerLocation().equals("office")) {
+            showOffCardRoleOptions(val);
+        }
+    }
+
     public void showOffCardRoleOptions(boolean val) {
         ArrayList<String> offCard = OnTurn.getInstance().getPartsAvailOffCard(currentP);
         Pane obj = getButtonLocation(currentP.getPlayerLocation());

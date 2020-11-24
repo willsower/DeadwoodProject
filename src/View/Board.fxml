@@ -101,19 +101,19 @@
             <ImageView fx:id="shotOne" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="126.0" translateY="16.0" />
             <ImageView fx:id="shotTwo" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="160.0" translateY="16.0" />
             <ImageView fx:id="shotThree" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="194.0" translateY="16.0" />
-            <ImageView fx:id="Railroad_Worker" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" styleClass="offCardRoles" translateX="21.0" translateY="17.0">
+            <ImageView fx:id="Railroad_Worker" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" styleClass="offCardRoles" translateX="21.0" translateY="17.0" visible="false">
                <image>
                   <Image url="@../images/square.png" />
                </image></ImageView>
-            <ImageView fx:id="Falls_off_Roof" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="-2.0" translateY="-2.0" x="75.0" y="19.0">
+            <ImageView fx:id="Falls_off_Roof" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="-2.0" translateY="-2.0" visible="false" x="75.0" y="19.0">
                <image>
                   <Image url="@../images/square.png" />
                </image></ImageView>
-            <ImageView fx:id="Women_in_Black_Dress" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="21.0" translateY="69.0">
+            <ImageView fx:id="Women_in_Black_Dress" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="21.0" translateY="69.0" visible="false">
                <image>
                   <Image url="@../images/square.png" />
                </image></ImageView>
-            <ImageView fx:id="Mayor_McGinty" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="74.0" translateY="69.0">
+            <ImageView fx:id="Mayor_McGinty" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="74.0" translateY="69.0" visible="false">
                <image>
                   <Image url="@../images/square.png" />
                </image></ImageView>
@@ -127,11 +127,11 @@
             <ImageView fx:id="saloonCard" fitHeight="150.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" translateX="18.0" translateY="45.0" />
             <ImageView fx:id="shotOne" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="14.0" translateY="1.0" />
             <ImageView fx:id="shotTwo" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="48.0" />
-            <ImageView fx:id="Man_in_Overalls" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="174.0" translateY="42.0">
+            <ImageView fx:id="Man_in_Overalls" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="174.0" translateY="42.0" visible="false">
                <image>
                   <Image url="@../images/square.png" />
                </image></ImageView>
-            <ImageView fx:id="Mister_Keach" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="174.0" translateY="91.0">
+            <ImageView fx:id="Mister_Keach" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="174.0" translateY="91.0" visible="false">
                <image>
                   <Image url="@../images/square.png" />
                </image></ImageView>
@@ -143,15 +143,15 @@
             <Button fx:id="toChurchFromBank" mnemonicParsing="false" onAction="#onMove" rotate="90.0" styleClass="arrow" translateX="81.0" translateY="120.0" visible="false" />
             <Button fx:id="toRanchFromBank" mnemonicParsing="false" onAction="#onMove" rotate="180.0" styleClass="arrow" translateX="-15.0" translateY="50.0" visible="false" />
             <Button fx:id="toHotelFromBank" mnemonicParsing="false" onAction="#onMove" styleClass="arrow" translateX="246.0" translateY="39.0" visible="false" />
-            <ImageView fx:id="Flustered_Teller" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="195.0" translateY="12.0">
+            <ImageView fx:id="Flustered_Teller" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="195.0" translateY="12.0" visible="false">
                <image>
                   <Image url="@../images/square.png" />
                </image></ImageView>
-            <ImageView fx:id="Suspicious_Gentleman" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="195.0" translateY="66.0">
+            <ImageView fx:id="Suspicious_Gentleman" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="195.0" translateY="66.0" visible="false">
                <image>
                   <Image url="@../images/square.png" />
                </image></ImageView>
-            <ImageView fx:id="shotOne" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="149.0" translateY="60.0" />
+            <ImageView fx:id="shotOne" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="149.0" translateY="60.0" visible="false" />
          </children></Pane>
       <Pane fx:id="church" layoutX="522.0" layoutY="524.0" prefHeight="150.0" prefWidth="207.0">
          <children>
@@ -161,11 +161,11 @@
             <Button fx:id="toBankFromChurch" mnemonicParsing="false" onAction="#onMove" rotate="270.0" styleClass="arrow" translateX="81.0" translateY="-20.0" visible="false" />
             <ImageView fx:id="shotOne" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="12.0" translateY="7.0" />
             <ImageView fx:id="shotTwo" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="7.0" />
-            <ImageView fx:id="Dead_Man" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="161.0" translateY="44.0">
+            <ImageView fx:id="Dead_Man" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="161.0" translateY="44.0" visible="false">
                <image>
                   <Image url="@../images/square.png" />
                </image></ImageView>
-            <ImageView fx:id="Crying_Woman" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="162.0" translateY="95.0">
+            <ImageView fx:id="Crying_Woman" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="162.0" translateY="95.0" visible="false">
                <image>
                   <Image url="@../images/square.png" />
                </image></ImageView>
@@ -179,19 +179,22 @@
             <ImageView fx:id="shotOne" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="70.0" translateY="144.0" />
             <ImageView fx:id="shotTwo" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="37.0" translateY="144.0" />
             <ImageView fx:id="shotThree" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="4.0" translateY="144.0" />
-            <ImageView fx:id="Sleeping_Drunkard" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="71.0" translateY="10.0">
+            <ImageView fx:id="Sleeping_Drunkard" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="71.0" translateY="10.0" visible="false">
                <image>
                   <Image url="@../images/square.png" />
                </image></ImageView>
-            <ImageView fx:id="Falls_from_Balcony" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="71.0" translateY="66.0">
+            <ImageView fx:id="Falls_from_Balcony" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="71.0" translateY="66.0" visible="false">
                <image>
                   <Image url="@../images/square.png" />
                </image></ImageView>
-            <ImageView fx:id="Faro_Player" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="30.0" translateY="38.0">
+            <ImageView fx:id="Faro_Player" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="29.0" translateY="34.0" visible="false">
                <image>
                   <Image url="@../images/square.png" />
                </image></ImageView>
-            <ImageView fx:id="Australian_Bartender" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="31.0" translateY="92.0" visible="false" />
+            <ImageView fx:id="Australian_Bartender" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="30.0" translateY="90.0" visible="false">
+               <image>
+                  <Image url="@../images/square.png" />
+               </image></ImageView>
          </children></Pane>
       <Pane fx:id="secretHideout" layoutX="146.0" layoutY="550.0" prefHeight="126.0" prefWidth="371.0">
          <children>
@@ -202,10 +205,22 @@
             <ImageView fx:id="shotOne" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="218.0" translateY="37.0" />
             <ImageView fx:id="shotTwo" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="183.0" translateY="37.0" />
             <ImageView fx:id="shotThree" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="149.0" translateY="37.0" />
-            <ImageView fx:id="Clumsy_Pit_Fighter" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="272.0" translateY="14.0" visible="false" />
-            <ImageView fx:id="Thug_with_Knife" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="326.0" translateY="14.0" visible="false" />
-            <ImageView fx:id="Dangerous_Tom" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="272.0" translateY="70.0" visible="false" />
-            <ImageView fx:id="Penny_who_is_lost" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="326.0" translateY="70.0" visible="false" />
+            <ImageView fx:id="Clumsy_Pit_Fighter" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="270.0" translateY="12.0" visible="false">
+               <image>
+                  <Image url="@../images/square.png" />
+               </image></ImageView>
+            <ImageView fx:id="Thug_with_Knife" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="325.0" translateY="11.0" visible="false">
+               <image>
+                  <Image url="@../images/square.png" />
+               </image></ImageView>
+            <ImageView fx:id="Dangerous_Tom" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="270.0" translateY="68.0" visible="false">
+               <image>
+                  <Image url="@../images/square.png" />
+               </image></ImageView>
+            <ImageView fx:id="Penny_who_is_lost" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="324.0" translateY="68.0" visible="false">
+               <image>
+                  <Image url="@../images/square.png" />
+               </image></ImageView>
          </children></Pane>
       <Pane fx:id="office" layoutX="140.0" layoutY="393.0" prefHeight="135.0" prefWidth="140.0">
          <children>
@@ -222,9 +237,18 @@
             <Button fx:id="toBankFromRanch" mnemonicParsing="false" onAction="#onMove" styleClass="arrow" translateX="239.0" translateY="47.0" visible="false" />
             <ImageView fx:id="shotOne" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="193.0" translateY="10.0" />
             <ImageView fx:id="shotTwo" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="159.0" translateY="10.0" />
-            <ImageView fx:id="Shot_in_Leg" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="123.0" translateY="100.0" visible="false" />
-            <ImageView fx:id="Saucy_Fred" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="171.0" translateY="100.0" visible="false" />
-            <ImageView fx:id="Man_Under_Horse" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="171.0" translateY="47.0" visible="false" />
+            <ImageView fx:id="Shot_in_Leg" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="121.0" translateY="98.0" visible="false">
+               <image>
+                  <Image url="@../images/square.png" />
+               </image></ImageView>
+            <ImageView fx:id="Saucy_Fred" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="169.0" translateY="98.0" visible="false">
+               <image>
+                  <Image url="@../images/square.png" />
+               </image></ImageView>
+            <ImageView fx:id="Man_Under_Horse" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="169.0" translateY="45.0" visible="false">
+               <image>
+                  <Image url="@../images/square.png" />
+               </image></ImageView>
          </children></Pane>
       <Pane fx:id="generalStore" layoutX="267.0" layoutY="272.0" prefHeight="115.0" prefWidth="251.0">
          <children>
@@ -235,8 +259,14 @@
             <ImageView fx:id="generalStoreCard" fitHeight="150.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" translateX="107.0" translateY="12.0" />
             <ImageView fx:id="shotOne" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="72.0" translateY="41.0" />
             <ImageView fx:id="shotTwo" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="72.0" translateY="6.0" />
-            <ImageView fx:id="Man_in_Overalls" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="24.0" translateY="11.0" visible="false" />
-            <ImageView fx:id="Mister_Keach" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="24.0" translateY="63.0" visible="false" />
+            <ImageView fx:id="Man_in_Overalls" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="22.0" translateY="9.0" visible="false">
+               <image>
+                  <Image url="@../images/square.png" />
+               </image></ImageView>
+            <ImageView fx:id="Mister_Keach" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="22.0" translateY="61.0" visible="false">
+               <image>
+                  <Image url="@../images/square.png" />
+               </image></ImageView>
          </children></Pane>
       <Pane fx:id="jail" layoutX="302.0" layoutY="106.0" prefHeight="143.0" prefWidth="214.0">
          <children>
@@ -245,8 +275,14 @@
             <Button fx:id="toMainStreetFromJail" mnemonicParsing="false" onAction="#onMove" styleClass="arrow" translateX="214.0" translateY="49.0" visible="false" />
             <ImageView fx:id="jailCard" fitHeight="150.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" translateX="16.0" translateY="17.0" />
             <ImageView fx:id="shotOne" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="118.0" translateY="96.0" />
-            <ImageView fx:id="Prisoner_In_Cell" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="169.0" translateY="17.0" visible="false" />
-            <ImageView fx:id="Feller_in_Irons" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="169.0" translateY="69.0" visible="false" />
+            <ImageView fx:id="Prisoner_In_Cell" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="167.0" translateY="15.0" visible="false">
+               <image>
+                  <Image url="@../images/square.png" />
+               </image></ImageView>
+            <ImageView fx:id="Feller_in_Irons" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="167.0" translateY="67.0" visible="false">
+               <image>
+                  <Image url="@../images/square.png" />
+               </image></ImageView>
          </children></Pane>
       <Pane fx:id="trainStation" layoutX="143.0" layoutY="106.0" prefHeight="283.0" prefWidth="121.0">
          <children>
@@ -257,10 +293,22 @@
             <ImageView fx:id="shotOne" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="86.0" translateY="5.0" />
             <ImageView fx:id="shotTwo" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="53.0" translateY="5.0" />
             <ImageView fx:id="shotThree" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="5.0" />
-            <ImageView fx:id="Dragged_by_Train" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="31.0" translateY="172.0" visible="false" />
-            <ImageView fx:id="Crusty_Prospector" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="71.0" translateY="146.0" visible="false" />
-            <ImageView fx:id="Preacher_with_Bag" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="71.0" translateY="205.0" visible="false" />
-            <ImageView fx:id="Cyrus_the_Gunfighter" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="30.0" translateY="227.0" visible="false" />
+            <ImageView fx:id="Dragged_by_Train" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="29.0" translateY="170.0" visible="false">
+               <image>
+                  <Image url="@../images/square.png" />
+               </image></ImageView>
+            <ImageView fx:id="Crusty_Prospector" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="69.0" translateY="144.0" visible="false">
+               <image>
+                  <Image url="@../images/square.png" />
+               </image></ImageView>
+            <ImageView fx:id="Preacher_with_Bag" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="69.0" translateY="203.0" visible="false">
+               <image>
+                  <Image url="@../images/square.png" />
+               </image></ImageView>
+            <ImageView fx:id="Cyrus_the_Gunfighter" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#takeOffCardRole" pickOnBounds="true" preserveRatio="true" translateX="28.0" translateY="225.0" visible="false">
+               <image>
+                  <Image url="@../images/square.png" />
+               </image></ImageView>
          </children></Pane>
       <VBox alignment="TOP_CENTER" fillWidth="false" layoutX="81.0" layoutY="36.0" prefHeight="459.0" prefWidth="611.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>

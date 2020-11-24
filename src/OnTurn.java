@@ -126,7 +126,12 @@ public class OnTurn {
     public boolean movePlayer(Player player, String location) {
         String newLocation = parseMoveTo(location);
         player.setPlayerLocation(newLocation);
-        return Board.getInstance().getSet(newLocation).getIsCardFlipped();
+
+        if (newLocation.equals("office") || newLocation.equals("trailer")) {
+            return true;
+        } else {
+            return Board.getInstance().getSet(newLocation).getIsCardFlipped();
+        }
     }
 
     // Ultimately the move option. Once moved, will allow players to take a role

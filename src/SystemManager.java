@@ -400,9 +400,7 @@ public class SystemManager implements Initializable {
 
     public void letUpgrade() {
         if (currentP.getPlayerLocation().equals("office")) {
-            System.out.println("TEST");
             //visible upgrade button
-            //makeButtonVisible(false, false, true);
             if (Upgrade.getInstance().canUpgrade(currentP.getLevel(), currentP.getPlayerLocation(), currentP.getDollar(), currentP.getCredit())) {
                 makeButtonVisible(false, false, true);
             }

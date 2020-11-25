@@ -347,7 +347,7 @@ public class SystemManager implements Initializable {
         previousPane.getChildren().remove(thisPlayer);
         Pane newPane = ((Pane) ((Button) event.getSource()).getParent());
         newPane.getChildren().add(thisPlayer);
-
+        showRoles(false);
     }
 
     public void showRoles(boolean val) {
@@ -360,13 +360,14 @@ public class SystemManager implements Initializable {
     public void showOffCardRoleOptions(boolean val) {
         ArrayList<String> offCard = OnTurn.getInstance().getPartsAvailOffCard(currentP);
         Pane obj = getButtonLocation(currentP.getPlayerLocation());
+
         int i = 0;
         while (i < offCard.size()) {
             for (int j = 0; j < obj.getChildren().size(); j++) {
                 String name = obj.getChildren().get(j).getId().replace("_", " ");
                 if (obj.getChildren().get(j).getAccessibleRole().compareTo(AccessibleRole.PARENT) == 0 && name.equals(offCard.get(i))) {
-                    obj.getChildren().get(j).setVisible(val);
-                    obj.getChildren().get(j).toFront();
+                    Button myButton = ((Button) ((Pane) obj.getChildren().get(j)).getChildren().get(0));
+                    myButton.setVisible(val);
                     break;
                 }
             }

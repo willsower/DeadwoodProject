@@ -65,38 +65,6 @@ public class OnTurn {
         Board.getInstance().getSet(setName).setPartTaken(roleName, true);
     }
 
-    // Function for taking a role
-    // Will call helper methods if user decides to take role
-    public boolean takeRole(Player player) {
-        ArrayList<String> partsOnCardAval = Deck.getInstance()
-                .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum())
-                .availablePartsOnCard(player.getLevel());
-        ArrayList<String> partsOffCardAval = Board.getInstance().getSet(player.getPlayerLocation())
-                .availablePartsOffCard(player.getLevel());
-        if (partsOnCardAval.isEmpty() && partsOffCardAval.isEmpty()) {
-        } else {
-            // key of card name
-            int cardNum = Deck.getInstance()
-                    .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getCardID();
-            System.out.println("  Card Name: " + Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getCardName());
-//            String playerChoice = UserInterface.getInstance().roleChoice(partsOnCardAval, partsOffCardAval, cardNum,
-//                    player.getPlayerLocation());
-            String playerChoice = "5";
-
-            if (isNumeric(playerChoice)) { // choice for which role to take
-                int roleNumber = Integer.parseInt(playerChoice);
-                if (roleNumber <= partsOnCardAval.size()) {
-                    takeOnCardRole(player, roleNumber, cardNum, partsOnCardAval.get(roleNumber - 1));
-                } else {
-//                    takeOffCardRole(player, roleNumber, partsOnCardAval.size(), player.getPlayerLocation(),
-//                            partsOffCardAval.get(roleNumber - partsOnCardAval.size() - 1));
-                }
-                return true;
-            }
-        }
-        return false;
-    }
-
     // Function to get array of parts available  off the card
     public ArrayList<String> getPartsAvailOffCard(Player player) {
         ArrayList<String> partsOffCardAval = Board.getInstance().getSet(player.getPlayerLocation())

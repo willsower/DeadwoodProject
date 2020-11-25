@@ -9,6 +9,7 @@
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.AccessibleRole;
@@ -18,8 +19,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.Node;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
@@ -49,6 +48,7 @@ public class SystemManager implements Initializable {
     @FXML private ImageView boardImage, deck;
 
     // Card Image Views
+    @FXML private Pane trainStationCardHolder, jailCardHolder, mainStreetCardHolder, generalStoreCardHolder, saloonCardHolder, ranchCardHolder, bankCardHolder, secretHideoutCardHolder, churchCardHolder, hotelCardHolder;
     @FXML private ImageView trainStationCard, jailCard, mainStreetCard, generalStoreCard, saloonCard, ranchCard, bankCard, secretHideoutCard, churchCard, hotelCard;
 
     // Player's display information
@@ -289,6 +289,22 @@ public class SystemManager implements Initializable {
         return obj;
     }
 
+    public Pane getCardPane(String location) {
+        Pane obj = switch (location) {
+            case "Main Street" -> mainStreetCardHolder;
+            case "Secret Hideout" -> secretHideoutCardHolder;
+            case "Train Station" -> trainStationCardHolder;
+            case "Ranch" -> ranchCardHolder;
+            case "Jail" -> jailCardHolder;
+            case "Hotel" -> hotelCardHolder;
+            case "Bank" -> bankCardHolder;
+            case "Saloon" -> saloonCardHolder;
+            case "General Store" -> generalStoreCardHolder;
+            default -> churchCardHolder;
+        };
+        return obj;
+    }
+
     public ImageView getCard(String location) {
         ImageView obj = switch (location) {
             case "Main Street" -> mainStreetCard;
@@ -362,8 +378,10 @@ public class SystemManager implements Initializable {
     public void showRoles(boolean val) {
         if (!Board.getInstance().getSet(currentP.getPlayerLocation()).getIsActive()) {
             showOffCardRoleOptions(false);
+            showOnCardRoleOptions(false);
         }else if (!currentP.getPlayerLocation().equals("trailer") && !currentP.getPlayerLocation().equals("office")) {
             showOffCardRoleOptions(val);
+            showOnCardRoleOptions(val);
         }
     }
 
@@ -383,6 +401,61 @@ public class SystemManager implements Initializable {
             }
             i++;
         }
+    }
+
+    public void showOnCardRoleOptions(boolean val) {
+        ArrayList<String> onCard = OnTurn.getInstance().getPartsAvailOnCard(currentP);
+        Pane obj = getCardPane(currentP.getPlayerLocation());
+        int num = Deck.getInstance().getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getPart().size();
+
+        switch (num) {
+            case 1:
+                createCardRoles(obj, 50, 28, Deck.getInstance().getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getPart().get(0).partName);
+                break;
+            case 2:
+                createCardRoles(obj, 30, 28, Deck.getInstance().getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getPart().get(0).partName);
+                createCardRoles(obj, 70, 28, Deck.getInstance().getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getPart().get(1).partName);
+                break;
+            default:
+                createCardRoles(obj, 11, 28, Deck.getInstance().getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getPart().get(0).partName);
+                createCardRoles(obj, 50, 28, Deck.getInstance().getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getPart().get(1).partName);
+                createCardRoles(obj, 90, 28, Deck.getInstance().getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getPart().get(2).partName);
+                break;
+        }
+
+    }
+
+    public void createCardRoles(Pane parentCard, int x, int y, String id) {
+        Pane newPane = new Pane();
+        newPane.setPrefWidth(30);
+        newPane.setPrefHeight(30);
+        newPane.setLayoutX(x);
+        newPane.setLayoutY(y);
+        parentCard.getChildren().add(newPane);
+        Button test = new Button();
+        newPane.getChildren().add(test);
+        test.setPrefWidth(30);
+        test.setPrefHeight(30);
+        test.toFront();
+        test.setId(id);
+
+        test.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                String name = ((Node) event.getSource()).getId();
+                String set = OnTurn.getInstance().parseForSet(((Node) event.getSource()).getParent().getParent().getParent().getId());
+System.out.println(set);
+System.out.println(name);
+                OnTurn.getInstance().takeOnCardRole(currentP, name, set);
+
+                Pane previousPane = getButtonLocation(currentP.getPlayerLocation());
+                ImageView thisPlayer = playerPerson(currentP.getPlayerPriority());
+                previousPane.getChildren().remove(thisPlayer);
+                Pane newPane = ((Pane) ((Button) event.getSource()).getParent());
+                newPane.getChildren().add(thisPlayer);
+                showRoles(false);
+            }
+        });
     }
 
     public void letUpgrade() {

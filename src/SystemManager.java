@@ -158,8 +158,11 @@ public class SystemManager implements Initializable {
         nextPlayer.setVisible(true);
     }
 
+    /* currently continues to show rehearse even when the player cant rehearse */
+    /* but does not increment practice chips, which is good */
     public void rehearseButtonAction(ActionEvent event) {
-        OnTurn.getInstance().rehearse(currentP);
+        OnTurn.getInstance().rehearse(currentP, Deck.getInstance().getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum())
+                .getCardBudget());
         playerPracticeChip.setText("Practice Chips: " + currentP.getPracticeChip());
         makeButtonVisible(false, false,false);
         nextPlayer.setVisible(true);

@@ -144,8 +144,8 @@ public class OnTurn {
 
     // Function to rehearse
     // Player is not able to reherase if they already have 5 practice chips
-    public void rehearse(Player player) {
-        if (player.getRoleLevel() + player.getPracticeChip() < 6) {
+    public void rehearse(Player player, int cardBudget) {
+        if (player.getPracticeChip() < (cardBudget-1) ){
             player.setPracticeChip(player.getPracticeChip() + 1);
 
            // UserInterfaceDisplay.getInstance().displayPlayerInfo(player);

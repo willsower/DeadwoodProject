@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class OnTurn {
     private static OnTurn instance = null;
-
+    private String printMessage;
 
     // Create instance
     public static OnTurn getInstance() {
@@ -22,7 +22,6 @@ public class OnTurn {
         }
         return instance;
     }
-
 
     // Return true if number is numeric
     // false if not
@@ -145,10 +144,11 @@ public class OnTurn {
 
     // Function to rehearse
     // Player is not able to reherase if they already have 5 practice chips
-    public void rehearse(Player player) {
-        if (player.getRoleLevel() + player.getPracticeChip() < 6) {
+    public void rehearse(Player player, int cardBudget) {
+        if (player.getPracticeChip() < (cardBudget-1) ){
             player.setPracticeChip(player.getPracticeChip() + 1);
-/**/            UserInterfaceDisplay.getInstance().displayPlayerInfo(player);
+
+           // UserInterfaceDisplay.getInstance().displayPlayerInfo(player);
         }
     }
 
@@ -159,7 +159,9 @@ public class OnTurn {
         int counter = Board.getInstance().getSet(player.getPlayerLocation()).getShotCounter();
         int diceRoll = roll();
 
-        SystemManager.getInstance().printLabel(Integer.toString(diceRoll));
+        //SystemManager.getInstance().printLabel("Dice rolled : " + diceRoll);
+
+        System.out.println("dice roll: " + diceRoll);
 
         // if success
         if (diceRoll + player.getPracticeChip() >= cardBudget) {
@@ -167,15 +169,21 @@ public class OnTurn {
             counter -= 1;
             Board.getInstance().getSet(player.getPlayerLocation()).setShotCounter(counter);
 
-            SystemManager.getInstance().printLabel("SUCCESS IN ACTING");
+            //SystemManager.getInstance().printLabel("SUCCESS IN ACTING");
+            //System.out.println("SUCCESS IN ACTING");
+            //setPrintMessage("SUCCESS IN ACTING", );
             System.out.println("  Current Shot Counter: " + counter);
             if (player.getOnCardRole() == true) { // on card
                 player.setCredit(player.getCredit() + 2);
+                setPrintMessage("SUCCESS IN ACTING: on card roles Credit +2");
             } else {// off card
                 player.setCredit(player.getCredit() + 1);
                 player.setDollar(player.getDollar() + 1);
+                setPrintMessage("SUCCESS IN ACTING: off card roles Credit +1 and Dollar +1");
             }
-            UserInterfaceDisplay.getInstance().displayPlayerInfo(player);
+
+
+            UserInterfaceDisplay.getInstance().displayPlayerInfo(player); //won't need
 
             // end of card, calculate payout will be called and reset card and player information
             if (counter == 0) {
@@ -197,13 +205,26 @@ public class OnTurn {
 
         } else { // else fail
             //System.out.println("\n  FAILED IN ACTING");
-            SystemManager.getInstance().printLabel("FAILED IN ACTING");
-            if (player.getOffCardRole() == true) {
+            //SystemManager.getInstance().printLabel("FAILED IN ACTING");
+            //System.out.println("FAILED IN ACTING");
+
+           // setPrintMessage("FAILED IN ACTING");
+
+            if (player.getOffCardRole() == true) { //offcard
                 player.setDollar(player.getDollar() + 1);
+                setPrintMessage("FAILED IN ACTING: off card roles Dollar +1");
             }
 /**/            UserInterfaceDisplay.getInstance().displayPlayerInfo(player);
         }
         return false; // returns to turn() in onTurn.java
+    }
+
+    public String getPrintMessage () {
+        return printMessage;
+    }
+
+    public void setPrintMessage (String str) {
+        printMessage = str;
     }
 
     // Random number generater between 1 and 6, like a die roll

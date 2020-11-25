@@ -83,9 +83,10 @@ public class SystemManager implements Initializable {
         boardImage.setImage(Board.getInstance().getBoardImage());
         boardImage.setVisible(false);
         deck.setVisible(false);
-        makeButtonVisible(false, false, false, false); /* DONT THINK ROLL IS NEEDED */
+        makeButtonVisible(false, false, false); /* DONT THINK ROLL IS NEEDED */
         nextPlayer.setVisible(false);
 
+        actPrintLabel.setText("");
         rollDieButton.setVisible(false);
 
         upgradeOptions.setVisible(false); // may also need to disable
@@ -138,26 +139,29 @@ public class SystemManager implements Initializable {
     }
 
     public void actButtonAction(ActionEvent event) {
-        makeButtonVisible(false,false,false, true);
-        makeButtonVisible(false,false,false);
         rollDieButton.setVisible(true);
+        makeButtonVisible(false,false,false);
+
     }
 
     public void rollDieAction(ActionEvent event) {
         rollDieButton.setVisible(false);
+        //actPrintLabel.setText(OnTurn.getInstance().getPrintMessage());
+        actPrintLabel.setText(OnTurn.getInstance().getPrintMessage());
         if( OnTurn.getInstance().act(currentP)) {
             cardsFinished++;
         }
+        playerDollar.setText("Dollars: " + currentP.getDollar());
+        playerCredit.setText("Credits: " + currentP.getCredit());
+
+        nextPlayer.setVisible(true);
     }
 
     public void rehearseButtonAction(ActionEvent event) {
         OnTurn.getInstance().rehearse(currentP);
+        playerPracticeChip.setText("Practice Chips: " + currentP.getPracticeChip());
         makeButtonVisible(false, false,false);
-    }
-
-    /* WON'T NEED - TAKE OUT - maybe */
-    public void makeButtonVisible(boolean act, boolean rehearse, boolean upgrade, boolean roll) {
-        makeButtonVisible(false,false,false);
+        nextPlayer.setVisible(true);
     }
 
     public void upgradeButtonAction(ActionEvent event) {
@@ -254,15 +258,11 @@ public class SystemManager implements Initializable {
     }
 
     public void makeButtonVisible(boolean act, boolean rehearse, boolean upgrade) {
-        actButton.toFront(); //may not need
+        //actButton.toFront(); //may not need
         actButton.setVisible(act);
-        rehearseButton.toFront(); //may not need
+        //rehearseButton.toFront(); //may not need
         rehearseButton.setVisible(rehearse);
         upgradeButton.setVisible(upgrade);
-    }
-
-    public void printLabel(String str) { //print to user success, fail, etc..
-        actPrintLabel.setText(str);
     }
 
     public Pane getButtonLocation(String location) {
@@ -394,7 +394,7 @@ public class SystemManager implements Initializable {
         } else if (!currentP.getPlayerLocation().equals("trailer")){
             makeButtonVisible(false,false, false);
 
-            /* TAKE ROLE OPTION */ //////////////////////////////////////////////////////////
+            /* TAKE ROLE OPTION */ // don't think i need it here
         }
     }
 
@@ -420,6 +420,9 @@ public class SystemManager implements Initializable {
         upgradeRankButton.setVisible(false);
         payWDollarButton.setVisible(false);
         payWCreditButton.setVisible(false);
+
+        // Hide print label
+        actPrintLabel.setText("");
 
         turn(currentP);
 
@@ -493,14 +496,16 @@ public class SystemManager implements Initializable {
         if (player.getOffCardRole() == false && player.getOnCardRole() == false) {
             letUpgrade();
             showButton(player.getPlayerLocation(), true); //location buttons
-        } else {
+
+        } else {  /* goes into this else correctly */
             // If player can rehearse or act, give them options
             if (player.getRoleLevel() + player.getPracticeChip() < 6) {
-                makeButtonVisible(true,true,false, false);
+                makeButtonVisible(true,true,false);
+
 
             // If they can't rehearse anymore give them only act option
             } else {
-                makeButtonVisible(true,false,false,false); //get rid of roll
+                makeButtonVisible(true,false,false); //get rid of roll
             }
         }
         return endOfCard; // return to SystemManager.java

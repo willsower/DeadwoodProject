@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class OnTurn {
     private static OnTurn instance = null;
-
+    private String printMessage;
 
     // Create instance
     public static OnTurn getInstance() {
@@ -22,7 +22,6 @@ public class OnTurn {
         }
         return instance;
     }
-
 
     // Return true if number is numeric
     // false if not
@@ -180,7 +179,8 @@ public class OnTurn {
     public void rehearse(Player player) {
         if (player.getRoleLevel() + player.getPracticeChip() < 6) {
             player.setPracticeChip(player.getPracticeChip() + 1);
-/**/            UserInterfaceDisplay.getInstance().displayPlayerInfo(player);
+
+           // UserInterfaceDisplay.getInstance().displayPlayerInfo(player);
         }
     }
 
@@ -191,7 +191,9 @@ public class OnTurn {
         int counter = Board.getInstance().getSet(player.getPlayerLocation()).getShotCounter();
         int diceRoll = roll();
 
-        SystemManager.getInstance().printLabel(Integer.toString(diceRoll));
+        //SystemManager.getInstance().printLabel("Dice rolled : " + diceRoll);
+
+        System.out.println("dice roll: " + diceRoll);
 
         // if success
         if (diceRoll + player.getPracticeChip() >= cardBudget) {
@@ -199,7 +201,10 @@ public class OnTurn {
             counter -= 1;
             Board.getInstance().getSet(player.getPlayerLocation()).setShotCounter(counter);
 
-            SystemManager.getInstance().printLabel("SUCCESS IN ACTING");
+            //SystemManager.getInstance().printLabel("SUCCESS IN ACTING");
+            //System.out.println("SUCCESS IN ACTING");
+            setPrintMessage("SUCCESS IN ACTING");
+
             System.out.println("  Current Shot Counter: " + counter);
             if (player.getOnCardRole() == true) { // on card
                 player.setCredit(player.getCredit() + 2);
@@ -229,7 +234,10 @@ public class OnTurn {
 
         } else { // else fail
             //System.out.println("\n  FAILED IN ACTING");
-            SystemManager.getInstance().printLabel("FAILED IN ACTING");
+            //SystemManager.getInstance().printLabel("FAILED IN ACTING");
+            //System.out.println("FAILED IN ACTING");
+
+            setPrintMessage("FAILED IN ACTING");
             if (player.getOffCardRole() == true) {
                 player.setDollar(player.getDollar() + 1);
             }
@@ -237,6 +245,15 @@ public class OnTurn {
         }
         return false; // returns to turn() in onTurn.java
     }
+
+    public String getPrintMessage () {
+        return printMessage;
+    }
+
+    public void setPrintMessage (String str) {
+        printMessage = str;
+    }
+
 
     // Random number generater between 1 and 6, like a die roll
     public static int roll() {

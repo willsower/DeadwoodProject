@@ -147,10 +147,11 @@ public class SystemManager implements Initializable {
     public void rollDieAction(ActionEvent event) {
         rollDieButton.setVisible(false);
         //actPrintLabel.setText(OnTurn.getInstance().getPrintMessage());
-        actPrintLabel.setText(OnTurn.getInstance().getPrintMessage());
+        //actPrintLabel.setText(OnTurn.getInstance().getPrintMessage());
         if( OnTurn.getInstance().act(currentP)) {
             cardsFinished++;
         }
+        actPrintLabel.setText(OnTurn.getInstance().getPrintMessage());
         playerDollar.setText("Dollars: " + currentP.getDollar());
         playerCredit.setText("Credits: " + currentP.getCredit());
 
@@ -497,6 +498,7 @@ public class SystemManager implements Initializable {
         if (player.getOffCardRole() == false && player.getOnCardRole() == false) {
             letUpgrade();
             showButton(player.getPlayerLocation(), true); //location buttons
+             /* CALL TAKE ROLE FUNCTION */
 
         } else {  /* goes into this else correctly */
             // If player can rehearse or act, give them options

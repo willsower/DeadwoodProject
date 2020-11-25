@@ -171,16 +171,19 @@ public class OnTurn {
 
             //SystemManager.getInstance().printLabel("SUCCESS IN ACTING");
             //System.out.println("SUCCESS IN ACTING");
-            setPrintMessage("SUCCESS IN ACTING");
-
+            //setPrintMessage("SUCCESS IN ACTING", );
             System.out.println("  Current Shot Counter: " + counter);
             if (player.getOnCardRole() == true) { // on card
                 player.setCredit(player.getCredit() + 2);
+                setPrintMessage("SUCCESS IN ACTING: on card roles Credit +2");
             } else {// off card
                 player.setCredit(player.getCredit() + 1);
                 player.setDollar(player.getDollar() + 1);
+                setPrintMessage("SUCCESS IN ACTING: off card roles Credit +1 and Dollar +1");
             }
-            UserInterfaceDisplay.getInstance().displayPlayerInfo(player);
+
+
+            UserInterfaceDisplay.getInstance().displayPlayerInfo(player); //won't need
 
             // end of card, calculate payout will be called and reset card and player information
             if (counter == 0) {
@@ -205,9 +208,11 @@ public class OnTurn {
             //SystemManager.getInstance().printLabel("FAILED IN ACTING");
             //System.out.println("FAILED IN ACTING");
 
-            setPrintMessage("FAILED IN ACTING");
-            if (player.getOffCardRole() == true) {
+           // setPrintMessage("FAILED IN ACTING");
+
+            if (player.getOffCardRole() == true) { //offcard
                 player.setDollar(player.getDollar() + 1);
+                setPrintMessage("FAILED IN ACTING: off card roles Dollar +1");
             }
 /**/            UserInterfaceDisplay.getInstance().displayPlayerInfo(player);
         }
@@ -221,7 +226,6 @@ public class OnTurn {
     public void setPrintMessage (String str) {
         printMessage = str;
     }
-
 
     // Random number generater between 1 and 6, like a die roll
     public static int roll() {

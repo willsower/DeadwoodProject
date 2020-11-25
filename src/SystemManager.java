@@ -134,6 +134,22 @@ public class SystemManager implements Initializable {
             boardImage.setVisible(true);
             setUpBoard(day);
 
+            //Add players into trailers
+            for (int i = 0; i < numPlayer; i++) {
+                int num = i + 1;
+                switch (num) {
+                    case 1 -> player1.setImage(players[i].getPlayerImage());
+
+                    case 2 -> player2.setImage(players[i].getPlayerImage());
+                    case 3 -> player3.setImage(players[i].getPlayerImage());
+                    case 4 -> player4.setImage(players[i].getPlayerImage());
+                    case 5 -> player5.setImage(players[i].getPlayerImage());
+                    case 6 -> player6.setImage(players[i].getPlayerImage());
+                    case 7 -> player7.setImage(players[i].getPlayerImage());
+                    default -> player8.setImage(players[i].getPlayerImage());
+                }
+            }
+
             turn(players[0]);
         }
     }
@@ -150,6 +166,30 @@ public class SystemManager implements Initializable {
         //actPrintLabel.setText(OnTurn.getInstance().getPrintMessage());
         if( OnTurn.getInstance().act(currentP)) {
             cardsFinished++;
+            int cardNum = Deck.getInstance()
+                    .getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getCardID();
+            ArrayList<Player> playersInRoomOnCard = Deck.getInstance().getCard(cardNum).getPlayersInRoomOnCard();
+            //moves player to room pane from role pane
+            for (Player p : playersInRoomOnCard) {
+                Pane panePrevious = ((Pane) ( (Node) playerPerson(p.getPlayerPriority()).getParent()));
+                panePrevious.getChildren().remove(playerPerson(p.getPlayerPriority()));
+                Pane paneCurrent = getButtonLocation(currentP.getPlayerLocation());
+                paneCurrent.getChildren().add(playerPerson(p.getPlayerPriority()));
+
+            }
+
+            ArrayList<Player> playersInRoomOffCard = Board.getInstance().getSet(currentP.getPlayerLocation()).getPlayersInRoomOffCard();
+
+            for (Player p : playersInRoomOffCard) {
+                System.out.println("TESTINF HELP");
+                Pane previousPane =  (Pane) playerPerson(p.getPlayerPriority()).getParent();
+                previousPane.getChildren().remove(playerPerson(p.getPlayerPriority()));
+                Pane paneCurrent = getButtonLocation(currentP.getPlayerLocation());
+                paneCurrent.getChildren().add(playerPerson(p.getPlayerPriority()));
+            }
+            Board.getInstance().getSet(currentP.getPlayerLocation()).removePlayersFormRoomOffCard(currentP);
+
+            player1.getParent();
             Board.getInstance().getSet(currentP.getPlayerLocation()).setIsActive(false);
             getCard(currentP.getPlayerLocation()).setVisible(false);
         }
@@ -379,6 +419,8 @@ public class SystemManager implements Initializable {
         if (!Board.getInstance().getSet(currentP.getPlayerLocation()).getIsActive()) {
             showOffCardRoleOptions(false);
             showOnCardRoleOptions(false);
+            System.out.println("TESING1234");
+
         }else if (!currentP.getPlayerLocation().equals("trailer") && !currentP.getPlayerLocation().equals("office")) {
             showOffCardRoleOptions(val);
             showOnCardRoleOptions(val);
@@ -438,7 +480,7 @@ public class SystemManager implements Initializable {
         test.setPrefHeight(30);
         test.toFront();
         test.setId(id);
-
+        test.setOpacity(0.1); //testing
         test.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -518,7 +560,7 @@ System.out.println(name);
         turn(currentP);
 
         // If card has finished increment cards finished
-        if (cardsFinished == 9) {
+        if (cardsFinished == 4) { /* TESTING AT 4 SHOULD BE AT 9 */
             cardsFinished = 0;
             day++;
             if (OnTurn.getInstance().calculateDaysPlayed(numPlayer) + 1 == day) {
@@ -545,22 +587,25 @@ System.out.println(name);
         churchCard.setImage(Deck.getInstance().getBackOfCardSmall());
         hotelCard.setImage(Deck.getInstance().getBackOfCardSmall());
 
+        trainStationCard.setVisible(true);
+        jailCard.setVisible(true);
+        mainStreetCard.setVisible(true);
+        generalStoreCard.setVisible(true);
+        saloonCard.setVisible(true);
+        ranchCard.setVisible(true);
+        bankCard.setVisible(true);
+        secretHideoutCard.setVisible(true);
+        churchCard.setVisible(true);
+        hotelCard.setVisible(true);
+
+
         dayDisplay.setText("Day " + day);
 
-        //Add players into trailers
-        for (int i = 0; i < numPlayer; i++) {
-            int num = i + 1;
-            switch (num) {
-                case 1 -> player1.setImage(players[i].getPlayerImage());
-                case 2 -> player2.setImage(players[i].getPlayerImage());
-                case 3 -> player3.setImage(players[i].getPlayerImage());
-                case 4 -> player4.setImage(players[i].getPlayerImage());
-                case 5 -> player5.setImage(players[i].getPlayerImage());
-                case 6 -> player6.setImage(players[i].getPlayerImage());
-                case 7 -> player7.setImage(players[i].getPlayerImage());
-                default -> player8.setImage(players[i].getPlayerImage());
-            }
-        }
+       if (day > 1) {
+           for (int i =0; i<numPlayer; i++){
+               resetToTrailers(playerPerson(i+1), i);
+           }
+       }
 
         /* May need to move elsewhere */ //works fine here
         currentPlayer.setText("Player " + currentP.getPlayerPriority() + ": "+ currentP.getColorName());
@@ -578,6 +623,16 @@ System.out.println(name);
         setUpBoard(day);
     }
 
+    public void resetToTrailers (ImageView player, int num) {
+        Pane previousPane = getButtonLocation(players[num].getPlayerLocation());
+        previousPane.getChildren().remove(player);
+        trailer.getChildren().add(player);
+        players[num].setPlayerLocation("trailer");
+        nextPlayer.setVisible(true); //could be some place more logical but it works here
+    }
+
+
+
     // Function turn will give player options at start of turn
     // Will return true if card has finished
     // will return false if not
@@ -589,9 +644,8 @@ System.out.println(name);
             letUpgrade();
             showRoles(true);
             showButton(player.getPlayerLocation(), true); //location buttons
-             /* CALL TAKE ROLE FUNCTION */
 
-            showOffCardRoleOptions(true);
+             nextPlayer.setVisible(true);
 
         } else {  /* goes into this else correctly */
             int cardBudget = Deck.getInstance().getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum())

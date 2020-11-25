@@ -37,20 +37,20 @@ public class OnTurn {
 
     // Function to show that player has taken on card role
     // Updates Player and Card Attributes
-    public static void takeOnCardRole(Player player, int roleNumber, int cardNum, String roleName) {
-        int level = Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getPartLevel(roleNumber - 1);
+    public static void takeOnCardRole(Player player, String roleName, String setName) {
+        Set set = Board.getInstance().getSet(setName);
 
         int rolePriority = Deck.getInstance()
                 .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum())
-                .getPartPriority(roleNumber - 1);
+                .getPartPriority(roleName);
 
         player.setOnCardRole(true);
-        player.setRoleLevel(level);
+        player.setRoleLevel(set.getPartLevel(setName));
         player.setRoleLocation(player.getPlayerLocation());
         player.setRolePriority(rolePriority);
         player.setRoleName(roleName);
-        Deck.getInstance().getCard(cardNum).addPlayerToRoomOnCard(player);
-        Deck.getInstance().getCard(cardNum).setPartTaken(roleName, true);
+        Deck.getInstance().getCard(set.getCardNum()).addPlayerToRoomOnCard(player);
+        Deck.getInstance().getCard(set.getCardNum()).setPartTaken(roleName, true);
     }
 
     // Function to show that player has taken off card role

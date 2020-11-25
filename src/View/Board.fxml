@@ -97,7 +97,6 @@
             <Button fx:id="totrailerFromMainStreet" mnemonicParsing="false" onAction="#onMove" rotate="90.0" styleClass="arrow" translateX="313.0" translateY="146.0" visible="false" />
             <Button fx:id="toSaloonFromMainStreet" mnemonicParsing="false" onAction="#onMove" rotate="90.0" styleClass="arrow" translateX="50.0" translateY="120.0" visible="false" />
             <Button fx:id="toJailFromMainStreet" mnemonicParsing="false" onAction="#onMove" rotate="180.0" styleClass="arrow" translateX="-17.0" translateY="52.0" visible="false" />
-            <ImageView fx:id="mainStreetCard" fitHeight="150.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" translateX="231.0" translateY="21.0" />
             <ImageView fx:id="shotOne" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="126.0" translateY="16.0" />
             <ImageView fx:id="shotTwo" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="160.0" translateY="16.0" />
             <Pane fx:id="Railroad_Worker" prefHeight="30.0" prefWidth="30.0" translateX="21.0" translateY="17.0">
@@ -120,6 +119,11 @@
                   <Button fx:id="Mayor_McGinty" mnemonicParsing="false" onAction="#offCardRole" prefHeight="30.0" prefWidth="30.0" text="Button" visible="false" />
                </children></Pane>
             <ImageView fx:id="shotThree" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="194.0" translateY="16.0" />
+            <Pane fx:id="mainStreetCardHolder" prefHeight="200.0" prefWidth="130.0" translateX="231.0" translateY="21.0">
+               <children>
+                  <ImageView fx:id="mainStreetCard" fitHeight="150.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
          </children></Pane>
       <Pane fx:id="saloon" layoutX="522.0" layoutY="238.0" prefHeight="150.0" prefWidth="238.0">
          <children>
@@ -127,7 +131,6 @@
             <Button fx:id="toBankFromSaloon" mnemonicParsing="false" onAction="#onMove" rotate="90.0" styleClass="arrow" translateX="56.0" translateY="146.0" visible="false" />
             <Button fx:id="toGeneralStoreFromSaloon" mnemonicParsing="false" onAction="#onMove" rotate="180.0" styleClass="arrow" translateX="-17.0" translateY="73.0" visible="false" />
             <Button fx:id="totrailerFromSaloon" mnemonicParsing="false" onAction="#onMove" styleClass="arrow" translateX="236.0" translateY="82.0" visible="false" />
-            <ImageView fx:id="saloonCard" fitHeight="150.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" translateX="18.0" translateY="45.0" />
             <ImageView fx:id="shotOne" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="14.0" translateY="1.0" />
             <ImageView fx:id="shotTwo" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="48.0" />
             <Pane fx:id="Woman_in_Red_Dress" prefHeight="30.0" prefWidth="30.0" translateX="174.0" translateY="42.0">
@@ -140,11 +143,15 @@
                   <Button fx:id="Reluctant_Farmer" mnemonicParsing="false" onAction="#offCardRole" prefHeight="30.0" prefWidth="30.0" text="Button" visible="false" />
                </children>
             </Pane>
+            <Pane fx:id="saloonCardHolder" prefHeight="200.0" prefWidth="130.0" translateX="18.0" translateY="45.0">
+               <children>
+                  <ImageView fx:id="saloonCard" fitHeight="150.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
          </children></Pane>
       <Pane fx:id="bank" layoutX="523.0" layoutY="391.0" prefHeight="126.0" prefWidth="244.0">
          <children>
             <Button fx:id="toSaloonFromBank" mnemonicParsing="false" onAction="#onMove" rotate="270.0" styleClass="arrow" translateX="54.0" translateY="-17.0" visible="false" />
-            <ImageView fx:id="bankCard" fitHeight="150.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" translateX="12.0" translateY="16.0" />
             <Button fx:id="toChurchFromBank" mnemonicParsing="false" onAction="#onMove" rotate="90.0" styleClass="arrow" translateX="81.0" translateY="120.0" visible="false" />
             <Button fx:id="toRanchFromBank" mnemonicParsing="false" onAction="#onMove" rotate="180.0" styleClass="arrow" translateX="-15.0" translateY="50.0" visible="false" />
             <Button fx:id="toHotelFromBank" mnemonicParsing="false" onAction="#onMove" styleClass="arrow" translateX="246.0" translateY="39.0" visible="false" />
@@ -157,10 +164,19 @@
                <children>
                   <Button fx:id="Suspicious_Gentleman" mnemonicParsing="false" onAction="#offCardRole" prefHeight="30.0" prefWidth="30.0" text="Button" visible="false" />
                </children></Pane>
+            <Pane fx:id="bankCardHolder" prefHeight="200.0" prefWidth="130.0" translateX="12.0" translateY="16.0">
+               <children>
+                  <ImageView fx:id="bankCard" fitHeight="150.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
          </children></Pane>
       <Pane fx:id="church" layoutX="522.0" layoutY="524.0" prefHeight="150.0" prefWidth="207.0">
          <children>
-            <ImageView fx:id="churchCard" fitHeight="150.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" translateX="13.0" translateY="47.0" />
+            <Pane fx:id="churchCardHolder" prefHeight="200.0" prefWidth="130.0" translateX="13.0" translateY="47.0">
+               <children>
+                  <ImageView fx:id="churchCard" fitHeight="150.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
             <Button fx:id="toSecretHideoutFromChurch" mnemonicParsing="false" onAction="#onMove" rotate="180.0" styleClass="arrow" translateX="-15.0" translateY="68.0" visible="false" />
             <Button fx:id="toHotelFromChurch" mnemonicParsing="false" onAction="#onMove" styleClass="arrow" translateX="207.0" translateY="69.0" visible="false" />
             <Button fx:id="toBankFromChurch" mnemonicParsing="false" onAction="#onMove" rotate="270.0" styleClass="arrow" translateX="81.0" translateY="-20.0" visible="false" />
@@ -182,7 +198,6 @@
             <Button fx:id="totrailerFromHotel" mnemonicParsing="false" onAction="#onMove" rotate="270.0" styleClass="arrow" translateX="50.0" translateY="-19.0" visible="false" />
             <Button fx:id="toBankFromHotel" mnemonicParsing="false" onAction="#onMove" rotate="180.0" styleClass="arrow" translateX="-13.0" translateY="39.0" visible="false" />
             <Button fx:id="toChurchFromHotel" mnemonicParsing="false" onAction="#onMove" rotate="180.0" styleClass="arrow" translateX="-53.0" translateY="201.0" visible="false" />
-            <ImageView fx:id="hotelCard" fitHeight="150.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="182.0" />
             <ImageView fx:id="shotOne" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="70.0" translateY="144.0" />
             <ImageView fx:id="shotTwo" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="37.0" translateY="144.0" />
             <ImageView fx:id="shotThree" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="4.0" translateY="144.0" />
@@ -205,13 +220,17 @@
                   <Button fx:id="Australian_Bartender" mnemonicParsing="false" onAction="#offCardRole" prefHeight="30.0" prefWidth="30.0" text="Button" visible="false" />
                </children>
             </Pane>
+            <Pane fx:id="hotelCardHolder" prefHeight="200.0" prefWidth="130.0" translateX="-20.0" translateY="182.0">
+               <children>
+                  <ImageView fx:id="hotelCard" fitHeight="150.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
          </children></Pane>
       <Pane fx:id="secretHideout" layoutX="146.0" layoutY="550.0" prefHeight="126.0" prefWidth="371.0">
          <children>
             <Button fx:id="toChurchFromSecretHideout" mnemonicParsing="false" onAction="#onMove" styleClass="arrow" translateX="370.0" translateY="42.0" visible="false" />
             <Button fx:id="toRanchFromSecretHideout" mnemonicParsing="false" onAction="#onMove" rotate="270.0" styleClass="arrow" translateX="300.0" translateY="-20.0" visible="false" />
             <Button fx:id="toofficeFromSecretHideout" mnemonicParsing="false" onAction="#onMove" rotate="270.0" styleClass="arrow" translateX="41.0" translateY="-32.0" visible="false" />
-            <ImageView fx:id="secretHideoutCard" fitHeight="150.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" translateX="11.0" translateY="19.0" />
             <ImageView fx:id="shotOne" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="218.0" translateY="37.0" />
             <ImageView fx:id="shotTwo" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="183.0" translateY="37.0" />
             <ImageView fx:id="shotThree" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="149.0" translateY="37.0" />
@@ -235,6 +254,11 @@
                   <Button fx:id="Penny_who_is_lost" mnemonicParsing="false" onAction="#offCardRole" prefHeight="30.0" prefWidth="30.0" text="Button" visible="false" />
                </children>
             </Pane>
+            <Pane fx:id="secretHideoutCardHolder" prefHeight="200.0" prefWidth="130.0" translateX="11.0" translateY="19.0">
+               <children>
+                  <ImageView fx:id="secretHideoutCard" fitHeight="150.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
          </children></Pane>
       <Pane fx:id="office" layoutX="140.0" layoutY="393.0" prefHeight="135.0" prefWidth="140.0">
          <children>
@@ -244,7 +268,6 @@
          </children></Pane>
       <Pane fx:id="ranch" layoutX="280.0" layoutY="393.0" prefHeight="150.0" prefWidth="238.0">
          <children>
-            <ImageView fx:id="ranchCard" fitHeight="150.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="15.0" />
             <Button fx:id="toGeneralStoreFromRanch" mnemonicParsing="false" onAction="#onMove" rotate="270.0" styleClass="arrow" translateX="166.0" translateY="-20.0" visible="false" />
             <Button fx:id="toSecretHideoutFromRanch" mnemonicParsing="false" onAction="#onMove" rotate="90.0" styleClass="arrow" translateX="167.0" translateY="146.0" visible="false" />
             <Button fx:id="toofficeFromRanch" mnemonicParsing="false" onAction="#onMove" rotate="180.0" styleClass="arrow" translateX="-9.0" translateY="43.0" visible="false" />
@@ -266,6 +289,11 @@
                   <Button fx:id="Man_Under_Horse" mnemonicParsing="false" onAction="#offCardRole" prefHeight="30.0" prefWidth="30.0" text="Button" visible="false" />
                </children>
             </Pane>
+            <Pane fx:id="ranchCardHolder" prefHeight="200.0" prefWidth="130.0" translateX="20.0" translateY="15.0">
+               <children>
+                  <ImageView fx:id="ranchCard" fitHeight="150.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
          </children></Pane>
       <Pane fx:id="generalStore" layoutX="267.0" layoutY="272.0" prefHeight="115.0" prefWidth="251.0">
          <children>
@@ -273,7 +301,6 @@
             <Button fx:id="toRanchFromGeneralStore" mnemonicParsing="false" onAction="#onMove" rotate="90.0" styleClass="arrow" translateX="180.0" translateY="103.0" visible="false" />
             <Button fx:id="toTrainStationFromGeneralStore" mnemonicParsing="false" onAction="#onMove" rotate="180.0" styleClass="arrow" translateX="-17.0" translateY="51.0" visible="false" />
             <Button fx:id="toSaloonFromGeneralStore" mnemonicParsing="false" onAction="#onMove" styleClass="arrow" translateX="248.0" translateY="38.0" visible="false" />
-            <ImageView fx:id="generalStoreCard" fitHeight="150.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" translateX="107.0" translateY="12.0" />
             <ImageView fx:id="shotOne" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="72.0" translateY="41.0" />
             <ImageView fx:id="shotTwo" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="72.0" translateY="6.0" />
             <Pane fx:id="Man_in_Overalls" prefHeight="30.0" prefWidth="30.0" translateX="22.0" translateY="9.0">
@@ -285,13 +312,17 @@
                   <Button fx:id="Mister_Keach" mnemonicParsing="false" onAction="#offCardRole" prefHeight="30.0" prefWidth="30.0" text="Button" visible="false" />
                </children>
             </Pane>
+            <Pane fx:id="generalStoreCardHolder" prefHeight="200.0" prefWidth="130.0" translateX="107.0" translateY="12.0">
+               <children>
+                  <ImageView fx:id="generalStoreCard" fitHeight="150.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
          </children></Pane>
       <Pane fx:id="jail" layoutX="302.0" layoutY="106.0" prefHeight="143.0" prefWidth="214.0">
          <children>
             <Button fx:id="toGeneralStoreFromJail" mnemonicParsing="false" onAction="#onMove" rotate="90.0" styleClass="arrow" translateX="124.0" translateY="148.0" visible="false" />
             <Button fx:id="toTrainStationFromJail" mnemonicParsing="false" onAction="#onMove" rotate="180.0" styleClass="arrow" translateX="-12.0" translateY="44.0" visible="false" />
             <Button fx:id="toMainStreetFromJail" mnemonicParsing="false" onAction="#onMove" styleClass="arrow" translateX="214.0" translateY="49.0" visible="false" />
-            <ImageView fx:id="jailCard" fitHeight="150.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" translateX="16.0" translateY="17.0" />
             <ImageView fx:id="shotOne" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="118.0" translateY="96.0" />
             <Pane fx:id="Prisoner_In_Cell" prefHeight="30.0" prefWidth="30.0" translateX="167.0" translateY="15.0">
                <children>
@@ -301,13 +332,17 @@
                <children>
                   <Button fx:id="Feller_in_Irons" mnemonicParsing="false" onAction="#offCardRole" prefHeight="30.0" prefWidth="30.0" text="Button" visible="false" />
                </children></Pane>
+            <Pane fx:id="jailCardHolder" prefHeight="200.0" prefWidth="130.0" translateX="16.0" translateY="17.0">
+               <children>
+                  <ImageView fx:id="jailCard" fitHeight="150.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
          </children></Pane>
       <Pane fx:id="trainStation" layoutX="143.0" layoutY="106.0" prefHeight="283.0" prefWidth="121.0">
          <children>
             <Button fx:id="toofficeFromTrainStation" mnemonicParsing="false" onAction="#onMove" rotate="90.0" styleClass="arrow" translateX="54.0" translateY="277.0" visible="false" />
             <Button fx:id="toJailFromTrainStation" mnemonicParsing="false" onAction="#onMove" styleClass="arrow" translateX="153.0" translateY="44.0" visible="false" />
             <Button fx:id="toGeneralStoreFromTrainStation" mnemonicParsing="false" onAction="#onMove" styleClass="arrow" translateX="116.0" translateY="217.0" visible="false" />
-            <ImageView fx:id="trainStationCard" fitHeight="150.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" translateX="10.0" translateY="43.0" />
             <ImageView fx:id="shotOne" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="86.0" translateY="5.0" />
             <ImageView fx:id="shotTwo" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="53.0" translateY="5.0" />
             <ImageView fx:id="shotThree" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="5.0" />
@@ -329,6 +364,11 @@
                <children>
                   <Button fx:id="Cyrus_the_Gunfighter" mnemonicParsing="false" onAction="#offCardRole" prefHeight="30.0" prefWidth="30.0" text="Button" visible="false" />
                </children></Pane>
+            <Pane fx:id="trainStationCardHolder" prefHeight="200.0" prefWidth="130.0" translateX="10.0" translateY="43.0">
+               <children>
+                  <ImageView fx:id="trainStationCard" fitHeight="150.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
          </children></Pane>
       <VBox fx:id="numPlayerBox" alignment="TOP_CENTER" fillWidth="false" layoutX="81.0" layoutY="36.0" prefHeight="691.0" prefWidth="924.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>

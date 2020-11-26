@@ -45,38 +45,56 @@ public class SystemManager implements Initializable {
         return instance;
     }
 
-    @FXML private ImageView boardImage, deck;
+    @FXML
+    private ImageView boardImage, deck;
 
     // Card Image Views
-    @FXML private Pane trainStationCardHolder, jailCardHolder, mainStreetCardHolder, generalStoreCardHolder, saloonCardHolder, ranchCardHolder, bankCardHolder, secretHideoutCardHolder, churchCardHolder, hotelCardHolder;
-    @FXML private ImageView trainStationCard, jailCard, mainStreetCard, generalStoreCard, saloonCard, ranchCard, bankCard, secretHideoutCard, churchCard, hotelCard;
+    @FXML
+    private Pane trainStationCardHolder, jailCardHolder, mainStreetCardHolder, generalStoreCardHolder, saloonCardHolder,
+            ranchCardHolder, bankCardHolder, secretHideoutCardHolder, churchCardHolder, hotelCardHolder;
+    @FXML
+    private ImageView trainStationCard, jailCard, mainStreetCard, generalStoreCard, saloonCard, ranchCard, bankCard,
+            secretHideoutCard, churchCard, hotelCard;
 
     // Player's display information
-    @FXML private Label currentPlayer, playerDollar, playerCredit, playerPracticeChip;
+    @FXML
+    private Label currentPlayer, playerDollar, playerCredit, playerPracticeChip;
 
     // Text Display
-    @FXML private Label dayDisplay, displayText; // Display current day
-    @FXML private TextField userInput;
-    @FXML private Button submitButton;
-    @FXML private VBox numPlayerBox;
+    @FXML
+    private Label dayDisplay, displayText; // Display current day
+    @FXML
+    private TextField userInput;
+    @FXML
+    private Button submitButton;
+    @FXML
+    private VBox numPlayerBox;
 
-    //Action Buttons
-    @FXML private Button actButton, rehearseButton, upgradeButton, rollDieButton;
+    // Action Buttons
+    @FXML
+    private Button actButton, rehearseButton, upgradeButton, rollDieButton;
 
-    //upgrade buttons
-    @FXML private Button upgradeRankButton, payWDollarButton, payWCreditButton;
+    // upgrade buttons
+    @FXML
+    private Button upgradeRankButton, payWDollarButton, payWCreditButton;
 
     ObservableList<Integer> list = FXCollections.observableArrayList();
-    @FXML private ChoiceBox<Integer> upgradeOptions;
+    @FXML
+    private ChoiceBox<Integer> upgradeOptions;
 
-    @FXML private Label actPrintLabel; //print to user success, fail, etc..
-    @FXML private Button nextPlayer;
+    @FXML
+    private Label actPrintLabel; // print to user success, fail, etc..
+    @FXML
+    private Button nextPlayer;
 
     // Pane values
-    @FXML private Pane trailer, office, mainStreet, saloon, hotel, ranch, generalStore, trainStation, secretHideout, jail, church, bank;
+    @FXML
+    private Pane trailer, office, mainStreet, saloon, hotel, ranch, generalStore, trainStation, secretHideout, jail,
+            church, bank;
 
-    //Player pieces
-    @FXML private ImageView player1, player2, player3, player4, player5, player6, player7, player8;
+    // Player pieces
+    @FXML
+    private ImageView player1, player2, player3, player4, player5, player6, player7, player8;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -109,8 +127,9 @@ public class SystemManager implements Initializable {
         }
     }
 
-    //want this function to set the number of players and continue to the game
-    //right now all it does is print the string the user inputs then display board image
+    // want this function to set the number of players and continue to the game
+    // right now all it does is print the string the user inputs then display board
+    // image
     public void submitPlayers(ActionEvent event) {
         int numberPlayers = 0;
         String val = userInput.getText();
@@ -121,7 +140,7 @@ public class SystemManager implements Initializable {
 
         if (numberPlayers >= 2 && numberPlayers <= 8) {
 
-            submitButton.setVisible(false); //may also nee to disable all of these
+            submitButton.setVisible(false); // may also nee to disable all of these
             displayText.setVisible(false);
             userInput.setVisible(false);
             numPlayerBox.setVisible(false);
@@ -134,22 +153,65 @@ public class SystemManager implements Initializable {
             boardImage.setVisible(true);
             setUpBoard(day);
 
+            // Add players into trailers
+            for (int i = 0; i < numPlayer; i++) {
+                int num = i + 1;
+                switch (num) {
+                    case 1 -> player1.setImage(players[i].getPlayerImage());
+
+                    case 2 -> player2.setImage(players[i].getPlayerImage());
+                    case 3 -> player3.setImage(players[i].getPlayerImage());
+                    case 4 -> player4.setImage(players[i].getPlayerImage());
+                    case 5 -> player5.setImage(players[i].getPlayerImage());
+                    case 6 -> player6.setImage(players[i].getPlayerImage());
+                    case 7 -> player7.setImage(players[i].getPlayerImage());
+                    default -> player8.setImage(players[i].getPlayerImage());
+                }
+            }
+
             turn(players[0]);
         }
     }
 
     public void actButtonAction(ActionEvent event) {
         rollDieButton.setVisible(true);
-        makeButtonVisible(false,false,false);
+        makeButtonVisible(false, false, false);
 
     }
 
     public void rollDieAction(ActionEvent event) {
         rollDieButton.setVisible(false);
-        //actPrintLabel.setText(OnTurn.getInstance().getPrintMessage());
-        //actPrintLabel.setText(OnTurn.getInstance().getPrintMessage());
-        if( OnTurn.getInstance().act(currentP)) {
+        // actPrintLabel.setText(OnTurn.getInstance().getPrintMessage());
+        // actPrintLabel.setText(OnTurn.getInstance().getPrintMessage());
+        if (OnTurn.getInstance().act(currentP)) {
             cardsFinished++;
+            int cardNum = Deck.getInstance()
+                    .getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getCardID();
+            ArrayList<Player> playersInRoomOnCard = Deck.getInstance().getCard(cardNum).getPlayersInRoomOnCard();
+            // moves player to room pane from role pane
+            for (Player p : playersInRoomOnCard) {
+                Pane panePrevious = ((Pane) ((Node) playerPerson(p.getPlayerPriority()).getParent()));
+                panePrevious.getChildren().remove(playerPerson(p.getPlayerPriority()));
+                Pane paneCurrent = getButtonLocation(currentP.getPlayerLocation());
+                paneCurrent.getChildren().add(playerPerson(p.getPlayerPriority()));
+
+            }
+
+            ArrayList<Player> playersInRoomOffCard = Board.getInstance().getSet(currentP.getPlayerLocation())
+                    .getPlayersInRoomOffCard();
+
+            for (Player p : playersInRoomOffCard) {
+                System.out.println("TESTINF HELP");
+                Pane previousPane = (Pane) playerPerson(p.getPlayerPriority()).getParent();
+                previousPane.getChildren().remove(playerPerson(p.getPlayerPriority()));
+                Pane paneCurrent = getButtonLocation(currentP.getPlayerLocation());
+                paneCurrent.getChildren().add(playerPerson(p.getPlayerPriority()));
+            }
+            Board.getInstance().getSet(currentP.getPlayerLocation()).removePlayersFormRoomOffCard(currentP);
+
+            player1.getParent();
+            Board.getInstance().getSet(currentP.getPlayerLocation()).setIsActive(false);
+            getCard(currentP.getPlayerLocation()).setVisible(false);
         }
         actPrintLabel.setText(OnTurn.getInstance().getPrintMessage());
         playerDollar.setText("Dollars: " + currentP.getDollar());
@@ -161,42 +223,42 @@ public class SystemManager implements Initializable {
     /* currently continues to show rehearse even when the player cant rehearse */
     /* but does not increment practice chips, which is good */
     public void rehearseButtonAction(ActionEvent event) {
-        OnTurn.getInstance().rehearse(currentP, Deck.getInstance().getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum())
-                .getCardBudget());
+        OnTurn.getInstance().rehearse(currentP, Deck.getInstance()
+                .getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getCardBudget());
         playerPracticeChip.setText("Practice Chips: " + currentP.getPracticeChip());
-        makeButtonVisible(false, false,false);
+        makeButtonVisible(false, false, false);
         nextPlayer.setVisible(true);
     }
 
     public void upgradeButtonAction(ActionEvent event) {
-        makeButtonVisible(false,false,false);
-        //Upgrade.getInstance().levelsCanUpgrade(currentP); //set add upgrade options
+        makeButtonVisible(false, false, false);
+        // Upgrade.getInstance().levelsCanUpgrade(currentP); //set add upgrade options
         upgradeOptions.getItems().clear();
         upgradeOptions.setValue(0);
         loadData();
-        upgradeOptions.setVisible(true);     ///// I think I need to all do show() and setDisable() etc.....//////
+        upgradeOptions.setVisible(true); ///// I think I need to all do show() and setDisable() etc.....//////
         upgradeRankButton.setVisible(true);
 
     }
 
-    public void upgradeRankAction(ActionEvent event){ /* NEED TO FIX THE UPGRADE BUTTON TO HIDE WHEN LEFT ROOM */
-        rankChoice = upgradeOptions.getValue();  // may need to add hide() and setDisable() etc.....
-        if (rankChoice > 1 && rankChoice < 7 ) {
+    public void upgradeRankAction(ActionEvent event) { /* NEED TO FIX THE UPGRADE BUTTON TO HIDE WHEN LEFT ROOM */
+        rankChoice = upgradeOptions.getValue(); // may need to add hide() and setDisable() etc.....
+        if (rankChoice > 1 && rankChoice < 7) {
             actPrintLabel.setText("");
             upgradeOptions.setVisible(false);
             upgradeRankButton.setVisible(false);
 
             payWDollarButton.setVisible(dollarVisible);
-            payWDollarButton.toFront(); //may not need
+            payWDollarButton.toFront(); // may not need
             payWCreditButton.setVisible(creditVisible);
-            payWCreditButton.toFront(); //may not need
+            payWCreditButton.toFront(); // may not need
 
         } else {
-            actPrintLabel.setText("Can't upgrade to that rank"); /* fix placement of label*/
-            //upgradeOptions.setVisible(false); //should not need
-            //upgradeRankButton.setVisible(false); //should not need
+            actPrintLabel.setText("Can't upgrade to that rank"); /* fix placement of label */
+            // upgradeOptions.setVisible(false); //should not need
+            // upgradeRankButton.setVisible(false); //should not need
 
-            /* NEXT TURN set in pay with buttons */ /////////////////////////////////////////////////////
+            /* NEXT TURN set in pay with buttons */
         }
     }
 
@@ -204,14 +266,14 @@ public class SystemManager implements Initializable {
         return rankChoice;
     }
 
-    public void loadData(){
-        //list.removeAll(list);
+    public void loadData() {
+        // list.removeAll(list);
         System.out.println(list);
         list.clear();
         System.out.println(list);
-        for (int l : list){
-           list.removeAll(l);
-           System.out.println(list);
+        for (int l : list) {
+            list.removeAll(l);
+            System.out.println(list);
         }
         list.add(0);
 
@@ -220,7 +282,8 @@ public class SystemManager implements Initializable {
         int dollar = currentP.getDollar();
 
         for (int i = currentLevel + 1; i <= 6; i++) {
-            if (Upgrade.getInstance().getLevel(i).credit <= credit || Upgrade.getInstance().getLevel(i).dollar <= dollar) {
+            if (Upgrade.getInstance().getLevel(i).credit <= credit
+                    || Upgrade.getInstance().getLevel(i).dollar <= dollar) {
                 list.add(i);
             }
         }
@@ -232,8 +295,8 @@ public class SystemManager implements Initializable {
         payWDollarButton.setVisible(false);
         payWCreditButton.setVisible(false);
         nextPlayer.setVisible(true);
-        //System.out.println(list);
-        //upgradeOptions.getItems().clear();
+        // System.out.println(list);
+        // upgradeOptions.getItems().clear();
 
         currentP.setPlayerImage();
         playerPerson(currentP.getPlayerPriority()).setImage(currentP.getPlayerImage());
@@ -246,8 +309,8 @@ public class SystemManager implements Initializable {
         payWDollarButton.setVisible(false);
         payWCreditButton.setVisible(false);
         nextPlayer.setVisible(true);
-        //System.out.println(list);
-        //upgradeOptions.getItems().clear();
+        // System.out.println(list);
+        // upgradeOptions.getItems().clear();
 
         currentP.setPlayerImage();
         playerPerson(currentP.getPlayerPriority()).setImage(currentP.getPlayerImage());
@@ -261,9 +324,9 @@ public class SystemManager implements Initializable {
     }
 
     public void makeButtonVisible(boolean act, boolean rehearse, boolean upgrade) {
-        //actButton.toFront(); //may not need
+        // actButton.toFront(); //may not need
         actButton.setVisible(act);
-        //rehearseButton.toFront(); //may not need
+        // rehearseButton.toFront(); //may not need
         rehearseButton.setVisible(rehearse);
         upgradeButton.setVisible(upgrade);
     }
@@ -346,15 +409,17 @@ public class SystemManager implements Initializable {
 
         // Check if card is flipped, if not flip
         if (!cardFlip) {
-            getCard(currentP.getPlayerLocation()).setImage(Deck.getInstance().getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getCardImage());
+            getCard(currentP.getPlayerLocation()).setImage(Deck.getInstance()
+                    .getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getCardImage());
         }
 
         // Let player do next turn, show role options, let player upgrade if applicable
         nextPlayer.setVisible(true);
-        showRoles(true);
+        showRoles(true); /* move */
         letUpgrade();
     }
 
+    //
     public void offCardRole(ActionEvent event) {
         String name = ((Node) event.getSource()).getId();
         String set = OnTurn.getInstance().parseForSet(((Node) event.getSource()).getParent().getParent().getId());
@@ -367,10 +432,17 @@ public class SystemManager implements Initializable {
         Pane newPane = ((Pane) ((Button) event.getSource()).getParent());
         newPane.getChildren().add(thisPlayer);
         showRoles(false);
+        nextPlayer.setVisible(true);
+        showButton(currentP.getPlayerLocation(), false);
     }
 
     public void showRoles(boolean val) {
-        if (!currentP.getPlayerLocation().equals("trailer") && !currentP.getPlayerLocation().equals("office")) {
+        if (!Board.getInstance().getSet(currentP.getPlayerLocation()).getIsActive()) {
+            showOffCardRoleOptions(false);
+            showOnCardRoleOptions(false);
+            System.out.println("TESING1234");
+
+        } else if (!currentP.getPlayerLocation().equals("trailer") && !currentP.getPlayerLocation().equals("office")) {
             showOffCardRoleOptions(val);
             showOnCardRoleOptions(val);
         }
@@ -384,7 +456,8 @@ public class SystemManager implements Initializable {
         while (i < offCard.size()) {
             for (int j = 0; j < obj.getChildren().size(); j++) {
                 String name = obj.getChildren().get(j).getId().replace("_", " ");
-                if (obj.getChildren().get(j).getAccessibleRole().compareTo(AccessibleRole.PARENT) == 0 && name.equals(offCard.get(i))) {
+                if (obj.getChildren().get(j).getAccessibleRole().compareTo(AccessibleRole.PARENT) == 0
+                        && name.equals(offCard.get(i))) {
                     Button myButton = ((Button) ((Pane) obj.getChildren().get(j)).getChildren().get(0));
                     myButton.setVisible(val);
                     myButton.toFront();
@@ -403,9 +476,11 @@ public class SystemManager implements Initializable {
         while (i < onCard.size()) {
             for (int j = 0; j < obj.getChildren().size(); j++) {
                 String name = obj.getChildren().get(j).getId().replace("_", " ");
-                if (obj.getChildren().get(j).getAccessibleRole().compareTo(AccessibleRole.PARENT) == 0 && name.equals(onCard.get(i))) {
+                if (obj.getChildren().get(j).getAccessibleRole().compareTo(AccessibleRole.PARENT) == 0
+                        && name.equals(onCard.get(i))) {
                     for (int x = 0; x < ((Pane) obj.getChildren().get(j)).getChildren().size(); x++) {
-                        if (((Pane) obj.getChildren().get(j)).getChildren().get(x).getAccessibleRole().compareTo(AccessibleRole.BUTTON) == 0) {
+                        if (((Pane) obj.getChildren().get(j)).getChildren().get(x).getAccessibleRole()
+                                .compareTo(AccessibleRole.BUTTON) == 0) {
                             Button myButton = ((Button) ((Pane) obj.getChildren().get(j)).getChildren().get(x));
                             myButton.setVisible(val);
                             myButton.toFront();
@@ -418,20 +493,26 @@ public class SystemManager implements Initializable {
         }
     }
 
-    public void createCardHelper (Set name) {
+    public void createCardHelper(Set name) {
         Pane obj = getCardPane(name.getSetName());
         switch (Deck.getInstance().getCard(name.getCardNum()).getPart().size()) {
             case 1:
-                createCardRoles(obj, 50, 28, Deck.getInstance().getCard(Board.getInstance().getSet(name.getSetName()).getCardNum()).getPart().get(0).partName);
+                createCardRoles(obj, 50, 28, Deck.getInstance()
+                        .getCard(Board.getInstance().getSet(name.getSetName()).getCardNum()).getPart().get(0).partName);
                 break;
             case 2:
-                createCardRoles(obj, 30, 28, Deck.getInstance().getCard(Board.getInstance().getSet(name.getSetName()).getCardNum()).getPart().get(0).partName);
-                createCardRoles(obj, 70, 28, Deck.getInstance().getCard(Board.getInstance().getSet(name.getSetName()).getCardNum()).getPart().get(1).partName);
+                createCardRoles(obj, 30, 28, Deck.getInstance()
+                        .getCard(Board.getInstance().getSet(name.getSetName()).getCardNum()).getPart().get(0).partName);
+                createCardRoles(obj, 70, 28, Deck.getInstance()
+                        .getCard(Board.getInstance().getSet(name.getSetName()).getCardNum()).getPart().get(1).partName);
                 break;
             default:
-                createCardRoles(obj, 11, 28, Deck.getInstance().getCard(Board.getInstance().getSet(name.getSetName()).getCardNum()).getPart().get(0).partName);
-                createCardRoles(obj, 50, 28, Deck.getInstance().getCard(Board.getInstance().getSet(name.getSetName()).getCardNum()).getPart().get(1).partName);
-                createCardRoles(obj, 90, 28, Deck.getInstance().getCard(Board.getInstance().getSet(name.getSetName()).getCardNum()).getPart().get(2).partName);
+                createCardRoles(obj, 11, 28, Deck.getInstance()
+                        .getCard(Board.getInstance().getSet(name.getSetName()).getCardNum()).getPart().get(0).partName);
+                createCardRoles(obj, 50, 28, Deck.getInstance()
+                        .getCard(Board.getInstance().getSet(name.getSetName()).getCardNum()).getPart().get(1).partName);
+                createCardRoles(obj, 90, 28, Deck.getInstance()
+                        .getCard(Board.getInstance().getSet(name.getSetName()).getCardNum()).getPart().get(2).partName);
                 break;
         }
     }
@@ -456,7 +537,8 @@ public class SystemManager implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 String name = ((Node) event.getSource()).getId();
-                String set = OnTurn.getInstance().parseForSet(((Node) event.getSource()).getParent().getParent().getParent().getId());
+                String set = OnTurn.getInstance()
+                        .parseForSet(((Node) event.getSource()).getParent().getParent().getParent().getId());
 
                 OnTurn.getInstance().takeOnCardRole(currentP, name, set);
 
@@ -473,10 +555,11 @@ public class SystemManager implements Initializable {
     public void letUpgrade() {
         if (currentP.getPlayerLocation().equals("office")) {
             nextPlayer.setVisible(true);
-            //visible upgrade button
-            //makeButtonVisible(false, false, true);
-            //Upgrade.getInstance().levelsCanUpgrade(currentP); //populate choice box
-            int answer = Upgrade.getInstance().canUpgrade(currentP.getLevel(), currentP.getPlayerLocation(), currentP.getDollar(), currentP.getCredit());
+            // visible upgrade button
+            // makeButtonVisible(false, false, true);
+            // Upgrade.getInstance().levelsCanUpgrade(currentP); //populate choice box
+            int answer = Upgrade.getInstance().canUpgrade(currentP.getLevel(), currentP.getPlayerLocation(),
+                    currentP.getDollar(), currentP.getCredit());
             if (answer != 0) {
                 makeButtonVisible(false, false, true);
                 switch (answer) {
@@ -486,16 +569,20 @@ public class SystemManager implements Initializable {
                 }
             }
 
-        } else if (!currentP.getPlayerLocation().equals("trailer")){
-            makeButtonVisible(false,false, false);
+        } else if (!currentP.getPlayerLocation().equals("trailer")) {
+            makeButtonVisible(false, false, false);
 
             /* TAKE ROLE OPTION */ // don't think i need it here
+        } else {
+            nextPlayer.setVisible(true);
         }
     }
 
-    // Function will end the current players turn and set player label information for next player
+    // Function will end the current players turn and set player label information
+    // for next player
     public void nextPlayerPush(ActionEvent event) {
         showRoles(false);
+
         nextPlayer.setVisible(false);
         player++; // Next player turn
 
@@ -505,12 +592,13 @@ public class SystemManager implements Initializable {
         currentP = players[player];
 
         // Set label with player information
-        currentPlayer.setText("Player " + currentP.getPlayerPriority() + ": " +currentP.getColorName());
+        currentPlayer.setText("Player " + currentP.getPlayerPriority() + ": " + currentP.getColorName());
         playerDollar.setText("Dollars: " + currentP.getDollar());
         playerCredit.setText("Credits: " + currentP.getCredit());
         playerPracticeChip.setText("Practice Chips: " + currentP.getPracticeChip());
 
-        // Hide all upgrade related buttons in case player decides to not upgrade after pushing upgrade button
+        // Hide all upgrade related buttons in case player decides to not upgrade after
+        // pushing upgrade button
         upgradeOptions.setVisible(false);
         upgradeRankButton.setVisible(false);
         payWDollarButton.setVisible(false);
@@ -519,10 +607,12 @@ public class SystemManager implements Initializable {
         // Hide print label
         actPrintLabel.setText("");
 
+        // showRoles(true);
+
         turn(currentP);
 
         // If card has finished increment cards finished
-        if (cardsFinished == 9) {
+        if (cardsFinished == 4) { /* TESTING AT 4 SHOULD BE AT 9 */
             cardsFinished = 0;
             day++;
             if (OnTurn.getInstance().calculateDaysPlayed(numPlayer) + 1 == day) {
@@ -549,6 +639,17 @@ public class SystemManager implements Initializable {
         churchCard.setImage(Deck.getInstance().getBackOfCardSmall());
         hotelCard.setImage(Deck.getInstance().getBackOfCardSmall());
 
+        trainStationCard.setVisible(true);
+        jailCard.setVisible(true);
+        mainStreetCard.setVisible(true);
+        generalStoreCard.setVisible(true);
+        saloonCard.setVisible(true);
+        ranchCard.setVisible(true);
+        bankCard.setVisible(true);
+        secretHideoutCard.setVisible(true);
+        churchCard.setVisible(true);
+        hotelCard.setVisible(true);
+
         dayDisplay.setText("Day " + day);
 
         Enumeration<Set> values = Board.getInstance().getBoard().elements();
@@ -562,26 +663,18 @@ public class SystemManager implements Initializable {
             }
         }
 
-        //Add players into trailers
-        for (int i = 0; i < numPlayer; i++) {
-            int num = i + 1;
-            switch (num) {
-                case 1 -> player1.setImage(players[i].getPlayerImage());
-                case 2 -> player2.setImage(players[i].getPlayerImage());
-                case 3 -> player3.setImage(players[i].getPlayerImage());
-                case 4 -> player4.setImage(players[i].getPlayerImage());
-                case 5 -> player5.setImage(players[i].getPlayerImage());
-                case 6 -> player6.setImage(players[i].getPlayerImage());
-                case 7 -> player7.setImage(players[i].getPlayerImage());
-                default -> player8.setImage(players[i].getPlayerImage());
+        if (day > 1) {
+            for (int i = 0; i < numPlayer; i++) {
+                resetToTrailers(playerPerson(i + 1), i);
             }
         }
 
-        /* May need to move elsewhere */
-        currentPlayer.setText("Player " + currentP.getPlayerPriority() + ": "+ currentP.getColorName());
+        /* May need to move elsewhere */ // works fine here
+        currentPlayer.setText("Player " + currentP.getPlayerPriority() + ": " + currentP.getColorName());
         playerDollar.setText("Dollars: " + currentP.getDollar());
         playerCredit.setText("Credits: " + currentP.getCredit());
-        playerPracticeChip.setText("Practice Chips: "+ 0);
+        playerPracticeChip.setText("Practice Chips: " + 0);
+        // nextPlayer.setVisible(true);
     }
 
     // Resetall function will be called at the start of each game
@@ -590,6 +683,14 @@ public class SystemManager implements Initializable {
     public void resetAll(Player[] list, int day, int numPlayer) {
         OnTurn.getInstance().resetHelper(list, day, numPlayer);
         setUpBoard(day);
+    }
+
+    public void resetToTrailers(ImageView player, int num) {
+        Pane previousPane = getButtonLocation(players[num].getPlayerLocation());
+        previousPane.getChildren().remove(player);
+        trailer.getChildren().add(player);
+        players[num].setPlayerLocation("trailer");
+        nextPlayer.setVisible(true); // could be some place more logical but it works here
     }
 
     // Function turn will give player options at start of turn
@@ -601,18 +702,21 @@ public class SystemManager implements Initializable {
         // If player has not taken a role, let them move
         if (player.getOffCardRole() == false && player.getOnCardRole() == false) {
             letUpgrade();
-            showButton(player.getPlayerLocation(), true); //location buttons
-             /* CALL TAKE ROLE FUNCTION */
+            showRoles(true);
+            showButton(player.getPlayerLocation(), true); // location buttons
 
-        } else {  /* goes into this else correctly */
+            nextPlayer.setVisible(true);
+
+        } else { /* goes into this else correctly */
+            int cardBudget = Deck.getInstance()
+                    .getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getCardBudget();
             // If player can rehearse or act, give them options
-            if (player.getRoleLevel() + player.getPracticeChip() < 6) {
-                makeButtonVisible(true,true,false);
+            if (player.getPracticeChip() < (cardBudget - 1)) {
+                makeButtonVisible(true, true, false);
 
-
-            // If they can't rehearse anymore give them only act option
+                // If they can't rehearse anymore give them only act option
             } else {
-                makeButtonVisible(true,false,false); //get rid of roll
+                makeButtonVisible(true, false, false); // get rid of roll
             }
         }
         return endOfCard; // return to SystemManager.java

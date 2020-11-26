@@ -278,7 +278,7 @@ public class Set {
         for (int i = 0; i < part.size(); i++) {
             part.get(i).isTaken = false;
         }
-        playersInRoomOffCard.clear();
+        playersInRoomOffCard.clear(); /*** NEED TO CALL THIS AFTER THE MOVE PANE IN SYSTEMMANAGER */
         shotCounter = numberOfTakes;
         isCardFlipped = false;
     }
@@ -288,7 +288,7 @@ public class Set {
         for (int i = 0; i < part.size(); i++) {
             part.get(i).isTaken = false;
         }
-        playersInRoomOffCard.clear();
+        //playersInRoomOffCard.clear();/*** NEED TO CALL THIS AFTER THE MOVE PANE IN SYSTEMMANAGER */
         shotCounter = numberOfTakes;
         isCardFlipped = false;
     }

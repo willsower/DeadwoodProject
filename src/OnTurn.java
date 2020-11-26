@@ -49,7 +49,7 @@ public class OnTurn {
         player.setRolePriority(rolePriority);
         player.setRoleName(roleName);
         Deck.getInstance().getCard(set.getCardNum()).addPlayerToRoomOnCard(player);
-        Deck.getInstance().getCard(set.getCardNum()).setPartTaken(roleName, true);
+        Deck.getInstance().getCard(set.getCardNum()).setPartTaken(roleName.replace("_", " "), true);
     }
 
     // Function to show that player has taken off card role
@@ -62,7 +62,7 @@ public class OnTurn {
         player.setRoleLocation(player.getPlayerLocation());
         player.setRoleName(roleName);
         Board.getInstance().getSet(setName).addPlayerToRoomOffCard(player);
-        Board.getInstance().getSet(setName).setPartTaken(roleName, true);
+        Board.getInstance().getSet(setName).setPartTaken(roleName.replace("_", " "), true);
     }
 
     // Function to get array of parts available  off the card

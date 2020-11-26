@@ -201,7 +201,6 @@ public class SystemManager implements Initializable {
                     .getPlayersInRoomOffCard();
 
             for (Player p : playersInRoomOffCard) {
-                System.out.println("TESTINF HELP");
                 Pane previousPane = (Pane) playerPerson(p.getPlayerPriority()).getParent();
                 previousPane.getChildren().remove(playerPerson(p.getPlayerPriority()));
                 Pane paneCurrent = getButtonLocation(currentP.getPlayerLocation());
@@ -443,6 +442,7 @@ public class SystemManager implements Initializable {
             System.out.println("TESING1234");
 
         } else if (!currentP.getPlayerLocation().equals("trailer") && !currentP.getPlayerLocation().equals("office")) {
+            System.out.println(val);
             showOffCardRoleOptions(val);
             showOnCardRoleOptions(val);
         }
@@ -458,10 +458,15 @@ public class SystemManager implements Initializable {
                 String name = obj.getChildren().get(j).getId().replace("_", " ");
                 if (obj.getChildren().get(j).getAccessibleRole().compareTo(AccessibleRole.PARENT) == 0
                         && name.equals(offCard.get(i))) {
-                    Button myButton = ((Button) ((Pane) obj.getChildren().get(j)).getChildren().get(0));
-                    myButton.setVisible(val);
-                    myButton.toFront();
-                    break;
+                    for (int x = 0; x < ((Pane) obj.getChildren().get(j)).getChildren().size(); x++) {
+                        if (((Pane) obj.getChildren().get(j)).getChildren().get(x).getAccessibleRole()
+                                .compareTo(AccessibleRole.BUTTON) == 0) {
+                            Button myButton = ((Button) ((Pane) obj.getChildren().get(j)).getChildren().get(x));
+                            myButton.setVisible(val);
+                            myButton.toFront();
+                            break;
+                        }
+                    }
                 }
             }
             i++;

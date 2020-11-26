@@ -169,7 +169,6 @@ public class SystemManager implements Initializable {
     }
 
     public void upgradeButtonAction(ActionEvent event) {
-        System.out.println("test34566");
         makeButtonVisible(false,false,false);
         //Upgrade.getInstance().levelsCanUpgrade(currentP); //set add upgrade options
         upgradeOptions.getItems().clear();
@@ -388,6 +387,7 @@ public class SystemManager implements Initializable {
                 if (obj.getChildren().get(j).getAccessibleRole().compareTo(AccessibleRole.PARENT) == 0 && name.equals(offCard.get(i))) {
                     Button myButton = ((Button) ((Pane) obj.getChildren().get(j)).getChildren().get(0));
                     myButton.setVisible(val);
+                    myButton.toFront();
                     break;
                 }
             }
@@ -398,23 +398,38 @@ public class SystemManager implements Initializable {
     public void showOnCardRoleOptions(boolean val) {
         ArrayList<String> onCard = OnTurn.getInstance().getPartsAvailOnCard(currentP);
         Pane obj = getCardPane(currentP.getPlayerLocation());
-        int num = Deck.getInstance().getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getPart().size();
 
-        switch (num) {
+        int i = 0;
+        while (i < onCard.size()) {
+            for (int j = 0; j < obj.getChildren().size(); j++) {
+                String name = obj.getChildren().get(j).getId().replace("_", " ");
+                if (obj.getChildren().get(j).getAccessibleRole().compareTo(AccessibleRole.PARENT) == 0 && name.equals(onCard.get(i))) {
+                    Button myButton = ((Button) ((Pane) obj.getChildren().get(j)).getChildren().get(0));
+                    myButton.setVisible(val);
+                    myButton.toFront();
+                    break;
+                }
+            }
+            i++;
+        }
+    }
+
+    public void createCardHelper (Set name) {
+        Pane obj = getCardPane(name.getSetName());
+        switch (Deck.getInstance().getCard(name.getCardNum()).getPart().size()) {
             case 1:
-                createCardRoles(obj, 50, 28, Deck.getInstance().getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getPart().get(0).partName);
+                createCardRoles(obj, 50, 28, Deck.getInstance().getCard(Board.getInstance().getSet(name.getSetName()).getCardNum()).getPart().get(0).partName);
                 break;
             case 2:
-                createCardRoles(obj, 30, 28, Deck.getInstance().getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getPart().get(0).partName);
-                createCardRoles(obj, 70, 28, Deck.getInstance().getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getPart().get(1).partName);
+                createCardRoles(obj, 30, 28, Deck.getInstance().getCard(Board.getInstance().getSet(name.getSetName()).getCardNum()).getPart().get(0).partName);
+                createCardRoles(obj, 70, 28, Deck.getInstance().getCard(Board.getInstance().getSet(name.getSetName()).getCardNum()).getPart().get(1).partName);
                 break;
             default:
-                createCardRoles(obj, 11, 28, Deck.getInstance().getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getPart().get(0).partName);
-                createCardRoles(obj, 50, 28, Deck.getInstance().getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getPart().get(1).partName);
-                createCardRoles(obj, 90, 28, Deck.getInstance().getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getPart().get(2).partName);
+                createCardRoles(obj, 11, 28, Deck.getInstance().getCard(Board.getInstance().getSet(name.getSetName()).getCardNum()).getPart().get(0).partName);
+                createCardRoles(obj, 50, 28, Deck.getInstance().getCard(Board.getInstance().getSet(name.getSetName()).getCardNum()).getPart().get(1).partName);
+                createCardRoles(obj, 90, 28, Deck.getInstance().getCard(Board.getInstance().getSet(name.getSetName()).getCardNum()).getPart().get(2).partName);
                 break;
         }
-
     }
 
     public void createCardRoles(Pane parentCard, int x, int y, String id) {
@@ -423,21 +438,22 @@ public class SystemManager implements Initializable {
         newPane.setPrefHeight(30);
         newPane.setLayoutX(x);
         newPane.setLayoutY(y);
+        newPane.setId(id.replace(" ", "_"));
         parentCard.getChildren().add(newPane);
         Button test = new Button();
         newPane.getChildren().add(test);
         test.setPrefWidth(30);
         test.setPrefHeight(30);
         test.toFront();
-        test.setId(id);
-
+        test.setId(id.replace(" ", "_"));
+        test.setVisible(false);
+        test.setOpacity(0.5);
         test.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 String name = ((Node) event.getSource()).getId();
                 String set = OnTurn.getInstance().parseForSet(((Node) event.getSource()).getParent().getParent().getParent().getId());
-System.out.println(set);
-System.out.println(name);
+
                 OnTurn.getInstance().takeOnCardRole(currentP, name, set);
 
                 Pane previousPane = getButtonLocation(currentP.getPlayerLocation());
@@ -452,7 +468,6 @@ System.out.println(name);
 
     public void letUpgrade() {
         if (currentP.getPlayerLocation().equals("office")) {
-            System.out.println("TEST ");
             nextPlayer.setVisible(true);
             //visible upgrade button
             //makeButtonVisible(false, false, true);
@@ -531,6 +546,17 @@ System.out.println(name);
         hotelCard.setImage(Deck.getInstance().getBackOfCardSmall());
 
         dayDisplay.setText("Day " + day);
+
+        Enumeration<Set> values = Board.getInstance().getBoard().elements();
+        // iterate through values
+        while (values.hasMoreElements()) {
+            Set set = values.nextElement();
+
+            // Doesn't set cards to trailer or casting office
+            if (!set.getSetName().equals("trailer") && !set.getSetName().equals("office")) {
+                createCardHelper(set);
+            }
+        }
 
         //Add players into trailers
         for (int i = 0; i < numPlayer; i++) {

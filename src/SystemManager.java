@@ -404,10 +404,14 @@ public class SystemManager implements Initializable {
             for (int j = 0; j < obj.getChildren().size(); j++) {
                 String name = obj.getChildren().get(j).getId().replace("_", " ");
                 if (obj.getChildren().get(j).getAccessibleRole().compareTo(AccessibleRole.PARENT) == 0 && name.equals(onCard.get(i))) {
-                    Button myButton = ((Button) ((Pane) obj.getChildren().get(j)).getChildren().get(0));
-                    myButton.setVisible(val);
-                    myButton.toFront();
-                    break;
+                    for (int x = 0; x < ((Pane) obj.getChildren().get(j)).getChildren().size(); x++) {
+                        if (((Pane) obj.getChildren().get(j)).getChildren().get(x).getAccessibleRole().compareTo(AccessibleRole.BUTTON) == 0) {
+                            Button myButton = ((Button) ((Pane) obj.getChildren().get(j)).getChildren().get(x));
+                            myButton.setVisible(val);
+                            myButton.toFront();
+                            break;
+                        }
+                    }
                 }
             }
             i++;

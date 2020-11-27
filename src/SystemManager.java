@@ -33,17 +33,8 @@ public class SystemManager implements Initializable {
     int rankChoice;
     private boolean dollarVisible;
     private boolean creditVisible;
-    private static SystemManager instance = null;
     private int player = 0;
     private int day = 1;
-
-    // create instance
-    public static SystemManager getInstance() {
-        if (instance == null) {
-            instance = new SystemManager();
-        }
-        return instance;
-    }
 
     @FXML
     private ImageView boardImage, deck;
@@ -159,18 +150,7 @@ public class SystemManager implements Initializable {
 
             // Add players into trailers
             for (int i = 0; i < numPlayer; i++) {
-                int num = i + 1;
-                switch (num) {
-                    case 1 -> player1.setImage(players[i].getPlayerImage());
-
-                    case 2 -> player2.setImage(players[i].getPlayerImage());
-                    case 3 -> player3.setImage(players[i].getPlayerImage());
-                    case 4 -> player4.setImage(players[i].getPlayerImage());
-                    case 5 -> player5.setImage(players[i].getPlayerImage());
-                    case 6 -> player6.setImage(players[i].getPlayerImage());
-                    case 7 -> player7.setImage(players[i].getPlayerImage());
-                    default -> player8.setImage(players[i].getPlayerImage());
-                }
+                playerPerson(i + 1).setImage(players[i].getPlayerImage());
             }
 
             turn(players[0]);
@@ -237,11 +217,7 @@ public class SystemManager implements Initializable {
                     }
                 }
             }
-            //paneCurrent.getChildren().add(shotCounter(OnTurn.getInstance().getshotCounterImageNum()).setVisible(true));
-
-            //shotCounter(OnTurn.getInstance().getshotCounterImageNum()).setVisible(true);  /////////////////
         }
-
 
         actPrintLabel.setText(OnTurn.getInstance().getPrintMessage());
         playerDollar.setText("Dollars: " + currentP.getDollar());
@@ -775,6 +751,6 @@ public class SystemManager implements Initializable {
                 makeButtonVisible(true, false, false); // get rid of roll
             }
         }
-        return endOfCard; // return to SystemManager.java
+        return endOfCard;
     }
 }

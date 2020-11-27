@@ -90,7 +90,7 @@ public class ScoringManager {
         System.out.println("Players on card ");
         // Give payout to on card players
         for (Player p : playersOnCard) { 
-            System.out.println("  Player " + p.getPlayerPriority());
+            System.out.println("  Player " + p.getRolePriority());
             
             System.out.println();
             // If player has highest role rank (highest priority)

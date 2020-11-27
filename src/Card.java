@@ -82,7 +82,7 @@ public class Card {
     public int getPartPriority(String partName) {
         ArrayList<Part> myPart = getPart();
         for (int i = 0; i < myPart.size(); i++) {
-            if (myPart.get(i).partName.equals(partName)) {
+            if (myPart.get(i).partName.equals(partName.replace("_", " "))) {
                 return myPart.get(i).priority;
             }
         }

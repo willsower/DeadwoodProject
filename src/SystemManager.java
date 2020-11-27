@@ -439,8 +439,6 @@ setPayButtonsVisible(Upgrade.getInstance().playerHasDollar(rankChoice, currentP.
         };
     }
 
-
-
     public void onMove(ActionEvent event) {
         String name = ((Node) event.getSource()).getId();
         // Don't display button for move

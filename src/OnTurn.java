@@ -43,7 +43,7 @@ public class OnTurn {
         int rolePriority = Deck.getInstance()
                 .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum())
                 .getPartPriority(roleName);
-
+ System.out.println("ROLE PRIORITY: " + rolePriority);
         player.setOnCardRole(true);
         player.setRoleLevel(set.getPartLevel(setName));
         player.setRoleLocation(player.getPlayerLocation());
@@ -365,7 +365,7 @@ public class OnTurn {
                     players[i] = new Player(i + 1, 2, 0, 0, "trailer", playerDie[i]);
                     break;
                 default:
-                    players[i] = new Player(i + 1, 5, 0, 0, "trailer", playerDie[i]);
+                    players[i] = new Player(i + 1, 6, 0, 0, "trailer", playerDie[i]);
                     break;
             }
         }

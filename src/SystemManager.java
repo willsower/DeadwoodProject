@@ -185,6 +185,7 @@ public class SystemManager implements Initializable {
         // actPrintLabel.setText(OnTurn.getInstance().getPrintMessage());
         if (OnTurn.getInstance().act(currentP)) {
             cardsFinished++;
+            deleteCardHelperInfo(currentP.getPlayerLocation());
             int cardNum = Deck.getInstance()
                     .getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getCardID();
             ArrayList<Player> playersInRoomOnCard = Deck.getInstance().getCard(cardNum).getPlayersInRoomOnCard();
@@ -211,6 +212,8 @@ public class SystemManager implements Initializable {
             player1.getParent();
             Board.getInstance().getSet(currentP.getPlayerLocation()).setIsActive(false);
             getCard(currentP.getPlayerLocation()).setVisible(false);
+
+            showRoles(false);
         }
         actPrintLabel.setText(OnTurn.getInstance().getPrintMessage());
         playerDollar.setText("Dollars: " + currentP.getDollar());
@@ -247,6 +250,11 @@ public class SystemManager implements Initializable {
             upgradeOptions.setVisible(false);
             upgradeRankButton.setVisible(false);
 
+System.out.println("Rank: " + rankChoice);
+System.out.println("Has Dollar: " + dollarVisible);
+System.out.println("Has Credit: " + creditVisible);
+System.out.println();
+setPayButtonsVisible(Upgrade.getInstance().playerHasDollar(rankChoice, currentP.getDollar()), Upgrade.getInstance().playerHasCredit(rankChoice, currentP.getCredit()));
             payWDollarButton.setVisible(dollarVisible);
             payWDollarButton.toFront(); // may not need
             payWCreditButton.setVisible(creditVisible);
@@ -254,10 +262,6 @@ public class SystemManager implements Initializable {
 
         } else {
             actPrintLabel.setText("Can't upgrade to that rank"); /* fix placement of label */
-            // upgradeOptions.setVisible(false); //should not need
-            // upgradeRankButton.setVisible(false); //should not need
-
-            /* NEXT TURN set in pay with buttons */
         }
     }
 
@@ -405,7 +409,7 @@ public class SystemManager implements Initializable {
         ImageView thisPlayer = playerPerson(currentP.getPlayerPriority());
         previousArea.getChildren().remove(thisPlayer);
         newArea.getChildren().add(thisPlayer);
-
+        showButton(currentP.getPlayerLocation(), false);
         // Check if card is flipped, if not flip
         if (!cardFlip) {
             getCard(currentP.getPlayerLocation()).setImage(Deck.getInstance()
@@ -430,9 +434,9 @@ public class SystemManager implements Initializable {
         previousPane.getChildren().remove(thisPlayer);
         Pane newPane = ((Pane) ((Button) event.getSource()).getParent());
         newPane.getChildren().add(thisPlayer);
+        showButton(currentP.getPlayerLocation(), false);
         showRoles(false);
         nextPlayer.setVisible(true);
-        showButton(currentP.getPlayerLocation(), false);
     }
 
     public void showRoles(boolean val) {
@@ -442,7 +446,6 @@ public class SystemManager implements Initializable {
             System.out.println("TESING1234");
 
         } else if (!currentP.getPlayerLocation().equals("trailer") && !currentP.getPlayerLocation().equals("office")) {
-            System.out.println(val);
             showOffCardRoleOptions(val);
             showOnCardRoleOptions(val);
         }
@@ -495,6 +498,15 @@ public class SystemManager implements Initializable {
                 }
             }
             i++;
+        }
+    }
+
+    public void deleteCardHelperInfo(String name) {
+        Pane obj = getCardPane(name);
+        for (int i = 0; i < obj.getChildren().size(); i++) {
+            if (obj.getChildren().get(i).getAccessibleRole().compareTo(AccessibleRole.PARENT) == 0) {
+                obj.getChildren().remove(obj.getChildren().get(i));
+            }
         }
     }
 
@@ -553,6 +565,7 @@ public class SystemManager implements Initializable {
                 Pane newPane = ((Pane) ((Button) event.getSource()).getParent());
                 newPane.getChildren().add(thisPlayer);
                 showRoles(false);
+                showButton(currentP.getPlayerLocation(), false);
             }
         });
     }
@@ -563,8 +576,9 @@ public class SystemManager implements Initializable {
             // visible upgrade button
             // makeButtonVisible(false, false, true);
             // Upgrade.getInstance().levelsCanUpgrade(currentP); //populate choice box
-            int answer = Upgrade.getInstance().canUpgrade(currentP.getLevel(), currentP.getPlayerLocation(),
+            int answer = Upgrade.getInstance().canUpgrade(currentP.getLevel() + 1, currentP.getPlayerLocation(),
                     currentP.getDollar(), currentP.getCredit());
+            System.out.println("ANSWER: " + answer);
             if (answer != 0) {
                 makeButtonVisible(false, false, true);
                 switch (answer) {
@@ -587,6 +601,7 @@ public class SystemManager implements Initializable {
     // for next player
     public void nextPlayerPush(ActionEvent event) {
         showRoles(false);
+        showButton(currentP.getPlayerLocation(), false);
 
         nextPlayer.setVisible(false);
         player++; // Next player turn
@@ -612,12 +627,9 @@ public class SystemManager implements Initializable {
         // Hide print label
         actPrintLabel.setText("");
 
-        // showRoles(true);
-
-        turn(currentP);
-
         // If card has finished increment cards finished
-        if (cardsFinished == 4) { /* TESTING AT 4 SHOULD BE AT 9 */
+        if (cardsFinished == 9) { /* TESTING AT 4 SHOULD BE AT 9 */
+            showRoles(false);
             cardsFinished = 0;
             day++;
             if (OnTurn.getInstance().calculateDaysPlayed(numPlayer) + 1 == day) {
@@ -626,6 +638,8 @@ public class SystemManager implements Initializable {
                 resetAll(players, day, numPlayer);
             }
         }
+
+        turn(currentP);
     }
 
     // Sets board up at each day
@@ -664,6 +678,9 @@ public class SystemManager implements Initializable {
 
             // Doesn't set cards to trailer or casting office
             if (!set.getSetName().equals("trailer") && !set.getSetName().equals("office")) {
+                if (day > 1) {
+                    deleteCardHelperInfo(set.getSetName());
+                }
                 createCardHelper(set);
             }
         }
@@ -713,6 +730,7 @@ public class SystemManager implements Initializable {
             nextPlayer.setVisible(true);
 
         } else { /* goes into this else correctly */
+            showRoles(false);
             int cardBudget = Deck.getInstance()
                     .getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getCardBudget();
             // If player can rehearse or act, give them options

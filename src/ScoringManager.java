@@ -85,7 +85,7 @@ public class ScoringManager {
     public void endOfCard(Player player, int cardBudget, ArrayList<Player> playersOnCard,
             ArrayList<Player> playersOffCard, int cardSlots) {
         int[] payout = calculatePayout(cardBudget, cardSlots);
-        
+        System.out.println("Card Budget: " + cardBudget + " Card Slots: " + cardSlots);
         System.out.println("\nEnd of Card: Bonuses distributed");
         System.out.println("Players on card ");
         // Give payout to on card players

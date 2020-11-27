@@ -41,14 +41,14 @@ public class Upgrade {
     // Return 1 if can upgrade with both dollar and credit
     // Return 2 if can upgrade with dollar
     // Return 3 if can upgrade with credit
-    public int canUpgrade(int currentLevel, String location, int dollar, int credit) {
+    public int canUpgrade(int level, String location, int dollar, int credit) {
         if (location.equals("office")) {
-            if (currentLevel < 6) {
-                if (playerHasCredit(currentLevel, credit) && playerHasDollar(currentLevel, dollar)) {
+            if (level < 6) {
+                if (playerHasCredit(level, credit) && playerHasDollar(level, dollar)) {
                     return 1;
-                } else if (playerHasCredit(currentLevel, credit)) {
+                } else if (playerHasCredit(level, credit)) {
                     return 3;
-                } else if (playerHasDollar(currentLevel, dollar)) {
+                } else if (playerHasDollar(level, dollar)) {
                     return 2;
                 }
             }
@@ -58,10 +58,9 @@ public class Upgrade {
 
     // Check if player has enough dollars for next level
     public boolean playerHasDollar(int level, int dollar) {
-        int nextRank = level + 1;
-        Level upgradeLevel = getLevel(nextRank);
+        Level upgradeLevel = getLevel(level);
 
-        if (upgradeLevel.dollar > dollar) {
+        if (upgradeLevel.dollar >= dollar) {
             return false;
         }
         //SystemManager.getInstance().makePayButtonsVisible(true, false);
@@ -70,10 +69,9 @@ public class Upgrade {
 
     // Check if player has enough credits for next level
     public boolean playerHasCredit(int level, int credit) {
-        int nextRank = level + 1;
-        Level upgradeLevel = getLevel(nextRank);
+        Level upgradeLevel = getLevel(level);
 
-        if (upgradeLevel.credit > credit) {
+        if (upgradeLevel.credit >= credit) {
             return false;
         }
         //SystemManager.getInstance().makePayButtonsVisible(false, true);

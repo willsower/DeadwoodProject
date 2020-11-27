@@ -445,6 +445,7 @@ setPayButtonsVisible(Upgrade.getInstance().playerHasDollar(rankChoice, currentP.
         String name = ((Node) event.getSource()).getId();
         // Don't display button for move
         showButton(currentP.getPlayerLocation(), false);
+        showRoles(false); /* move */
         // Put player in new set area
         Pane previousArea = getButtonLocation(currentP.getPlayerLocation());
         boolean cardFlip = OnTurn.getInstance().movePlayer(currentP, name);

@@ -60,7 +60,7 @@ public class Upgrade {
     public boolean playerHasDollar(int level, int dollar) {
         Level upgradeLevel = getLevel(level);
 
-        if (upgradeLevel.dollar >= dollar) {
+        if (upgradeLevel.dollar > dollar) {
             return false;
         }
         //SystemManager.getInstance().makePayButtonsVisible(true, false);
@@ -71,7 +71,7 @@ public class Upgrade {
     public boolean playerHasCredit(int level, int credit) {
         Level upgradeLevel = getLevel(level);
 
-        if (upgradeLevel.credit >= credit) {
+        if (upgradeLevel.credit > credit) {
             return false;
         }
         //SystemManager.getInstance().makePayButtonsVisible(false, true);

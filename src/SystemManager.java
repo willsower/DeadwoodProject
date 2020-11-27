@@ -207,11 +207,6 @@ public class SystemManager implements Initializable {
             }
             Board.getInstance().getSet(currentP.getPlayerLocation()).removePlayersFormRoomOffCard(currentP);
 
-            //remove shotCounters
-            for (int i = 0; i < 3; i++) {
-                shotCounter(i+1).setVisible(false);
-            }
-
             player1.getParent(); //how come this is only calling player1
             Board.getInstance().getSet(currentP.getPlayerLocation()).setIsActive(false);
             getCard(currentP.getPlayerLocation()).setVisible(false);
@@ -517,9 +512,11 @@ public class SystemManager implements Initializable {
     // Deletes pane objects for card roles at start of each day
     public void deleteCardHelperInfo(String name) {
         Pane obj = getCardPane(name);
+
         for (int i = 0; i < obj.getChildren().size(); i++) {
             if (obj.getChildren().get(i).getAccessibleRole().compareTo(AccessibleRole.PARENT) == 0) {
                 obj.getChildren().remove(obj.getChildren().get(i));
+                i--;
             }
         }
     }
@@ -626,52 +623,46 @@ public class SystemManager implements Initializable {
     // Function will end the current players turn and set player label information
     // for next player
     public void nextPlayerPush(ActionEvent event) {
-        showRoles(false);
-        showButton(currentP.getPlayerLocation(), false);
+        if (cardsFinished < 2) {
+            showRoles(false);
+            showButton(currentP.getPlayerLocation(), false);
 
-        nextPlayer.setVisible(false);
-        player++; // Next player turn
+            nextPlayer.setVisible(false);
+            player++; // Next player turn
 
-        if (player == players.length) {
-            player = 0;
-        }
-        currentP = players[player];
+            if (player == players.length) {
+                player = 0;
+            }
+            currentP = players[player];
 
-        // Set label with player information
-        currentPlayer.setText("Player " + currentP.getPlayerPriority() + ": " + currentP.getColorName());
-        playerDollar.setText("Dollars: " + currentP.getDollar());
-        playerCredit.setText("Credits: " + currentP.getCredit());
-        playerPracticeChip.setText("Practice Chips: " + currentP.getPracticeChip());
+            // Set label with player information
+            currentPlayer.setText("Player " + currentP.getPlayerPriority() + ": " + currentP.getColorName());
+            playerDollar.setText("Dollars: " + currentP.getDollar());
+            playerCredit.setText("Credits: " + currentP.getCredit());
+            playerPracticeChip.setText("Practice Chips: " + currentP.getPracticeChip());
 
-        // Hide all upgrade related buttons in case player decides to not upgrade after
-        // pushing upgrade button
-        upgradeOptions.setVisible(false);
-        upgradeRankButton.setVisible(false);
-        payWDollarButton.setVisible(false);
-        payWCreditButton.setVisible(false);
+            // Hide all upgrade related buttons in case player decides to not upgrade after
+            // pushing upgrade button
+            upgradeOptions.setVisible(false);
+            upgradeRankButton.setVisible(false);
+            payWDollarButton.setVisible(false);
+            payWCreditButton.setVisible(false);
 
-        // Hide print label
-        actPrintLabel.setText("");
-
-        // If card has finished increment cards finished
-        if (cardsFinished == 4) { /* TESTING AT 4 SHOULD BE AT 9 */
+            // Hide print label
+            actPrintLabel.setText("");
+            turn(currentP);
+        } else if (cardsFinished == 2) { /* TESTING AT 4 SHOULD BE AT 9 */
             showRoles(false);
             cardsFinished = 0;
             day++;
             if (OnTurn.getInstance().calculateDaysPlayed(numPlayer) + 1 == day) {
+                nextPlayer.setVisible(false);
                 OnTurn.getInstance().endFunction(players, numPlayer);
             } else {
                 resetAll(players, day, numPlayer);
-
-                //remove shotCounters
-//                for (int i = 0; i < OnTurn.getInstance().getshotCounterImageNum(); i++) {
-//                    shotCounter
-//                }
-
+                turn(currentP);
             }
         }
-
-        turn(currentP);
     }
 
     // Sets board up at each day
@@ -701,11 +692,6 @@ public class SystemManager implements Initializable {
         churchCard.setVisible(true);
         hotelCard.setVisible(true);
 
-//        //remove shotCounters
-//        for (int i = 0; i < 3; i++) {
-//            shotCounter(i+1).setVisible(false);
-//        }
-
         dayDisplay.setText("Day " + day);
 
         Enumeration<Set> values = Board.getInstance().getBoard().elements();
@@ -734,7 +720,6 @@ public class SystemManager implements Initializable {
         playerDollar.setText("Dollars: " + currentP.getDollar());
         playerCredit.setText("Credits: " + currentP.getCredit());
         playerPracticeChip.setText("Practice Chips: " + 0);
-        // nextPlayer.setVisible(true);
     }
 
     // Resetall function will be called at the start of each game

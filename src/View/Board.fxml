@@ -438,9 +438,12 @@
          </children></Pane>
       <VBox fx:id="numPlayerBox" alignment="TOP_CENTER" fillWidth="false" layoutX="81.0" layoutY="36.0" prefHeight="691.0" prefWidth="924.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label fx:id="displayText" prefWidth="132.0" text="How many players?" />
-            <TextField fx:id="userInput" promptText="2-8" />
-            <Button fx:id="submitButton" mnemonicParsing="false" onAction="#submitPlayers" text="Submit" />
+            <Label fx:id="displayText" prefWidth="650.0" styleClass="western" text="How many players? [2 - 8]" textFill="WHITE" translateX="58.0" translateY="300.0">
+               <font>
+                  <Font size="56.0" />
+               </font></Label>
+            <TextField fx:id="userInput" promptText="2-8" translateY="300.0" />
+            <Button fx:id="submitButton" mnemonicParsing="false" onAction="#submitPlayers" text="Submit" translateY="300.0" />
          </children>
          <padding>
             <Insets top="40.0" />

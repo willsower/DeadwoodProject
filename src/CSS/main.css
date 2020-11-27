@@ -1,3 +1,8 @@
+@font-face {
+    font-family: Western;
+    src: url('../images/western.woff');
+}
+
 .arrow {
     -fx-shape: "M0,0 L0,6 L9,3 Z";
     -fx-background-color: red;
@@ -10,4 +15,9 @@
 
 .offCardRoles:hover {
     -fx-background-color: blue;
+}
+
+.western {
+    -fx-font-family: 'Western';
+    -fx-text-align: center;
 }

@@ -109,8 +109,6 @@ public class ScoringManager {
         System.out.println("Players off card: ");
         // Give payout to off card players
         for (Player p : playersOffCard) {
-            System.out.println("  Player " + p.getPlayerPriority());
-            System.out.println();
             p.setDollar(p.getDollar() + bonusOffCard(p.getRoleLevel())); // role rank
             p.resetPlayers(false); // parameter is for isNotEndOfCard
 /**/            UserInterfaceDisplay.getInstance().displayPlayerInfo(p);

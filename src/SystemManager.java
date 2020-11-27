@@ -232,10 +232,9 @@ public class SystemManager implements Initializable {
         if(actResponse == 2 || actResponse == 1) {
 
             Pane paneCurrent = getButtonLocation(currentP.getPlayerLocation());
-            System.out.println ("test  ");
+
             for (int i = 0; i< paneCurrent.getChildren().size(); i++) {
                 if (paneCurrent.getChildren().get(i).getAccessibleRole().compareTo(AccessibleRole.IMAGE_VIEW) == 0) {
-                    System.out.println ("testing123  " +paneCurrent.getChildren().get(i).getId());
                     if (!paneCurrent.getChildren().get(i).isVisible()) {
                         paneCurrent.getChildren().get(i).setVisible(true);
                         break;
@@ -283,11 +282,8 @@ public class SystemManager implements Initializable {
             upgradeOptions.setVisible(false);
             upgradeRankButton.setVisible(false);
 
-System.out.println("Rank: " + rankChoice);
-System.out.println("Has Dollar: " + dollarVisible);
-System.out.println("Has Credit: " + creditVisible);
-System.out.println();
-setPayButtonsVisible(Upgrade.getInstance().playerHasDollar(rankChoice, currentP.getDollar()), Upgrade.getInstance().playerHasCredit(rankChoice, currentP.getCredit()));
+
+            setPayButtonsVisible(Upgrade.getInstance().playerHasDollar(rankChoice, currentP.getDollar()), Upgrade.getInstance().playerHasCredit(rankChoice, currentP.getCredit()));
             payWDollarButton.setVisible(dollarVisible);
             payWDollarButton.toFront(); // may not need
             payWCreditButton.setVisible(creditVisible);
@@ -331,8 +327,6 @@ setPayButtonsVisible(Upgrade.getInstance().playerHasDollar(rankChoice, currentP.
         payWDollarButton.setVisible(false);
         payWCreditButton.setVisible(false);
         nextPlayer.setVisible(true);
-        // System.out.println(list);
-        // upgradeOptions.getItems().clear();
 
         currentP.setPlayerImage();
         playerPerson(currentP.getPlayerPriority()).setImage(currentP.getPlayerImage());
@@ -345,8 +339,6 @@ setPayButtonsVisible(Upgrade.getInstance().playerHasDollar(rankChoice, currentP.
         payWDollarButton.setVisible(false);
         payWCreditButton.setVisible(false);
         nextPlayer.setVisible(true);
-        // System.out.println(list);
-        // upgradeOptions.getItems().clear();
 
         currentP.setPlayerImage();
         playerPerson(currentP.getPlayerPriority()).setImage(currentP.getPlayerImage());
@@ -486,7 +478,6 @@ setPayButtonsVisible(Upgrade.getInstance().playerHasDollar(rankChoice, currentP.
         if (!Board.getInstance().getSet(currentP.getPlayerLocation()).getIsActive()) {
             showOffCardRoleOptions(false);
             showOnCardRoleOptions(false);
-            System.out.println("TESING1234");
 
         } else if (!currentP.getPlayerLocation().equals("trailer") && !currentP.getPlayerLocation().equals("office")) {
             showOffCardRoleOptions(val);
@@ -621,7 +612,6 @@ setPayButtonsVisible(Upgrade.getInstance().playerHasDollar(rankChoice, currentP.
             // Upgrade.getInstance().levelsCanUpgrade(currentP); //populate choice box
             int answer = Upgrade.getInstance().canUpgrade(currentP.getLevel() + 1, currentP.getPlayerLocation(),
                     currentP.getDollar(), currentP.getCredit());
-            System.out.println("ANSWER: " + answer);
             if (answer != 0) {
                 makeButtonVisible(false, false, true);
                 switch (answer) {

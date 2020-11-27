@@ -623,7 +623,7 @@ public class SystemManager implements Initializable {
     // Function will end the current players turn and set player label information
     // for next player
     public void nextPlayerPush(ActionEvent event) {
-        if (cardsFinished < 2) {
+        if (cardsFinished < 9) {
             showRoles(false);
             showButton(currentP.getPlayerLocation(), false);
 
@@ -651,7 +651,7 @@ public class SystemManager implements Initializable {
             // Hide print label
             actPrintLabel.setText("");
             turn(currentP);
-        } else if (cardsFinished == 2) { /* TESTING AT 4 SHOULD BE AT 9 */
+        } else if (cardsFinished == 9) { /* TESTING AT 4 SHOULD BE AT 9 */
             showRoles(false);
             cardsFinished = 0;
             day++;

@@ -97,11 +97,15 @@
             <Button fx:id="totrailerFromMainStreet" mnemonicParsing="false" onAction="#onMove" rotate="90.0" styleClass="arrow" translateX="313.0" translateY="146.0" visible="false" />
             <Button fx:id="toSaloonFromMainStreet" mnemonicParsing="false" onAction="#onMove" rotate="90.0" styleClass="arrow" translateX="50.0" translateY="120.0" visible="false" />
             <Button fx:id="toJailFromMainStreet" mnemonicParsing="false" onAction="#onMove" rotate="180.0" styleClass="arrow" translateX="-17.0" translateY="52.0" visible="false" />
-            <ImageView fx:id="shotOne" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="126.0" translateY="16.0" visible="false">
+            <ImageView fx:id="shotThree" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="194.0" translateY="16.0" visible="false">
                <image>
                   <Image url="@../images/shot.png" />
                </image></ImageView>
             <ImageView fx:id="shotTwo" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="160.0" translateY="16.0" visible="false">
+               <image>
+                  <Image url="@../images/shot.png" />
+               </image></ImageView>
+            <ImageView fx:id="shotOne" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="126.0" translateY="16.0" visible="false">
                <image>
                   <Image url="@../images/shot.png" />
                </image></ImageView>
@@ -124,10 +128,6 @@
                <children>
                   <Button fx:id="Mayor_McGinty" mnemonicParsing="false" onAction="#offCardRole" prefHeight="30.0" prefWidth="30.0" text="Button" visible="false" />
                </children></Pane>
-            <ImageView fx:id="shotThree" fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="194.0" translateY="16.0" visible="false">
-               <image>
-                  <Image url="@../images/shot.png" />
-               </image></ImageView>
             <Pane fx:id="mainStreetCardHolder" prefHeight="75.0" prefWidth="130.0" translateX="231.0" translateY="21.0">
                <children>
                   <ImageView fx:id="mainStreetCard" fitHeight="75.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
@@ -222,7 +222,7 @@
             <Button fx:id="totrailerFromHotel" mnemonicParsing="false" onAction="#onMove" rotate="270.0" styleClass="arrow" translateX="50.0" translateY="-19.0" visible="false" />
             <Button fx:id="toBankFromHotel" mnemonicParsing="false" onAction="#onMove" rotate="180.0" styleClass="arrow" translateX="-13.0" translateY="39.0" visible="false" />
             <Button fx:id="toChurchFromHotel" mnemonicParsing="false" onAction="#onMove" rotate="180.0" styleClass="arrow" translateX="-53.0" translateY="201.0" visible="false" />
-            <ImageView fx:id="shotOne" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="70.0" translateY="144.0" visible="false">
+            <ImageView fx:id="shotThree" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="4.0" translateY="144.0" visible="false">
                <image>
                   <Image url="@../images/shot.png" />
                </image></ImageView>
@@ -230,7 +230,7 @@
                <image>
                   <Image url="@../images/shot.png" />
                </image></ImageView>
-            <ImageView fx:id="shotThree" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="4.0" translateY="144.0" visible="false">
+            <ImageView fx:id="shotOne" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="70.0" translateY="144.0" visible="false">
                <image>
                   <Image url="@../images/shot.png" />
                </image></ImageView>
@@ -264,7 +264,7 @@
             <Button fx:id="toChurchFromSecretHideout" mnemonicParsing="false" onAction="#onMove" styleClass="arrow" translateX="370.0" translateY="42.0" visible="false" />
             <Button fx:id="toRanchFromSecretHideout" mnemonicParsing="false" onAction="#onMove" rotate="270.0" styleClass="arrow" translateX="300.0" translateY="-20.0" visible="false" />
             <Button fx:id="toofficeFromSecretHideout" mnemonicParsing="false" onAction="#onMove" rotate="270.0" styleClass="arrow" translateX="41.0" translateY="-32.0" visible="false" />
-            <ImageView fx:id="shotOne" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="218.0" translateY="37.0" visible="false">
+            <ImageView fx:id="shotThree" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="149.0" translateY="37.0" visible="false">
                <image>
                   <Image url="@../images/shot.png" />
                </image></ImageView>
@@ -272,7 +272,7 @@
                <image>
                   <Image url="@../images/shot.png" />
                </image></ImageView>
-            <ImageView fx:id="shotThree" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="149.0" translateY="37.0" visible="false">
+            <ImageView fx:id="shotOne" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="218.0" translateY="37.0" visible="false">
                <image>
                   <Image url="@../images/shot.png" />
                </image></ImageView>
@@ -314,11 +314,11 @@
             <Button fx:id="toSecretHideoutFromRanch" mnemonicParsing="false" onAction="#onMove" rotate="90.0" styleClass="arrow" translateX="167.0" translateY="146.0" visible="false" />
             <Button fx:id="toofficeFromRanch" mnemonicParsing="false" onAction="#onMove" rotate="180.0" styleClass="arrow" translateX="-9.0" translateY="43.0" visible="false" />
             <Button fx:id="toBankFromRanch" mnemonicParsing="false" onAction="#onMove" styleClass="arrow" translateX="239.0" translateY="47.0" visible="false" />
-            <ImageView fx:id="shotOne" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="193.0" translateY="10.0" visible="false">
+            <ImageView fx:id="shotTwo" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="159.0" translateY="10.0" visible="false">
                <image>
                   <Image url="@../images/shot.png" />
                </image></ImageView>
-            <ImageView fx:id="shotTwo" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="159.0" translateY="10.0" visible="false">
+            <ImageView fx:id="shotOne" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="193.0" translateY="10.0" visible="false">
                <image>
                   <Image url="@../images/shot.png" />
                </image></ImageView>
@@ -349,11 +349,11 @@
             <Button fx:id="toRanchFromGeneralStore" mnemonicParsing="false" onAction="#onMove" rotate="90.0" styleClass="arrow" translateX="180.0" translateY="103.0" visible="false" />
             <Button fx:id="toTrainStationFromGeneralStore" mnemonicParsing="false" onAction="#onMove" rotate="180.0" styleClass="arrow" translateX="-17.0" translateY="51.0" visible="false" />
             <Button fx:id="toSaloonFromGeneralStore" mnemonicParsing="false" onAction="#onMove" styleClass="arrow" translateX="248.0" translateY="38.0" visible="false" />
-            <ImageView fx:id="shotOne" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="72.0" translateY="41.0" visible="false">
+            <ImageView fx:id="shotTwo" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="72.0" translateY="6.0" visible="false">
                <image>
                   <Image url="@../images/shot.png" />
                </image></ImageView>
-            <ImageView fx:id="shotTwo" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="72.0" translateY="6.0" visible="false">
+            <ImageView fx:id="shotOne" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="72.0" translateY="41.0" visible="false">
                <image>
                   <Image url="@../images/shot.png" />
                </image></ImageView>
@@ -400,7 +400,7 @@
             <Button fx:id="toofficeFromTrainStation" mnemonicParsing="false" onAction="#onMove" rotate="90.0" styleClass="arrow" translateX="54.0" translateY="277.0" visible="false" />
             <Button fx:id="toJailFromTrainStation" mnemonicParsing="false" onAction="#onMove" styleClass="arrow" translateX="153.0" translateY="44.0" visible="false" />
             <Button fx:id="toGeneralStoreFromTrainStation" mnemonicParsing="false" onAction="#onMove" styleClass="arrow" translateX="116.0" translateY="217.0" visible="false" />
-            <ImageView fx:id="shotOne" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="86.0" translateY="5.0" visible="false">
+            <ImageView fx:id="shotThree" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="5.0" visible="false">
                <image>
                   <Image url="@../images/shot.png" />
                </image></ImageView>
@@ -408,7 +408,7 @@
                <image>
                   <Image url="@../images/shot.png" />
                </image></ImageView>
-            <ImageView fx:id="shotThree" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="5.0" visible="false">
+            <ImageView fx:id="shotOne" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="86.0" translateY="5.0" visible="false">
                <image>
                   <Image url="@../images/shot.png" />
                </image></ImageView>

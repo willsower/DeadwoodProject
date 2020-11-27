@@ -150,7 +150,21 @@ public class SystemManager implements Initializable {
 
             // Add players into trailers
             for (int i = 0; i < numPlayer; i++) {
-                playerPerson(i + 1).setImage(players[i].getPlayerImage());
+//                playerPerson(i + 1).setImage(players[i].getPlayerImage());
+//                playerPerson(i + 1).toFront();
+
+                int num = i + 1;
+                switch (num) {
+                    case 1 -> player1.setImage(players[i].getPlayerImage());
+
+                    case 2 -> player2.setImage(players[i].getPlayerImage());
+                    case 3 -> player3.setImage(players[i].getPlayerImage());
+                    case 4 -> player4.setImage(players[i].getPlayerImage());
+                    case 5 -> player5.setImage(players[i].getPlayerImage());
+                    case 6 -> player6.setImage(players[i].getPlayerImage());
+                    case 7 -> player7.setImage(players[i].getPlayerImage());
+                    default -> player8.setImage(players[i].getPlayerImage());
+                }
             }
 
             turn(players[0]);
@@ -500,7 +514,7 @@ public class SystemManager implements Initializable {
         }
     }
 
-    // Deletes pane objects for card roles at start of each day. Also resets image view of shot counters
+    // Deletes pane objects for card roles at start of each day
     public void deleteCardHelperInfo(String name) {
         Pane obj = getCardPane(name);
         for (int i = 0; i < obj.getChildren().size(); i++) {
@@ -508,10 +522,17 @@ public class SystemManager implements Initializable {
                 obj.getChildren().remove(obj.getChildren().get(i));
             }
         }
+    }
+
+    // resets image view of shot counters
+    public void resetShotCounter(String name) {
         Pane object = getButtonLocation(name);
         for (int i = 0; i < object.getChildren().size(); i++) {
-            if (obj.getChildren().get(i).getAccessibleRole().compareTo(AccessibleRole.IMAGE_VIEW) == 0) {
-                obj.getChildren().get(i).setVisible(false);
+            if (object.getChildren().get(i).getAccessibleRole().compareTo(AccessibleRole.IMAGE_VIEW) == 0) {
+                String id = object.getChildren().get(i).getId();
+                if (id.equals("shotOne") || id.equals("shotTwo") || id.equals("shotThree")) {
+                    object.getChildren().get(i).setVisible(false);
+                }
             }
         }
     }
@@ -633,7 +654,7 @@ public class SystemManager implements Initializable {
         actPrintLabel.setText("");
 
         // If card has finished increment cards finished
-        if (cardsFinished == 9) { /* TESTING AT 4 SHOULD BE AT 9 */
+        if (cardsFinished == 4) { /* TESTING AT 4 SHOULD BE AT 9 */
             showRoles(false);
             cardsFinished = 0;
             day++;
@@ -696,6 +717,7 @@ public class SystemManager implements Initializable {
             if (!set.getSetName().equals("trailer") && !set.getSetName().equals("office")) {
                 if (day > 1) {
                     deleteCardHelperInfo(set.getSetName());
+                    resetShotCounter(set.getSetName());
                 }
                 createCardHelper(set);
             }

@@ -74,6 +74,10 @@ public class SystemManager implements Initializable {
     @FXML
     private Button actButton, rehearseButton, upgradeButton, rollDieButton;
 
+    // Shots
+    @FXML
+    private ImageView shotOne, shotTwo, shotThree;
+
     // upgrade buttons
     @FXML
     private Button upgradeRankButton, payWDollarButton, payWCreditButton;
@@ -111,6 +115,10 @@ public class SystemManager implements Initializable {
         upgradeRankButton.setVisible(false);
         payWDollarButton.setVisible(false);
         payWCreditButton.setVisible(false);
+//        for (int i = 0; i < 3; i++) {
+//            shotCounter(i+1).setVisible(false);
+//        }
+
     }
 
     // Set buttons visible for when moving
@@ -183,7 +191,8 @@ public class SystemManager implements Initializable {
         rollDieButton.setVisible(false);
         // actPrintLabel.setText(OnTurn.getInstance().getPrintMessage());
         // actPrintLabel.setText(OnTurn.getInstance().getPrintMessage());
-        if (OnTurn.getInstance().act(currentP)) {
+        int actResponse = OnTurn.getInstance().act(currentP);
+        if (actResponse == 1) {
             cardsFinished++;
             int cardNum = Deck.getInstance()
                     .getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getCardID();
@@ -194,7 +203,6 @@ public class SystemManager implements Initializable {
                 panePrevious.getChildren().remove(playerPerson(p.getPlayerPriority()));
                 Pane paneCurrent = getButtonLocation(currentP.getPlayerLocation());
                 paneCurrent.getChildren().add(playerPerson(p.getPlayerPriority()));
-
             }
 
             ArrayList<Player> playersInRoomOffCard = Board.getInstance().getSet(currentP.getPlayerLocation())
@@ -208,10 +216,35 @@ public class SystemManager implements Initializable {
             }
             Board.getInstance().getSet(currentP.getPlayerLocation()).removePlayersFormRoomOffCard(currentP);
 
-            player1.getParent();
+            //remove shotCounters
+            for (int i = 0; i < 3; i++) {
+                shotCounter(i+1).setVisible(false);
+            }
+
+            player1.getParent(); //how come this is only calling player1
             Board.getInstance().getSet(currentP.getPlayerLocation()).setIsActive(false);
             getCard(currentP.getPlayerLocation()).setVisible(false);
         }
+
+        if(actResponse == 2 || actResponse == 1) {
+
+            Pane paneCurrent = getButtonLocation(currentP.getPlayerLocation());
+            System.out.println ("test  ");
+            for (int i = 0; i< paneCurrent.getChildren().size(); i++) {
+                if (paneCurrent.getChildren().get(i).getAccessibleRole().compareTo(AccessibleRole.IMAGE_VIEW) == 0) {
+                    System.out.println ("testing123  " +paneCurrent.getChildren().get(i).getId());
+                    if (!paneCurrent.getChildren().get(i).isVisible()) {
+                        paneCurrent.getChildren().get(i).setVisible(true);
+                        break;
+                    }
+                }
+            }
+            //paneCurrent.getChildren().add(shotCounter(OnTurn.getInstance().getshotCounterImageNum()).setVisible(true));
+
+            //shotCounter(OnTurn.getInstance().getshotCounterImageNum()).setVisible(true);  /////////////////
+        }
+
+
         actPrintLabel.setText(OnTurn.getInstance().getPrintMessage());
         playerDollar.setText("Dollars: " + currentP.getDollar());
         playerCredit.setText("Credits: " + currentP.getCredit());
@@ -392,6 +425,17 @@ public class SystemManager implements Initializable {
             default -> player8;
         };
     }
+
+    public ImageView shotCounter(int val) {
+        return switch (val) {
+            case 1 -> shotOne;
+            case 2 -> shotTwo;
+            case 3 -> shotThree;
+            default -> shotThree;
+        };
+    }
+
+
 
     public void onMove(ActionEvent event) {
         String name = ((Node) event.getSource()).getId();
@@ -624,6 +668,12 @@ public class SystemManager implements Initializable {
                 OnTurn.getInstance().endFunction(players, numPlayer);
             } else {
                 resetAll(players, day, numPlayer);
+
+                //remove shotCounters
+//                for (int i = 0; i < OnTurn.getInstance().getshotCounterImageNum(); i++) {
+//                    shotCounter
+//                }
+
             }
         }
     }
@@ -654,6 +704,11 @@ public class SystemManager implements Initializable {
         secretHideoutCard.setVisible(true);
         churchCard.setVisible(true);
         hotelCard.setVisible(true);
+
+//        //remove shotCounters
+//        for (int i = 0; i < 3; i++) {
+//            shotCounter(i+1).setVisible(false);
+//        }
 
         dayDisplay.setText("Day " + day);
 

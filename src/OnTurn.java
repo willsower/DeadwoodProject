@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class OnTurn {
     private static OnTurn instance = null;
     private String printMessage;
+    private int shotCounterImageNum;
 
     // Create instance
     public static OnTurn getInstance() {
@@ -153,7 +154,7 @@ public class OnTurn {
     }
 
     // Act function for players
-    public boolean act(Player player) {
+    public int act(Player player) {
         int cardBudget = Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum())
                 .getCardBudget();
         int counter = Board.getInstance().getSet(player.getPlayerLocation()).getShotCounter();
@@ -165,7 +166,7 @@ public class OnTurn {
 
         // if success
         if (diceRoll + player.getPracticeChip() >= cardBudget) {
-            // if oncar
+            // if oncard
             counter -= 1;
             Board.getInstance().getSet(player.getPlayerLocation()).setShotCounter(counter);
 
@@ -173,6 +174,8 @@ public class OnTurn {
             //System.out.println("SUCCESS IN ACTING");
             //setPrintMessage("SUCCESS IN ACTING", );
             System.out.println("  Current Shot Counter: " + counter);
+            setShotCounterImageNum(counter);
+
             if (player.getOnCardRole() == true) { // on card
                 player.setCredit(player.getCredit() + 2);
                 setPrintMessage("SUCCESS IN ACTING: on card roles Credit +2");
@@ -180,15 +183,15 @@ public class OnTurn {
                 player.setCredit(player.getCredit() + 1);
                 player.setDollar(player.getDollar() + 1);
                 setPrintMessage("SUCCESS IN ACTING: off card roles Credit +1 and Dollar +1");
+
             }
 
 
-            UserInterfaceDisplay.getInstance().displayPlayerInfo(player); //won't need
+           // UserInterfaceDisplay.getInstance().displayPlayerInfo(player); //won't need
 
             // end of card, calculate payout will be called and reset card and player information
             if (counter == 0) {
-                int cardNum = Deck.getInstance()
-                        .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getCardID();
+                int cardNum = Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getCardID();
 
                 if ( Deck.getInstance().getCard(cardNum).getPlayersInRoomOnCard().isEmpty() == false) {
                     ScoringManager.getInstance().endOfCard(player, cardBudget,
@@ -200,7 +203,7 @@ public class OnTurn {
 
                 Board.getInstance().getSet(player.getPlayerLocation()).resetSetAtCard();
                 Board.getInstance().getSet(player.getPlayerLocation()).setIsActive(false);
-                return true; // returns to turn() in onTurn.java
+                return 1; // returns to turn() in onTurn.java
             }
 
         } else { // else fail
@@ -213,10 +216,12 @@ public class OnTurn {
             if (player.getOffCardRole() == true) { //offcard
                 player.setDollar(player.getDollar() + 1);
                 setPrintMessage("FAILED IN ACTING: off card roles Dollar +1");
+
             }
-/**/            UserInterfaceDisplay.getInstance().displayPlayerInfo(player);
+            return 3;
+            /**/           // UserInterfaceDisplay.getInstance().displayPlayerInfo(player);
         }
-        return false; // returns to turn() in onTurn.java
+        return 2; // returns to turn() in onTurn.java
     }
 
     public String getPrintMessage () {
@@ -226,6 +231,16 @@ public class OnTurn {
     public void setPrintMessage (String str) {
         printMessage = str;
     }
+
+    public int getshotCounterImageNum () {
+        return shotCounterImageNum;
+    }
+
+    public void setShotCounterImageNum (int num) {
+        shotCounterImageNum = num;
+    }
+
+
 
     // Random number generater between 1 and 6, like a die roll
     public static int roll() {

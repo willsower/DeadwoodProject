@@ -500,11 +500,18 @@ public class SystemManager implements Initializable {
         }
     }
 
+    // Deletes pane objects for card roles at start of each day. Also resets image view of shot counters
     public void deleteCardHelperInfo(String name) {
         Pane obj = getCardPane(name);
         for (int i = 0; i < obj.getChildren().size(); i++) {
             if (obj.getChildren().get(i).getAccessibleRole().compareTo(AccessibleRole.PARENT) == 0) {
                 obj.getChildren().remove(obj.getChildren().get(i));
+            }
+        }
+        Pane object = getButtonLocation(name);
+        for (int i = 0; i < object.getChildren().size(); i++) {
+            if (obj.getChildren().get(i).getAccessibleRole().compareTo(AccessibleRole.IMAGE_VIEW) == 0) {
+                obj.getChildren().get(i).setVisible(false);
             }
         }
     }

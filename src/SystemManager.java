@@ -115,10 +115,6 @@ public class SystemManager implements Initializable {
         upgradeRankButton.setVisible(false);
         payWDollarButton.setVisible(false);
         payWCreditButton.setVisible(false);
-//        for (int i = 0; i < 3; i++) {
-//            shotCounter(i+1).setVisible(false);
-//        }
-
     }
 
     // Set buttons visible for when moving
@@ -294,10 +290,6 @@ public class SystemManager implements Initializable {
         }
     }
 
-    public int getUpgradeRankChoice() { // should not need
-        return rankChoice;
-    }
-
     public void loadData() {
         // list.removeAll(list);
         System.out.println(list);
@@ -352,9 +344,7 @@ public class SystemManager implements Initializable {
     }
 
     public void makeButtonVisible(boolean act, boolean rehearse, boolean upgrade) {
-        // actButton.toFront(); //may not need
         actButton.setVisible(act);
-        // rehearseButton.toFront(); //may not need
         rehearseButton.setVisible(rehearse);
         upgradeButton.setVisible(upgrade);
     }
@@ -426,7 +416,6 @@ public class SystemManager implements Initializable {
         return switch (val) {
             case 1 -> shotOne;
             case 2 -> shotTwo;
-            case 3 -> shotThree;
             default -> shotThree;
         };
     }

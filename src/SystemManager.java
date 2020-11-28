@@ -339,7 +339,8 @@ public class SystemManager implements Initializable {
             for (int j = 0; j < obj.getChildren().size(); j++) {
                 String name = obj.getChildren().get(j).getId().replace("_", " ");
                 if (obj.getChildren().get(j).getAccessibleRole().compareTo(AccessibleRole.PARENT) == 0
-                        && name.equals(card.get(i))) {
+                        && name.equals(card.get(i).replace(",", ""))) {
+
                     for (int x = 0; x < ((Pane) obj.getChildren().get(j)).getChildren().size(); x++) {
                         if (((Pane) obj.getChildren().get(j)).getChildren().get(x).getAccessibleRole()
                                 .compareTo(AccessibleRole.BUTTON) == 0) {
@@ -358,7 +359,7 @@ public class SystemManager implements Initializable {
     // Function that will show off card role options if they are availble, or disable
     public void showOffCardRoleOptions(boolean val) {
         ArrayList<String> offCard = OnTurn.getInstance().getPartsAvailOffCard(currentP);
-       showRoleOptionHelper(offCard, val, getButtonLocation(currentP.getPlayerLocation()));
+        showRoleOptionHelper(offCard, val, getButtonLocation(currentP.getPlayerLocation()));
     }
 
     // Function that will show on card role options if they are availble, or disable

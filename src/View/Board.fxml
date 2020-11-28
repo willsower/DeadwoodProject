@@ -111,9 +111,9 @@
                   <Button fx:id="Falls_off_Roof" ellipsisString="" mnemonicParsing="false" onAction="#offCardRole" opacity="0.5" prefHeight="30.0" prefWidth="30.0" visible="false" />
                </children>
             </Pane>
-            <Pane fx:id="Women_in_Black_Dress" prefHeight="30.0" prefWidth="30.0" translateX="21.0" translateY="69.0">
+            <Pane fx:id="Woman_in_Black_Dress" prefHeight="30.0" prefWidth="30.0" translateX="21.0" translateY="69.0">
                <children>
-                  <Button fx:id="Women_in_Black_Dress" ellipsisString="" mnemonicParsing="false" onAction="#offCardRole" opacity="0.5" prefHeight="30.0" prefWidth="30.0" visible="false" />
+                  <Button fx:id="Woman_in_Black_Dress" ellipsisString="" mnemonicParsing="false" onAction="#offCardRole" opacity="0.5" prefHeight="30.0" prefWidth="30.0" visible="false" />
                </children>
             </Pane>
             <Pane fx:id="Mayor_McGinty" prefHeight="30.0" prefWidth="30.0" translateX="74.0" translateY="69.0">

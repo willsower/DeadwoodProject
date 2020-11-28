@@ -42,9 +42,9 @@ public class SystemManager implements Initializable {
     @FXML //ImageViews
     private ImageView trainStationCard, jailCard, mainStreetCard, generalStoreCard, saloonCard, ranchCard, bankCard,
             secretHideoutCard, churchCard, hotelCard, boardImage, shotOne, shotTwo, shotThree, player1, player2, player3,
-            player4, player5, player6, player7, player8;
+            player4, player5, player6, player7, player8, woodBoard;
     @FXML // Text display
-    private Label currentPlayer, playerDollar, playerCredit, playerPracticeChip, dayDisplay, displayText, actPrintLabel;
+    private Label currentPlayer, playerDollar, playerCredit, playerPracticeChip, dayDisplay, displayText, actPrintLabel, finalScoreLabel, finalScoreTitle, winnerIsLabel, winnerLabel;
     @FXML // Action Buttons
     private Button actButton, rehearseButton, upgradeButton, rollDieButton, submitButton, upgradeRankButton, payWDollarButton, payWCreditButton, nextPlayer;
     @FXML private TextField userInput;
@@ -463,7 +463,7 @@ public class SystemManager implements Initializable {
     // Function will end the current players turn and set player label information
     // for next player
     public void nextPlayerPush(ActionEvent event) {
-        if (cardsFinished < 9) {
+        if (cardsFinished < 4) {
             showRoles(false);
             showButton(currentP.getPlayerLocation(), false);
 
@@ -476,7 +476,7 @@ public class SystemManager implements Initializable {
             currentP = players[player];
 
             // Set label with player information
-            setPlayerInformation(currentP.getPracticeChip());
+            setPlayerInformation(currentP.getPracticeChip(), currentP);
 
 
             upgradeBox.setVisible(false);
@@ -484,19 +484,39 @@ public class SystemManager implements Initializable {
             // Hide print label
             actPrintLabel.setText("");
             turn(currentP);
-        } else if (cardsFinished == 9) { /* TESTING AT 4 SHOULD BE AT 9 */
+        } else if (cardsFinished == 4) {
             showRoles(false);
             cardsFinished = 0;
             day++;
             if (OnTurn.getInstance().calculateDaysPlayed(numPlayer) + 1 == day) {
                 nextPlayer.setVisible(false);
-                OnTurn.getInstance().endFunction(players, numPlayer);
+                woodBoard.setVisible(true);
+
+                //finalScoreTitle.setText("Calculating end score");
+                finalScoreTitle.setVisible(true);
+                for (int i = 0; i < players.length; i++) {
+                    setPlayerInformation(7, players[i]);
+                }
+                displayWinner(OnTurn.getInstance().endFunction(players, numPlayer));
             } else {
                 resetAll(players, day, numPlayer);
                 turn(currentP);
             }
         }
     }
+
+    // Display winners of game
+    public void displayWinner(Integer[] finals) {
+        //winnerIsLabel.setText("The winner(s) are: ");
+        winnerIsLabel.setVisible(true);
+        for (int i = 0; i < finals.length; i++) {
+            if (finals[i] != 0) {
+                winnerLabel.setText("  Player " + finals[i]);
+                winnerLabel.setVisible(true);
+            }
+        }
+    }
+
 
     // Sets board up at each day
     public void setUpBoard(int day) {
@@ -524,15 +544,17 @@ public class SystemManager implements Initializable {
                 resetToTrailers(playerPerson(i + 1), i);
             }
         }
-        setPlayerInformation(0);
+        setPlayerInformation(0 , currentP);
     }
 
     // Prints player information
-    public void setPlayerInformation(int practiceChip) {
-        currentPlayer.setText("Player " + currentP.getPlayerPriority() + ": " + currentP.getColorName());
-        playerDollar.setText("Dollars: " + currentP.getDollar());
-        playerCredit.setText("Credits: " + currentP.getCredit());
-        playerPracticeChip.setText("Practice Chips: " + practiceChip);
+    public void setPlayerInformation(int practiceChip, Player player) {
+        currentPlayer.setText("Player " + player.getPlayerPriority() + ": " + player.getColorName());
+        playerDollar.setText("Dollars: " + player.getDollar());
+        playerCredit.setText("Credits: " + player.getCredit());
+        if (practiceChip < 6) {
+            playerPracticeChip.setText("Practice Chips: " + practiceChip);
+        }
     }
 
     // Reset helper, will reset board and everything at end of day

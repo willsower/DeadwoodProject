@@ -186,9 +186,6 @@ public class OnTurn {
 
             }
 
-
-           // UserInterfaceDisplay.getInstance().displayPlayerInfo(player); //won't need
-
             // end of card, calculate payout will be called and reset card and player information
             if (counter == 0) {
                 int cardNum = Deck.getInstance().getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum()).getCardID();
@@ -203,25 +200,18 @@ public class OnTurn {
 
                 Board.getInstance().getSet(player.getPlayerLocation()).resetSetAtCard();
                 Board.getInstance().getSet(player.getPlayerLocation()).setIsActive(false);
-                return 1; // returns to turn() in onTurn.java
+                return 1;
             }
 
         } else { // else fail
-            //System.out.println("\n  FAILED IN ACTING");
-            //SystemManager.getInstance().printLabel("FAILED IN ACTING");
-            //System.out.println("FAILED IN ACTING");
-
-           // setPrintMessage("FAILED IN ACTING");
-
             if (player.getOffCardRole() == true) { //offcard
                 player.setDollar(player.getDollar() + 1);
                 setPrintMessage("FAILED IN ACTING: off card roles Dollar +1");
 
             }
             return 3;
-            /**/           // UserInterfaceDisplay.getInstance().displayPlayerInfo(player);
         }
-        return 2; // returns to turn() in onTurn.java
+        return 2;
     }
 
     public String getPrintMessage () {
@@ -232,15 +222,13 @@ public class OnTurn {
         printMessage = str;
     }
 
-    public int getshotCounterImageNum () {
+    public int getShotCounterImageNum () {
         return shotCounterImageNum;
-    }
+    } //don't think we need
 
     public void setShotCounterImageNum (int num) {
         shotCounterImageNum = num;
-    }
-
-
+    } //don't think we need
 
     // Random number generater between 1 and 6, like a die roll
     public static int roll() {
@@ -270,16 +258,16 @@ public class OnTurn {
     }
 
     // Get the final scores
-    public void endFunction(Player[] player, int numPlayer) {
+    public Integer[] endFunction(Player[] player, int numPlayer) {
         Integer[] whoWon = new Integer[numPlayer];
         int index = 0;
 
-        System.out.println("\n=========");
-        System.out.println("Calculating end score");
-        for (int i = 0; i < player.length; i++) { //probably dont need
-            /**/            UserInterfaceDisplay.getInstance().displayPlayerInfo(player[i]);
-        }
-        System.out.println("\n\n");
+//        System.out.println("\n=========");
+//        System.out.println("Calculating end score");
+//        for (int i = 0; i < player.length; i++) {
+//            /**/            UserInterfaceDisplay.getInstance().displayPlayerInfo(player[i]);
+//        }
+//        System.out.println("\n\n");
 
         // Set everything to 0
         whoWon = zero(whoWon);
@@ -312,7 +300,8 @@ public class OnTurn {
             }
         }
 
-        /**/        UserInterfaceDisplay.getInstance().displayWinner(whoWon); //dont need
+        return whoWon;
+        /**/        //UserInterfaceDisplay.getInstance().displayWinner(whoWon); //dont need
     }
 
     // Resetall function will be called at the start of each game

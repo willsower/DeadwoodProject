@@ -21,6 +21,22 @@
                   <Image url="@../images/table.png" />
                </image>
             </ImageView>
+            <Label fx:id="finalScoreLabel" alignment="CENTER" prefWidth="1000.0" styleClass="western" text="Calculating end score" textAlignment="CENTER" textFill="WHITE" translateY="-50.0" visible="false">
+               <font>
+                  <Font size="40.0" />
+               </font></Label>
+            <Label fx:id="finalScoreTitle" alignment="CENTER" prefWidth="1000.0" styleClass="western" text="Label" textAlignment="CENTER" textFill="WHITE" visible="false">
+               <font>
+                  <Font size="40.0" />
+               </font></Label>
+            <Label fx:id="winnerIsLabel" alignment="CENTER" prefWidth="1000.0" styleClass="western" text="The winner(s) are: " textAlignment="CENTER" textFill="WHITE" translateY="50.0" visible="false">
+               <font>
+                  <Font size="40.0" />
+               </font></Label>
+            <Label fx:id="winnerLabel" alignment="CENTER" prefWidth="1000.0" styleClass="western" text="Label" textFill="WHITE" translateY="100.0" visible="false">
+               <font>
+                  <Font size="40.0" />
+               </font></Label>
          </children>
       </GridPane>
       <GridPane prefHeight="101.0" prefWidth="227.0" translateX="650.0" translateY="20.0">

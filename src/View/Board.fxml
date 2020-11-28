@@ -450,7 +450,7 @@
       </VBox>
       <Button fx:id="rollDieButton" mnemonicParsing="false" onAction="#rollDieAction" text="Roll Die" visible="false" AnchorPane.topAnchor="350.0" />
       <Button fx:id="nextPlayer" layoutX="-65.0" layoutY="71.0" mnemonicParsing="false" onAction="#nextPlayerPush" prefHeight="50.0" prefWidth="96.0" text="Next Turn" translateX="100.0" translateY="-30.0" visible="false" />
-      <VBox layoutX="20.0" layoutY="480.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="480.0">
+      <VBox fx:id="paymentOption" layoutX="20.0" layoutY="480.0" visible="false" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="480.0">
          <children>
             <Button fx:id="payWDollarButton" mnemonicParsing="false" onAction="#payWDollarAction" text="Pay with Dollar" visible="false" />
             <Button fx:id="payWCreditButton" mnemonicParsing="false" onAction="#payWCreditAction" text="Pay with Credit" visible="false" />

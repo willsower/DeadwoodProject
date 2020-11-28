@@ -330,6 +330,7 @@ public class SystemManager implements Initializable {
         letUpgrade();
     }
 
+    // Helper function to add player into pane when they take role
     public void takeRoleHelper(ActionEvent event) {
         Pane previousPane = getButtonLocation(currentP.getPlayerLocation());
         ImageView thisPlayer = playerPerson(currentP.getPlayerPriority());
@@ -340,20 +341,12 @@ public class SystemManager implements Initializable {
         showRoleMoveNext(false, false, true);
     }
 
-    //
+    // When clicked off card role, will set player to that role
     public void offCardRole(ActionEvent event) {
         String name = ((Node) event.getSource()).getId();
         String set = OnTurn.getInstance().parseForSet(((Node) event.getSource()).getParent().getParent().getId());
 
         OnTurn.getInstance().takeOffCardRole(currentP, name, set);
-
-//        Pane previousPane = getButtonLocation(currentP.getPlayerLocation());
-//        ImageView thisPlayer = playerPerson(currentP.getPlayerPriority());
-//        previousPane.getChildren().remove(thisPlayer);
-//        Pane newPane = ((Pane) ((Button) event.getSource()).getParent());
-//        newPane.getChildren().add(thisPlayer);
-//
-//        showRoleMoveNext(false, false, true);
         takeRoleHelper(event);
     }
 
@@ -444,30 +437,24 @@ public class SystemManager implements Initializable {
         }
     }
 
+    // Function will call createCardRoles function depending on how many roles are on a card. If there are three roles,
+    // will create three different panes/buttons for that card, etc
     public void createCardHelper(Set name) {
         Pane obj = getCardPane(name.getSetName());
-        switch (Deck.getInstance().getCard(name.getCardNum()).getPart().size()) {
-            case 1:
-                createCardRoles(obj, 50, 28, Deck.getInstance()
-                        .getCard(Board.getInstance().getSet(name.getSetName()).getCardNum()).getPart().get(0).partName);
-                break;
-            case 2:
-                createCardRoles(obj, 30, 28, Deck.getInstance()
-                        .getCard(Board.getInstance().getSet(name.getSetName()).getCardNum()).getPart().get(0).partName);
-                createCardRoles(obj, 70, 28, Deck.getInstance()
-                        .getCard(Board.getInstance().getSet(name.getSetName()).getCardNum()).getPart().get(1).partName);
-                break;
-            default:
-                createCardRoles(obj, 11, 28, Deck.getInstance()
-                        .getCard(Board.getInstance().getSet(name.getSetName()).getCardNum()).getPart().get(0).partName);
-                createCardRoles(obj, 50, 28, Deck.getInstance()
-                        .getCard(Board.getInstance().getSet(name.getSetName()).getCardNum()).getPart().get(1).partName);
-                createCardRoles(obj, 90, 28, Deck.getInstance()
-                        .getCard(Board.getInstance().getSet(name.getSetName()).getCardNum()).getPart().get(2).partName);
-                break;
+        if (Deck.getInstance().getCard(name.getCardNum()).getPart().size() == 1) {
+            createCardRoles(obj, 50, 28, Deck.getInstance().getCard(Board.getInstance().getSet(name.getSetName()).getCardNum()).getPart().get(0).partName);
+        } else if (Deck.getInstance().getCard(name.getCardNum()).getPart().size() == 2) {
+            createCardRoles(obj, 30, 28, Deck.getInstance().getCard(Board.getInstance().getSet(name.getSetName()).getCardNum()).getPart().get(0).partName);
+            createCardRoles(obj, 70, 28, Deck.getInstance().getCard(Board.getInstance().getSet(name.getSetName()).getCardNum()).getPart().get(1).partName);
+        } else {
+            createCardRoles(obj, 11, 28, Deck.getInstance().getCard(Board.getInstance().getSet(name.getSetName()).getCardNum()).getPart().get(0).partName);
+            createCardRoles(obj, 50, 28, Deck.getInstance().getCard(Board.getInstance().getSet(name.getSetName()).getCardNum()).getPart().get(1).partName);
+            createCardRoles(obj, 90, 28, Deck.getInstance().getCard(Board.getInstance().getSet(name.getSetName()).getCardNum()).getPart().get(2).partName);
         }
     }
 
+    // Function that creates on card role pane, buttons. This is so at each day on card, user can take on card roles
+    // this is reset at the end of each day and then redone at the beginning of the day for new card
     public void createCardRoles(Pane parentCard, int x, int y, String id) {
         Pane newPane = new Pane();
         newPane.setPrefWidth(30);
@@ -479,55 +466,30 @@ public class SystemManager implements Initializable {
         Button test = new Button();
         newPane.getChildren().add(test);
         test.setPrefWidth(30);
-        test.setPrefHeight(30);
-        test.toFront();
         test.setId(id.replace(" ", "_"));
         test.setVisible(false);
         test.setOpacity(0.5);
         test.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
+            @Override //When player clicks on on card role, will set them to that role
             public void handle(ActionEvent event) {
                 String name = ((Node) event.getSource()).getId();
                 String set = OnTurn.getInstance()
                         .parseForSet(((Node) event.getSource()).getParent().getParent().getParent().getId());
 
                 OnTurn.getInstance().takeOnCardRole(currentP, name, set);
-
-//                Pane previousPane = getButtonLocation(currentP.getPlayerLocation());
-//                ImageView thisPlayer = playerPerson(currentP.getPlayerPriority());
-//                previousPane.getChildren().remove(thisPlayer);
-//                Pane newPane = ((Pane) ((Button) event.getSource()).getParent());
-//                newPane.getChildren().add(thisPlayer);
-//                showRoles(false);
-//                showButton(currentP.getPlayerLocation(), false);
                 takeRoleHelper(event);
             }
         });
     }
 
+    // Check to see if player can upgrade, if they can show the option
     public void letUpgrade() {
         if (currentP.getPlayerLocation().equals("office")) {
             nextPlayer.setVisible(true);
-            // visible upgrade button
-            // makeButtonVisible(false, false, true);
-            // Upgrade.getInstance().levelsCanUpgrade(currentP); //populate choice box
-            int answer = Upgrade.getInstance().canUpgrade(currentP.getLevel() + 1, currentP.getPlayerLocation(),
-                    currentP.getDollar(), currentP.getCredit());
-            if (answer != 0) {
+            if (Upgrade.getInstance().canUpgrade(currentP.getLevel() + 1, currentP.getPlayerLocation(),
+                    currentP.getDollar(), currentP.getCredit())) {
                 makeButtonVisible(false, false, true);
-                switch (answer) {
-                    case 1 -> setPayButtonsVisible(true, true);
-                    case 2 -> setPayButtonsVisible(true, false);
-                    default -> setPayButtonsVisible(false, true);
-                }
             }
-
-        } else if (!currentP.getPlayerLocation().equals("trailer")) {
-            makeButtonVisible(false, false, false);
-
-            /* TAKE ROLE OPTION */ // don't think i need it here
-        } else {
-            nextPlayer.setVisible(true);
         }
     }
 

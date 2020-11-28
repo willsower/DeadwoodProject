@@ -94,7 +94,6 @@ public class SystemManager implements Initializable {
                 playerPerson(i + 1).setImage(players[i].getPlayerImage());
                 changeCoords(players[i].getXCoord(), players[i].getYCoord(), playerPerson(i + 1));
             }
-
             turn(players[0]);
         }
     }
@@ -332,10 +331,10 @@ public class SystemManager implements Initializable {
     public void showRoles(boolean val, String location) {
         if (!location.equals("trailer") && !location.equals("office")) {
             if (!Board.getInstance().getSet(location).getIsActive()) {
-                showOffCardRoleOptions(false);
+                showOffCardRoleOptions(false, location, currentP);
                 showOnCardRoleOptions(false);
             } else {
-                showOffCardRoleOptions(val);
+                showOffCardRoleOptions(val, location, currentP);
                 showOnCardRoleOptions(val);
             }
         }
@@ -366,9 +365,9 @@ public class SystemManager implements Initializable {
     }
 
     // Function that will show off card role options if they are availble, or disable
-    public void showOffCardRoleOptions(boolean val) {
-        ArrayList<String> offCard = OnTurn.getInstance().getPartsAvailOffCard(currentP);
-        showRoleOptionHelper(offCard, val, getButtonLocation(currentP.getPlayerLocation()));
+    public void showOffCardRoleOptions(boolean val, String location, Player player) {
+        ArrayList<String> offCard = OnTurn.getInstance().getPartsAvailOffCard(player);
+        showRoleOptionHelper(offCard, val, getButtonLocation(location));
     }
 
     // Function that will show on card role options if they are availble, or disable
@@ -507,7 +506,6 @@ public class SystemManager implements Initializable {
                 if (day > 1) {
                     deleteCardHelperInfo(set.getSetName());
                     resetShotCounter(set.getSetName());
-                    showRoleMoveNext(false, false, true, set.getSetName());
                 }
                 createCardHelper(set);
             }
@@ -516,8 +514,8 @@ public class SystemManager implements Initializable {
         // Reset players to trailers
         if (day > 1) {
             for (int i = 0; i < numPlayer; i++) {
+                showOffCardRoleOptions(false, players[i].getPlayerLocation(), players[i]);
                 resetToTrailers(playerPerson(i + 1), i);
-
             }
         }
         setPlayerInformation(0);

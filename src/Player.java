@@ -173,7 +173,7 @@ public class Player {
     // depending on the boolean value
     public void resetPlayers(boolean isNotAfterCard) {
         if (isNotAfterCard) { // true
-            playerLocation = "trailer";
+//            playerLocation = "trailer";
             //playerLocation = "office"; /* TEST UPGRADE */
             //System.out.println("TEST 1");
         }

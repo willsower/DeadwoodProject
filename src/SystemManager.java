@@ -478,10 +478,8 @@ public class SystemManager implements Initializable {
             // Set label with player information
             setPlayerInformation(currentP.getPracticeChip());
 
-            // Hide all upgrade related buttons in case player decides to not upgrade after
-            // pushing upgrade button
-            payWDollarButton.setVisible(false);
-            payWCreditButton.setVisible(false);
+
+            upgradeBox.setVisible(false);
 
             // Hide print label
             actPrintLabel.setText("");
@@ -565,10 +563,7 @@ public class SystemManager implements Initializable {
         // If player has not taken a role, let them move
         if (player.getOffCardRole() == false && player.getOnCardRole() == false) {
             letUpgrade();
-            showRoles(true);
-            showButton(player.getPlayerLocation(), true); // location buttons
-
-            nextPlayer.setVisible(true);
+            showRoleMoveNext(true, true, true);
 
         } else { /* goes into this else correctly */
             showRoles(false);

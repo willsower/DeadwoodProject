@@ -330,13 +330,14 @@ public class SystemManager implements Initializable {
 
     // Show on card roles or off card roles depending
     public void showRoles(boolean val, String location) {
-        if (!Board.getInstance().getSet(location).getIsActive()) {
-            showOffCardRoleOptions(false);
-            showOnCardRoleOptions(false);
-        }
-        else if (!location.equals("trailer") && !location.equals("office")) {
-            showOffCardRoleOptions(val);
-            showOnCardRoleOptions(val);
+        if (!location.equals("trailer") && !location.equals("office")) {
+            if (!Board.getInstance().getSet(location).getIsActive()) {
+                showOffCardRoleOptions(false);
+                showOnCardRoleOptions(false);
+            } else {
+                showOffCardRoleOptions(val);
+                showOnCardRoleOptions(val);
+            }
         }
     }
 
@@ -503,10 +504,10 @@ public class SystemManager implements Initializable {
             if (!set.getSetName().equals("trailer") && !set.getSetName().equals("office")) {
                 getCard(set.getSetName()).setImage(Deck.getInstance().getBackOfCardSmall());
                 getCard(set.getSetName()).setVisible(true);
-                showRoleMoveNext(false, false, true, set.getSetName());
                 if (day > 1) {
                     deleteCardHelperInfo(set.getSetName());
                     resetShotCounter(set.getSetName());
+                    showRoleMoveNext(false, false, true, set.getSetName());
                 }
                 createCardHelper(set);
             }

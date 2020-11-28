@@ -378,6 +378,7 @@ public class SystemManager implements Initializable {
                     for (int x = 0; x < ((Pane) obj.getChildren().get(j)).getChildren().size(); x++) {
                         if (((Pane) obj.getChildren().get(j)).getChildren().get(x).getAccessibleRole()
                                 .compareTo(AccessibleRole.BUTTON) == 0) {
+                            System.out.println(card.get(i).replace(",", ""));
                             Button myButton = ((Button) ((Pane) obj.getChildren().get(j)).getChildren().get(x));
                             myButton.setVisible(val);
                             myButton.toFront();
@@ -392,6 +393,7 @@ public class SystemManager implements Initializable {
 
     // Function that will show off card role options if they are availble, or disable
     public void showOffCardRoleOptions(boolean val, String location, Player player) {
+        System.out.println("  Location: " + location);
         ArrayList<String> offCard = OnTurn.getInstance().getPartsAvailOffCard(player);
         showRoleOptionHelper(offCard, val, getButtonLocation(location));
     }

@@ -120,20 +120,14 @@ public class SystemManager implements Initializable {
             ArrayList<Player> playersInRoomOnCard = Deck.getInstance().getCard(cardNum).getPlayersInRoomOnCard();
             // moves player to room pane from role pane
             for (Player p : playersInRoomOnCard) {
-                Pane panePrevious = ((Pane) ((Node) playerPerson(p.getPlayerPriority()).getParent()));
-                panePrevious.getChildren().remove(playerPerson(p.getPlayerPriority()));
-                Pane paneCurrent = getButtonLocation(currentP.getPlayerLocation());
-                paneCurrent.getChildren().add(playerPerson(p.getPlayerPriority()));
+                movePlayerHelper(((Pane) ((Node) playerPerson(p.getPlayerPriority()).getParent())), getButtonLocation(currentP.getPlayerLocation()), playerPerson(p.getPlayerPriority()));
             }
 
             ArrayList<Player> playersInRoomOffCard = Board.getInstance().getSet(currentP.getPlayerLocation())
                     .getPlayersInRoomOffCard();
 
             for (Player p : playersInRoomOffCard) {
-                Pane previousPane = (Pane) playerPerson(p.getPlayerPriority()).getParent();
-                previousPane.getChildren().remove(playerPerson(p.getPlayerPriority()));
-                Pane paneCurrent = getButtonLocation(currentP.getPlayerLocation());
-                paneCurrent.getChildren().add(playerPerson(p.getPlayerPriority()));
+                movePlayerHelper((Pane) playerPerson(p.getPlayerPriority()).getParent(), getButtonLocation(currentP.getPlayerLocation()), playerPerson(p.getPlayerPriority()));
             }
             Board.getInstance().getSet(currentP.getPlayerLocation()).removePlayersFormRoomOffCard(currentP);
 
@@ -309,22 +303,15 @@ public class SystemManager implements Initializable {
     public void onMove(ActionEvent event) {
         String name = ((Node) event.getSource()).getId();
         showRoleMoveNext(false, false, false);
-
-        // Put player in new set area
-        Pane previousArea = getButtonLocation(currentP.getPlayerLocation());
-        boolean cardFlip = OnTurn.getInstance().movePlayer(currentP, name);
-        Pane newArea = getButtonLocation(currentP.getPlayerLocation());
-
-        ImageView thisPlayer = playerPerson(currentP.getPlayerPriority());
-        previousArea.getChildren().remove(thisPlayer);
-        newArea.getChildren().add(thisPlayer);
+        String previous = currentP.getPlayerLocation();
 
         // Check if card is flipped, if not flip
+        boolean cardFlip = OnTurn.getInstance().movePlayer(currentP, name);
         if (!cardFlip) {
             getCard(currentP.getPlayerLocation()).setImage(Deck.getInstance()
                     .getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getCardImage());
         }
-
+        movePlayerHelper(getButtonLocation(previous), getButtonLocation(currentP.getPlayerLocation()), playerPerson(currentP.getPlayerPriority()));
         // Let player do next turn, show role options, let player upgrade if applicable
         showRoleMoveNext(false, true, true);
         letUpgrade();
@@ -332,12 +319,7 @@ public class SystemManager implements Initializable {
 
     // Helper function to add player into pane when they take role
     public void takeRoleHelper(ActionEvent event) {
-        Pane previousPane = getButtonLocation(currentP.getPlayerLocation());
-        ImageView thisPlayer = playerPerson(currentP.getPlayerPriority());
-        previousPane.getChildren().remove(thisPlayer);
-        Pane newPane = ((Pane) ((Button) event.getSource()).getParent());
-        newPane.getChildren().add(thisPlayer);
-
+        movePlayerHelper(getButtonLocation(currentP.getPlayerLocation()), ((Pane) ((Button) event.getSource()).getParent()), playerPerson(currentP.getPlayerPriority()));
         showRoleMoveNext(false, false, true);
     }
 
@@ -362,16 +344,16 @@ public class SystemManager implements Initializable {
         }
     }
 
-    public void showOffCardRoleOptions(boolean val) {
-        ArrayList<String> offCard = OnTurn.getInstance().getPartsAvailOffCard(currentP);
+    // Helps showOffCardRoleOptions and onCardRoleOptions. Will display the roles necessary or disable
+    public void showRoleOptionHelper(ArrayList<String> card, boolean val) {
         Pane obj = getButtonLocation(currentP.getPlayerLocation());
 
         int i = 0;
-        while (i < offCard.size()) {
+        while (i < card.size()) {
             for (int j = 0; j < obj.getChildren().size(); j++) {
                 String name = obj.getChildren().get(j).getId().replace("_", " ");
                 if (obj.getChildren().get(j).getAccessibleRole().compareTo(AccessibleRole.PARENT) == 0
-                        && name.equals(offCard.get(i))) {
+                        && name.equals(card.get(i))) {
                     for (int x = 0; x < ((Pane) obj.getChildren().get(j)).getChildren().size(); x++) {
                         if (((Pane) obj.getChildren().get(j)).getChildren().get(x).getAccessibleRole()
                                 .compareTo(AccessibleRole.BUTTON) == 0) {
@@ -387,29 +369,16 @@ public class SystemManager implements Initializable {
         }
     }
 
+    // Function that will show off card role options if they are availble, or disable
+    public void showOffCardRoleOptions(boolean val) {
+        ArrayList<String> offCard = OnTurn.getInstance().getPartsAvailOffCard(currentP);
+       showRoleOptionHelper(offCard, val);
+    }
+
+    // Function that will show on card role options if they are availble, or disable
     public void showOnCardRoleOptions(boolean val) {
         ArrayList<String> onCard = OnTurn.getInstance().getPartsAvailOnCard(currentP);
-        Pane obj = getCardPane(currentP.getPlayerLocation());
-
-        int i = 0;
-        while (i < onCard.size()) {
-            for (int j = 0; j < obj.getChildren().size(); j++) {
-                String name = obj.getChildren().get(j).getId().replace("_", " ");
-                if (obj.getChildren().get(j).getAccessibleRole().compareTo(AccessibleRole.PARENT) == 0
-                        && name.equals(onCard.get(i))) {
-                    for (int x = 0; x < ((Pane) obj.getChildren().get(j)).getChildren().size(); x++) {
-                        if (((Pane) obj.getChildren().get(j)).getChildren().get(x).getAccessibleRole()
-                                .compareTo(AccessibleRole.BUTTON) == 0) {
-                            Button myButton = ((Button) ((Pane) obj.getChildren().get(j)).getChildren().get(x));
-                            myButton.setVisible(val);
-                            myButton.toFront();
-                            break;
-                        }
-                    }
-                }
-            }
-            i++;
-        }
+        showRoleOptionHelper(onCard, val);
     }
 
     // Deletes pane objects for card roles at start of each day
@@ -539,38 +508,15 @@ public class SystemManager implements Initializable {
     // Sets board up at each day
     public void setUpBoard(int day) {
         boardImage.setVisible(true);
-
-        trainStationCard.setImage(Deck.getInstance().getBackOfCardSmall());
-        jailCard.setImage(Deck.getInstance().getBackOfCardSmall());
-        mainStreetCard.setImage(Deck.getInstance().getBackOfCardSmall());
-        generalStoreCard.setImage(Deck.getInstance().getBackOfCardSmall());
-        saloonCard.setImage(Deck.getInstance().getBackOfCardSmall());
-        ranchCard.setImage(Deck.getInstance().getBackOfCardSmall());
-        bankCard.setImage(Deck.getInstance().getBackOfCardSmall());
-        secretHideoutCard.setImage(Deck.getInstance().getBackOfCardSmall());
-        churchCard.setImage(Deck.getInstance().getBackOfCardSmall());
-        hotelCard.setImage(Deck.getInstance().getBackOfCardSmall());
-
-        trainStationCard.setVisible(true);
-        jailCard.setVisible(true);
-        mainStreetCard.setVisible(true);
-        generalStoreCard.setVisible(true);
-        saloonCard.setVisible(true);
-        ranchCard.setVisible(true);
-        bankCard.setVisible(true);
-        secretHideoutCard.setVisible(true);
-        churchCard.setVisible(true);
-        hotelCard.setVisible(true);
-
         dayDisplay.setText("Day " + day);
 
         Enumeration<Set> values = Board.getInstance().getBoard().elements();
-        // iterate through values
+        // iterate through values, set card images,  delete card panes, reset shot counter
         while (values.hasMoreElements()) {
             Set set = values.nextElement();
-
-            // Doesn't set cards to trailer or casting office
             if (!set.getSetName().equals("trailer") && !set.getSetName().equals("office")) {
+                getCard(set.getSetName()).setImage(Deck.getInstance().getBackOfCardSmall());
+                getCard(set.getSetName()).setVisible(true);
                 if (day > 1) {
                     deleteCardHelperInfo(set.getSetName());
                     resetShotCounter(set.getSetName());
@@ -579,33 +525,40 @@ public class SystemManager implements Initializable {
             }
         }
 
+        // Reset players to trailers
         if (day > 1) {
             for (int i = 0; i < numPlayer; i++) {
                 resetToTrailers(playerPerson(i + 1), i);
             }
         }
+        setPlayerInformation(0);
+    }
 
-        /* May need to move elsewhere */ // works fine here
+    // Prints player information
+    public void setPlayerInformation(int practiceChip) {
         currentPlayer.setText("Player " + currentP.getPlayerPriority() + ": " + currentP.getColorName());
         playerDollar.setText("Dollars: " + currentP.getDollar());
         playerCredit.setText("Credits: " + currentP.getCredit());
-        playerPracticeChip.setText("Practice Chips: " + 0);
+        playerPracticeChip.setText("Practice Chips: " + practiceChip);
     }
 
-    // Resetall function will be called at the start of each game
-    // It will reset the variables in other classes, put players back into trailers
-    // Put cards on the appropriate sets
+    // Reset helper, will reset board and everything at end of day
     public void resetAll(Player[] list, int day, int numPlayer) {
         OnTurn.getInstance().resetHelper(list, day, numPlayer);
         setUpBoard(day);
     }
 
-    public void resetToTrailers(ImageView player, int num) {
-        Pane previousPane = getButtonLocation(players[num].getPlayerLocation());
+    // Function that will help move players from previous panes to new panes
+    public void movePlayerHelper(Pane previousPane, Pane newPane, ImageView player) {
         previousPane.getChildren().remove(player);
-        trailer.getChildren().add(player);
+        newPane.getChildren().add(player);
+    }
+
+    // Reset players to trailers helper
+    public void resetToTrailers(ImageView player, int num) {
+        movePlayerHelper(getButtonLocation(players[num].getPlayerLocation()), trailer, player);
         players[num].setPlayerLocation("trailer");
-        nextPlayer.setVisible(true); // could be some place more logical but it works here
+        nextPlayer.setVisible(true);
     }
 
     // Function turn will give player options at start of turn

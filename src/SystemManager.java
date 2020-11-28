@@ -345,9 +345,7 @@ public class SystemManager implements Initializable {
     }
 
     // Helps showOffCardRoleOptions and onCardRoleOptions. Will display the roles necessary or disable
-    public void showRoleOptionHelper(ArrayList<String> card, boolean val) {
-        Pane obj = getButtonLocation(currentP.getPlayerLocation());
-
+    public void showRoleOptionHelper(ArrayList<String> card, boolean val, Pane obj) {
         int i = 0;
         while (i < card.size()) {
             for (int j = 0; j < obj.getChildren().size(); j++) {
@@ -372,13 +370,13 @@ public class SystemManager implements Initializable {
     // Function that will show off card role options if they are availble, or disable
     public void showOffCardRoleOptions(boolean val) {
         ArrayList<String> offCard = OnTurn.getInstance().getPartsAvailOffCard(currentP);
-       showRoleOptionHelper(offCard, val);
+       showRoleOptionHelper(offCard, val, getButtonLocation(currentP.getPlayerLocation()));
     }
 
     // Function that will show on card role options if they are availble, or disable
     public void showOnCardRoleOptions(boolean val) {
         ArrayList<String> onCard = OnTurn.getInstance().getPartsAvailOnCard(currentP);
-        showRoleOptionHelper(onCard, val);
+        showRoleOptionHelper(onCard, val, getCardPane(currentP.getPlayerLocation()));
     }
 
     // Deletes pane objects for card roles at start of each day

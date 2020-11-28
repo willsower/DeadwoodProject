@@ -218,6 +218,7 @@ public class Set {
     public void setPartTaken(String partName, boolean taken) {
         ArrayList<Part> partTaken = getParts();
         for (int i = 0; i < getParts().size(); i++) {
+            System.out.println("PART NAME: " + partName);
             if (partName.equals(partTaken.get(i).partName)) {
                 partTaken.get(i).isTaken = taken;
             }
@@ -250,8 +251,10 @@ public class Set {
     public ArrayList<String> availablePartsOffCard(int playerRank) {
         ArrayList<String> available = new ArrayList<String>();
         ArrayList<Part> partsAvailable = getParts();
+        System.out.println(setName);
         for (int i = 0; i < partsAvailable.size(); i++) {
             if (partsAvailable.get(i).isTaken == false) {
+                System.out.println("  " + partsAvailable.get(i).partName);
                 if (partsAvailable.get(i).level <= playerRank) {
                     available.add(partsAvailable.get(i).partName);
                 }

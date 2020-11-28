@@ -306,10 +306,6 @@ public class SystemManager implements Initializable {
         };
     }
 
-
-
-
-
     public void changeCoords(int x, int y, ImageView player) {
         player.setTranslateX(x);
         player.setTranslateY(y);
@@ -374,7 +370,7 @@ public class SystemManager implements Initializable {
                     for (int x = 0; x < ((Pane) obj.getChildren().get(j)).getChildren().size(); x++) {
                         if (((Pane) obj.getChildren().get(j)).getChildren().get(x).getAccessibleRole()
                                 .compareTo(AccessibleRole.BUTTON) == 0) {
-                            System.out.println(card.get(i).replace(",", ""));
+//                            System.out.println("    Card Role: " + card.get(i).replace(",", ""));
                             Button myButton = ((Button) ((Pane) obj.getChildren().get(j)).getChildren().get(x));
                             myButton.setVisible(val);
                             myButton.toFront();
@@ -389,7 +385,7 @@ public class SystemManager implements Initializable {
 
     // Function that will show off card role options if they are availble, or disable
     public void showOffCardRoleOptions(boolean val, String location, Player player) {
-        System.out.println("  Location: " + location);
+//        System.out.println("  Location: " + location);
         ArrayList<String> offCard = OnTurn.getInstance().getPartsAvailOffCard(player);
         showRoleOptionHelper(offCard, val, getButtonLocation(location));
     }
@@ -483,7 +479,7 @@ public class SystemManager implements Initializable {
 
     // Function will end the current players turn and set player label information for next player
     public void nextPlayerPush(ActionEvent event) {
-        if (cardsFinished < 3) {
+        if (cardsFinished < 2) {
             showRoles(false, currentP.getPlayerLocation());
             showButton(currentP.getPlayerLocation(), false);
             nextPlayer.setVisible(false);
@@ -503,7 +499,7 @@ public class SystemManager implements Initializable {
             // Hide print label
             actPrintLabel.setText("");
             turn(currentP);
-        } else if (cardsFinished == 9) {
+        } else if (cardsFinished == 2) {
             showRoles(false, currentP.getPlayerLocation());
             cardsFinished = 0;
             day++;
@@ -538,11 +534,18 @@ public class SystemManager implements Initializable {
         }
     }
 
-
     // Sets board up at each day
     public void setUpBoard(int day) {
         boardImage.setVisible(true);
         dayDisplay.setText("Day " + day);
+
+        // Reset players to trailers
+        if (day > 1) {
+            for (int i = 0; i < numPlayer; i++) {
+                showOffCardRoleOptions(false, players[i].getPlayerLocation(), players[i]);
+                resetToTrailers(playerPerson(i + 1), i);
+            }
+        }
 
         Enumeration<Set> values = Board.getInstance().getBoard().elements();
         // iterate through values, set card images,  delete card panes, reset shot counter
@@ -558,15 +561,7 @@ public class SystemManager implements Initializable {
                 createCardHelper(set);
             }
         }
-
-        // Reset players to trailers
-        if (day > 1) {
-            for (int i = 0; i < numPlayer; i++) {
-                showOffCardRoleOptions(false, players[i].getPlayerLocation(), players[i]);
-                resetToTrailers(playerPerson(i + 1), i);
-            }
-        }
-        setPlayerInformation(0 );
+        setPlayerInformation(0);
     }
 
     // Prints player information

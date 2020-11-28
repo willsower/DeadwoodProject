@@ -21,91 +21,41 @@ import javafx.scene.image.ImageView;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-
 import java.net.URL;
 import java.util.*;
 
 public class SystemManager implements Initializable {
     private Player[] players;
     private int numPlayer;
-    int cardsFinished = 0;
+    private int cardsFinished = 0;
     private Player currentP;
-    int rankChoice;
+    private int rankChoice;
     private boolean dollarVisible;
     private boolean creditVisible;
     private int player = 0;
     private int day = 1;
 
-    @FXML
-    private ImageView boardImage, deck;
-
-    // Card Image Views
-    @FXML
+    @FXML // Card Panes
     private Pane trainStationCardHolder, jailCardHolder, mainStreetCardHolder, generalStoreCardHolder, saloonCardHolder,
-            ranchCardHolder, bankCardHolder, secretHideoutCardHolder, churchCardHolder, hotelCardHolder;
-    @FXML
+            ranchCardHolder, bankCardHolder, secretHideoutCardHolder, churchCardHolder, hotelCardHolder, trailer, office,
+            mainStreet, saloon, hotel, ranch, generalStore, trainStation, secretHideout, jail, church, bank;
+    @FXML //ImageViews
     private ImageView trainStationCard, jailCard, mainStreetCard, generalStoreCard, saloonCard, ranchCard, bankCard,
-            secretHideoutCard, churchCard, hotelCard;
-
-    // Player's display information
-    @FXML
-    private Label currentPlayer, playerDollar, playerCredit, playerPracticeChip;
-
-    // Text Display
-    @FXML
-    private Label dayDisplay, displayText; // Display current day
-    @FXML
-    private TextField userInput;
-    @FXML
-    private Button submitButton;
-    @FXML
-    private VBox numPlayerBox;
-
-    // Action Buttons
-    @FXML
-    private Button actButton, rehearseButton, upgradeButton, rollDieButton;
-
-    // Shots
-    @FXML
-    private ImageView shotOne, shotTwo, shotThree;
-
-    // upgrade buttons
-    @FXML
-    private Button upgradeRankButton, payWDollarButton, payWCreditButton;
-
+            secretHideoutCard, churchCard, hotelCard, boardImage, shotOne, shotTwo, shotThree, player1, player2, player3,
+            player4, player5, player6, player7, player8;
+    @FXML // Text display
+    private Label currentPlayer, playerDollar, playerCredit, playerPracticeChip, dayDisplay, displayText, actPrintLabel;
+    @FXML // Action Buttons
+    private Button actButton, rehearseButton, upgradeButton, rollDieButton, submitButton, upgradeRankButton, payWDollarButton, payWCreditButton, nextPlayer;
+    @FXML private TextField userInput;
+    @FXML private VBox numPlayerBox;
     ObservableList<Integer> list = FXCollections.observableArrayList();
-    @FXML
-    private ChoiceBox<Integer> upgradeOptions;
+    @FXML private ChoiceBox<Integer> upgradeOptions;
 
-    @FXML
-    private Label actPrintLabel; // print to user success, fail, etc..
-    @FXML
-    private Button nextPlayer;
-
-    // Pane values
-    @FXML
-    private Pane trailer, office, mainStreet, saloon, hotel, ranch, generalStore, trainStation, secretHideout, jail,
-            church, bank;
-
-    // Player pieces
-    @FXML
-    private ImageView player1, player2, player3, player4, player5, player6, player7, player8;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         boardImage.setImage(Board.getInstance().getBoardImage());
-        boardImage.setVisible(false);
-        deck.setVisible(false);
-        makeButtonVisible(false, false, false); /* DONT THINK ROLL IS NEEDED */
-        nextPlayer.setVisible(false);
-
-        actPrintLabel.setText("");
-        rollDieButton.setVisible(false);
-
-        upgradeOptions.setVisible(false); // may also need to disable
-        upgradeRankButton.setVisible(false);
-        payWDollarButton.setVisible(false);
-        payWCreditButton.setVisible(false);
     }
 
     // Set buttons visible for when moving
@@ -668,7 +618,6 @@ public class SystemManager implements Initializable {
     // Sets board up at each day
     public void setUpBoard(int day) {
         boardImage.setVisible(true);
-        deck.setVisible(true);
 
         trainStationCard.setImage(Deck.getInstance().getBackOfCardSmall());
         jailCard.setImage(Deck.getInstance().getBackOfCardSmall());

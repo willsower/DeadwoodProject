@@ -53,14 +53,6 @@
             </Label>
          </children>
       </GridPane>
-      <HBox prefHeight="100.0" prefWidth="140.0" translateX="-18.0" translateY="2.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="15.0">
-         <children>
-            <ImageView fx:id="deck" fitHeight="150.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-1.0">
-               <image>
-                  <Image url="@../images/CardBack-small.jpg" />
-               </image></ImageView>
-         </children>
-      </HBox>
       <Label fx:id="dayDisplay" textFill="WHITE" translateX="394.0" translateY="11.0">
          <font>
             <Font size="60.0" />
@@ -69,7 +61,7 @@
       <Label fx:id="actPrintLabel" />
       <HBox>
          <children>
-            <ImageView fx:id="boardImage" fitHeight="700.0" fitWidth="760.0" pickOnBounds="true" preserveRatio="true" translateX="140.0" translateY="106.0">
+            <ImageView fx:id="boardImage" fitHeight="700.0" fitWidth="760.0" pickOnBounds="true" preserveRatio="true" translateX="140.0" translateY="106.0" visible="false">
                <image>
                   <Image url="@../images/board.jpg" />
                </image>
@@ -451,8 +443,8 @@
       </VBox>
       <VBox alignment="TOP_CENTER" layoutY="400.0" AnchorPane.topAnchor="400.0">
          <children>
-            <ChoiceBox fx:id="upgradeOptions" prefWidth="150.0" />
-            <Button fx:id="upgradeRankButton" mnemonicParsing="false" onAction="#upgradeRankAction" text="Upgrade Rank">
+            <ChoiceBox fx:id="upgradeOptions" prefWidth="150.0" visible="false" />
+            <Button fx:id="upgradeRankButton" mnemonicParsing="false" onAction="#upgradeRankAction" text="Upgrade Rank" visible="false">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
@@ -464,17 +456,17 @@
       </VBox>
       <VBox alignment="TOP_CENTER" spacing="20.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="160.0">
          <children>
-            <Button fx:id="actButton" mnemonicParsing="false" onAction="#actButtonAction" text="Act" />
-            <Button fx:id="rehearseButton" mnemonicParsing="false" onAction="#rehearseButtonAction" text="Rehearse" />
-            <Button fx:id="upgradeButton" mnemonicParsing="false" onAction="#upgradeButtonAction" text="Upgrade" />
+            <Button fx:id="actButton" mnemonicParsing="false" onAction="#actButtonAction" text="Act" visible="false" />
+            <Button fx:id="rehearseButton" mnemonicParsing="false" onAction="#rehearseButtonAction" text="Rehearse" visible="false" />
+            <Button fx:id="upgradeButton" mnemonicParsing="false" onAction="#upgradeButtonAction" text="Upgrade" visible="false" />
          </children>
       </VBox>
-      <Button fx:id="rollDieButton" mnemonicParsing="false" onAction="#rollDieAction" text="Roll Die" AnchorPane.topAnchor="350.0" />
-      <Button fx:id="nextPlayer" layoutX="-65.0" layoutY="71.0" mnemonicParsing="false" onAction="#nextPlayerPush" prefHeight="50.0" prefWidth="96.0" text="Next Turn" translateX="100.0" translateY="-30.0" />
+      <Button fx:id="rollDieButton" mnemonicParsing="false" onAction="#rollDieAction" text="Roll Die" visible="false" AnchorPane.topAnchor="350.0" />
+      <Button fx:id="nextPlayer" layoutX="-65.0" layoutY="71.0" mnemonicParsing="false" onAction="#nextPlayerPush" prefHeight="50.0" prefWidth="96.0" text="Next Turn" translateX="100.0" translateY="-30.0" visible="false" />
       <VBox layoutX="20.0" layoutY="480.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="480.0">
          <children>
-            <Button fx:id="payWDollarButton" mnemonicParsing="false" onAction="#payWDollarAction" text="Pay with Dollar" />
-            <Button fx:id="payWCreditButton" mnemonicParsing="false" onAction="#payWCreditAction" text="Pay with Credit" />
+            <Button fx:id="payWDollarButton" mnemonicParsing="false" onAction="#payWDollarAction" text="Pay with Dollar" visible="false" />
+            <Button fx:id="payWCreditButton" mnemonicParsing="false" onAction="#payWCreditAction" text="Pay with Credit" visible="false" />
          </children>
       </VBox>
    </children>

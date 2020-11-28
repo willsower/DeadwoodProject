@@ -494,7 +494,7 @@ public class SystemManager implements Initializable {
             currentP = players[player];
 
             // Set label with player information
-            setPlayerInformation(currentP.getPracticeChip(), currentP);
+            setPlayerInformation(currentP.getPracticeChip());
 
 
             upgradeBox.setVisible(false);
@@ -566,17 +566,15 @@ public class SystemManager implements Initializable {
 
             }
         }
-        setPlayerInformation(0 , currentP);
+        setPlayerInformation(0 );
     }
 
     // Prints player information
-    public void setPlayerInformation(int practiceChip, Player player) {
-        currentPlayer.setText("Player " + player.getPlayerPriority() + ": " + player.getColorName());
-        playerDollar.setText("Dollars: " + player.getDollar());
-        playerCredit.setText("Credits: " + player.getCredit());
-        if (practiceChip < 6) {
-            playerPracticeChip.setText("Practice Chips: " + practiceChip);
-        }
+    public void setPlayerInformation(int practiceChip) {
+        currentPlayer.setText("Player " + currentP.getPlayerPriority() + ": " + currentP.getColorName());
+        playerDollar.setText("Dollars: " + currentP.getDollar());
+        playerCredit.setText("Credits: " + currentP.getCredit());
+        playerPracticeChip.setText("Practice Chips: " + practiceChip);
     }
 
     // Reset helper, will reset board and everything at end of day

@@ -476,10 +476,7 @@ public class SystemManager implements Initializable {
             currentP = players[player];
 
             // Set label with player information
-            currentPlayer.setText("Player " + currentP.getPlayerPriority() + ": " + currentP.getColorName());
-            playerDollar.setText("Dollars: " + currentP.getDollar());
-            playerCredit.setText("Credits: " + currentP.getCredit());
-            playerPracticeChip.setText("Practice Chips: " + currentP.getPracticeChip());
+            setPlayerInformation(currentP.getPracticeChip());
 
             // Hide all upgrade related buttons in case player decides to not upgrade after
             // pushing upgrade button

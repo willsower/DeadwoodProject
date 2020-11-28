@@ -337,25 +337,34 @@ public class OnTurn {
 
         // Array of dice colors
         String[] playerDie = new String[]{"b", "c", "g", "o", "p", "r", "v", "y"};
-
+        int x = 30;
+        int y = 0;
+        int count = 1;
         // Populate players
         for (int i = 0; i < numPlayer; i++) {
+            System.out.println(x * i + ", " +  y * count);
             switch (numPlayer) {
                 case 5:
-                    players[i] = new Player(i + 1, 1, 0, 2, "trailer", playerDie[i]);
+                    players[i] = new Player(i + 1, 1, 0, 2, "trailer", playerDie[i], x * i, y * count);
                     break;
                 case 6:
-                    players[i] = new Player(i + 1, 1, 0, 4, "trailer", playerDie[i]);
+                    players[i] = new Player(i + 1, 1, 0, 4, "trailer", playerDie[i], x * i, y * count);
                     break;
                 case 7:
-                    players[i] = new Player(i + 1, 2, 0, 0, "trailer", playerDie[i]);
+                    players[i] = new Player(i + 1, 2, 0, 0, "trailer", playerDie[i], x * i, y * count);
                     break;
                 case 8:
-                    players[i] = new Player(i + 1, 2, 0, 0, "trailer", playerDie[i]);
+                    players[i] = new Player(i + 1, 2, 0, 0, "trailer", playerDie[i], x * i, y * count);
                     break;
                 default:
-                    players[i] = new Player(i + 1, 1, 30, 8, "trailer", playerDie[i]);
+                    players[i] = new Player(i + 1, 6, 0, 0, "trailer", playerDie[i], x * i, y * count);
                     break;
+            }
+            if ( i == 4) {
+                x = 0;
+                y = 30;
+            } else if (i > 4) {
+                count++;
             }
         }
         return players;

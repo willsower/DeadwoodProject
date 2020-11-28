@@ -31,8 +31,6 @@ public class SystemManager implements Initializable {
     private int cardsFinished = 0;
     private Player currentP;
     private int rankChoice;
-    private boolean dollarVisible;
-    private boolean creditVisible;
     private int player = 0;
     private int day = 1;
 
@@ -42,20 +40,19 @@ public class SystemManager implements Initializable {
             mainStreet, saloon, hotel, ranch, generalStore, trainStation, secretHideout, jail, church, bank;
     @FXML //ImageViews
     private ImageView trainStationCard, jailCard, mainStreetCard, generalStoreCard, saloonCard, ranchCard, bankCard,
-            secretHideoutCard, churchCard, hotelCard, boardImage, shotOne, shotTwo, shotThree, player1, player2, player3,
+            secretHideoutCard, churchCard, hotelCard, boardImage, player1, player2, player3,
             player4, player5, player6, player7, player8;
     @FXML // Text display
     private Label currentPlayer, playerDollar, playerCredit, playerPracticeChip, dayDisplay, displayText, actPrintLabel,
             finalScoreLabel, winnerIsLabel, winnerLabel, finalScoreOne, finalScoreTwo, finalScoreThree,
             finalScoreFour, finalScoreFive, finalScoreSix, finalScoreSeven, finalScoreEight;
     @FXML // Action Buttons
-    private Button actButton, rehearseButton, upgradeButton, rollDieButton, submitButton, upgradeRankButton, payWDollarButton, payWCreditButton, nextPlayer;
+    private Button actButton, rehearseButton, upgradeButton, rollDieButton, payWDollarButton, payWCreditButton, nextPlayer;
     @FXML private TextField userInput;
     @FXML private VBox numPlayerBox, upgradeBox, paymentOption;
     ObservableList<Integer> list = FXCollections.observableArrayList();
     @FXML private ChoiceBox<Integer> upgradeOptions;
     @FXML private GridPane  woodBoard;
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -99,6 +96,7 @@ public class SystemManager implements Initializable {
             // Add players into trailers
             for (int i = 0; i < numPlayer; i++) {
                 playerPerson(i + 1).setImage(players[i].getPlayerImage());
+                changeCoords(players[i].getXCoord(), players[i].getYCoord(), playerPerson(i + 1));
             }
 
             turn(players[0]);
@@ -111,41 +109,40 @@ public class SystemManager implements Initializable {
         makeButtonVisible(false, false, false);
     }
 
-    public void rollDieAction(ActionEvent event) {
-        rollDieButton.setVisible(false);
-        // actPrintLabel.setText(OnTurn.getInstance().getPrintMessage());
-        // actPrintLabel.setText(OnTurn.getInstance().getPrintMessage());
-        int actResponse = OnTurn.getInstance().act(currentP);
-        if (actResponse == 1) {
-            cardsFinished++;
-            deleteCardHelperInfo(currentP.getPlayerLocation());
-            int cardNum = Deck.getInstance()
-                    .getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getCardID();
-            ArrayList<Player> playersInRoomOnCard = Deck.getInstance().getCard(cardNum).getPlayersInRoomOnCard();
-            // moves player to room pane from role pane
-            for (Player p : playersInRoomOnCard) {
-                movePlayerHelper(((Pane) ((Node) playerPerson(p.getPlayerPriority()).getParent())), getButtonLocation(currentP.getPlayerLocation()), playerPerson(p.getPlayerPriority()));
-            }
+    // Cards Finished helepr function, will be called from rollDieAction
+    public void cardFinished() {
+        cardsFinished++;
+        deleteCardHelperInfo(currentP.getPlayerLocation());
+        int cardNum = Deck.getInstance().getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getCardID();
 
-            ArrayList<Player> playersInRoomOffCard = Board.getInstance().getSet(currentP.getPlayerLocation())
-                    .getPlayersInRoomOffCard();
-
-            for (Player p : playersInRoomOffCard) {
-                movePlayerHelper((Pane) playerPerson(p.getPlayerPriority()).getParent(), getButtonLocation(currentP.getPlayerLocation()), playerPerson(p.getPlayerPriority()));
-            }
-            Board.getInstance().getSet(currentP.getPlayerLocation()).removePlayersFormRoomOffCard(currentP);
-
-            player1.getParent(); //how come this is only calling player1
-            Board.getInstance().getSet(currentP.getPlayerLocation()).setIsActive(false);
-            getCard(currentP.getPlayerLocation()).setVisible(false);
-
-            showRoles(false);
+        // Moves players on card role / off card role back to room
+        for (Player p : Deck.getInstance().getCard(cardNum).getPlayersInRoomOnCard()) {
+            movePlayerHelper(((Pane) ((Node) playerPerson(p.getPlayerPriority()).getParent())), getButtonLocation(currentP.getPlayerLocation()), playerPerson(p.getPlayerPriority()));
+            changeCoords(p.getXCoord(), p.getYCoord(), playerPerson(p.getPlayerPriority()));
+        }
+        for (Player p : Board.getInstance().getSet(currentP.getPlayerLocation()).getPlayersInRoomOffCard()) {
+            movePlayerHelper((Pane) playerPerson(p.getPlayerPriority()).getParent(), getButtonLocation(currentP.getPlayerLocation()), playerPerson(p.getPlayerPriority()));
+            changeCoords(p.getXCoord(), p.getYCoord(), playerPerson(p.getPlayerPriority()));
         }
 
-        if(actResponse == 2 || actResponse == 1) {
+        Board.getInstance().getSet(currentP.getPlayerLocation()).removePlayersFormRoomOffCard(currentP);
+        Board.getInstance().getSet(currentP.getPlayerLocation()).setIsActive(false);
+        getCard(currentP.getPlayerLocation()).setVisible(false);
+        showRoles(false, currentP.getPlayerLocation());
+    }
 
+    // If player hits roll die action button, will roll the die and distribute bonuses if applicable
+    // Wil lalso tell if card has finished
+    public void rollDieAction(ActionEvent event) {
+        rollDieButton.setVisible(false);
+
+        int actResponse = OnTurn.getInstance().act(currentP);
+        if (actResponse == 1) {
+           cardFinished();
+        }
+
+        if (actResponse == 2 || actResponse == 1) {
             Pane paneCurrent = getButtonLocation(currentP.getPlayerLocation());
-
             for (int i = 0; i< paneCurrent.getChildren().size(); i++) {
                 if (paneCurrent.getChildren().get(i).getAccessibleRole().compareTo(AccessibleRole.IMAGE_VIEW) == 0) {
                     if (!paneCurrent.getChildren().get(i).isVisible()) {
@@ -157,9 +154,7 @@ public class SystemManager implements Initializable {
         }
 
         actPrintLabel.setText(OnTurn.getInstance().getPrintMessage());
-        playerDollar.setText("Dollars: " + currentP.getDollar());
-        playerCredit.setText("Credits: " + currentP.getCredit());
-
+        setPlayerInformation(currentP.getPracticeChip());
         nextPlayer.setVisible(true);
     }
 
@@ -217,11 +212,6 @@ public class SystemManager implements Initializable {
         paymentHelperUpgrade();
     }
 
-    public void setPayButtonsVisible(boolean dollar, boolean credit) {
-        dollarVisible = dollar;
-        creditVisible = credit;
-    }
-
     // Will set upgrade/act/rehearse buttons
     public void makeButtonVisible(boolean act, boolean rehearse, boolean upgrade) {
         actButton.setVisible(act);
@@ -230,9 +220,9 @@ public class SystemManager implements Initializable {
     }
 
     // Function that will display role or move options
-    public void showRoleMoveNext(boolean move, boolean role, boolean next) {
+    public void showRoleMoveNext(boolean move, boolean role, boolean next, String location) {
         showButton(currentP.getPlayerLocation(), move);
-        showRoles(role);
+        showRoles(role, location);
         nextPlayer.setVisible(next);
     }
 
@@ -321,10 +311,15 @@ public class SystemManager implements Initializable {
 
 
 
+    public void changeCoords(int x, int y, ImageView player) {
+        player.setTranslateX(x);
+        player.setTranslateY(y);
+    }
+
     // When player clicks one of the arrows to move
     public void onMove(ActionEvent event) {
         String name = ((Node) event.getSource()).getId();
-        showRoleMoveNext(false, false, false);
+        showRoleMoveNext(false, false, false, currentP.getPlayerLocation());
         String previous = currentP.getPlayerLocation();
 
         // Check if card is flipped, if not flip
@@ -335,14 +330,15 @@ public class SystemManager implements Initializable {
         }
         movePlayerHelper(getButtonLocation(previous), getButtonLocation(currentP.getPlayerLocation()), playerPerson(currentP.getPlayerPriority()));
         // Let player do next turn, show role options, let player upgrade if applicable
-        showRoleMoveNext(false, true, true);
+        showRoleMoveNext(false, true, true, currentP.getPlayerLocation());
         letUpgrade();
     }
 
     // Helper function to add player into pane when they take role
     public void takeRoleHelper(ActionEvent event) {
+        changeCoords(0, 0, playerPerson(currentP.getPlayerPriority()));
         movePlayerHelper(getButtonLocation(currentP.getPlayerLocation()), ((Pane) ((Button) event.getSource()).getParent()), playerPerson(currentP.getPlayerPriority()));
-        showRoleMoveNext(false, false, true);
+        showRoleMoveNext(false, false, true, currentP.getPlayerLocation());
     }
 
     // When clicked off card role, will set player to that role
@@ -355,14 +351,15 @@ public class SystemManager implements Initializable {
     }
 
     // Show on card roles or off card roles depending
-    public void showRoles(boolean val) {
-        if (!Board.getInstance().getSet(currentP.getPlayerLocation()).getIsActive()) {
-            showOffCardRoleOptions(false);
-            showOnCardRoleOptions(false);
-        }
-        else if (!currentP.getPlayerLocation().equals("trailer") && !currentP.getPlayerLocation().equals("office")) {
-            showOffCardRoleOptions(val);
-            showOnCardRoleOptions(val);
+    public void showRoles(boolean val, String location) {
+        if (!location.equals("trailer") && !location.equals("office")) {
+            if (!Board.getInstance().getSet(location).getIsActive()) {
+                showOffCardRoleOptions(false);
+                showOnCardRoleOptions(false);
+            } else {
+                showOffCardRoleOptions(val);
+                showOnCardRoleOptions(val);
+            }
         }
     }
 
@@ -373,7 +370,8 @@ public class SystemManager implements Initializable {
             for (int j = 0; j < obj.getChildren().size(); j++) {
                 String name = obj.getChildren().get(j).getId().replace("_", " ");
                 if (obj.getChildren().get(j).getAccessibleRole().compareTo(AccessibleRole.PARENT) == 0
-                        && name.equals(card.get(i))) {
+                        && name.equals(card.get(i).replace(",", ""))) {
+
                     for (int x = 0; x < ((Pane) obj.getChildren().get(j)).getChildren().size(); x++) {
                         if (((Pane) obj.getChildren().get(j)).getChildren().get(x).getAccessibleRole()
                                 .compareTo(AccessibleRole.BUTTON) == 0) {
@@ -392,7 +390,7 @@ public class SystemManager implements Initializable {
     // Function that will show off card role options if they are availble, or disable
     public void showOffCardRoleOptions(boolean val) {
         ArrayList<String> offCard = OnTurn.getInstance().getPartsAvailOffCard(currentP);
-       showRoleOptionHelper(offCard, val, getButtonLocation(currentP.getPlayerLocation()));
+        showRoleOptionHelper(offCard, val, getButtonLocation(currentP.getPlayerLocation()));
     }
 
     // Function that will show on card role options if they are availble, or disable
@@ -482,15 +480,13 @@ public class SystemManager implements Initializable {
         }
     }
 
-    // Function will end the current players turn and set player label information
-    // for next player
+    // Function will end the current players turn and set player label information for next player
     public void nextPlayerPush(ActionEvent event) {
-        if (cardsFinished < 9) {
-            showRoles(false);
+        if (cardsFinished < 3) {
+            showRoles(false, currentP.getPlayerLocation());
             showButton(currentP.getPlayerLocation(), false);
-
             nextPlayer.setVisible(false);
-            player++; // Next player turn
+            player++;
 
             if (player == players.length) {
                 player = 0;
@@ -557,6 +553,7 @@ public class SystemManager implements Initializable {
                 if (day > 1) {
                     deleteCardHelperInfo(set.getSetName());
                     resetShotCounter(set.getSetName());
+                    showRoleMoveNext(false, false, true, set.getSetName());
                 }
                 createCardHelper(set);
             }
@@ -566,6 +563,7 @@ public class SystemManager implements Initializable {
         if (day > 1) {
             for (int i = 0; i < numPlayer; i++) {
                 resetToTrailers(playerPerson(i + 1), i);
+
             }
         }
         setPlayerInformation(0 , currentP);
@@ -597,29 +595,26 @@ public class SystemManager implements Initializable {
     public void resetToTrailers(ImageView player, int num) {
         movePlayerHelper(getButtonLocation(players[num].getPlayerLocation()), trailer, player);
         players[num].setPlayerLocation("trailer");
+        changeCoords(players[num].getXCoord(), players[num].getYCoord(), player);
         nextPlayer.setVisible(true);
     }
 
-    // Function turn will give player options at start of turn
-    // Will return true if card has finished
-    // will return false if not
+   // Function will help faciliate players turns, what options to give player
     public boolean turn(Player player) {
         boolean endOfCard = false;
 
         // If player has not taken a role, let them move
         if (player.getOffCardRole() == false && player.getOnCardRole() == false) {
             letUpgrade();
-            showRoleMoveNext(true, true, true);
+            showRoleMoveNext(true, true, true, currentP.getPlayerLocation());
 
         } else { /* goes into this else correctly */
-            showRoles(false);
+            showRoles(false, currentP.getPlayerLocation());
             int cardBudget = Deck.getInstance()
                     .getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getCardBudget();
             // If player can rehearse or act, give them options
             if (player.getPracticeChip() < (cardBudget - 1)) {
                 makeButtonVisible(true, true, false);
-
-                // If they can't rehearse anymore give them only act option
             } else {
                 makeButtonVisible(true, false, false); // get rid of roll
             }

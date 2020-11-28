@@ -14,6 +14,8 @@ import java.util.ArrayList;
 public class OnTurn {
     private static OnTurn instance = null;
     private String printMessage;
+    private String printMessageTwo;
+    private String printMessageRoll;
     private int shotCounterImageNum;
 
     // Create instance
@@ -162,7 +164,8 @@ public class OnTurn {
 
         //SystemManager.getInstance().printLabel("Dice rolled : " + diceRoll);
 
-        System.out.println("dice roll: " + diceRoll);
+        //System.out.println("dice roll: " + diceRoll);
+        setPrintMessageRoll("Dice Roll: "+ diceRoll);
 
         // if success
         if (diceRoll + player.getPracticeChip() >= cardBudget) {
@@ -170,20 +173,18 @@ public class OnTurn {
             counter -= 1;
             Board.getInstance().getSet(player.getPlayerLocation()).setShotCounter(counter);
 
-            //SystemManager.getInstance().printLabel("SUCCESS IN ACTING");
-            //System.out.println("SUCCESS IN ACTING");
-            //setPrintMessage("SUCCESS IN ACTING", );
             System.out.println("  Current Shot Counter: " + counter);
             setShotCounterImageNum(counter);
 
             if (player.getOnCardRole() == true) { // on card
                 player.setCredit(player.getCredit() + 2);
-                setPrintMessage("SUCCESS IN ACTING: on card roles Credit +2");
+                setPrintMessage("SUCCESS IN ACTING:");
+                setPrintMessageTwo(" on card roles Credit +2");
             } else {// off card
                 player.setCredit(player.getCredit() + 1);
                 player.setDollar(player.getDollar() + 1);
-                setPrintMessage("SUCCESS IN ACTING: off card roles Credit +1 and Dollar +1");
-
+                setPrintMessage("SUCCESS IN ACTING:");
+                setPrintMessageTwo(" off card roles Credit +1 and Dollar +1");
             }
 
             // end of card, calculate payout will be called and reset card and player information
@@ -206,7 +207,8 @@ public class OnTurn {
         } else { // else fail
             if (player.getOffCardRole() == true) { //offcard
                 player.setDollar(player.getDollar() + 1);
-                setPrintMessage("FAILED IN ACTING: off card roles Dollar +1");
+                setPrintMessage("FAILED IN ACTING: ");
+                setPrintMessageTwo(" off card roles Dollar +1");
 
             }
             return 3;
@@ -220,6 +222,22 @@ public class OnTurn {
 
     public void setPrintMessage (String str) {
         printMessage = str;
+    }
+
+    public String getPrintMessageTwo () {
+        return printMessageTwo;
+    }
+
+    public void setPrintMessageTwo (String str) {
+        printMessageTwo = str;
+    }
+
+    public String getPrintMessageRoll () {
+        return printMessageRoll;
+    }
+
+    public void setPrintMessageRoll (String str) {
+        printMessageRoll = str;
     }
 
     public int getShotCounterImageNum () {

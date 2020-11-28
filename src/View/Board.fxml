@@ -61,7 +61,7 @@
       <Label fx:id="actPrintLabel" />
       <HBox>
          <children>
-            <ImageView fx:id="boardImage" fitHeight="700.0" fitWidth="760.0" pickOnBounds="true" preserveRatio="true" translateX="140.0" translateY="106.0" visible="false">
+            <ImageView fx:id="boardImage" fitHeight="700.0" fitWidth="760.0" pickOnBounds="true" preserveRatio="true" translateX="140.0" translateY="106.0">
                <image>
                   <Image url="@../images/board.jpg" />
                </image>
@@ -106,7 +106,7 @@
                   <Button fx:id="Railroad_Worker" ellipsisString="" mnemonicParsing="false" onAction="#offCardRole" opacity="0.5" prefHeight="30.0" prefWidth="30.0" visible="false" />
                </children>
             </Pane>
-            <Pane fx:id="Falls_off_Roof" prefHeight="30.0" prefWidth="30.0" translateX="75.0" translateY="19.0">
+            <Pane fx:id="Falls_off_Roof" prefHeight="30.0" prefWidth="30.0" translateX="73.0" translateY="19.0">
                <children>
                   <Button fx:id="Falls_off_Roof" ellipsisString="" mnemonicParsing="false" onAction="#offCardRole" opacity="0.5" prefHeight="30.0" prefWidth="30.0" visible="false" />
                </children>
@@ -116,7 +116,7 @@
                   <Button fx:id="Woman_in_Black_Dress" ellipsisString="" mnemonicParsing="false" onAction="#offCardRole" opacity="0.5" prefHeight="30.0" prefWidth="30.0" visible="false" />
                </children>
             </Pane>
-            <Pane fx:id="Mayor_McGinty" prefHeight="30.0" prefWidth="30.0" translateX="74.0" translateY="69.0">
+            <Pane fx:id="Mayor_McGinty" prefHeight="30.0" prefWidth="30.0" translateX="73.0" translateY="69.0">
                <children>
                   <Button fx:id="Mayor_McGinty" ellipsisString="" mnemonicParsing="false" onAction="#offCardRole" opacity="0.5" prefHeight="30.0" prefWidth="30.0" visible="false" />
                </children></Pane>

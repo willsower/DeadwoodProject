@@ -50,7 +50,6 @@ public class SystemManager implements Initializable {
     ObservableList<Integer> list = FXCollections.observableArrayList();
     @FXML private ChoiceBox<Integer> upgradeOptions;
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         boardImage.setImage(Board.getInstance().getBoardImage());
@@ -93,6 +92,7 @@ public class SystemManager implements Initializable {
             // Add players into trailers
             for (int i = 0; i < numPlayer; i++) {
                 playerPerson(i + 1).setImage(players[i].getPlayerImage());
+                changeCoords(players[i].getXCoord(), players[i].getYCoord(), playerPerson(i + 1));
             }
 
             turn(players[0]);
@@ -114,9 +114,11 @@ public class SystemManager implements Initializable {
         // Moves players on card role / off card role back to room
         for (Player p : Deck.getInstance().getCard(cardNum).getPlayersInRoomOnCard()) {
             movePlayerHelper(((Pane) ((Node) playerPerson(p.getPlayerPriority()).getParent())), getButtonLocation(currentP.getPlayerLocation()), playerPerson(p.getPlayerPriority()));
+            changeCoords(p.getXCoord(), p.getYCoord(), playerPerson(p.getPlayerPriority()));
         }
         for (Player p : Board.getInstance().getSet(currentP.getPlayerLocation()).getPlayersInRoomOffCard()) {
             movePlayerHelper((Pane) playerPerson(p.getPlayerPriority()).getParent(), getButtonLocation(currentP.getPlayerLocation()), playerPerson(p.getPlayerPriority()));
+            changeCoords(p.getXCoord(), p.getYCoord(), playerPerson(p.getPlayerPriority()));
         }
 
         Board.getInstance().getSet(currentP.getPlayerLocation()).removePlayersFormRoomOffCard(currentP);
@@ -287,6 +289,11 @@ public class SystemManager implements Initializable {
         };
     }
 
+    public void changeCoords(int x, int y, ImageView player) {
+        player.setTranslateX(x);
+        player.setTranslateY(y);
+    }
+
     // When player clicks one of the arrows to move
     public void onMove(ActionEvent event) {
         String name = ((Node) event.getSource()).getId();
@@ -307,6 +314,7 @@ public class SystemManager implements Initializable {
 
     // Helper function to add player into pane when they take role
     public void takeRoleHelper(ActionEvent event) {
+        changeCoords(0, 0, playerPerson(currentP.getPlayerPriority()));
         movePlayerHelper(getButtonLocation(currentP.getPlayerLocation()), ((Pane) ((Button) event.getSource()).getParent()), playerPerson(currentP.getPlayerPriority()));
         showRoleMoveNext(false, false, true);
     }
@@ -451,7 +459,7 @@ public class SystemManager implements Initializable {
 
     // Function will end the current players turn and set player label information for next player
     public void nextPlayerPush(ActionEvent event) {
-        if (cardsFinished < 9) {
+        if (cardsFinished < 3) {
             showRoles(false);
             showButton(currentP.getPlayerLocation(), false);
             nextPlayer.setVisible(false);
@@ -469,7 +477,7 @@ public class SystemManager implements Initializable {
             // Hide print label
             actPrintLabel.setText("");
             turn(currentP);
-        } else if (cardsFinished == 9) { /* TESTING AT 4 SHOULD BE AT 9 */
+        } else if (cardsFinished == 3) { /* TESTING AT 4 SHOULD BE AT 9 */
             showRoles(false);
             cardsFinished = 0;
             day++;
@@ -495,6 +503,7 @@ public class SystemManager implements Initializable {
             if (!set.getSetName().equals("trailer") && !set.getSetName().equals("office")) {
                 getCard(set.getSetName()).setImage(Deck.getInstance().getBackOfCardSmall());
                 getCard(set.getSetName()).setVisible(true);
+                showRoleMoveNext(false, false, true);
                 if (day > 1) {
                     deleteCardHelperInfo(set.getSetName());
                     resetShotCounter(set.getSetName());
@@ -507,6 +516,7 @@ public class SystemManager implements Initializable {
         if (day > 1) {
             for (int i = 0; i < numPlayer; i++) {
                 resetToTrailers(playerPerson(i + 1), i);
+
             }
         }
         setPlayerInformation(0);
@@ -536,6 +546,7 @@ public class SystemManager implements Initializable {
     public void resetToTrailers(ImageView player, int num) {
         movePlayerHelper(getButtonLocation(players[num].getPlayerLocation()), trailer, player);
         players[num].setPlayerLocation("trailer");
+        changeCoords(players[num].getXCoord(), players[num].getYCoord(), player);
         nextPlayer.setVisible(true);
     }
 

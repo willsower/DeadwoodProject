@@ -18,13 +18,15 @@ public class Player {
     private int finalScore = 0;
     private int roleLevel = 0;
     private int rolePriority = 0;
+    private int xCoord;
+    private int yCoord;
     private String roleLocation;
     private String roleName; // part
     private String colorName;
     private Image playerImage;
 
     // Constructor
-    public Player(int playerPriority, int level, int dollar, int credit, String playerLocation, String color) {
+    public Player(int playerPriority, int level, int dollar, int credit, String playerLocation, String color, int x, int y) {
         this.playerPriority = playerPriority;
         this.level = level;
         this.dollar = dollar;
@@ -32,7 +34,8 @@ public class Player {
         this.playerLocation = playerLocation;
         setColorName(color);
         setPlayerImage();
-        // printPlayerInfo();
+        xCoord = x;
+        yCoord = y;
     }
 
     // Get functions
@@ -91,6 +94,10 @@ public class Player {
     public String getColorName() { return colorName; }
 
     public Image getPlayerImage() { return playerImage; }
+
+    public int getXCoord() { return xCoord; }
+
+    public int getYCoord() { return yCoord; }
 
     // Setter functions
 

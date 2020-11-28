@@ -5,6 +5,8 @@
     Singleton = true
 */
 
+import javafx.collections.ObservableList;
+
 import java.util.ArrayList;
 
 public class Upgrade {
@@ -63,7 +65,6 @@ public class Upgrade {
         if (upgradeLevel.dollar > dollar) {
             return false;
         }
-        //SystemManager.getInstance().makePayButtonsVisible(true, false);
         return true;
     }
 
@@ -74,7 +75,6 @@ public class Upgrade {
         if (upgradeLevel.credit > credit) {
             return false;
         }
-        //SystemManager.getInstance().makePayButtonsVisible(false, true);
         return true;
     }
 
@@ -108,11 +108,31 @@ public class Upgrade {
         for (int i = currentLevel + 1; i <= 6; i++) {
             if (getLevel(i).credit <= credit || getLevel(i).dollar <= dollar) {
                 canUpgrade.add(i);
-                //SystemManager.getInstance().addUpgradeOptions(i);
             }
         }
-
         return canUpgrade;
+    }
+
+    // Function that will find all levels that player can upgrade to and populate in list
+    public ObservableList<Integer> loadData(ObservableList<Integer> list, Player currentP) {
+        list.clear();
+
+        for (int l : list) {
+            list.removeAll(l);
+        }
+        list.add(0);
+
+        int currentLevel = currentP.getLevel();
+        int credit = currentP.getCredit();
+        int dollar = currentP.getDollar();
+
+        for (int i = currentLevel + 1; i <= 6; i++) {
+            if (Upgrade.getInstance().getLevel(i).credit <= credit
+                    || Upgrade.getInstance().getLevel(i).dollar <= dollar) {
+                list.add(i);
+            }
+        }
+        return list;
     }
 
     // Getting level values

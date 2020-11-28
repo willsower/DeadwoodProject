@@ -62,9 +62,8 @@ public class SystemManager implements Initializable {
     @FXML
     public void showButton(String location, boolean val) {
         Pane obj = getButtonLocation(location);
-        if (val) {
-            obj.toFront();
-        }
+        if (val) obj.toFront();
+
         for (int i = 0; i < obj.getChildren().size(); i++) {
             if (obj.getChildren().get(i).getAccessibleRole().compareTo(AccessibleRole.BUTTON) == 0) {
                 obj.getChildren().get(i).setVisible(val);
@@ -72,9 +71,7 @@ public class SystemManager implements Initializable {
         }
     }
 
-    // want this function to set the number of players and continue to the game
-    // right now all it does is print the string the user inputs then display board
-    // image
+    // Get number of players for game to start. Sets up board afterwords to start game
     public void submitPlayers(ActionEvent event) {
         int numberPlayers = 0;
         String val = userInput.getText();
@@ -84,13 +81,10 @@ public class SystemManager implements Initializable {
         }
 
         if (numberPlayers >= 2 && numberPlayers <= 8) {
-
-            submitButton.setVisible(false); // may also nee to disable all of these
-            displayText.setVisible(false);
-            userInput.setVisible(false);
             numPlayerBox.setVisible(false);
             numPlayerBox.setDisable(true);
 
+            // Initialize players
             players = OnTurn.getInstance().init(Integer.parseInt(val));
             numPlayer = Integer.parseInt(val);
             currentP = players[0];
@@ -100,31 +94,17 @@ public class SystemManager implements Initializable {
 
             // Add players into trailers
             for (int i = 0; i < numPlayer; i++) {
-//                playerPerson(i + 1).setImage(players[i].getPlayerImage());
-//                playerPerson(i + 1).toFront();
-
-                int num = i + 1;
-                switch (num) {
-                    case 1 -> player1.setImage(players[i].getPlayerImage());
-
-                    case 2 -> player2.setImage(players[i].getPlayerImage());
-                    case 3 -> player3.setImage(players[i].getPlayerImage());
-                    case 4 -> player4.setImage(players[i].getPlayerImage());
-                    case 5 -> player5.setImage(players[i].getPlayerImage());
-                    case 6 -> player6.setImage(players[i].getPlayerImage());
-                    case 7 -> player7.setImage(players[i].getPlayerImage());
-                    default -> player8.setImage(players[i].getPlayerImage());
-                }
+                playerPerson(i + 1).setImage(players[i].getPlayerImage());
             }
 
             turn(players[0]);
         }
     }
 
+    // Make role button visible once act button has been pushed
     public void actButtonAction(ActionEvent event) {
         rollDieButton.setVisible(true);
         makeButtonVisible(false, false, false);
-
     }
 
     public void rollDieAction(ActionEvent event) {
@@ -185,8 +165,7 @@ public class SystemManager implements Initializable {
         nextPlayer.setVisible(true);
     }
 
-    /* currently continues to show rehearse even when the player cant rehearse */
-    /* but does not increment practice chips, which is good */
+    // Rehearses button, when pushed will increase player's rehearse chip
     public void rehearseButtonAction(ActionEvent event) {
         OnTurn.getInstance().rehearse(currentP, Deck.getInstance()
                 .getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getCardBudget());
@@ -197,10 +176,9 @@ public class SystemManager implements Initializable {
 
     public void upgradeButtonAction(ActionEvent event) {
         makeButtonVisible(false, false, false);
-        // Upgrade.getInstance().levelsCanUpgrade(currentP); //set add upgrade options
         upgradeOptions.getItems().clear();
         upgradeOptions.setValue(0);
-        loadData();
+        upgradeOptions.getItems().addAll(Upgrade.getInstance().loadData(list, currentP));
         upgradeOptions.setVisible(true); ///// I think I need to all do show() and setDisable() etc.....//////
         upgradeRankButton.setVisible(true);
 
@@ -223,30 +201,6 @@ public class SystemManager implements Initializable {
         } else {
             actPrintLabel.setText("Can't upgrade to that rank"); /* fix placement of label */
         }
-    }
-
-    public void loadData() {
-        // list.removeAll(list);
-        System.out.println(list);
-        list.clear();
-        System.out.println(list);
-        for (int l : list) {
-            list.removeAll(l);
-            System.out.println(list);
-        }
-        list.add(0);
-
-        int currentLevel = currentP.getLevel();
-        int credit = currentP.getCredit();
-        int dollar = currentP.getDollar();
-
-        for (int i = currentLevel + 1; i <= 6; i++) {
-            if (Upgrade.getInstance().getLevel(i).credit <= credit
-                    || Upgrade.getInstance().getLevel(i).dollar <= dollar) {
-                list.add(i);
-            }
-        }
-        upgradeOptions.getItems().addAll(list);
     }
 
     public void payWDollarAction(ActionEvent event) {

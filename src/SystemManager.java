@@ -19,6 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.Node;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import java.net.URL;
@@ -42,13 +43,16 @@ public class SystemManager implements Initializable {
             secretHideoutCard, churchCard, hotelCard, boardImage, player1, player2, player3,
             player4, player5, player6, player7, player8;
     @FXML // Text display
-    private Label currentPlayer, playerDollar, playerCredit, playerPracticeChip, dayDisplay, actPrintLabel;
+    private Label currentPlayer, playerDollar, playerCredit, playerPracticeChip, dayDisplay, displayText, actPrintLabel,
+            finalScoreLabel, winnerIsLabel, winnerLabel, finalScoreOne, finalScoreTwo, finalScoreThree,
+            finalScoreFour, finalScoreFive, finalScoreSix, finalScoreSeven, finalScoreEight;
     @FXML // Action Buttons
     private Button actButton, rehearseButton, upgradeButton, rollDieButton, payWDollarButton, payWCreditButton, nextPlayer;
     @FXML private TextField userInput;
     @FXML private VBox numPlayerBox, upgradeBox, paymentOption;
     ObservableList<Integer> list = FXCollections.observableArrayList();
     @FXML private ChoiceBox<Integer> upgradeOptions;
+    @FXML private GridPane  woodBoard;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -288,6 +292,24 @@ public class SystemManager implements Initializable {
         };
     }
 
+    // Get player label for finalScore
+    public Label playerScore(int val) {
+        return switch (val) {
+            case 1 -> finalScoreOne;
+            case 2 -> finalScoreTwo;
+            case 3 -> finalScoreThree;
+            case 4 -> finalScoreFour;
+            case 5 -> finalScoreFive;
+            case 6 -> finalScoreSix;
+            case 7 -> finalScoreSeven;
+            default -> finalScoreEight;
+        };
+    }
+
+
+
+
+
     public void changeCoords(int x, int y, ImageView player) {
         player.setTranslateX(x);
         player.setTranslateY(y);
@@ -474,24 +496,48 @@ public class SystemManager implements Initializable {
 
             // Set label with player information
             setPlayerInformation(currentP.getPracticeChip());
+
+
             upgradeBox.setVisible(false);
 
             // Hide print label
             actPrintLabel.setText("");
             turn(currentP);
-        } else if (cardsFinished == 3) { /* TESTING AT 4 SHOULD BE AT 9 */
-            showRoles(false, currentP.getPlayerLocation());
+        } else if (cardsFinished == 9) {
+            showRoles(false);
             cardsFinished = 0;
             day++;
             if (OnTurn.getInstance().calculateDaysPlayed(numPlayer) + 1 == day) {
                 nextPlayer.setVisible(false);
-                OnTurn.getInstance().endFunction(players, numPlayer);
+                woodBoard.toFront();
+
+                //finalScoreTitle.setText("Calculating end score");
+                finalScoreLabel.setVisible(true);
+                //finalScoreLabel.toFront();
+                displayWinner(OnTurn.getInstance().endFunction(players, numPlayer));
+                for (int i = 0; i < players.length; i++) {
+                    playerScore(i +1).setText("Player "+ (i+1) + ": "+ players[i].getFinalScore());
+                    playerScore(i +1).setVisible(true);
+                }
             } else {
                 resetAll(players, day, numPlayer);
                 turn(currentP);
             }
         }
     }
+
+    // Display winners of game
+    public void displayWinner(Integer[] finals) {
+        //winnerIsLabel.setText("The winner(s) are: ");
+        winnerIsLabel.setVisible(true);
+        for (int i = 0; i < finals.length; i++) {
+            if (finals[i] != 0) {
+                winnerLabel.setText("  Player " + finals[i]);
+                winnerLabel.setVisible(true);
+            }
+        }
+    }
+
 
     // Sets board up at each day
     public void setUpBoard(int day) {
@@ -520,7 +566,7 @@ public class SystemManager implements Initializable {
                 resetToTrailers(playerPerson(i + 1), i);
             }
         }
-        setPlayerInformation(0);
+        setPlayerInformation(0 );
     }
 
     // Prints player information

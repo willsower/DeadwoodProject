@@ -30,8 +30,6 @@ public class SystemManager implements Initializable {
     private int cardsFinished = 0;
     private Player currentP;
     private int rankChoice;
-    private boolean dollarVisible;
-    private boolean creditVisible;
     private int player = 0;
     private int day = 1;
 
@@ -41,12 +39,12 @@ public class SystemManager implements Initializable {
             mainStreet, saloon, hotel, ranch, generalStore, trainStation, secretHideout, jail, church, bank;
     @FXML //ImageViews
     private ImageView trainStationCard, jailCard, mainStreetCard, generalStoreCard, saloonCard, ranchCard, bankCard,
-            secretHideoutCard, churchCard, hotelCard, boardImage, shotOne, shotTwo, shotThree, player1, player2, player3,
+            secretHideoutCard, churchCard, hotelCard, boardImage, player1, player2, player3,
             player4, player5, player6, player7, player8;
     @FXML // Text display
-    private Label currentPlayer, playerDollar, playerCredit, playerPracticeChip, dayDisplay, displayText, actPrintLabel;
+    private Label currentPlayer, playerDollar, playerCredit, playerPracticeChip, dayDisplay, actPrintLabel;
     @FXML // Action Buttons
-    private Button actButton, rehearseButton, upgradeButton, rollDieButton, submitButton, upgradeRankButton, payWDollarButton, payWCreditButton, nextPlayer;
+    private Button actButton, rehearseButton, upgradeButton, rollDieButton, payWDollarButton, payWCreditButton, nextPlayer;
     @FXML private TextField userInput;
     @FXML private VBox numPlayerBox, upgradeBox, paymentOption;
     ObservableList<Integer> list = FXCollections.observableArrayList();
@@ -107,41 +105,38 @@ public class SystemManager implements Initializable {
         makeButtonVisible(false, false, false);
     }
 
-    public void rollDieAction(ActionEvent event) {
-        rollDieButton.setVisible(false);
-        // actPrintLabel.setText(OnTurn.getInstance().getPrintMessage());
-        // actPrintLabel.setText(OnTurn.getInstance().getPrintMessage());
-        int actResponse = OnTurn.getInstance().act(currentP);
-        if (actResponse == 1) {
-            cardsFinished++;
-            deleteCardHelperInfo(currentP.getPlayerLocation());
-            int cardNum = Deck.getInstance()
-                    .getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getCardID();
-            ArrayList<Player> playersInRoomOnCard = Deck.getInstance().getCard(cardNum).getPlayersInRoomOnCard();
-            // moves player to room pane from role pane
-            for (Player p : playersInRoomOnCard) {
-                movePlayerHelper(((Pane) ((Node) playerPerson(p.getPlayerPriority()).getParent())), getButtonLocation(currentP.getPlayerLocation()), playerPerson(p.getPlayerPriority()));
-            }
+    // Cards Finished helepr function, will be called from rollDieAction
+    public void cardFinished() {
+        cardsFinished++;
+        deleteCardHelperInfo(currentP.getPlayerLocation());
+        int cardNum = Deck.getInstance().getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getCardID();
 
-            ArrayList<Player> playersInRoomOffCard = Board.getInstance().getSet(currentP.getPlayerLocation())
-                    .getPlayersInRoomOffCard();
-
-            for (Player p : playersInRoomOffCard) {
-                movePlayerHelper((Pane) playerPerson(p.getPlayerPriority()).getParent(), getButtonLocation(currentP.getPlayerLocation()), playerPerson(p.getPlayerPriority()));
-            }
-            Board.getInstance().getSet(currentP.getPlayerLocation()).removePlayersFormRoomOffCard(currentP);
-
-            player1.getParent(); //how come this is only calling player1
-            Board.getInstance().getSet(currentP.getPlayerLocation()).setIsActive(false);
-            getCard(currentP.getPlayerLocation()).setVisible(false);
-
-            showRoles(false);
+        // Moves players on card role / off card role back to room
+        for (Player p : Deck.getInstance().getCard(cardNum).getPlayersInRoomOnCard()) {
+            movePlayerHelper(((Pane) ((Node) playerPerson(p.getPlayerPriority()).getParent())), getButtonLocation(currentP.getPlayerLocation()), playerPerson(p.getPlayerPriority()));
+        }
+        for (Player p : Board.getInstance().getSet(currentP.getPlayerLocation()).getPlayersInRoomOffCard()) {
+            movePlayerHelper((Pane) playerPerson(p.getPlayerPriority()).getParent(), getButtonLocation(currentP.getPlayerLocation()), playerPerson(p.getPlayerPriority()));
         }
 
-        if(actResponse == 2 || actResponse == 1) {
+        Board.getInstance().getSet(currentP.getPlayerLocation()).removePlayersFormRoomOffCard(currentP);
+        Board.getInstance().getSet(currentP.getPlayerLocation()).setIsActive(false);
+        getCard(currentP.getPlayerLocation()).setVisible(false);
+        showRoles(false);
+    }
 
+    // If player hits roll die action button, will roll the die and distribute bonuses if applicable
+    // Wil lalso tell if card has finished
+    public void rollDieAction(ActionEvent event) {
+        rollDieButton.setVisible(false);
+
+        int actResponse = OnTurn.getInstance().act(currentP);
+        if (actResponse == 1) {
+           cardFinished();
+        }
+
+        if (actResponse == 2 || actResponse == 1) {
             Pane paneCurrent = getButtonLocation(currentP.getPlayerLocation());
-
             for (int i = 0; i< paneCurrent.getChildren().size(); i++) {
                 if (paneCurrent.getChildren().get(i).getAccessibleRole().compareTo(AccessibleRole.IMAGE_VIEW) == 0) {
                     if (!paneCurrent.getChildren().get(i).isVisible()) {
@@ -153,9 +148,7 @@ public class SystemManager implements Initializable {
         }
 
         actPrintLabel.setText(OnTurn.getInstance().getPrintMessage());
-        playerDollar.setText("Dollars: " + currentP.getDollar());
-        playerCredit.setText("Credits: " + currentP.getCredit());
-
+        setPlayerInformation(currentP.getPracticeChip());
         nextPlayer.setVisible(true);
     }
 
@@ -211,11 +204,6 @@ public class SystemManager implements Initializable {
     public void payWCreditAction(ActionEvent event) {
         Upgrade.getInstance().upgradeCredit(currentP, rankChoice);
         paymentHelperUpgrade();
-    }
-
-    public void setPayButtonsVisible(boolean dollar, boolean credit) {
-        dollarVisible = dollar;
-        creditVisible = credit;
     }
 
     // Will set upgrade/act/rehearse buttons
@@ -460,15 +448,13 @@ public class SystemManager implements Initializable {
         }
     }
 
-    // Function will end the current players turn and set player label information
-    // for next player
+    // Function will end the current players turn and set player label information for next player
     public void nextPlayerPush(ActionEvent event) {
         if (cardsFinished < 9) {
             showRoles(false);
             showButton(currentP.getPlayerLocation(), false);
-
             nextPlayer.setVisible(false);
-            player++; // Next player turn
+            player++;
 
             if (player == players.length) {
                 player = 0;
@@ -477,8 +463,6 @@ public class SystemManager implements Initializable {
 
             // Set label with player information
             setPlayerInformation(currentP.getPracticeChip());
-
-
             upgradeBox.setVisible(false);
 
             // Hide print label
@@ -554,9 +538,7 @@ public class SystemManager implements Initializable {
         nextPlayer.setVisible(true);
     }
 
-    // Function turn will give player options at start of turn
-    // Will return true if card has finished
-    // will return false if not
+   // Function will help faciliate players turns, what options to give player
     public boolean turn(Player player) {
         boolean endOfCard = false;
 
@@ -572,8 +554,6 @@ public class SystemManager implements Initializable {
             // If player can rehearse or act, give them options
             if (player.getPracticeChip() < (cardBudget - 1)) {
                 makeButtonVisible(true, true, false);
-
-                // If they can't rehearse anymore give them only act option
             } else {
                 makeButtonVisible(true, false, false); // get rid of roll
             }

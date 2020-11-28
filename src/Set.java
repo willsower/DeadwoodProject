@@ -251,10 +251,9 @@ public class Set {
     public ArrayList<String> availablePartsOffCard(int playerRank) {
         ArrayList<String> available = new ArrayList<String>();
         ArrayList<Part> partsAvailable = getParts();
-        System.out.println(setName);
         for (int i = 0; i < partsAvailable.size(); i++) {
+            System.out.println("  " + partsAvailable.get(i).partName + " " + partsAvailable.get(i).isTaken);
             if (partsAvailable.get(i).isTaken == false) {
-                System.out.println("  " + partsAvailable.get(i).partName);
                 if (partsAvailable.get(i).level <= playerRank) {
                     available.add(partsAvailable.get(i).partName);
                 }
@@ -277,7 +276,6 @@ public class Set {
     public void resetSetDay() {
         hasCard = true;
         isActive = true;
-
         for (int i = 0; i < part.size(); i++) {
             part.get(i).isTaken = false;
         }

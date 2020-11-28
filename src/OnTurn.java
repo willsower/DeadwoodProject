@@ -338,9 +338,9 @@ public class OnTurn {
         // iterate through values
         while (values.hasMoreElements()) {
             Set set = values.nextElement();
-            if (ind < 10) {
-                set.resetSetDay();
-            }
+
+            set.resetSetDay();
+
             ind++;
         }
 

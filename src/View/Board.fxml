@@ -83,37 +83,45 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="currentPlayer" textFill="WHITE" translateY="-41.0">
+            <Label fx:id="currentPlayer" styleClass="western" textFill="WHITE" translateY="-41.0">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label fx:id="playerCredit" layoutX="10.0" layoutY="48.0" textFill="WHITE" translateX="20.0" translateY="-15.0">
+            <Label fx:id="playerCredit" layoutX="10.0" layoutY="48.0" styleClass="western" textFill="WHITE" translateX="20.0" translateY="-15.0">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <Label fx:id="playerDollar" layoutX="10.0" layoutY="48.0" textFill="WHITE" translateX="20.0" translateY="5.0">
+            <Label fx:id="playerDollar" layoutX="10.0" layoutY="48.0" styleClass="western" textFill="WHITE" translateX="20.0" translateY="5.0">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <Label fx:id="playerPracticeChip" layoutX="10.0" layoutY="48.0" textFill="WHITE" translateX="20.0" translateY="25.0">
+            <Label fx:id="playerPracticeChip" layoutX="10.0" layoutY="48.0" styleClass="western" textFill="WHITE" translateX="20.0" translateY="25.0">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
          </children>
       </GridPane>
-      <Label fx:id="dayDisplay" textFill="WHITE" translateX="394.0" translateY="11.0">
+      <Label fx:id="dayDisplay" styleClass="western" textFill="WHITE" translateX="394.0" translateY="11.0">
          <font>
-            <Font size="60.0" />
+            <Font size="90.0" />
          </font>
       </Label>
-      <Label fx:id="actPrintLabel" />
+      <Label fx:id="actPrintLabel" styleClass="western" textFill="WHITE" translateX="140.0" translateY="30.0">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <Label fx:id="actPrintLabelTwo" styleClass="western" textFill="WHITE" translateX="140.0" translateY="60.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
       <HBox>
          <children>
-            <ImageView fx:id="boardImage" fitHeight="700.0" fitWidth="760.0" pickOnBounds="true" preserveRatio="true" translateX="140.0" translateY="106.0">
+            <ImageView fx:id="boardImage" fitHeight="700.0" fitWidth="760.0" pickOnBounds="true" preserveRatio="true" translateX="140.0" translateY="106.0" visible="false">
                <image>
                   <Image url="@../images/board.jpg" />
                </image>
@@ -501,7 +509,11 @@
          </children>
       </VBox>
       <Button fx:id="rollDieButton" mnemonicParsing="false" onAction="#rollDieAction" text="Roll Die" visible="false" AnchorPane.topAnchor="350.0" />
-      <Button fx:id="nextPlayer" layoutX="-65.0" layoutY="71.0" mnemonicParsing="false" onAction="#nextPlayerPush" prefHeight="50.0" prefWidth="96.0" text="Next Turn" translateX="100.0" translateY="-30.0" visible="false" />
+      <Label fx:id="diceRollLabel" styleClass="western" textFill="WHITE" translateX="5.0" translateY="300.0">
+         <font>
+            <Font size="30.0" />
+         </font></Label>
+      <Button fx:id="nextPlayer" layoutX="-65.0" layoutY="71.0" mnemonicParsing="false" onAction="#nextPlayerPush" prefHeight="50.0" prefWidth="96.0" text="Next Turn" translateX="90.0" translateY="10.0" visible="false" />
       <VBox fx:id="paymentOption" layoutX="20.0" layoutY="480.0" visible="false" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="480.0">
          <children>
             <Button fx:id="payWDollarButton" mnemonicParsing="false" onAction="#payWDollarAction" text="Pay with Dollar" visible="false" />

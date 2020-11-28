@@ -44,8 +44,8 @@ public class SystemManager implements Initializable {
             player4, player5, player6, player7, player8;
     @FXML // Text display
     private Label currentPlayer, playerDollar, playerCredit, playerPracticeChip, dayDisplay, displayText, actPrintLabel,
-            finalScoreLabel, winnerIsLabel, winnerLabel, finalScoreOne, finalScoreTwo, finalScoreThree,
-            finalScoreFour, finalScoreFive, finalScoreSix, finalScoreSeven, finalScoreEight;
+            actPrintLabelTwo, diceRollLabel, finalScoreLabel, winnerIsLabel, winnerLabel, finalScoreOne, finalScoreTwo,
+            finalScoreThree, finalScoreFour, finalScoreFive, finalScoreSix, finalScoreSeven, finalScoreEight;
     @FXML // Action Buttons
     private Button actButton, rehearseButton, upgradeButton, rollDieButton, payWDollarButton, payWCreditButton, nextPlayer;
     @FXML private TextField userInput;
@@ -152,7 +152,9 @@ public class SystemManager implements Initializable {
             }
         }
 
+        diceRollLabel.setText(OnTurn.getInstance().getPrintMessageRoll());
         actPrintLabel.setText(OnTurn.getInstance().getPrintMessage());
+        actPrintLabelTwo.setText(OnTurn.getInstance().getPrintMessageTwo());
         setPlayerInformation(currentP.getPracticeChip());
         nextPlayer.setVisible(true);
     }
@@ -180,6 +182,8 @@ public class SystemManager implements Initializable {
         rankChoice = upgradeOptions.getValue();
         if (rankChoice > 1 && rankChoice < 7) {
             actPrintLabel.setText("");
+            actPrintLabelTwo.setText("");
+            diceRollLabel.setText("");
             upgradeBox.setVisible(false);
             paymentOption.setVisible(true);
             payWDollarButton.setVisible(Upgrade.getInstance().playerHasDollar(rankChoice, currentP.getDollar()));
@@ -500,9 +504,11 @@ public class SystemManager implements Initializable {
 
             // Hide print label
             actPrintLabel.setText("");
+            actPrintLabelTwo.setText("");
+            diceRollLabel.setText("");
             turn(currentP);
         } else if (cardsFinished == 9) {
-            showRoles(false);
+            showRoles(false, currentP.getPlayerLocation());
             cardsFinished = 0;
             day++;
             if (OnTurn.getInstance().calculateDaysPlayed(numPlayer) + 1 == day) {

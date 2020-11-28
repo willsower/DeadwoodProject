@@ -441,19 +441,6 @@
             <Insets top="40.0" />
          </padding>
       </VBox>
-      <VBox alignment="TOP_CENTER" layoutY="400.0" AnchorPane.topAnchor="400.0">
-         <children>
-            <ChoiceBox fx:id="upgradeOptions" prefWidth="150.0" visible="false" />
-            <Button fx:id="upgradeRankButton" mnemonicParsing="false" onAction="#upgradeRankAction" text="Upgrade Rank" visible="false">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </Button>
-         </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </VBox>
       <VBox alignment="TOP_CENTER" spacing="20.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="160.0">
          <children>
             <Button fx:id="actButton" mnemonicParsing="false" onAction="#actButtonAction" text="Act" visible="false" />
@@ -468,6 +455,19 @@
             <Button fx:id="payWDollarButton" mnemonicParsing="false" onAction="#payWDollarAction" text="Pay with Dollar" visible="false" />
             <Button fx:id="payWCreditButton" mnemonicParsing="false" onAction="#payWCreditAction" text="Pay with Credit" visible="false" />
          </children>
+      </VBox>
+      <VBox fx:id="upgradeBox" alignment="TOP_CENTER" layoutY="400.0" visible="false" AnchorPane.topAnchor="400.0">
+         <children>
+            <ChoiceBox fx:id="upgradeOptions" prefWidth="150.0" />
+            <Button fx:id="upgradeRankButton" mnemonicParsing="false" onAction="#upgradeRankAction" text="Upgrade Rank">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
       </VBox>
    </children>
 </AnchorPane>

@@ -48,7 +48,7 @@ public class SystemManager implements Initializable {
     @FXML // Action Buttons
     private Button actButton, rehearseButton, upgradeButton, rollDieButton, submitButton, upgradeRankButton, payWDollarButton, payWCreditButton, nextPlayer;
     @FXML private TextField userInput;
-    @FXML private VBox numPlayerBox;
+    @FXML private VBox numPlayerBox, upgradeBox, paymentOption;
     ObservableList<Integer> list = FXCollections.observableArrayList();
     @FXML private ChoiceBox<Integer> upgradeOptions;
 
@@ -174,57 +174,49 @@ public class SystemManager implements Initializable {
         nextPlayer.setVisible(true);
     }
 
+    // Player clicks upgrade to upgrade themselves, will populate upgradeOptions with possible levels to upgrade
     public void upgradeButtonAction(ActionEvent event) {
         makeButtonVisible(false, false, false);
         upgradeOptions.getItems().clear();
         upgradeOptions.setValue(0);
         upgradeOptions.getItems().addAll(Upgrade.getInstance().loadData(list, currentP));
-        upgradeOptions.setVisible(true); ///// I think I need to all do show() and setDisable() etc.....//////
-        upgradeRankButton.setVisible(true);
-
+        upgradeBox.setVisible(true);
     }
 
-    public void upgradeRankAction(ActionEvent event) { /* NEED TO FIX THE UPGRADE BUTTON TO HIDE WHEN LEFT ROOM */
-        rankChoice = upgradeOptions.getValue(); // may need to add hide() and setDisable() etc.....
+    // Player chooses whwat option to upgrade to, and does payment with credit/dollar if applicable
+    public void upgradeRankAction(ActionEvent event) {
+        rankChoice = upgradeOptions.getValue();
         if (rankChoice > 1 && rankChoice < 7) {
             actPrintLabel.setText("");
-            upgradeOptions.setVisible(false);
-            upgradeRankButton.setVisible(false);
-
-
-            setPayButtonsVisible(Upgrade.getInstance().playerHasDollar(rankChoice, currentP.getDollar()), Upgrade.getInstance().playerHasCredit(rankChoice, currentP.getCredit()));
-            payWDollarButton.setVisible(dollarVisible);
-            payWDollarButton.toFront(); // may not need
-            payWCreditButton.setVisible(creditVisible);
-            payWCreditButton.toFront(); // may not need
-
-        } else {
-            actPrintLabel.setText("Can't upgrade to that rank"); /* fix placement of label */
+            upgradeBox.setVisible(false);
+            paymentOption.setVisible(true);
+            payWDollarButton.setVisible(Upgrade.getInstance().playerHasDollar(rankChoice, currentP.getDollar()));
+            payWCreditButton.setVisible(Upgrade.getInstance().playerHasCredit(rankChoice, currentP.getCredit()));
         }
     }
 
-    public void payWDollarAction(ActionEvent event) {
-        Upgrade.getInstance().upgradeDollar(currentP, rankChoice);
-        payWDollarButton.setVisible(false);
-        payWCreditButton.setVisible(false);
+    // Set player's new picture and set dollar/credit
+    public void paymentHelperUpgrade() {
+        paymentOption.setVisible(false);
         nextPlayer.setVisible(true);
 
         currentP.setPlayerImage();
         playerPerson(currentP.getPlayerPriority()).setImage(currentP.getPlayerImage());
 
         playerDollar.setText("Dollars: " + currentP.getDollar());
+        playerCredit.setText("Credits: " + currentP.getCredit());
     }
 
+    // Player upgrades with dollar
+    public void payWDollarAction(ActionEvent event) {
+        Upgrade.getInstance().upgradeDollar(currentP, rankChoice);
+        paymentHelperUpgrade();
+    }
+
+    // Player upgrades with credit
     public void payWCreditAction(ActionEvent event) {
         Upgrade.getInstance().upgradeCredit(currentP, rankChoice);
-        payWDollarButton.setVisible(false);
-        payWCreditButton.setVisible(false);
-        nextPlayer.setVisible(true);
-
-        currentP.setPlayerImage();
-        playerPerson(currentP.getPlayerPriority()).setImage(currentP.getPlayerImage());
-
-        playerCredit.setText("Credits: " + currentP.getCredit());
+        paymentHelperUpgrade();
     }
 
     public void setPayButtonsVisible(boolean dollar, boolean credit) {
@@ -232,12 +224,21 @@ public class SystemManager implements Initializable {
         creditVisible = credit;
     }
 
+    // Will set upgrade/act/rehearse buttons
     public void makeButtonVisible(boolean act, boolean rehearse, boolean upgrade) {
         actButton.setVisible(act);
         rehearseButton.setVisible(rehearse);
         upgradeButton.setVisible(upgrade);
     }
 
+    // Function that will display role or move options
+    public void showRoleMoveNext(boolean move, boolean role, boolean next) {
+        showButton(currentP.getPlayerLocation(), move);
+        showRoles(role);
+        nextPlayer.setVisible(next);
+    }
+
+    // Get pane name of each location
     public Pane getButtonLocation(String location) {
         Pane obj = switch (location) {
             case "Main Street" -> mainStreet;
@@ -256,6 +257,7 @@ public class SystemManager implements Initializable {
         return obj;
     }
 
+    // Get card pane in each location
     public Pane getCardPane(String location) {
         Pane obj = switch (location) {
             case "Main Street" -> mainStreetCardHolder;
@@ -272,6 +274,7 @@ public class SystemManager implements Initializable {
         return obj;
     }
 
+    // Get card imageView of each location
     public ImageView getCard(String location) {
         ImageView obj = switch (location) {
             case "Main Street" -> mainStreetCard;
@@ -288,6 +291,7 @@ public class SystemManager implements Initializable {
         return obj;
     }
 
+    // Get player imageView
     public ImageView playerPerson(int val) {
         return switch (val) {
             case 1 -> player1;
@@ -301,19 +305,11 @@ public class SystemManager implements Initializable {
         };
     }
 
-    public ImageView shotCounter(int val) {
-        return switch (val) {
-            case 1 -> shotOne;
-            case 2 -> shotTwo;
-            default -> shotThree;
-        };
-    }
-
+    // When player clicks one of the arrows to move
     public void onMove(ActionEvent event) {
         String name = ((Node) event.getSource()).getId();
-        // Don't display button for move
-        showButton(currentP.getPlayerLocation(), false);
-        showRoles(false); /* move */
+        showRoleMoveNext(false, false, false);
+
         // Put player in new set area
         Pane previousArea = getButtonLocation(currentP.getPlayerLocation());
         boolean cardFlip = OnTurn.getInstance().movePlayer(currentP, name);
@@ -322,7 +318,7 @@ public class SystemManager implements Initializable {
         ImageView thisPlayer = playerPerson(currentP.getPlayerPriority());
         previousArea.getChildren().remove(thisPlayer);
         newArea.getChildren().add(thisPlayer);
-        showButton(currentP.getPlayerLocation(), false);
+
         // Check if card is flipped, if not flip
         if (!cardFlip) {
             getCard(currentP.getPlayerLocation()).setImage(Deck.getInstance()
@@ -330,9 +326,18 @@ public class SystemManager implements Initializable {
         }
 
         // Let player do next turn, show role options, let player upgrade if applicable
-        nextPlayer.setVisible(true);
-        showRoles(true); /* move */
+        showRoleMoveNext(false, true, true);
         letUpgrade();
+    }
+
+    public void takeRoleHelper(ActionEvent event) {
+        Pane previousPane = getButtonLocation(currentP.getPlayerLocation());
+        ImageView thisPlayer = playerPerson(currentP.getPlayerPriority());
+        previousPane.getChildren().remove(thisPlayer);
+        Pane newPane = ((Pane) ((Button) event.getSource()).getParent());
+        newPane.getChildren().add(thisPlayer);
+
+        showRoleMoveNext(false, false, true);
     }
 
     //
@@ -342,22 +347,23 @@ public class SystemManager implements Initializable {
 
         OnTurn.getInstance().takeOffCardRole(currentP, name, set);
 
-        Pane previousPane = getButtonLocation(currentP.getPlayerLocation());
-        ImageView thisPlayer = playerPerson(currentP.getPlayerPriority());
-        previousPane.getChildren().remove(thisPlayer);
-        Pane newPane = ((Pane) ((Button) event.getSource()).getParent());
-        newPane.getChildren().add(thisPlayer);
-        showButton(currentP.getPlayerLocation(), false);
-        showRoles(false);
-        nextPlayer.setVisible(true);
+//        Pane previousPane = getButtonLocation(currentP.getPlayerLocation());
+//        ImageView thisPlayer = playerPerson(currentP.getPlayerPriority());
+//        previousPane.getChildren().remove(thisPlayer);
+//        Pane newPane = ((Pane) ((Button) event.getSource()).getParent());
+//        newPane.getChildren().add(thisPlayer);
+//
+//        showRoleMoveNext(false, false, true);
+        takeRoleHelper(event);
     }
 
+    // Show on card roles or off card roles depending
     public void showRoles(boolean val) {
         if (!Board.getInstance().getSet(currentP.getPlayerLocation()).getIsActive()) {
             showOffCardRoleOptions(false);
             showOnCardRoleOptions(false);
-
-        } else if (!currentP.getPlayerLocation().equals("trailer") && !currentP.getPlayerLocation().equals("office")) {
+        }
+        else if (!currentP.getPlayerLocation().equals("trailer") && !currentP.getPlayerLocation().equals("office")) {
             showOffCardRoleOptions(val);
             showOnCardRoleOptions(val);
         }
@@ -487,13 +493,14 @@ public class SystemManager implements Initializable {
 
                 OnTurn.getInstance().takeOnCardRole(currentP, name, set);
 
-                Pane previousPane = getButtonLocation(currentP.getPlayerLocation());
-                ImageView thisPlayer = playerPerson(currentP.getPlayerPriority());
-                previousPane.getChildren().remove(thisPlayer);
-                Pane newPane = ((Pane) ((Button) event.getSource()).getParent());
-                newPane.getChildren().add(thisPlayer);
-                showRoles(false);
-                showButton(currentP.getPlayerLocation(), false);
+//                Pane previousPane = getButtonLocation(currentP.getPlayerLocation());
+//                ImageView thisPlayer = playerPerson(currentP.getPlayerPriority());
+//                previousPane.getChildren().remove(thisPlayer);
+//                Pane newPane = ((Pane) ((Button) event.getSource()).getParent());
+//                newPane.getChildren().add(thisPlayer);
+//                showRoles(false);
+//                showButton(currentP.getPlayerLocation(), false);
+                takeRoleHelper(event);
             }
         });
     }
@@ -547,8 +554,6 @@ public class SystemManager implements Initializable {
 
             // Hide all upgrade related buttons in case player decides to not upgrade after
             // pushing upgrade button
-            upgradeOptions.setVisible(false);
-            upgradeRankButton.setVisible(false);
             payWDollarButton.setVisible(false);
             payWCreditButton.setVisible(false);
 

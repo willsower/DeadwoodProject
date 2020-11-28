@@ -8,7 +8,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="700.0" stylesheets="@../CSS/main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SystemManager">
    <children>
-      <GridPane prefHeight="691.0" prefWidth="924.0" AnchorPane.leftAnchor="0.0">
+      <GridPane fx:id="woodBoard" prefHeight="691.0" prefWidth="924.0" AnchorPane.leftAnchor="0.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -21,11 +21,7 @@
                   <Image url="@../images/table.png" />
                </image>
             </ImageView>
-            <Label fx:id="finalScoreLabel" alignment="CENTER" prefWidth="1000.0" styleClass="western" text="Calculating end score" textAlignment="CENTER" textFill="WHITE" translateY="-50.0" visible="false">
-               <font>
-                  <Font size="40.0" />
-               </font></Label>
-            <Label fx:id="finalScoreTitle" alignment="CENTER" prefWidth="1000.0" styleClass="western" text="Label" textAlignment="CENTER" textFill="WHITE" visible="false">
+            <Label fx:id="finalScoreLabel" alignment="CENTER" prefWidth="1000.0" styleClass="western" text="Calculating end score" textAlignment="CENTER" textFill="WHITE" translateY="-300.0" visible="false">
                <font>
                   <Font size="40.0" />
                </font></Label>
@@ -37,6 +33,46 @@
                <font>
                   <Font size="40.0" />
                </font></Label>
+            <Label fx:id="finalScoreOne" styleClass="western" text="Label" textFill="WHITE" translateY="-200.0" visible="false">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Label fx:id="finalScoreTwo" styleClass="western" text="Label" textFill="WHITE" translateY="-150.0" visible="false">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Label fx:id="finalScoreThree" styleClass="western" text="Label" textFill="WHITE" translateY="-100.0" visible="false">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Label fx:id="finalScoreFour" styleClass="western" text="Label" textFill="WHITE" translateY="-50.0" visible="false">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Label fx:id="finalScoreFive" styleClass="western" text="Label" textFill="WHITE" visible="false">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Label fx:id="finalScoreSix" styleClass="western" text="Label" textFill="WHITE" translateY="50.0" visible="false">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Label fx:id="finalScoreSeven" styleClass="western" text="Label" textFill="WHITE" translateY="100.0" visible="false">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Label fx:id="finalScoreEight" styleClass="western" text="Label" textFill="WHITE" translateY="150.0" visible="false">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
          </children>
       </GridPane>
       <GridPane prefHeight="101.0" prefWidth="227.0" translateX="650.0" translateY="20.0">

@@ -19,6 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.Node;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import java.net.URL;
@@ -42,15 +43,18 @@ public class SystemManager implements Initializable {
     @FXML //ImageViews
     private ImageView trainStationCard, jailCard, mainStreetCard, generalStoreCard, saloonCard, ranchCard, bankCard,
             secretHideoutCard, churchCard, hotelCard, boardImage, shotOne, shotTwo, shotThree, player1, player2, player3,
-            player4, player5, player6, player7, player8, woodBoard;
+            player4, player5, player6, player7, player8;
     @FXML // Text display
-    private Label currentPlayer, playerDollar, playerCredit, playerPracticeChip, dayDisplay, displayText, actPrintLabel, finalScoreLabel, finalScoreTitle, winnerIsLabel, winnerLabel;
+    private Label currentPlayer, playerDollar, playerCredit, playerPracticeChip, dayDisplay, displayText, actPrintLabel,
+            finalScoreLabel, winnerIsLabel, winnerLabel, finalScoreOne, finalScoreTwo, finalScoreThree,
+            finalScoreFour, finalScoreFive, finalScoreSix, finalScoreSeven, finalScoreEight;
     @FXML // Action Buttons
     private Button actButton, rehearseButton, upgradeButton, rollDieButton, submitButton, upgradeRankButton, payWDollarButton, payWCreditButton, nextPlayer;
     @FXML private TextField userInput;
     @FXML private VBox numPlayerBox, upgradeBox, paymentOption;
     ObservableList<Integer> list = FXCollections.observableArrayList();
     @FXML private ChoiceBox<Integer> upgradeOptions;
+    @FXML private GridPane  woodBoard;
 
 
     @Override
@@ -299,6 +303,24 @@ public class SystemManager implements Initializable {
         };
     }
 
+    // Get player label for finalScore
+    public Label playerScore(int val) {
+        return switch (val) {
+            case 1 -> finalScoreOne;
+            case 2 -> finalScoreTwo;
+            case 3 -> finalScoreThree;
+            case 4 -> finalScoreFour;
+            case 5 -> finalScoreFive;
+            case 6 -> finalScoreSix;
+            case 7 -> finalScoreSeven;
+            default -> finalScoreEight;
+        };
+    }
+
+
+
+
+
     // When player clicks one of the arrows to move
     public void onMove(ActionEvent event) {
         String name = ((Node) event.getSource()).getId();
@@ -463,7 +485,7 @@ public class SystemManager implements Initializable {
     // Function will end the current players turn and set player label information
     // for next player
     public void nextPlayerPush(ActionEvent event) {
-        if (cardsFinished < 4) {
+        if (cardsFinished < 9) {
             showRoles(false);
             showButton(currentP.getPlayerLocation(), false);
 
@@ -484,20 +506,22 @@ public class SystemManager implements Initializable {
             // Hide print label
             actPrintLabel.setText("");
             turn(currentP);
-        } else if (cardsFinished == 4) {
+        } else if (cardsFinished == 9) {
             showRoles(false);
             cardsFinished = 0;
             day++;
             if (OnTurn.getInstance().calculateDaysPlayed(numPlayer) + 1 == day) {
                 nextPlayer.setVisible(false);
-                woodBoard.setVisible(true);
+                woodBoard.toFront();
 
                 //finalScoreTitle.setText("Calculating end score");
-                finalScoreTitle.setVisible(true);
-                for (int i = 0; i < players.length; i++) {
-                    setPlayerInformation(7, players[i]);
-                }
+                finalScoreLabel.setVisible(true);
+                //finalScoreLabel.toFront();
                 displayWinner(OnTurn.getInstance().endFunction(players, numPlayer));
+                for (int i = 0; i < players.length; i++) {
+                    playerScore(i +1).setText("Player "+ (i+1) + ": "+ players[i].getFinalScore());
+                    playerScore(i +1).setVisible(true);
+                }
             } else {
                 resetAll(players, day, numPlayer);
                 turn(currentP);

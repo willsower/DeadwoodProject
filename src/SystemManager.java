@@ -504,7 +504,7 @@ public class SystemManager implements Initializable {
             actPrintLabel.setText("");
             turn(currentP);
         } else if (cardsFinished == 9) {
-            showRoles(false);
+            showRoles(false, currentP.getPlayerLocation());
             cardsFinished = 0;
             day++;
             if (OnTurn.getInstance().calculateDaysPlayed(numPlayer) + 1 == day) {

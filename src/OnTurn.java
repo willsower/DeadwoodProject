@@ -9,6 +9,7 @@ import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Random;
 import java.util.ArrayList;
+import javafx.scene.image.Image;
 
 public class OnTurn {
     private static OnTurn instance = null;
@@ -16,6 +17,7 @@ public class OnTurn {
     private String printMessageTwo;
     private String printMessageRoll;
     private int shotCounterImageNum;
+    private Image die;
 
     // Create instance
     public static OnTurn getInstance() {
@@ -37,6 +39,8 @@ public class OnTurn {
     public String getPrintMessageRoll () {
         return printMessageRoll;
     }
+
+    public Image getDieImage() { return die; }
 
     // Function to get array of parts available  off the card
     public ArrayList<String> getPartsAvailOffCard(Player player) {
@@ -77,6 +81,10 @@ public class OnTurn {
 
     public void setShotCounterImageNum (int num) {
         shotCounterImageNum = num;
+    }
+
+    public void setDieImage(int num) {
+        die = new Image("./images/dice/w" + num + ".png");
     }
 
     // Calculate days of play
@@ -225,7 +233,7 @@ public class OnTurn {
                 .getCardBudget();
         int counter = Board.getInstance().getSet(player.getPlayerLocation()).getShotCounter();
         int diceRoll = roll();
-
+        setDieImage(diceRoll);
         setPrintMessageRoll("Dice Roll: "+ diceRoll);
 
         // if success

@@ -42,7 +42,7 @@ public class SystemManager implements Initializable {
     @FXML //ImageViews
     private ImageView trainStationCard, jailCard, mainStreetCard, generalStoreCard, saloonCard, ranchCard, bankCard,
             secretHideoutCard, churchCard, hotelCard, boardImage, player1, player2, player3,
-            player4, player5, player6, player7, player8;
+            player4, player5, player6, player7, player8, actRollDisplay;
     @FXML // Text display
     private Label currentPlayer, playerDollar, playerCredit, playerPracticeChip, dayDisplay, displayText, actPrintLabel,
             actPrintLabelTwo, diceRollLabel, finalScoreLabel, winnerIsLabel, winnerLabel, finalScoreOne, finalScoreTwo,
@@ -255,6 +255,7 @@ public class SystemManager implements Initializable {
     // Function will end the current players turn and set player label information for next player
     public void nextPlayerPush(ActionEvent event) {
         showRoleMoveNext(false, false, false, currentP.getPlayerLocation());
+        actRollDisplay.setVisible(false);
         player++;
         if (player == players.length) {
             player = 0;
@@ -339,6 +340,8 @@ public class SystemManager implements Initializable {
         actPrintLabel.setText(OnTurn.getInstance().getPrintMessage());
         actPrintLabelTwo.setText(OnTurn.getInstance().getPrintMessageTwo());
         setPlayerInformation(currentP.getPracticeChip());
+        actRollDisplay.setVisible(true);
+        actRollDisplay.setImage(OnTurn.getInstance().getDieImage());
         nextPlayer.setVisible(true);
     }
 

@@ -186,7 +186,7 @@ public class OnTurn {
                 .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum())
                 .getPartPriority(roleName);
         player.setOnCardRole(true);
-        player.setRoleLevel(set.getPartLevel(setName));
+        player.setRoleLevel(set.getPartLevel(roleName.replace("_", " ")));
         player.setRoleLocation(player.getPlayerLocation());
         player.setRolePriority(rolePriority);
         player.setRoleName(roleName);
@@ -200,7 +200,7 @@ public class OnTurn {
         Set set = Board.getInstance().getSet(setName);
 
         player.setOffCardRole(true);
-        player.setRoleLevel(set.getPartLevel(setName));
+        player.setRoleLevel(set.getPartLevel(roleName.replace("_", " ")));
         player.setRoleLocation(player.getPlayerLocation());
         player.setRoleName(roleName);
         Board.getInstance().getSet(setName).addPlayerToRoomOffCard(player);

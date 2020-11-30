@@ -127,9 +127,8 @@ public class ScoringManager {
         // Give payout to off card players
         for (Player p : playersOffCard) {
             p.setDollar(p.getDollar() + bonusOffCard(p.getRoleLevel())); // role rank
-            p.resetPlayers(false);
-            System.out.println(bonusOffCard(p.getRoleLevel()));
             bonusInformation += "Player " + p.getPlayerPriority() + ": +" + bonusOffCard(p.getRoleLevel()) + " Dollar\n";
+            p.resetPlayers(false);
         }
     }
 

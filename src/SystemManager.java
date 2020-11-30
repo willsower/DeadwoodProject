@@ -281,14 +281,14 @@ public class SystemManager implements Initializable {
         actPrintLabelTwo.setText("");
         diceRollLabel.setText("");
 
-        if (cardsFinished < 2) {
+        if (cardsFinished < 9) {
             showRoleMoveNext(false, false, false, currentP.getPlayerLocation());
             // Set label with player information
             setPlayerInformation(currentP.getPracticeChip());
             upgradeBox.setVisible(false);
 
             turn(currentP);
-        } else if (cardsFinished == 2) {
+        } else if (cardsFinished == 9) {
             showRoles(false, currentP.getPlayerLocation());
             cardsFinished = 0;
             day++;
@@ -325,6 +325,7 @@ public class SystemManager implements Initializable {
 
     // Make role button visible once act button has been pushed
     public void actButtonAction(ActionEvent event) {
+        showRoles(false, currentP.getPlayerLocation());
         rollDieButton.setVisible(true);
         makeButtonVisible(false, false, false);
     }

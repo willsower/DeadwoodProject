@@ -172,11 +172,6 @@ public class Player {
     // Function to reset players at the end of day or card
     // depending on the boolean value
     public void resetPlayers(boolean isNotAfterCard) {
-        if (isNotAfterCard) { // true
-//            playerLocation = "trailer";
-            //playerLocation = "office"; /* TEST UPGRADE */
-            //System.out.println("TEST 1");
-        }
         practiceChip = 0;
         onCardRole = false;
         offCardRole = false;

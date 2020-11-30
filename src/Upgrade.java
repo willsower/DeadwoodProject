@@ -1,7 +1,7 @@
 /*
     Upgrade Class
     Purpose: Deals with all upgrading in game. Will check if user has enough to upgrade
-             Will call from UserInterface to help display and get user input on upgrade
+             Will call from SystemManager or OnTurn to help display and get user input on upgrade
     Singleton = true
 */
 

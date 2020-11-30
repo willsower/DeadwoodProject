@@ -225,10 +225,6 @@ public class Set {
         }
     }
 
-    public void addToButtonList(Button name) {
-        out.add(name);
-    }
-
     public void setShotCounter(int counter) {
         shotCounter = counter;
     }

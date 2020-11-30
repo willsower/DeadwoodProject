@@ -488,6 +488,7 @@ public class SystemManager implements Initializable {
         Button test = new Button();
         newPane.getChildren().add(test);
         test.setPrefWidth(30);
+        test.setPrefHeight(30);
         test.setId(id.replace(" ", "_"));
         test.setVisible(false);
         test.setOpacity(0.5);

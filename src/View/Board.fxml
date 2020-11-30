@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
@@ -75,7 +76,7 @@
             </Label>
          </children>
       </GridPane>
-      <GridPane prefHeight="101.0" prefWidth="227.0" translateX="650.0" translateY="20.0">
+      <GridPane prefHeight="101.0" prefWidth="250.0" translateX="650.0" translateY="20.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -83,24 +84,24 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="currentPlayer" styleClass="western" textFill="WHITE" translateY="-41.0">
+            <Label fx:id="currentPlayer" styleClass="western" textFill="WHITE" translateY="-50.0">
                <font>
-                  <Font size="20.0" />
+                  <Font size="32.0" />
                </font>
             </Label>
-            <Label fx:id="playerCredit" layoutX="10.0" layoutY="48.0" styleClass="western" textFill="WHITE" translateX="20.0" translateY="-15.0">
+            <Label fx:id="playerCredit" layoutX="10.0" layoutY="48.0" styleClass="western" textFill="WHITE" translateX="20.0" translateY="-22.0">
                <font>
-                  <Font size="17.0" />
+                  <Font size="25.0" />
                </font>
             </Label>
-            <Label fx:id="playerDollar" layoutX="10.0" layoutY="48.0" styleClass="western" textFill="WHITE" translateX="20.0" translateY="5.0">
+            <Label fx:id="playerDollar" layoutX="10.0" layoutY="48.0" styleClass="western" textFill="WHITE" translateX="20.0" translateY="1.0">
                <font>
-                  <Font size="17.0" />
+                  <Font size="25.0" />
                </font>
             </Label>
             <Label fx:id="playerPracticeChip" layoutX="10.0" layoutY="48.0" styleClass="western" textFill="WHITE" translateX="20.0" translateY="25.0">
                <font>
-                  <Font size="17.0" />
+                  <Font size="25.0" />
                </font>
             </Label>
          </children>
@@ -121,7 +122,7 @@
       </Label>
       <HBox>
          <children>
-            <ImageView fx:id="boardImage" fitHeight="700.0" fitWidth="760.0" pickOnBounds="true" preserveRatio="true" translateX="140.0" translateY="106.0" visible="false">
+            <ImageView fx:id="boardImage" fitHeight="700.0" fitWidth="760.0" pickOnBounds="true" preserveRatio="true" translateX="140.0" translateY="106.0">
                <image>
                   <Image url="@../images/board.jpg" />
                </image>
@@ -166,7 +167,7 @@
                   <Button fx:id="Railroad_Worker" ellipsisString="" mnemonicParsing="false" onAction="#offCardRole" opacity="0.5" prefHeight="30.0" prefWidth="30.0" visible="false" />
                </children>
             </Pane>
-            <Pane fx:id="Falls_off_Roof" prefHeight="30.0" prefWidth="30.0" translateX="73.0" translateY="19.0">
+            <Pane fx:id="Falls_off_Roof" prefHeight="30.0" prefWidth="30.0" translateX="73.0" translateY="17.0">
                <children>
                   <Button fx:id="Falls_off_Roof" ellipsisString="" mnemonicParsing="false" onAction="#offCardRole" opacity="0.5" prefHeight="30.0" prefWidth="30.0" visible="false" />
                </children>
@@ -495,29 +496,64 @@
                   <Font size="56.0" />
                </font></Label>
             <TextField fx:id="userInput" promptText="2-8" translateY="300.0" />
-            <Button fx:id="submitButton" mnemonicParsing="false" onAction="#submitPlayers" text="Submit" translateY="300.0" />
+            <Button fx:id="submitButton" mnemonicParsing="false" onAction="#submitPlayers" style="-fx-background-color: white;" styleClass="western" text="Submit" translateY="300.0">
+               <font>
+                  <Font size="16.0" />
+               </font></Button>
          </children>
          <padding>
             <Insets top="40.0" />
          </padding>
       </VBox>
-      <VBox alignment="TOP_CENTER" spacing="20.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="160.0">
+      <VBox alignment="TOP_CENTER" spacing="20.0" translateX="-18.0" translateY="-46.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="160.0">
          <children>
-            <Button fx:id="actButton" mnemonicParsing="false" onAction="#actButtonAction" text="Act" visible="false" />
-            <Button fx:id="rehearseButton" mnemonicParsing="false" onAction="#rehearseButtonAction" text="Rehearse" visible="false" />
-            <Button fx:id="upgradeButton" mnemonicParsing="false" onAction="#upgradeButtonAction" text="Upgrade" visible="false" />
+            <Button fx:id="actButton" mnemonicParsing="false" onAction="#actButtonAction" text="Act" visible="false">
+               <styleClass>
+                  <String fx:value="western" />
+                  <String fx:value="buttonCardColor" />
+               </styleClass></Button>
+            <Button fx:id="rehearseButton" mnemonicParsing="false" onAction="#rehearseButtonAction" text="Rehearse" visible="false">
+               <styleClass>
+                  <String fx:value="western" />
+                  <String fx:value="buttonCardColor" />
+               </styleClass></Button>
+            <Button fx:id="upgradeButton" mnemonicParsing="false" onAction="#upgradeButtonAction" text="Upgrade" translateY="-81.0" visible="false">
+               <styleClass>
+                  <String fx:value="western" />
+                  <String fx:value="buttonCardColor" />
+               </styleClass></Button>
+            <Button fx:id="rollDieButton" mnemonicParsing="false" onAction="#rollDieAction" text="Roll Die" translateY="-123.0" visible="false">
+               <styleClass>
+                  <String fx:value="western" />
+                  <String fx:value="buttonCardColor" />
+               </styleClass>
+            </Button>
          </children>
       </VBox>
-      <Button fx:id="rollDieButton" mnemonicParsing="false" onAction="#rollDieAction" text="Roll Die" visible="false" AnchorPane.topAnchor="350.0" />
       <Label fx:id="diceRollLabel" styleClass="western" textFill="WHITE" translateX="5.0" translateY="300.0">
          <font>
             <Font size="30.0" />
          </font></Label>
-      <Button fx:id="nextPlayer" layoutX="-65.0" layoutY="71.0" mnemonicParsing="false" onAction="#nextPlayerPush" prefHeight="50.0" prefWidth="96.0" text="Next Turn" translateX="90.0" translateY="10.0" visible="false" />
+      <Button fx:id="nextPlayer" layoutX="-68.0" layoutY="21.0" mnemonicParsing="false" onAction="#nextPlayerPush" prefHeight="50.0" prefWidth="100.0" text="NEXT" translateX="90.0" translateY="10.0">
+         <styleClass>
+            <String fx:value="western" />
+            <String fx:value="buttonCardColor" />
+         </styleClass>
+         <font>
+            <Font size="23.0" />
+         </font></Button>
       <VBox fx:id="paymentOption" layoutX="20.0" layoutY="480.0" visible="false" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="480.0">
          <children>
-            <Button fx:id="payWDollarButton" mnemonicParsing="false" onAction="#payWDollarAction" text="Pay with Dollar" visible="false" />
-            <Button fx:id="payWCreditButton" mnemonicParsing="false" onAction="#payWCreditAction" text="Pay with Credit" visible="false" />
+            <Button fx:id="payWDollarButton" mnemonicParsing="false" onAction="#payWDollarAction" text="Pay with Dollar" visible="false">
+               <styleClass>
+                  <String fx:value="western" />
+                  <String fx:value="buttonCardColor" />
+               </styleClass></Button>
+            <Button fx:id="payWCreditButton" mnemonicParsing="false" onAction="#payWCreditAction" text="Pay with Credit" visible="false">
+               <styleClass>
+                  <String fx:value="western" />
+                  <String fx:value="buttonCardColor" />
+               </styleClass></Button>
          </children>
       </VBox>
       <VBox fx:id="upgradeBox" alignment="TOP_CENTER" layoutY="400.0" visible="false" AnchorPane.topAnchor="400.0">
@@ -527,6 +563,10 @@
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
+               <styleClass>
+                  <String fx:value="western" />
+                  <String fx:value="buttonCardColor" />
+               </styleClass>
             </Button>
          </children>
          <opaqueInsets>

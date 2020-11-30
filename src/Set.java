@@ -114,13 +114,6 @@ public class Set {
 
     public boolean getIsCardFlipped() { return isCardFlipped; }
 
-    public ArrayList<Button> getOut() {
-//        for (int i = 0; i < out.size(); i++) {
-//            System.out.println(out.get(i));
-//        }
-        return out;
-    }
-
     // Function to get list of all active sets
     public Boolean[] getIsActiveList() {
         Boolean[] list = new Boolean[neighbor.length];
@@ -218,7 +211,6 @@ public class Set {
     public void setPartTaken(String partName, boolean taken) {
         ArrayList<Part> partTaken = getParts();
         for (int i = 0; i < getParts().size(); i++) {
-            System.out.println("PART NAME: " + partName);
             if (partName.equals(partTaken.get(i).partName)) {
                 partTaken.get(i).isTaken = taken;
             }
@@ -248,7 +240,6 @@ public class Set {
         ArrayList<String> available = new ArrayList<String>();
         ArrayList<Part> partsAvailable = getParts();
         for (int i = 0; i < partsAvailable.size(); i++) {
-            System.out.println("  " + partsAvailable.get(i).partName + " " + partsAvailable.get(i).isTaken);
             if (partsAvailable.get(i).isTaken == false) {
                 if (partsAvailable.get(i).level <= playerRank) {
                     available.add(partsAvailable.get(i).partName);

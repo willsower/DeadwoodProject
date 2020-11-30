@@ -233,8 +233,6 @@ public class OnTurn {
             // if oncard
             counter -= 1;
             Board.getInstance().getSet(player.getPlayerLocation()).setShotCounter(counter);
-
-            System.out.println("  Current Shot Counter: " + counter);
             setShotCounterImageNum(counter);
 
             if (player.getOnCardRole() == true) { // on card

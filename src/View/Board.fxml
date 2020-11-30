@@ -543,24 +543,24 @@
          <font>
             <Font size="23.0" />
          </font></Button>
-      <VBox fx:id="paymentOption" layoutX="20.0" layoutY="480.0" visible="false" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="480.0">
+      <VBox fx:id="paymentOption" translateX="1.0" translateY="-275.0" visible="false" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="480.0">
          <children>
-            <Button fx:id="payWDollarButton" mnemonicParsing="false" onAction="#payWDollarAction" text="Pay with Dollar" visible="false">
+            <Button fx:id="payWDollarButton" mnemonicParsing="false" onAction="#payWDollarAction" text="Use Dollar" visible="false">
                <styleClass>
                   <String fx:value="western" />
                   <String fx:value="buttonCardColor" />
                </styleClass></Button>
-            <Button fx:id="payWCreditButton" mnemonicParsing="false" onAction="#payWCreditAction" text="Pay with Credit" visible="false">
+            <Button fx:id="payWCreditButton" mnemonicParsing="false" onAction="#payWCreditAction" text="Use Credit" translateY="15.0" visible="false">
                <styleClass>
                   <String fx:value="western" />
                   <String fx:value="buttonCardColor" />
                </styleClass></Button>
          </children>
       </VBox>
-      <VBox fx:id="upgradeBox" alignment="TOP_CENTER" layoutY="400.0" visible="false" AnchorPane.topAnchor="400.0">
+      <VBox fx:id="upgradeBox" alignment="TOP_CENTER" translateY="-200.0" visible="false" AnchorPane.topAnchor="400.0">
          <children>
-            <ChoiceBox fx:id="upgradeOptions" prefWidth="150.0" />
-            <Button fx:id="upgradeRankButton" mnemonicParsing="false" onAction="#upgradeRankAction" text="Upgrade Rank">
+            <ChoiceBox fx:id="upgradeOptions" prefWidth="120.0" />
+            <Button fx:id="upgradeRankButton" mnemonicParsing="false" onAction="#upgradeRankAction" prefWidth="135.0" text="Upgrade Rank" translateX="2.0">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>

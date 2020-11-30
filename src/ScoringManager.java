@@ -6,13 +6,15 @@
     Singleton = true
 */
 
-import java.util.Random;
 import java.util.ArrayList;
 import java.util.Arrays;
+import javafx.scene.image.Image;
 
 public class ScoringManager {
 
     private static ScoringManager instance = null;
+    private String bonusDistrubted;
+    ArrayList<Image> payout = new ArrayList<Image>();
 
     // Create instance
     public static ScoringManager getInstance() {
@@ -21,6 +23,16 @@ public class ScoringManager {
         }
         return instance;
     }
+
+    // Getter Function
+
+    public String getBonusDistributed() { return bonusDistrubted; }
+
+    public ArrayList<Image> getPayoutImages() { return payout; }
+
+    // Setter Function
+
+    public void setBonusDistributed(String val) { bonusDistrubted = val; }
 
     // Adds together user dollar and credits
     public static int addDollarCredits(int dollar, int credit) {
@@ -39,14 +51,9 @@ public class ScoringManager {
         return getRankPoints(rank, firstTotal);
     }
 
-    /* do we use this function? */
-    public static boolean onCard() {
-        return true;
-    }
-
     // Calculates payout value and will return the int values in an
     // array
-    public static int[] calculatePayout(int budget, int totalRoles) { // add perameter on howmany roles on card
+    public int[] calculatePayout(int budget, int totalRoles) { // add perameter on howmany roles on card
         OnTurn turn = new OnTurn();
 
         int[] total = new int[totalRoles];
@@ -61,13 +68,15 @@ public class ScoringManager {
         }
 
         Arrays.sort(budgetHolder);
+        payout.clear();
 
         // Adding the rolls in the previous array to the payout
         // array
         for (int i = budget - 1; i >= 0; i--) {
             total[index] += budgetHolder[i];
             index++;
-
+            Image temp = new Image("./images/dice/w" + budgetHolder[i] + ".png");
+            payout.add(temp);
             if (index == totalRoles) {
                 index = 0;
             }
@@ -86,7 +95,8 @@ public class ScoringManager {
             ArrayList<Player> playersOffCard, int cardSlots) {
         int[] payout = calculatePayout(cardBudget, cardSlots);
         System.out.println("Card Budget: " + cardBudget + " Card Slots: " + cardSlots);
-        System.out.println("\nEnd of Card: Bonuses distributed");
+//        System.out.println("\nEnd of Card: Bonuses distributed");
+        setBonusDistributed("Bonuses Distributed");
         System.out.println("Players on card ");
         // Give payout to on card players
         for (Player p : playersOnCard) { 
@@ -110,19 +120,15 @@ public class ScoringManager {
         // Give payout to off card players
         for (Player p : playersOffCard) {
             p.setDollar(p.getDollar() + bonusOffCard(p.getRoleLevel())); // role rank
-            p.resetPlayers(false); // parameter is for isNotEndOfCard
-///**/            UserInterfaceDisplay.getInstance().displayPlayerInfo(p);
+            p.resetPlayers(false);
         }
     }
 
     // Function to reset players if there were no onCard players
     public void endCardNoCardWorkers(Player player, ArrayList<Player> playersOffCard) {
-        System.out.println("\nEnd of Card: No Bonuses Given [No on card workers]");
-        System.out.println("Players off card: ");
+        setBonusDistributed("No Bonuses Distributed");
         for (Player p : playersOffCard) {
-            System.out.println("  Player " + p.getPlayerPriority());
             p.resetPlayers(false);
-///**/            UserInterfaceDisplay.getInstance().displayPlayerInfo(p);
         }
     }
 }

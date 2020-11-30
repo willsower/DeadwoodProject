@@ -162,7 +162,7 @@ public class Player {
             case "c" -> colorName = "Cadet Blue";
             case "g" -> colorName = "Green";
             case "o" -> colorName = "Orange";
-            case "p" -> colorName = "Purple";
+            case "p" -> colorName = "Pink";
             case "r" -> colorName = "Red";
             case "v" -> colorName = "Violet";
             default -> colorName = "Yellow";

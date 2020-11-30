@@ -122,7 +122,7 @@
       </Label>
       <HBox>
          <children>
-            <ImageView fx:id="boardImage" fitHeight="700.0" fitWidth="760.0" pickOnBounds="true" preserveRatio="true" translateX="140.0" translateY="106.0">
+            <ImageView fx:id="boardImage" fitHeight="700.0" fitWidth="760.0" pickOnBounds="true" preserveRatio="true" translateX="140.0" translateY="106.0" visible="false">
                <image>
                   <Image url="@../images/board.jpg" />
                </image>
@@ -559,7 +559,7 @@
       </VBox>
       <VBox fx:id="upgradeBox" alignment="TOP_CENTER" translateY="-200.0" visible="false" AnchorPane.topAnchor="400.0">
          <children>
-            <ChoiceBox fx:id="upgradeOptions" prefWidth="120.0" />
+            <ChoiceBox fx:id="upgradeOptions" prefWidth="120.0" styleClass="western" />
             <Button fx:id="upgradeRankButton" mnemonicParsing="false" onAction="#upgradeRankAction" prefWidth="135.0" text="Upgrade Rank" translateX="2.0">
                <VBox.margin>
                   <Insets top="10.0" />

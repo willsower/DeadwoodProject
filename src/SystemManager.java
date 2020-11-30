@@ -1,9 +1,10 @@
 /*
     SystemManager Class
     Purpose: This class is the power of this game. It will create the player objects, manage
-             how many days will be played, and will trigger the onTurn functions for each 
-             player when it's their turn. Will also calculate end of game metrics by calling
-             ScoringManager and will reset each day by calling helper functions
+             how many days will be played, and will trigger the onTurn functions to help managing
+             the system. Will also calculate end of game metrics by calling ScoringManager and
+             will reset each day by calling helper functions. This Controller class is the main
+             Controller that interacts with the View Board.fxml
 */
 
 import javafx.collections.FXCollections;
@@ -374,7 +375,6 @@ public class SystemManager implements Initializable {
                     for (int x = 0; x < ((Pane) obj.getChildren().get(j)).getChildren().size(); x++) {
                         if (((Pane) obj.getChildren().get(j)).getChildren().get(x).getAccessibleRole()
                                 .compareTo(AccessibleRole.BUTTON) == 0) {
-//                            System.out.println("    Card Role: " + card.get(i).replace(",", ""));
                             Button myButton = ((Button) ((Pane) obj.getChildren().get(j)).getChildren().get(x));
                             myButton.setVisible(val);
                             myButton.toFront();
@@ -389,7 +389,6 @@ public class SystemManager implements Initializable {
 
     // Function that will show off card role options if they are availble, or disable
     public void showOffCardRoleOptions(boolean val, String location, Player player) {
-//        System.out.println("  Location: " + location);
         ArrayList<String> offCard = OnTurn.getInstance().getPartsAvailOffCard(player);
         showRoleOptionHelper(offCard, val, getButtonLocation(location));
     }

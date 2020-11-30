@@ -1,9 +1,8 @@
 /*
     OnTurn Class
-    Purpose: This class has everything to do with player choices in game
-             Whether they decide to upgrade (which will call upgrade class),
-             Act, Rehearse, Move, or take a role. All these interactions
-             and calculations will be done in this class
+    Purpose: This class has everything to do with player choices in game. These functions
+             will be triggered by SystemManager to help update information in our Model
+             classes or display something differently in our View.
 */
 
 import java.util.Enumeration;
@@ -26,46 +25,17 @@ public class OnTurn {
         return instance;
     }
 
-    // Return true if number is numeric
-    // false if not
-    public static boolean isNumeric(String str) {
-        try {
-            Integer.parseInt(str);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
+    // Getter functions
+    public String getPrintMessage () {
+        return printMessage;
     }
 
-    // Function to show that player has taken on card role
-    // Updates Player and Card Attributes
-    public static void takeOnCardRole(Player player, String roleName, String setName) {
-        Set set = Board.getInstance().getSet(setName);
-
-        int rolePriority = Deck.getInstance()
-                .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum())
-                .getPartPriority(roleName);
- System.out.println("ROLE PRIORITY: " + rolePriority);
-        player.setOnCardRole(true);
-        player.setRoleLevel(set.getPartLevel(setName));
-        player.setRoleLocation(player.getPlayerLocation());
-        player.setRolePriority(rolePriority);
-        player.setRoleName(roleName);
-        Deck.getInstance().getCard(set.getCardNum()).addPlayerToRoomOnCard(player);
-        Deck.getInstance().getCard(set.getCardNum()).setPartTaken(roleName.replace("_", " "), true);
+    public String getPrintMessageTwo () {
+        return printMessageTwo;
     }
 
-    // Function to show that player has taken off card role
-    // Updates Player and Set Attributes
-    public static void takeOffCardRole(Player player, String roleName, String setName) {
-        Set set = Board.getInstance().getSet(setName);
-
-        player.setOffCardRole(true);
-        player.setRoleLevel(set.getPartLevel(setName));
-        player.setRoleLocation(player.getPlayerLocation());
-        player.setRoleName(roleName);
-        Board.getInstance().getSet(setName).addPlayerToRoomOffCard(player);
-        Board.getInstance().getSet(setName).setPartTaken(roleName.replace("_", " "), true);
+    public String getPrintMessageRoll () {
+        return printMessageRoll;
     }
 
     // Function to get array of parts available  off the card
@@ -92,6 +62,72 @@ public class OnTurn {
         return partsOnCardAval;
     }
 
+    // Setter functioins
+    public void setPrintMessage (String str) {
+        printMessage = str;
+    }
+
+    public void setPrintMessageTwo (String str) {
+        printMessageTwo = str;
+    }
+
+    public void setPrintMessageRoll (String str) {
+        printMessageRoll = str;
+    }
+
+    public void setShotCounterImageNum (int num) {
+        shotCounterImageNum = num;
+    }
+
+    // Calculate days of play
+    public int calculateDaysPlayed(int numPlayer) {
+        if (numPlayer == 2 || numPlayer == 3) {
+            return 3;
+        }
+        return 4;
+    }
+
+    // Turn manager initializes all players
+    public Player[] init(int numPlayer) {
+
+        // Init num players array
+        Player[] players = new Player[numPlayer];
+
+        // Array of dice colors
+        String[] playerDie = new String[]{"b", "c", "g", "o", "p", "r", "v", "y"};
+        int x = 30;
+        int y = 0;
+        int count = 1;
+        // Populate players
+        for (int i = 0; i < numPlayer; i++) {
+            switch (numPlayer) {
+                case 5:
+                    players[i] = new Player(i + 1, 1, 0, 2, "trailer", playerDie[i], x * i, y * count);
+                    break;
+                case 6:
+                    players[i] = new Player(i + 1, 1, 0, 4, "trailer", playerDie[i], x * i, y * count);
+                    break;
+                case 7:
+                    players[i] = new Player(i + 1, 2, 0, 0, "trailer", playerDie[i], x * i, y * count);
+                    break;
+                case 8:
+                    players[i] = new Player(i + 1, 2, 0, 0, "trailer", playerDie[i], x * i, y * count);
+                    break;
+                default:
+                    players[i] = new Player(i + 1, 6, 0, 0, "trailer", playerDie[i], x * i, y * count);
+                    break;
+            }
+            if ( i == 4) {
+                x = 0;
+                y = 30;
+            } else if (i > 4) {
+                count++;
+            }
+        }
+        return players;
+    }
+
+    // Parses location of the set given the id
     public String parseForSet(String location) {
         String name = "";
         for (int i = 0; i < location.length(); i++) {
@@ -107,6 +143,7 @@ public class OnTurn {
         return name;
     }
 
+    // Parses the location from the id given
     public String parseMoveTo(String location) {
         String name = "";
         int countCaps = 0;
@@ -132,12 +169,41 @@ public class OnTurn {
         return name;
     }
 
+    // Function to show that player has taken on card role
+    // Updates Player and Card Attributes
+    public static void takeOnCardRole(Player player, String roleName, String setName) {
+        Set set = Board.getInstance().getSet(setName);
+
+        int rolePriority = Deck.getInstance()
+                .getCard(Board.getInstance().getSet(player.getPlayerLocation()).getCardNum())
+                .getPartPriority(roleName);
+        player.setOnCardRole(true);
+        player.setRoleLevel(set.getPartLevel(setName));
+        player.setRoleLocation(player.getPlayerLocation());
+        player.setRolePriority(rolePriority);
+        player.setRoleName(roleName);
+        Deck.getInstance().getCard(set.getCardNum()).addPlayerToRoomOnCard(player);
+        Deck.getInstance().getCard(set.getCardNum()).setPartTaken(roleName.replace("_", " "), true);
+    }
+
+    // Function to show that player has taken off card role
+    // Updates Player and Set Attributes
+    public static void takeOffCardRole(Player player, String roleName, String setName) {
+        Set set = Board.getInstance().getSet(setName);
+
+        player.setOffCardRole(true);
+        player.setRoleLevel(set.getPartLevel(setName));
+        player.setRoleLocation(player.getPlayerLocation());
+        player.setRoleName(roleName);
+        Board.getInstance().getSet(setName).addPlayerToRoomOffCard(player);
+        Board.getInstance().getSet(setName).setPartTaken(roleName.replace("_", " "), true);
+    }
+
     // Function to check if card has been flipped or not already
     // Also this function will move the player location, and set it
     public boolean movePlayer(Player player, String location) {
         String newLocation = parseMoveTo(location);
         player.setPlayerLocation(newLocation);
-
         if (newLocation.equals("office") || newLocation.equals("trailer")) {
             return true;
         } else {
@@ -150,8 +216,6 @@ public class OnTurn {
     public void rehearse(Player player, int cardBudget) {
         if (player.getPracticeChip() < (cardBudget-1) ){
             player.setPracticeChip(player.getPracticeChip() + 1);
-
-           // UserInterfaceDisplay.getInstance().displayPlayerInfo(player);
         }
     }
 
@@ -162,9 +226,6 @@ public class OnTurn {
         int counter = Board.getInstance().getSet(player.getPlayerLocation()).getShotCounter();
         int diceRoll = roll();
 
-        //SystemManager.getInstance().printLabel("Dice rolled : " + diceRoll);
-
-        //System.out.println("dice roll: " + diceRoll);
         setPrintMessageRoll("Dice Roll: "+ diceRoll);
 
         // if success
@@ -216,38 +277,6 @@ public class OnTurn {
         return 2;
     }
 
-    public String getPrintMessage () {
-        return printMessage;
-    }
-
-    public void setPrintMessage (String str) {
-        printMessage = str;
-    }
-
-    public String getPrintMessageTwo () {
-        return printMessageTwo;
-    }
-
-    public void setPrintMessageTwo (String str) {
-        printMessageTwo = str;
-    }
-
-    public String getPrintMessageRoll () {
-        return printMessageRoll;
-    }
-
-    public void setPrintMessageRoll (String str) {
-        printMessageRoll = str;
-    }
-
-    public int getShotCounterImageNum () {
-        return shotCounterImageNum;
-    } //don't think we need
-
-    public void setShotCounterImageNum (int num) {
-        shotCounterImageNum = num;
-    } //don't think we need
-
     // Random number generater between 1 and 6, like a die roll
     public static int roll() {
         Random ran = new Random();
@@ -259,12 +288,27 @@ public class OnTurn {
         return ran.nextInt(upperBound - lowerBound + 1) + lowerBound;
     }
 
-    // Calculate days of play
-    public int calculateDaysPlayed(int numPlayer) {
-        if (numPlayer == 2 || numPlayer == 3) {
-            return 3;
+    // Reset all function will be called at the start of each game
+    // It will reset the variables in other classes, put players back into trailers
+    // Put cards on the appropriate sets
+    public void resetHelper(Player[] list, int day, int numPlayer) {
+        // Reset player info
+        for (int i = 0; i < numPlayer; i++) {
+            list[i].resetPlayers(true); // parameter is for notEndOfCard
         }
-        return 4;
+        Hashtable<String, Set> board = Board.getInstance().getBoard();
+
+        Enumeration<Set> values = board.elements();
+        int ind = 0;
+        // iterate through values
+        while (values.hasMoreElements()) {
+            Set set = values.nextElement();
+
+            set.resetSetDay();
+
+            ind++;
+        }
+        Board.getInstance().assignCardToSet(Deck.getInstance().getCardShuffle(), day);
     }
 
     // Set zero array to 0
@@ -279,13 +323,6 @@ public class OnTurn {
     public Integer[] endFunction(Player[] player, int numPlayer) {
         Integer[] whoWon = new Integer[numPlayer];
         int index = 0;
-
-//        System.out.println("\n=========");
-//        System.out.println("Calculating end score");
-//        for (int i = 0; i < player.length; i++) {
-//            /**/            UserInterfaceDisplay.getInstance().displayPlayerInfo(player[i]);
-//        }
-//        System.out.println("\n\n");
 
         // Set everything to 0
         whoWon = zero(whoWon);
@@ -319,72 +356,5 @@ public class OnTurn {
         }
 
         return whoWon;
-        /**/        //UserInterfaceDisplay.getInstance().displayWinner(whoWon); //dont need
-    }
-
-    // Resetall function will be called at the start of each game
-    // It will reset the variables in other classes, put players back into trailers
-    // Put cards on the appropriate sets
-    public void resetHelper(Player[] list, int day, int numPlayer) {
-        // Reset player info
-        for (int i = 0; i < numPlayer; i++) {
-            list[i].resetPlayers(true); // parameter is for notEndOfCard
-        }
-
-        Hashtable<String, Set> board = Board.getInstance().getBoard();
-
-        Enumeration<Set> values = board.elements();
-        int ind = 0;
-        // iterate through values
-        while (values.hasMoreElements()) {
-            Set set = values.nextElement();
-
-            set.resetSetDay();
-
-            ind++;
-        }
-
-        Board.getInstance().assignCardToSet(Deck.getInstance().getCardShuffle(), day);
-    }
-
-    // Turn manager initializes all players
-    public Player[] init(int numPlayer) {
-
-        // Init num players array
-        Player[] players = new Player[numPlayer];
-
-        // Array of dice colors
-        String[] playerDie = new String[]{"b", "c", "g", "o", "p", "r", "v", "y"};
-        int x = 30;
-        int y = 0;
-        int count = 1;
-        // Populate players
-        for (int i = 0; i < numPlayer; i++) {
-            System.out.println(x * i + ", " +  y * count);
-            switch (numPlayer) {
-                case 5:
-                    players[i] = new Player(i + 1, 1, 0, 2, "trailer", playerDie[i], x * i, y * count);
-                    break;
-                case 6:
-                    players[i] = new Player(i + 1, 1, 0, 4, "trailer", playerDie[i], x * i, y * count);
-                    break;
-                case 7:
-                    players[i] = new Player(i + 1, 2, 0, 0, "trailer", playerDie[i], x * i, y * count);
-                    break;
-                case 8:
-                    players[i] = new Player(i + 1, 2, 0, 0, "trailer", playerDie[i], x * i, y * count);
-                    break;
-                default:
-                    players[i] = new Player(i + 1, 6, 0, 0, "trailer", playerDie[i], x * i, y * count);
-                    break;
-            }
-            if ( i == 4) {
-                x = 0;
-                y = 30;
-            } else if (i > 4) {
-                count++;
-            }
-        }
-        return players;
     }
 }

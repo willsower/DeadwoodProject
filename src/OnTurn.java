@@ -245,13 +245,11 @@ public class OnTurn {
             // if oncard
             if (player.getOnCardRole() == true) { // on card
                 player.setCredit(player.getCredit() + 2);
-                System.out.println("SUCCESS + OnCard");
                 setPrintMessage("SUCCESS IN ACTING:");
                 setPrintMessageTwo(" On Card Role: Gain 2 Credits");
             } else if (player.getOffCardRole() == true){// off card
                 player.setCredit(player.getCredit() + 1);
                 player.setDollar(player.getDollar() + 1);
-                System.out.println("SUCCESS + OFFCard");
                 setPrintMessage("SUCCESS IN ACTING:");
                 setPrintMessageTwo(" Off Card Role: Gain 1 Credit and 1 Dollar");
             }
@@ -276,7 +274,6 @@ public class OnTurn {
         } else { // else fail
             if (player.getOffCardRole() == true) { //offcard
                 player.setDollar(player.getDollar() + 1);
-                System.out.println("FAIL + OffCard");
                 setPrintMessage("FAILED IN ACTING: ");
                 setPrintMessageTwo(" Off Card Role: Gain 1 Dollar");
             } else {

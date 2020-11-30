@@ -19,6 +19,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.Image;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -38,15 +39,15 @@ public class SystemManager implements Initializable {
     @FXML // Card Panes
     private Pane trainStationCardHolder, jailCardHolder, mainStreetCardHolder, generalStoreCardHolder, saloonCardHolder,
             ranchCardHolder, bankCardHolder, secretHideoutCardHolder, churchCardHolder, hotelCardHolder, trailer, office,
-            mainStreet, saloon, hotel, ranch, generalStore, trainStation, secretHideout, jail, church, bank;
+            mainStreet, saloon, hotel, ranch, generalStore, trainStation, secretHideout, jail, church, bank, endOfCardPrint, bonusDistributed;
     @FXML //ImageViews
     private ImageView trainStationCard, jailCard, mainStreetCard, generalStoreCard, saloonCard, ranchCard, bankCard,
-            secretHideoutCard, churchCard, hotelCard, boardImage, player1, player2, player3,
-            player4, player5, player6, player7, player8, actRollDisplay;
+            secretHideoutCard, churchCard, hotelCard, boardImage, player1, player2, player3, player4, player5, player6, player7,
+            player8, actRollDisplay, bonusOne, bonusTwo, bonusThree, bonusFour, bonusFive, bonusSix;
     @FXML // Text display
     private Label currentPlayer, playerDollar, playerCredit, playerPracticeChip, dayDisplay, displayText, actPrintLabel,
             actPrintLabelTwo, diceRollLabel, finalScoreLabel, winnerIsLabel, winnerLabel, finalScoreOne, finalScoreTwo,
-            finalScoreThree, finalScoreFour, finalScoreFive, finalScoreSix, finalScoreSeven, finalScoreEight;
+            finalScoreThree, finalScoreFour, finalScoreFive, finalScoreSix, finalScoreSeven, finalScoreEight, bonus, bonusLabel;
     @FXML // Action Buttons
     private Button actButton, rehearseButton, upgradeButton, rollDieButton, payWDollarButton, payWCreditButton, nextPlayer;
     @FXML private TextField userInput;
@@ -140,6 +141,18 @@ public class SystemManager implements Initializable {
             case 6 -> finalScoreSix;
             case 7 -> finalScoreSeven;
             default -> finalScoreEight;
+        };
+    }
+
+    // Get bonus imageviews
+    public ImageView bonusViews(int val) {
+        return switch (val) {
+            case 1 -> bonusOne;
+            case 2 -> bonusTwo;
+            case 3 -> bonusThree;
+            case 4 -> bonusFour;
+            case 5 -> bonusFive;
+            default -> bonusSix;
         };
     }
 
@@ -256,6 +269,8 @@ public class SystemManager implements Initializable {
     public void nextPlayerPush(ActionEvent event) {
         showRoleMoveNext(false, false, false, currentP.getPlayerLocation());
         actRollDisplay.setVisible(false);
+        endOfCardPrint.setVisible(false);
+        bonusDistributed.setVisible(false);
         player++;
         if (player == players.length) {
             player = 0;
@@ -380,6 +395,7 @@ public class SystemManager implements Initializable {
     // Cards Finished helepr function, will be called from rollDieAction
     public void cardFinished() {
         cardsFinished++;
+        displayPayouts();
         deleteCardHelperInfo(currentP.getPlayerLocation());
         int cardNum = Deck.getInstance().getCard(Board.getInstance().getSet(currentP.getPlayerLocation()).getCardNum()).getCardID();
 
@@ -590,6 +606,28 @@ public class SystemManager implements Initializable {
                     currentP.getDollar(), currentP.getCredit())) {
                 makeButtonVisible(false, false, true);
             }
+        }
+    }
+
+    // Add images to payout
+    public void addPayoutImages(ArrayList<Image> payouts) {
+        for (int i = 0; i < 6; i++) {
+            if (i < payouts.size()) {
+                bonusViews(i + 1).setImage(payouts.get(i));
+            } else {
+                bonusViews(i + 1).setImage(null);
+            }
+        }
+    }
+
+    // Display end of card payouts
+    public void displayPayouts() {
+        endOfCardPrint.setVisible(true);
+        bonus.setText(ScoringManager.getInstance().getBonusDistributed());
+        if (ScoringManager.getInstance().bonusAccepted()) {
+            bonusDistributed.setVisible(true);
+            addPayoutImages(ScoringManager.getInstance().getPayoutImages());
+            bonusLabel.setText(ScoringManager.getInstance().getBonusInformation());
         }
     }
 

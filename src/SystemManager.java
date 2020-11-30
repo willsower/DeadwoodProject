@@ -550,27 +550,24 @@ public class SystemManager implements Initializable {
 
     // Function will end the current players turn and set player label information for next player
     public void nextPlayerPush(ActionEvent event) {
+        player++;
+        if (player == players.length) {
+            player = 0;
+        }
+        currentP = players[player];
+        // Hide print label
+        actPrintLabel.setText("");
+        actPrintLabelTwo.setText("");
+        diceRollLabel.setText("");
+
         if (cardsFinished < 2) {
             showRoles(false, currentP.getPlayerLocation());
             showButton(currentP.getPlayerLocation(), false);
             nextPlayer.setVisible(false);
-            player++;
-
-            if (player == players.length) {
-                player = 0;
-            }
-            currentP = players[player];
-
             // Set label with player information
             setPlayerInformation(currentP.getPracticeChip());
-
-
             upgradeBox.setVisible(false);
 
-            // Hide print label
-            actPrintLabel.setText("");
-            actPrintLabelTwo.setText("");
-            diceRollLabel.setText("");
             turn(currentP);
         } else if (cardsFinished == 2) {
             showRoles(false, currentP.getPlayerLocation());
@@ -579,13 +576,11 @@ public class SystemManager implements Initializable {
             if (OnTurn.getInstance().calculateDaysPlayed(numPlayer) + 1 == day) {
                 nextPlayer.setVisible(false);
                 woodBoard.toFront();
-
-                //finalScoreTitle.setText("Calculating end score");
                 finalScoreLabel.setVisible(true);
-                //finalScoreLabel.toFront();
+
                 displayWinner(OnTurn.getInstance().endFunction(players, numPlayer));
                 for (int i = 0; i < players.length; i++) {
-                    playerScore(i +1).setText("Player "+ (i+1) + ": "+ players[i].getFinalScore());
+                    playerScore(i +1).setText("\t\t\t\t\t\t\t\tPlayer "+ (i+1) + ": "+ players[i].getFinalScore());
                     playerScore(i +1).setVisible(true);
                 }
             } else {

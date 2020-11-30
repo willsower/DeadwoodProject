@@ -252,6 +252,47 @@ public class SystemManager implements Initializable {
         }
     }
 
+    // Function will end the current players turn and set player label information for next player
+    public void nextPlayerPush(ActionEvent event) {
+        showRoleMoveNext(false, false, false, currentP.getPlayerLocation());
+        player++;
+        if (player == players.length) {
+            player = 0;
+        }
+        currentP = players[player];
+        // Hide print label
+        actPrintLabel.setText("");
+        actPrintLabelTwo.setText("");
+        diceRollLabel.setText("");
+
+        if (cardsFinished < 2) {
+            showRoleMoveNext(false, false, false, currentP.getPlayerLocation());
+            // Set label with player information
+            setPlayerInformation(currentP.getPracticeChip());
+            upgradeBox.setVisible(false);
+
+            turn(currentP);
+        } else if (cardsFinished == 2) {
+            showRoles(false, currentP.getPlayerLocation());
+            cardsFinished = 0;
+            day++;
+            if (OnTurn.getInstance().calculateDaysPlayed(numPlayer) + 1 == day) {
+                nextPlayer.setVisible(false);
+                woodBoard.toFront();
+                finalScoreLabel.setVisible(true);
+
+                displayWinner(OnTurn.getInstance().endFunction(players, numPlayer));
+                for (int i = 0; i < players.length; i++) {
+                    playerScore(i +1).setText("\t\t\t\t\t\t\tPlayer "+ (i+1) + ": "+ players[i].getFinalScore());
+                    playerScore(i +1).setVisible(true);
+                }
+            } else {
+                resetAll(players, day, numPlayer);
+                turn(currentP);
+            }
+        }
+    }
+
     // Will set upgrade/act/rehearse buttons
     public void makeButtonVisible(boolean act, boolean rehearse, boolean upgrade) {
         actButton.setVisible(act);
@@ -544,48 +585,6 @@ public class SystemManager implements Initializable {
             if (Upgrade.getInstance().canUpgrade(currentP.getLevel() + 1, currentP.getPlayerLocation(),
                     currentP.getDollar(), currentP.getCredit())) {
                 makeButtonVisible(false, false, true);
-            }
-        }
-    }
-
-    // Function will end the current players turn and set player label information for next player
-    public void nextPlayerPush(ActionEvent event) {
-        player++;
-        if (player == players.length) {
-            player = 0;
-        }
-        currentP = players[player];
-        // Hide print label
-        actPrintLabel.setText("");
-        actPrintLabelTwo.setText("");
-        diceRollLabel.setText("");
-
-        if (cardsFinished < 2) {
-            showRoles(false, currentP.getPlayerLocation());
-            showButton(currentP.getPlayerLocation(), false);
-            nextPlayer.setVisible(false);
-            // Set label with player information
-            setPlayerInformation(currentP.getPracticeChip());
-            upgradeBox.setVisible(false);
-
-            turn(currentP);
-        } else if (cardsFinished == 2) {
-            showRoles(false, currentP.getPlayerLocation());
-            cardsFinished = 0;
-            day++;
-            if (OnTurn.getInstance().calculateDaysPlayed(numPlayer) + 1 == day) {
-                nextPlayer.setVisible(false);
-                woodBoard.toFront();
-                finalScoreLabel.setVisible(true);
-
-                displayWinner(OnTurn.getInstance().endFunction(players, numPlayer));
-                for (int i = 0; i < players.length; i++) {
-                    playerScore(i +1).setText("\t\t\t\t\t\t\t\tPlayer "+ (i+1) + ": "+ players[i].getFinalScore());
-                    playerScore(i +1).setVisible(true);
-                }
-            } else {
-                resetAll(players, day, numPlayer);
-                turn(currentP);
             }
         }
     }

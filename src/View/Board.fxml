@@ -25,11 +25,11 @@
                <font>
                   <Font size="40.0" />
                </font></Label>
-            <Label fx:id="winnerIsLabel" alignment="CENTER" prefWidth="1000.0" styleClass="western" text="The winner(s) are: " textAlignment="CENTER" textFill="WHITE" translateY="50.0" visible="false">
+            <Label fx:id="winnerIsLabel" alignment="CENTER" prefWidth="1000.0" styleClass="western" text="The winner(s) are: " textAlignment="CENTER" textFill="WHITE" translateY="250.0" visible="false">
                <font>
                   <Font size="40.0" />
                </font></Label>
-            <Label fx:id="winnerLabel" alignment="CENTER" prefWidth="1000.0" styleClass="western" text="Label" textFill="WHITE" translateY="100.0" visible="false">
+            <Label fx:id="winnerLabel" alignment="CENTER" prefWidth="1000.0" styleClass="western" text="Label" textFill="WHITE" translateY="260.0" visible="false">
                <font>
                   <Font size="40.0" />
                </font></Label>

@@ -230,20 +230,22 @@ public class OnTurn {
 
         // if success
         if (diceRoll + player.getPracticeChip() >= cardBudget) {
-            // if oncard
             counter -= 1;
             Board.getInstance().getSet(player.getPlayerLocation()).setShotCounter(counter);
             setShotCounterImageNum(counter);
 
+            // if oncard
             if (player.getOnCardRole() == true) { // on card
                 player.setCredit(player.getCredit() + 2);
+                System.out.println("SUCCESS + OnCard");
                 setPrintMessage("SUCCESS IN ACTING:");
-                setPrintMessageTwo(" on card roles Credit +2");
-            } else {// off card
+                setPrintMessageTwo(" On Card Role: Gain 2 Credits");
+            } else if (player.getOffCardRole() == true){// off card
                 player.setCredit(player.getCredit() + 1);
                 player.setDollar(player.getDollar() + 1);
+                System.out.println("SUCCESS + OFFCard");
                 setPrintMessage("SUCCESS IN ACTING:");
-                setPrintMessageTwo(" off card roles Credit +1 and Dollar +1");
+                setPrintMessageTwo(" Off Card Role: Gain 1 Credit and 1 Dollar");
             }
 
             // end of card, calculate payout will be called and reset card and player information
@@ -266,9 +268,12 @@ public class OnTurn {
         } else { // else fail
             if (player.getOffCardRole() == true) { //offcard
                 player.setDollar(player.getDollar() + 1);
+                System.out.println("FAIL + OffCard");
                 setPrintMessage("FAILED IN ACTING: ");
-                setPrintMessageTwo(" off card roles Dollar +1");
-
+                setPrintMessageTwo(" Off Card Role: Gain 1 Dollar");
+            } else {
+                setPrintMessage("FAILED IN ACTING");
+                setPrintMessageTwo(" On Card Role: NO GAIN");
             }
             return 3;
         }

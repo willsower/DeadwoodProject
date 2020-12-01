@@ -201,7 +201,6 @@ public class OnTurn {
 
         player.setOffCardRole(true);
         player.setRoleLevel(set.getPartLevel(roleName.replace("_", " ")));
-        System.out.println(player.getRoleLevel());
         player.setRoleLocation(player.getPlayerLocation());
         player.setRoleName(roleName);
         Board.getInstance().getSet(setName).addPlayerToRoomOffCard(player);

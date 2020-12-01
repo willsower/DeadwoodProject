@@ -119,7 +119,7 @@ public class OnTurn {
                     players[i] = new Player(i + 1, 2, 0, 0, "trailer", playerDie[i], x * i, y * count);
                     break;
                 case 8:
-                    players[i] = new Player(i + 1, 4, 0, 0, "trailer", playerDie[i], x * i, y * count);
+                    players[i] = new Player(i + 1, 2, 0, 0, "trailer", playerDie[i], x * i, y * count);
                     break;
                 default:
                     players[i] = new Player(i + 1, 1, 0, 0, "trailer", playerDie[i], x * i, y * count);

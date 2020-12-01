@@ -281,14 +281,14 @@ public class SystemManager implements Initializable {
         actPrintLabelTwo.setText("");
         diceRollLabel.setText("");
 
-        if (cardsFinished < 9) {
+        if (cardsFinished < 4) {
             showRoleMoveNext(false, false, false, currentP.getPlayerLocation());
             // Set label with player information
             setPlayerInformation(currentP.getPracticeChip());
             upgradeBox.setVisible(false);
 
             turn(currentP);
-        } else if (cardsFinished == 9) {
+        } else if (cardsFinished == 4) {
             showRoles(false, currentP.getPlayerLocation());
             cardsFinished = 0;
             day++;

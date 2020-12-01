@@ -500,8 +500,6 @@ public class SystemManager implements Initializable {
 
             // Set label with player information
             setPlayerInformation(currentP.getPracticeChip());
-
-
             upgradeBox.setVisible(false);
 
             // Hide print label
@@ -509,7 +507,7 @@ public class SystemManager implements Initializable {
             actPrintLabelTwo.setText("");
             diceRollLabel.setText("");
             turn(currentP);
-        } else if (cardsFinished == 9) {
+        } else if (cardsFinished == 3) {
             showRoles(false, currentP.getPlayerLocation());
             cardsFinished = 0;
             day++;

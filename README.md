@@ -24,7 +24,7 @@ Taichen Rose
 
 ## Things We Would Have Changed
 
-1. Some of our printing is being done in OnTurn or even SystemManager class. We should have done a better job at putting that information in the UserInterface class if we had more time. Same with UserInterface, there are some calculations that are being done there, and those calculations should already have been done before it gets to that level.
+1. Some of our printing is being done in OnTurn or even SystemManager class. 
 
 2. Create more variable objects. If you look at OnTurn, there is a lot of ```Deck.getInstance.getSet().``` and more. If we stored the set and card in a variable, we could reference that object over so it would make the code easier to read.
 
@@ -56,11 +56,7 @@ This class will do anything scoring related. It will calculate the score payouts
 
 ### Upgrade
 
-Deals with all upgrading in game. Will check if user has enough to upgrade Will call from UserInterface to help display and get user input on upgrade
-
-### UserInterface
-
-Display user prompts and get user input throughout the game
+Deals with all upgrading in game. Will check if user has enough to upgrade 
 
 ### Set
 

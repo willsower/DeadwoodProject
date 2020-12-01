@@ -5,16 +5,40 @@
 
 .arrow {
     -fx-shape: "M0,0 L0,6 L9,3 Z";
-    -fx-background-color: red;
 }
 
-.button:hover {
+.button {
     -fx-background-color: green;
-    -fx-scale-y: 1.1;
+}
+
+.button:hover, .buttonCardColor:hover {
+    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, green;
+}
+
+.buttonCardColor {
+    -fx-background-color: #c6dda7;
+    -fx-font-size: 20px;
 }
 
 .offCardRoles:hover {
     -fx-background-color: blue;
+}
+
+.choice-box {
+  -fx-background-color: #c6dda7;
+  -fx-mark-color: #b17246; // Check color
+}
+
+.choice-box > .label {
+    -fx-text-fill: black;
+}
+
+.choice-box .context-menu {
+    -fx-background-color: #c6dda7;
+}
+
+.choice-box .menu-item:focused {
+    -fx-background-color: green;
 }
 
 .western {

@@ -162,7 +162,7 @@ public class Player {
             case "c" -> colorName = "Cadet Blue";
             case "g" -> colorName = "Green";
             case "o" -> colorName = "Orange";
-            case "p" -> colorName = "Purple";
+            case "p" -> colorName = "Pink";
             case "r" -> colorName = "Red";
             case "v" -> colorName = "Violet";
             default -> colorName = "Yellow";
@@ -172,11 +172,6 @@ public class Player {
     // Function to reset players at the end of day or card
     // depending on the boolean value
     public void resetPlayers(boolean isNotAfterCard) {
-        if (isNotAfterCard) { // true
-//            playerLocation = "trailer";
-            //playerLocation = "office"; /* TEST UPGRADE */
-            //System.out.println("TEST 1");
-        }
         practiceChip = 0;
         onCardRole = false;
         offCardRole = false;

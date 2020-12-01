@@ -114,13 +114,6 @@ public class Set {
 
     public boolean getIsCardFlipped() { return isCardFlipped; }
 
-    public ArrayList<Button> getOut() {
-//        for (int i = 0; i < out.size(); i++) {
-//            System.out.println(out.get(i));
-//        }
-        return out;
-    }
-
     // Function to get list of all active sets
     public Boolean[] getIsActiveList() {
         Boolean[] list = new Boolean[neighbor.length];
@@ -140,7 +133,7 @@ public class Set {
     public int getPartLevel(String partName) {
         ArrayList<Part> myPart = getParts();
         for (int i = 0; i < myPart.size(); i++) {
-            if (myPart.get(i).partName.equals(partName)) {
+            if (myPart.get(i).partName.equals(partName.replace(",", ""))) {
                 return myPart.get(i).level;
             }
         }
@@ -218,14 +211,10 @@ public class Set {
     public void setPartTaken(String partName, boolean taken) {
         ArrayList<Part> partTaken = getParts();
         for (int i = 0; i < getParts().size(); i++) {
-            if (partName.equals(partTaken.get(i).partName)) {
+            if (partName.equals(partTaken.get(i).partName.replace(",", ""))) {
                 partTaken.get(i).isTaken = taken;
             }
         }
-    }
-
-    public void addToButtonList(Button name) {
-        out.add(name);
     }
 
     public void setShotCounter(int counter) {
@@ -274,7 +263,6 @@ public class Set {
     public void resetSetDay() {
         hasCard = true;
         isActive = true;
-
         for (int i = 0; i < part.size(); i++) {
             part.get(i).isTaken = false;
         }

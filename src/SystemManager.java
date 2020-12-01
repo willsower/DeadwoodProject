@@ -451,6 +451,7 @@ public class SystemManager implements Initializable {
         showRoleMoveNext(false, false, false, currentP.getPlayerLocation());
         makeButtonVisible(false, false, false);
         upgradeBox.setVisible(false);
+        paymentOption.setVisible(false);
         String previous = currentP.getPlayerLocation();
 
         // Check if card is flipped, if not flip

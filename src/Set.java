@@ -133,7 +133,7 @@ public class Set {
     public int getPartLevel(String partName) {
         ArrayList<Part> myPart = getParts();
         for (int i = 0; i < myPart.size(); i++) {
-            if (myPart.get(i).partName.equals(partName.replace(",", ""))) {
+            if (myPart.get(i).partName.replace(",", "").equals(partName.replace(",", ""))) {
                 return myPart.get(i).level;
             }
         }

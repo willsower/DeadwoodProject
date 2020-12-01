@@ -122,7 +122,7 @@ public class OnTurn {
                     players[i] = new Player(i + 1, 2, 0, 0, "trailer", playerDie[i], x * i, y * count);
                     break;
                 default:
-                    players[i] = new Player(i + 1, 1, 0, 0, "trailer", playerDie[i], x * i, y * count);
+                    players[i] = new Player(i + 1, 4, 0, 0, "trailer", playerDie[i], x * i, y * count);
                     break;
             }
             if ( i == 4) {
@@ -201,6 +201,7 @@ public class OnTurn {
 
         player.setOffCardRole(true);
         player.setRoleLevel(set.getPartLevel(roleName.replace("_", " ")));
+        System.out.println(player.getRoleLevel());
         player.setRoleLocation(player.getPlayerLocation());
         player.setRoleName(roleName);
         Board.getInstance().getSet(setName).addPlayerToRoomOffCard(player);

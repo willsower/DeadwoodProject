@@ -237,13 +237,11 @@ public class Set {
 
     // Getting available cards
     public ArrayList<String> availablePartsOffCard(int playerRank) {
-        System.out.println("\n\n");
         ArrayList<String> available = new ArrayList<String>();
         ArrayList<Part> partsAvailable = getParts();
         for (int i = 0; i < partsAvailable.size(); i++) {
             if (partsAvailable.get(i).isTaken == false) {
                 if (partsAvailable.get(i).level <= playerRank) {
-                    System.out.println(partsAvailable.get(i).partName);
                     available.add(partsAvailable.get(i).partName);
                 }
             }

@@ -123,8 +123,7 @@ public class Upgrade {
         int dollar = currentP.getDollar();
 
         for (int i = currentLevel + 1; i <= 6; i++) {
-            if (Upgrade.getInstance().getLevel(i).credit <= credit
-                    || Upgrade.getInstance().getLevel(i).dollar <= dollar) {
+            if ((Upgrade.getInstance().getLevel(i).credit <= credit) || (Upgrade.getInstance().getLevel(i).dollar <= dollar)) {
                 list.add(i);
             }
         }

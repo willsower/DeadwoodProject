@@ -449,6 +449,8 @@ public class SystemManager implements Initializable {
     public void onMove(ActionEvent event) {
         String name = ((Node) event.getSource()).getId();
         showRoleMoveNext(false, false, false, currentP.getPlayerLocation());
+        makeButtonVisible(false, false, false);
+        upgradeBox.setVisible(false);
         String previous = currentP.getPlayerLocation();
 
         // Check if card is flipped, if not flip
